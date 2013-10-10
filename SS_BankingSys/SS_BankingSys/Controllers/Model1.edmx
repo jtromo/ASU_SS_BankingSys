@@ -13,7 +13,6 @@
           <EntitySet Name="CheckingAccount" EntityType="SSTeam7.BankingModel.Store.CheckingAccount" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CreditAccount" EntityType="SSTeam7.BankingModel.Store.CreditAccount" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Department" EntityType="SSTeam7.BankingModel.Store.Department" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Goal" EntityType="SSTeam7.BankingModel.Store.Goal" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Question" EntityType="SSTeam7.BankingModel.Store.Question" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="SSTeam7.BankingModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SavingsAccount" EntityType="SSTeam7.BankingModel.Store.SavingsAccount" store:Type="Tables" Schema="dbo" />
@@ -47,10 +46,6 @@
           <AssociationSet Name="FK_CreditAccount_Account" Association="SSTeam7.BankingModel.Store.FK_CreditAccount_Account">
             <End Role="Account" EntitySet="Account" />
             <End Role="CreditAccount" EntitySet="CreditAccount" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Goal_User" Association="SSTeam7.BankingModel.Store.FK_Goal_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Goal" EntitySet="Goal" />
           </AssociationSet>
           <AssociationSet Name="FK_SavingsAccount_Account" Association="SSTeam7.BankingModel.Store.FK_SavingsAccount_Account">
             <End Role="Account" EntitySet="Account" />
@@ -165,17 +160,6 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="title" Type="nchar" Nullable="false" MaxLength="10" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Goal">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="employeeId" Type="int" Nullable="false" />
-          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="dueDate" Type="datetimeoffset" Nullable="false" />
-          <Property Name="isFinished" Type="bit" Nullable="false" />
           <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Question">
@@ -367,18 +351,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Goal_User">
-          <End Role="User" Type="SSTeam7.BankingModel.Store.User" Multiplicity="1" />
-          <End Role="Goal" Type="SSTeam7.BankingModel.Store.Goal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Goal">
-              <PropertyRef Name="employeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SavingsAccount_Account">
           <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
           <End Role="SavingsAccount" Type="SSTeam7.BankingModel.Store.SavingsAccount" Multiplicity="0..1" />
@@ -552,12 +524,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="UserDepartment" EntitySet="UserDepartments" />
           </AssociationSet>
-          <EntitySet Name="Goals" EntityType="SSTeam7.BankingModel.Goal" />
           <EntitySet Name="sysdiagrams" EntityType="SSTeam7.BankingModel.sysdiagram" />
-          <AssociationSet Name="FK_Goal_User" Association="SSTeam7.BankingModel.FK_Goal_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Goal" EntitySet="Goals" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -761,7 +728,6 @@
           <NavigationProperty Name="Role" Relationship="SSTeam7.BankingModel.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="SecurityQuestions" Relationship="SSTeam7.BankingModel.FK_SecurityQuestions_User" FromRole="User" ToRole="SecurityQuestions" />
           <NavigationProperty Name="UserDepartment" Relationship="SSTeam7.BankingModel.FK_UserDepartment_User" FromRole="User" ToRole="UserDepartment" />
-          <NavigationProperty Name="Goals" Relationship="SSTeam7.BankingModel.FK_Goal_User" FromRole="User" ToRole="Goal" />
         </EntityType>
         <EntityType Name="UserDepartment">
           <Key>
@@ -945,18 +911,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Goal">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="employeeId" Nullable="false" />
-          <Property Type="String" Name="description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTimeOffset" Name="dueDate" Nullable="false" Precision="7" />
-          <Property Type="Boolean" Name="isFinished" Nullable="false" />
-          <Property Type="Boolean" Name="isActive" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="SSTeam7.BankingModel.FK_Goal_User" FromRole="Goal" ToRole="User" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -967,18 +921,6 @@
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Goal_User">
-          <End Type="SSTeam7.BankingModel.User" Role="User" Multiplicity="1" />
-          <End Type="SSTeam7.BankingModel.Goal" Role="Goal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Goal">
-              <PropertyRef Name="employeeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1187,18 +1129,6 @@
                 <ScalarProperty Name="creationTime" ColumnName="creationTime" />
                 <ScalarProperty Name="modificationTime" ColumnName="modificationTime" />
                 <ScalarProperty Name="deletionTime" ColumnName="deletionTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Goals">
-            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Goal">
-              <MappingFragment StoreEntitySet="Goal">
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="isFinished" ColumnName="isFinished" />
-                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

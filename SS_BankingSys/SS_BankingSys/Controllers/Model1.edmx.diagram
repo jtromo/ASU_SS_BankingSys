@@ -35,9 +35,7 @@
         <AssociationConnector Association="SSTeam7.BankingModel.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="SSTeam7.BankingModel.FK_SecurityQuestions_User" ManuallyRouted="false" />
         <AssociationConnector Association="SSTeam7.BankingModel.FK_UserDepartment_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SSTeam7.BankingModel.Goal" Width="1.5" PointX="3.75" PointY="24.625" />
         <EntityTypeShape EntityType="SSTeam7.BankingModel.sysdiagram" Width="1.5" PointX="2.3119013171232776" PointY="25.420460131680809" />
-        <AssociationConnector Association="SSTeam7.BankingModel.FK_Goal_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

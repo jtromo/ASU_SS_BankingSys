@@ -254,6 +254,7 @@
     <Content Include="Images\thumb2.jpg" />
     <Content Include="Images\thumb3.jpg" />
     <Content Include="packages.config" />
+    <Content Include="RegularUserChangePassword.aspx" />
     <Content Include="RegularUserChecking.aspx" />
     <Content Include="RegularUserCredit.aspx" />
     <Content Include="RegularUserCreditFunds.aspx" />
@@ -308,8 +309,8 @@
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="CSS\App_Start\BundleConfig.cs" />
+    <Compile Include="CSS\App_Start\AuthConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,6 +364,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularUserChangePassword.aspx.cs">
+      <DependentUpon>RegularUserChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegularUserChangePassword.aspx.designer.cs">
+      <DependentUpon>RegularUserChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RegularUserChecking.aspx.cs">
       <DependentUpon>RegularUserChecking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

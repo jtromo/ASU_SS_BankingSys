@@ -111,10 +111,11 @@
                 </li>
             </ul>
         </div>
-    	<div class="auto-style3">
+    	<div class="col_allw300 col_last">
         	<h4>About Us</h4>
-            <p>Bank of Se7en is a <a href="http://www.templatemo.com/" target="_blank">Online secured bank system</a> brought to you by <a href="http://www.templatemo.com/" target="_blank">Software Security - Team 7</a>. </p>
-        </div>                
+            <p>Bank of Se7en is a <a href="http://www.templatemo.com/" target="_blank">Online secured bank system</a> brought to you by <a href="http://www.templatemo.com/" target="_blank">
+                </br> Software Security -Team 7</a>. </p>
+        </div>                          
     
         <div class="cleaner"></div>
     

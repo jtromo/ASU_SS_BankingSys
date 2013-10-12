@@ -22,7 +22,7 @@ namespace SSBank.Account
             }
 
             // James Test DB Actions
-            using (var db = new BankingContext()) {
+            using (var db = new SSBankDBContext()) {
                 var question = new Question { question1 = "What is your mother's maiden name?" };
                 db.Questions.Add(question);
                 db.SaveChanges();
@@ -36,7 +36,7 @@ namespace SSBank.Account
                 {
                     databaseString = databaseString + item.question1 + ", ";
                 }
-                //Response.Write(databaseString);
+                Response.Write(databaseString);
             }
         }
     }

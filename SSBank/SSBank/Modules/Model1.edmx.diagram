@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fbac5107d987414d96248294f2bd8537" Name="Diagram1">
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Account" Width="1.5" PointX="5.25" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.AccountType" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Address" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Card" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.CheckingAccount" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.CreditAccount" Width="1.5" PointX="7.5" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Department" Width="1.5" PointX="6" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Question" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Role" Width="1.5" PointX="0.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.SavingsAccount" Width="1.5" PointX="7.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.SecurityQuestion" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Statement" Width="1.5" PointX="7.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.SystemLog" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.Transaction" Width="1.5" PointX="7.5" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.User" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSTeam7.BankingModel.UserDepartment" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Account_AccountType" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Account_Address" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Account_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Card_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_CheckingAccount_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_CreditAccount_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_SavingsAccount_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Statement_Account" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_Transaction_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_UserDepartment_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_SecurityQuestions_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_SecurityQuestions_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SSTeam7.BankingModel.FK_UserDepartment_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

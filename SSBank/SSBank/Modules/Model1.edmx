@@ -1,0 +1,1169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SSTeam7.BankingModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="SSTeam7BankingModelStoreContainer">
+          <EntitySet Name="Account" EntityType="SSTeam7.BankingModel.Store.Account" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AccountType" EntityType="SSTeam7.BankingModel.Store.AccountType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Address" EntityType="SSTeam7.BankingModel.Store.Address" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Card" EntityType="SSTeam7.BankingModel.Store.Card" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CheckingAccount" EntityType="SSTeam7.BankingModel.Store.CheckingAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CreditAccount" EntityType="SSTeam7.BankingModel.Store.CreditAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Department" EntityType="SSTeam7.BankingModel.Store.Department" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question" EntityType="SSTeam7.BankingModel.Store.Question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Role" EntityType="SSTeam7.BankingModel.Store.Role" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SavingsAccount" EntityType="SSTeam7.BankingModel.Store.SavingsAccount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SecurityQuestions" EntityType="SSTeam7.BankingModel.Store.SecurityQuestions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Statement" EntityType="SSTeam7.BankingModel.Store.Statement" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="SSTeam7.BankingModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SystemLog" EntityType="SSTeam7.BankingModel.Store.SystemLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transaction" EntityType="SSTeam7.BankingModel.Store.Transaction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="SSTeam7.BankingModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserDepartment" EntityType="SSTeam7.BankingModel.Store.UserDepartment" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Account_AccountType" Association="SSTeam7.BankingModel.Store.FK_Account_AccountType">
+            <End Role="AccountType" EntitySet="AccountType" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Address" Association="SSTeam7.BankingModel.Store.FK_Account_Address">
+            <End Role="Address" EntitySet="Address" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_User" Association="SSTeam7.BankingModel.Store.FK_Account_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_Account" Association="SSTeam7.BankingModel.Store.FK_Card_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Card" EntitySet="Card" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckingAccount_Account" Association="SSTeam7.BankingModel.Store.FK_CheckingAccount_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="CheckingAccount" EntitySet="CheckingAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditAccount_Account" Association="SSTeam7.BankingModel.Store.FK_CreditAccount_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="CreditAccount" EntitySet="CreditAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SavingsAccount_Account" Association="SSTeam7.BankingModel.Store.FK_SavingsAccount_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="SavingsAccount" EntitySet="SavingsAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityQuestions_Question" Association="SSTeam7.BankingModel.Store.FK_SecurityQuestions_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="SecurityQuestions" EntitySet="SecurityQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityQuestions_User" Association="SSTeam7.BankingModel.Store.FK_SecurityQuestions_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="SecurityQuestions" EntitySet="SecurityQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statement_Account" Association="SSTeam7.BankingModel.Store.FK_Statement_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Statement" EntitySet="Statement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_User" Association="SSTeam7.BankingModel.Store.FK_Transaction_User">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="SSTeam7.BankingModel.Store.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartment_Department" Association="SSTeam7.BankingModel.Store.FK_UserDepartment_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="UserDepartment" EntitySet="UserDepartment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartment_User" Association="SSTeam7.BankingModel.Store.FK_UserDepartment_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserDepartment" EntitySet="UserDepartment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="routingNumber" Type="int" Nullable="false" />
+          <Property Name="accountTypeId" Type="int" Nullable="false" />
+          <Property Name="primaryUserId" Type="int" Nullable="false" />
+          <Property Name="balance" Type="float" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="billingAddressId" Type="int" Nullable="false" />
+          <Property Name="creationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="modificationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="deletionTime" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="lastName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="street1" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="street2" Type="nvarchar" MaxLength="50" />
+          <Property Name="city" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="state" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="zip" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="isActive" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="creationDate" Type="datetimeoffset" Nullable="false" />
+          <Property Name="modificationDate" Type="datetimeoffset" Nullable="false" />
+          <Property Name="deletionDate" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="cardNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="cardNumber" Type="int" Nullable="false" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="cvv" Type="int" Nullable="false" />
+          <Property Name="experationDate" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="middleInitial" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="lastName" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="isCredit" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckingAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="routingNumber" Type="int" Nullable="false" />
+          <Property Name="interestRate" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="creditLimit" Type="float" Nullable="false" />
+          <Property Name="paymentDueDay" Type="int" Nullable="false" />
+          <Property Name="interestRate" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SavingsAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="routingNumber" Type="int" Nullable="false" />
+          <Property Name="minimumBalance" Type="float" Nullable="false" />
+          <Property Name="withdrawlNumLimit" Type="int" Nullable="false" />
+          <Property Name="interestRate" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SecurityQuestions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="questionId" Type="int" Nullable="false" />
+          <Property Name="answer" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="statementStart" Type="datetimeoffset" Nullable="false" />
+          <Property Name="statementEnd" Type="datetimeoffset" Nullable="false" />
+          <Property Name="endingBalance" Type="float" Nullable="false" />
+          <Property Name="creationDate" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="SystemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="messageType" Type="int" Nullable="false" />
+          <Property Name="context" Type="nchar" MaxLength="10" />
+          <Property Name="ip" Type="nchar" MaxLength="10" />
+          <Property Name="component" Type="nchar" MaxLength="10" />
+          <Property Name="process" Type="nchar" MaxLength="10" />
+          <Property Name="message" Type="nchar" MaxLength="10" />
+          <Property Name="time" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="amount" Type="float" Nullable="false" />
+          <Property Name="processedTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="creationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="modificationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="deletionTime" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="middleName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="lastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="username" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="salt" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="hash" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="organization" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
+          <Property Name="creationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="modificationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="deletionTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="lockoutTime" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="departmentId" Type="int" Nullable="false" />
+          <Property Name="isActive" Type="int" Nullable="false" />
+          <Property Name="creationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="modificationTime" Type="datetimeoffset" Nullable="false" />
+          <Property Name="deletionTime" Type="datetimeoffset" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Account_AccountType">
+          <End Role="AccountType" Type="SSTeam7.BankingModel.Store.AccountType" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="accountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Address">
+          <End Role="Address" Type="SSTeam7.BankingModel.Store.Address" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="billingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_User">
+          <End Role="User" Type="SSTeam7.BankingModel.Store.User" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="primaryUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="Card" Type="SSTeam7.BankingModel.Store.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckingAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="CheckingAccount" Type="SSTeam7.BankingModel.Store.CheckingAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="CheckingAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="CreditAccount" Type="SSTeam7.BankingModel.Store.CreditAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="CreditAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SavingsAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="SavingsAccount" Type="SSTeam7.BankingModel.Store.SavingsAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="SavingsAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityQuestions_Question">
+          <End Role="Question" Type="SSTeam7.BankingModel.Store.Question" Multiplicity="1" />
+          <End Role="SecurityQuestions" Type="SSTeam7.BankingModel.Store.SecurityQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SecurityQuestions">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityQuestions_User">
+          <End Role="User" Type="SSTeam7.BankingModel.Store.User" Multiplicity="1" />
+          <End Role="SecurityQuestions" Type="SSTeam7.BankingModel.Store.SecurityQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SecurityQuestions">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statement_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="Statement" Type="SSTeam7.BankingModel.Store.Statement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Statement">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_User">
+          <End Role="Account" Type="SSTeam7.BankingModel.Store.Account" Multiplicity="1" />
+          <End Role="Transaction" Type="SSTeam7.BankingModel.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="SSTeam7.BankingModel.Store.Role" Multiplicity="1" />
+          <End Role="User" Type="SSTeam7.BankingModel.Store.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartment_Department">
+          <End Role="Department" Type="SSTeam7.BankingModel.Store.Department" Multiplicity="1" />
+          <End Role="UserDepartment" Type="SSTeam7.BankingModel.Store.UserDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserDepartment">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartment_User">
+          <End Role="User" Type="SSTeam7.BankingModel.Store.User" Multiplicity="1" />
+          <End Role="UserDepartment" Type="SSTeam7.BankingModel.Store.UserDepartment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserDepartment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSTeam7.BankingModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BankingContext" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="SSTeam7.BankingModel.Account" />
+          <EntitySet Name="AccountTypes" EntityType="SSTeam7.BankingModel.AccountType" />
+          <EntitySet Name="Addresses" EntityType="SSTeam7.BankingModel.Address" />
+          <EntitySet Name="Cards" EntityType="SSTeam7.BankingModel.Card" />
+          <EntitySet Name="CheckingAccounts" EntityType="SSTeam7.BankingModel.CheckingAccount" />
+          <EntitySet Name="CreditAccounts" EntityType="SSTeam7.BankingModel.CreditAccount" />
+          <EntitySet Name="Departments" EntityType="SSTeam7.BankingModel.Department" />
+          <EntitySet Name="Questions" EntityType="SSTeam7.BankingModel.Question" />
+          <EntitySet Name="Roles" EntityType="SSTeam7.BankingModel.Role" />
+          <EntitySet Name="SavingsAccounts" EntityType="SSTeam7.BankingModel.SavingsAccount" />
+          <EntitySet Name="SecurityQuestions" EntityType="SSTeam7.BankingModel.SecurityQuestion" />
+          <EntitySet Name="Statements" EntityType="SSTeam7.BankingModel.Statement" />
+          <EntitySet Name="sysdiagrams" EntityType="SSTeam7.BankingModel.sysdiagram" />
+          <EntitySet Name="SystemLogs" EntityType="SSTeam7.BankingModel.SystemLog" />
+          <EntitySet Name="Transactions" EntityType="SSTeam7.BankingModel.Transaction" />
+          <EntitySet Name="Users" EntityType="SSTeam7.BankingModel.User" />
+          <EntitySet Name="UserDepartments" EntityType="SSTeam7.BankingModel.UserDepartment" />
+          <AssociationSet Name="FK_Account_AccountType" Association="SSTeam7.BankingModel.FK_Account_AccountType">
+            <End Role="AccountType" EntitySet="AccountTypes" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_Address" Association="SSTeam7.BankingModel.FK_Account_Address">
+            <End Role="Address" EntitySet="Addresses" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_User" Association="SSTeam7.BankingModel.FK_Account_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Card_Account" Association="SSTeam7.BankingModel.FK_Card_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Card" EntitySet="Cards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckingAccount_Account" Association="SSTeam7.BankingModel.FK_CheckingAccount_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CheckingAccount" EntitySet="CheckingAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditAccount_Account" Association="SSTeam7.BankingModel.FK_CreditAccount_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CreditAccount" EntitySet="CreditAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SavingsAccount_Account" Association="SSTeam7.BankingModel.FK_SavingsAccount_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="SavingsAccount" EntitySet="SavingsAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statement_Account" Association="SSTeam7.BankingModel.FK_Statement_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Statement" EntitySet="Statements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_User" Association="SSTeam7.BankingModel.FK_Transaction_User">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartment_Department" Association="SSTeam7.BankingModel.FK_UserDepartment_Department">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="UserDepartment" EntitySet="UserDepartments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityQuestions_Question" Association="SSTeam7.BankingModel.FK_SecurityQuestions_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="SecurityQuestions" EntitySet="SecurityQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Role" Association="SSTeam7.BankingModel.FK_User_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SecurityQuestions_User" Association="SSTeam7.BankingModel.FK_SecurityQuestions_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SecurityQuestions" EntitySet="SecurityQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDepartment_User" Association="SSTeam7.BankingModel.FK_UserDepartment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserDepartment" EntitySet="UserDepartments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="routingNumber" Type="Int32" Nullable="false" />
+          <Property Name="accountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="primaryUserId" Type="Int32" Nullable="false" />
+          <Property Name="balance" Type="Double" Nullable="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="billingAddressId" Type="Int32" Nullable="false" />
+          <Property Name="creationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="modificationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deletionTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AccountType" Relationship="SSTeam7.BankingModel.FK_Account_AccountType" FromRole="Account" ToRole="AccountType" />
+          <NavigationProperty Name="Address" Relationship="SSTeam7.BankingModel.FK_Account_Address" FromRole="Account" ToRole="Address" />
+          <NavigationProperty Name="User" Relationship="SSTeam7.BankingModel.FK_Account_User" FromRole="Account" ToRole="User" />
+          <NavigationProperty Name="Cards" Relationship="SSTeam7.BankingModel.FK_Card_Account" FromRole="Account" ToRole="Card" />
+          <NavigationProperty Name="CheckingAccount" Relationship="SSTeam7.BankingModel.FK_CheckingAccount_Account" FromRole="Account" ToRole="CheckingAccount" />
+          <NavigationProperty Name="CreditAccount" Relationship="SSTeam7.BankingModel.FK_CreditAccount_Account" FromRole="Account" ToRole="CreditAccount" />
+          <NavigationProperty Name="SavingsAccount" Relationship="SSTeam7.BankingModel.FK_SavingsAccount_Account" FromRole="Account" ToRole="SavingsAccount" />
+          <NavigationProperty Name="Statement" Relationship="SSTeam7.BankingModel.FK_Statement_Account" FromRole="Account" ToRole="Statement" />
+          <NavigationProperty Name="Transactions" Relationship="SSTeam7.BankingModel.FK_Transaction_User" FromRole="Account" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="AccountType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Accounts" Relationship="SSTeam7.BankingModel.FK_Account_AccountType" FromRole="AccountType" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="street1" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="street2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="state" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="zip" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="country" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="isActive" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="creationDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="modificationDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deletionDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="SSTeam7.BankingModel.FK_Account_Address" FromRole="Address" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="cardNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="cardNumber" Type="Int32" Nullable="false" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="cvv" Type="Int32" Nullable="false" />
+          <Property Name="experationDate" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="middleInitial" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="isCredit" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_Card_Account" FromRole="Card" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="CheckingAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="routingNumber" Type="Int32" Nullable="false" />
+          <Property Name="interestRate" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_CheckingAccount_Account" FromRole="CheckingAccount" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="CreditAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="creditLimit" Type="Double" Nullable="false" />
+          <Property Name="paymentDueDay" Type="Int32" Nullable="false" />
+          <Property Name="interestRate" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_CreditAccount_Account" FromRole="CreditAccount" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserDepartments" Relationship="SSTeam7.BankingModel.FK_UserDepartment_Department" FromRole="Department" ToRole="UserDepartment" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="question1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="SecurityQuestions" Relationship="SSTeam7.BankingModel.FK_SecurityQuestions_Question" FromRole="Question" ToRole="SecurityQuestions" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Users" Relationship="SSTeam7.BankingModel.FK_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SavingsAccount">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="routingNumber" Type="Int32" Nullable="false" />
+          <Property Name="minimumBalance" Type="Double" Nullable="false" />
+          <Property Name="withdrawlNumLimit" Type="Int32" Nullable="false" />
+          <Property Name="interestRate" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_SavingsAccount_Account" FromRole="SavingsAccount" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="SecurityQuestion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="questionId" Type="Int32" Nullable="false" />
+          <Property Name="answer" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="SSTeam7.BankingModel.FK_SecurityQuestions_Question" FromRole="SecurityQuestions" ToRole="Question" />
+          <NavigationProperty Name="User" Relationship="SSTeam7.BankingModel.FK_SecurityQuestions_User" FromRole="SecurityQuestions" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Statement">
+          <Key>
+            <PropertyRef Name="accountNumber" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="statementStart" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="statementEnd" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="endingBalance" Type="Double" Nullable="false" />
+          <Property Name="creationDate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_Statement_Account" FromRole="Statement" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SystemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="messageType" Type="Int32" Nullable="false" />
+          <Property Name="context" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="ip" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="component" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="process" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="message" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="time" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="accountNumber" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Double" Nullable="false" />
+          <Property Name="processedTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="creationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="modificationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deletionTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="SSTeam7.BankingModel.FK_Transaction_User" FromRole="Transaction" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="middleName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="salt" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="hash" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="organization" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Name="creationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="modificationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deletionTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="lockoutTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="SSTeam7.BankingModel.FK_Account_User" FromRole="User" ToRole="Account" />
+          <NavigationProperty Name="Role" Relationship="SSTeam7.BankingModel.FK_User_Role" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="SecurityQuestions" Relationship="SSTeam7.BankingModel.FK_SecurityQuestions_User" FromRole="User" ToRole="SecurityQuestions" />
+          <NavigationProperty Name="UserDepartment" Relationship="SSTeam7.BankingModel.FK_UserDepartment_User" FromRole="User" ToRole="UserDepartment" />
+        </EntityType>
+        <EntityType Name="UserDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="departmentId" Type="Int32" Nullable="false" />
+          <Property Name="isActive" Type="Int32" Nullable="false" />
+          <Property Name="creationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="modificationTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="deletionTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Department" Relationship="SSTeam7.BankingModel.FK_UserDepartment_Department" FromRole="UserDepartment" ToRole="Department" />
+          <NavigationProperty Name="User" Relationship="SSTeam7.BankingModel.FK_UserDepartment_User" FromRole="UserDepartment" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Account_AccountType">
+          <End Role="AccountType" Type="SSTeam7.BankingModel.AccountType" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountType">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="accountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_Address">
+          <End Role="Address" Type="SSTeam7.BankingModel.Address" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Address">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="billingAddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_User">
+          <End Role="User" Type="SSTeam7.BankingModel.User" Multiplicity="1" />
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="primaryUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Card_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="Card" Type="SSTeam7.BankingModel.Card" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Card">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckingAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="CheckingAccount" Type="SSTeam7.BankingModel.CheckingAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="CheckingAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="CreditAccount" Type="SSTeam7.BankingModel.CreditAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="CreditAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SavingsAccount_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="SavingsAccount" Type="SSTeam7.BankingModel.SavingsAccount" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="SavingsAccount">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statement_Account">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="Statement" Type="SSTeam7.BankingModel.Statement" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Statement">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_User">
+          <End Role="Account" Type="SSTeam7.BankingModel.Account" Multiplicity="1" />
+          <End Role="Transaction" Type="SSTeam7.BankingModel.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="accountNumber" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="accountNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartment_Department">
+          <End Role="Department" Type="SSTeam7.BankingModel.Department" Multiplicity="1" />
+          <End Role="UserDepartment" Type="SSTeam7.BankingModel.UserDepartment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserDepartment">
+              <PropertyRef Name="departmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityQuestions_Question">
+          <End Role="Question" Type="SSTeam7.BankingModel.Question" Multiplicity="1" />
+          <End Role="SecurityQuestions" Type="SSTeam7.BankingModel.SecurityQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SecurityQuestions">
+              <PropertyRef Name="questionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="SSTeam7.BankingModel.Role" Multiplicity="1" />
+          <End Role="User" Type="SSTeam7.BankingModel.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SecurityQuestions_User">
+          <End Role="User" Type="SSTeam7.BankingModel.User" Multiplicity="1" />
+          <End Role="SecurityQuestions" Type="SSTeam7.BankingModel.SecurityQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SecurityQuestions">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDepartment_User">
+          <End Role="User" Type="SSTeam7.BankingModel.User" Multiplicity="1" />
+          <End Role="UserDepartment" Type="SSTeam7.BankingModel.UserDepartment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="UserDepartment">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSTeam7BankingModelStoreContainer" CdmEntityContainer="BankingContext">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="routingNumber" ColumnName="routingNumber" />
+                <ScalarProperty Name="accountTypeId" ColumnName="accountTypeId" />
+                <ScalarProperty Name="primaryUserId" ColumnName="primaryUserId" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="billingAddressId" ColumnName="billingAddressId" />
+                <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+                <ScalarProperty Name="modificationTime" ColumnName="modificationTime" />
+                <ScalarProperty Name="deletionTime" ColumnName="deletionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountTypes">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.AccountType">
+              <MappingFragment StoreEntitySet="AccountType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="street1" ColumnName="street1" />
+                <ScalarProperty Name="street2" ColumnName="street2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+                <ScalarProperty Name="modificationDate" ColumnName="modificationDate" />
+                <ScalarProperty Name="deletionDate" ColumnName="deletionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cards">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Card">
+              <MappingFragment StoreEntitySet="Card">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="experationDate" ColumnName="experationDate" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleInitial" ColumnName="middleInitial" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="isCredit" ColumnName="isCredit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckingAccounts">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.CheckingAccount">
+              <MappingFragment StoreEntitySet="CheckingAccount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="routingNumber" ColumnName="routingNumber" />
+                <ScalarProperty Name="interestRate" ColumnName="interestRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditAccounts">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.CreditAccount">
+              <MappingFragment StoreEntitySet="CreditAccount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="creditLimit" ColumnName="creditLimit" />
+                <ScalarProperty Name="paymentDueDay" ColumnName="paymentDueDay" />
+                <ScalarProperty Name="interestRate" ColumnName="interestRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="question1" ColumnName="question" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SavingsAccounts">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.SavingsAccount">
+              <MappingFragment StoreEntitySet="SavingsAccount">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="routingNumber" ColumnName="routingNumber" />
+                <ScalarProperty Name="minimumBalance" ColumnName="minimumBalance" />
+                <ScalarProperty Name="withdrawlNumLimit" ColumnName="withdrawlNumLimit" />
+                <ScalarProperty Name="interestRate" ColumnName="interestRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecurityQuestions">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.SecurityQuestion">
+              <MappingFragment StoreEntitySet="SecurityQuestions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="questionId" ColumnName="questionId" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statements">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Statement">
+              <MappingFragment StoreEntitySet="Statement">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="statementStart" ColumnName="statementStart" />
+                <ScalarProperty Name="statementEnd" ColumnName="statementEnd" />
+                <ScalarProperty Name="endingBalance" ColumnName="endingBalance" />
+                <ScalarProperty Name="creationDate" ColumnName="creationDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemLogs">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.SystemLog">
+              <MappingFragment StoreEntitySet="SystemLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="messageType" ColumnName="messageType" />
+                <ScalarProperty Name="context" ColumnName="context" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="component" ColumnName="component" />
+                <ScalarProperty Name="process" ColumnName="process" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="processedTime" ColumnName="processedTime" />
+                <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+                <ScalarProperty Name="modificationTime" ColumnName="modificationTime" />
+                <ScalarProperty Name="deletionTime" ColumnName="deletionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="middleName" ColumnName="middleName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="hash" ColumnName="hash" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+                <ScalarProperty Name="modificationTime" ColumnName="modificationTime" />
+                <ScalarProperty Name="deletionTime" ColumnName="deletionTime" />
+                <ScalarProperty Name="lockoutTime" ColumnName="lockoutTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDepartments">
+            <EntityTypeMapping TypeName="SSTeam7.BankingModel.UserDepartment">
+              <MappingFragment StoreEntitySet="UserDepartment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="departmentId" ColumnName="departmentId" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+                <ScalarProperty Name="modificationTime" ColumnName="modificationTime" />
+                <ScalarProperty Name="deletionTime" ColumnName="deletionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

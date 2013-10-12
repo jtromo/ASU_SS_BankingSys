@@ -9,12 +9,12 @@ namespace SSBank.Modules
     {
         public Question()
         {
-            //this.SecurityQuestions = new HashSet<SecurityQuestion>();
+            this.SecurityQuestions = new HashSet<SecurityQuestion>();
         }
 
         public int id { get; set; }
         public string question1 { get; set; }
 
-        //public virtual ICollection<SecurityQuestion> SecurityQuestions { get; set; }
+        public virtual ICollection<SecurityQuestion> SecurityQuestions { get; set; }
     }
 }

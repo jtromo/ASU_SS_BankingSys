@@ -366,8 +366,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310122101568_InitialCreate.cs" />
+    <Compile Include="Migrations\201310122101568_InitialCreate.Designer.cs">
+      <DependentUpon>201310122101568_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Modules\Account.cs" />
+    <Compile Include="Modules\Department.cs" />
+    <Compile Include="Modules\UserDepartment.cs" />
     <Compile Include="Modules\Question.cs" />
+    <Compile Include="Modules\Role.cs" />
+    <Compile Include="Modules\SecurityQuestion.cs" />
     <Compile Include="Modules\SSBankDBConext.cs" />
+    <Compile Include="Modules\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegularUserChangePassword.aspx.cs">
       <DependentUpon>RegularUserChangePassword.aspx</DependentUpon>
@@ -485,6 +496,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201310122101568_InitialCreate.resx">
+      <DependentUpon>201310122101568_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

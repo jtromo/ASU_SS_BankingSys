@@ -243,6 +243,7 @@
     <Content Include="Images\thumb3.jpg" />
     <Content Include="IndividualUser.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Final.Master" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -330,6 +331,13 @@
     <Compile Include="ExternalUser.aspx.designer.cs">
       <DependentUpon>ExternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Final.Master.cs">
+      <DependentUpon>Final.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Final.Master.designer.cs">
+      <DependentUpon>Final.Master</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -348,13 +356,6 @@
       <DependentUpon>IndividualUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SoftSec_BankingApp_Se7en.Master.cs">
-      <DependentUpon>SoftSec_BankingApp_Se7en.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SoftSec_BankingApp_Se7en.Master.designer.cs">
-      <DependentUpon>SoftSec_BankingApp_Se7en.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -370,7 +371,6 @@
     <Content Include="Account\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SoftSec_BankingApp_Se7en.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

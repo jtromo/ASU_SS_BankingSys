@@ -51,13 +51,115 @@
     
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="209px" Width="874px">
-            <asp:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="600px" Width="874px">
+            <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
-                    <asp:Button ID="Button1" runat="server" Text="Button" />
+                    Checking Account:
+                    <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
+                    &nbsp;&nbsp;
+                    <asp:Button ID="btn_checking" runat="server"  Text="View Summary" />
+                    <br />
+                    Savings Account:&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="tb_savings" runat="server"></asp:TextBox>
+                    &nbsp;&nbsp;
+                    <asp:Button ID="btn_savings" runat="server"  Text="View Summary" />
+                    <br />
+                    Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="tb_credit" runat="server"></asp:TextBox>
+                    &nbsp;&nbsp;
+                    <asp:Button ID="btn_credit" runat="server"  Text="View Summary" />
+                    <br />
+                    <br />
+                    //display account summary<br></br>
+                    <br>
+                    </br>
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel runat="server" HeaderText="TabPanel2" ID="TabPanel2">
+            <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers">
+                <ContentTemplate>
+                    <br />
+                    Please select the transfer type.<br />
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                        <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
+                            <ContentTemplate>
+                                <p>&nbsp;</p>
+                                <p>
+                                    From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:DropDownList ID="DropDownList3" runat="server" CssClass="auto-style4" Width="124px">
+                                        <asp:ListItem>Checking Account</asp:ListItem>
+                                        <asp:ListItem>Savings Account</asp:ListItem>
+                                    </asp:DropDownList>
+                                </p>
+            <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="TextBox12" runat="server" Width="115px"></asp:TextBox>
+            </p>
+            <p><strong>Recepient&#39;s Details:</strong></p>
+            <p>&nbsp;Account Number:&nbsp;&nbsp;
+                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            </p>
+            
+             <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+            </p>
+            <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+            </p>
+            <p><strong>Your Details (Validation):</strong></p>
+            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+            </p>
+            <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:DropDownList ID="DropDownList4" runat="server">
+                    <asp:ListItem>MM</asp:ListItem>
+                    <asp:ListItem>Jan</asp:ListItem>
+                    <asp:ListItem>Feb</asp:ListItem>
+                    <asp:ListItem>Mar</asp:ListItem>
+                    <asp:ListItem>Apr</asp:ListItem>
+                    <asp:ListItem>May</asp:ListItem>
+                    <asp:ListItem>June</asp:ListItem>
+                    <asp:ListItem>Jul</asp:ListItem>
+                    <asp:ListItem>Aug</asp:ListItem>
+                    <asp:ListItem>Sep</asp:ListItem>
+                    <asp:ListItem>Oct</asp:ListItem>
+                    <asp:ListItem>Nov</asp:ListItem>
+                    <asp:ListItem>Dec</asp:ListItem>
+                </asp:DropDownList>
+&nbsp;
+                <asp:DropDownList ID="DropDownList5" runat="server">
+                    <asp:ListItem>YYYY</asp:ListItem>
+                    <asp:ListItem>2013</asp:ListItem>
+                    <asp:ListItem>2014</asp:ListItem>
+                    <asp:ListItem>2015</asp:ListItem>
+                    <asp:ListItem>2016</asp:ListItem>
+                    <asp:ListItem>2017</asp:ListItem>
+                    <asp:ListItem>2018</asp:ListItem>
+                    <asp:ListItem>2019</asp:ListItem>
+                    <asp:ListItem>2020</asp:ListItem>
+                    <asp:ListItem>2021</asp:ListItem>
+                    <asp:ListItem>2022</asp:ListItem>
+                    <asp:ListItem>2023</asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+            </p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Button2" runat="server" Text="Make Transfer" />
+            </p>
+            <p>&nbsp;</p>
+        
+                            </ContentTemplate>
+                        </asp:TabPanel>
+                        <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">
+                             <ContentTemplate>
+
+                            </ContentTemplate>
+                        </asp:TabPanel>
+                        <asp:TabPanel ID="tab_trans_between" runat="server" HeaderText="Between Your Accounts">
+                             <ContentTemplate>
+
+                            </ContentTemplate>
+                        </asp:TabPanel>
+                    </asp:TabContainer>
+                </ContentTemplate>
             </asp:TabPanel>
             <asp:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3">
             </asp:TabPanel>
@@ -68,8 +170,7 @@
     <div id="footer">
     
     	<div class="col_allw300">
-        	<h4>Our Pagesges</h4>
-            <ul class="footer_list">
+        	<h4>Our Pagesgesss="footer_list">
             	<li><a href="index.html">Home</a></li>
             </ul>
             <ul class="footer_list">

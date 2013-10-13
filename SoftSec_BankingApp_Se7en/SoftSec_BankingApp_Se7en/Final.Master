@@ -1,11 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExternalUser.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.ExternalUser" %>
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Final.master.cs" Inherits="SoftSec_BankingApp_Se7en.Final" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<title>Personal Accounts</title>
+        <title>Personal Accounts</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 
     
@@ -21,14 +20,10 @@
             margin-left: 0px;
         }
     </style>
-
-    
 </head>
-<body id="sub">
-
+<body>
     <form id="form1" runat="server">
-
-<div id="wrapper">
+        <div id="wrapper">
 	<div id="header">
     	<div id="site_title" class="auto-style3">
             <h1 class="auto-style7"><strong>&nbsp;BANK OF SE7EN </strong></h1>
@@ -42,33 +37,16 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>    	
         </div> 
-    </div> 
-    
-   
-    <div id="middle_sub" class="auto-style1">
-        <div id="mid_title">Welcome, User!</div>
-	</div>
-    
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="209px" Width="874px">
-            <asp:TabPanel runat="server" HeaderText="TabPanel1" ID="TabPanel1">
-                <ContentTemplate>
-                    <asp:Button ID="Button1" runat="server" Text="Button" />
-                </ContentTemplate>
-            </asp:TabPanel>
-            <asp:TabPanel runat="server" HeaderText="TabPanel2" ID="TabPanel2">
-            </asp:TabPanel>
-            <asp:TabPanel ID="TabPanel3" runat="server" HeaderText="TabPanel3">
-            </asp:TabPanel>
-            <asp:TabPanel ID="TabPanel4" runat="server" HeaderText="TabPanel4">
-            </asp:TabPanel>
-        </asp:TabContainer>
+    </div>      
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <div style="height:400px";> </div>
+        </asp:ContentPlaceHolder>
+      
 <div id="footer_wrapper">
     <div id="footer">
     
     	<div class="col_allw300">
-        	<h4>Our Pagesges</h4>
+        	<h4>Our Pages</h4>
             <ul class="footer_list">
             	<li><a href="index.html">Home</a></li>
             </ul>
@@ -117,6 +95,7 @@
         
     </div> 
 </div>
+    </div>
     </form>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IndividualUser.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.IndividualUser" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/SoftSec_BankingApp_Se7en.Master" CodeBehind="IndividualUser.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.IndividualUser" %>
 
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 

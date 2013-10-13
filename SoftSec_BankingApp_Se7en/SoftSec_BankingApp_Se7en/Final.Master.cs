@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace SoftSec_BankingApp_Se7en
 {
-    public partial class Site_Mobile : System.Web.UI.MasterPage
+    public partial class Final : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

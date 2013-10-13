@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace SSBank.Modules
+namespace SoftSec_BankingApp_Se7en.Models.Tables
 {
     public class UserDepartment
     {

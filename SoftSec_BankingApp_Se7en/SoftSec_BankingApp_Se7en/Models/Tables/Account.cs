@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SSBank.Modules
+namespace SoftSec_BankingApp_Se7en.Models.Tables
 {
     public class Account
     {

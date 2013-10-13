@@ -244,7 +244,6 @@
     <Content Include="Images\thumb1.jpg" />
     <Content Include="Images\thumb2.jpg" />
     <Content Include="Images\thumb3.jpg" />
-    <Content Include="IndividualUser.aspx" />
     <Content Include="InternalUser.aspx" />
     <Content Include="packages.config" />
     <Content Include="Final.Master" />
@@ -365,13 +364,6 @@
     </Compile>
     <Compile Include="HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="IndividualUser.aspx.cs">
-      <DependentUpon>IndividualUser.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="IndividualUser.aspx.designer.cs">
-      <DependentUpon>IndividualUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="InternalUser.aspx.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>

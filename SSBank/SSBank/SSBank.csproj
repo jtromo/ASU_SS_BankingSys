@@ -38,6 +38,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Visual Studio 2012\Projects\SSBank\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -192,6 +196,7 @@
     <Content Include="CSS\nivo-slider.css" />
     <Content Include="CSS\style.css" />
     <Content Include="CSS\svwp_style.css" />
+    <Content Include="ExternalUser.aspx" />
     <Content Include="Images\banklogo.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
     <Content Include="Images\gallery\image_01_s.jpg" />
@@ -362,6 +367,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ExternalUser.aspx.cs">
+      <DependentUpon>ExternalUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ExternalUser.aspx.designer.cs">
+      <DependentUpon>ExternalUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

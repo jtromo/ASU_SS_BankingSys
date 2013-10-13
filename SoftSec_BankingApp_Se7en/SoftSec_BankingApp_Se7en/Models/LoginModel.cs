@@ -6,11 +6,20 @@ using System.Web;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
-    // Returns:
-    // -1 if login fails
-    // the row id if login success (UserId)
+    
     public class LoginModel
     {
+        // Returns: True false if the user information exists
+        public bool UserExists(String username, int zip)
+        {
+
+
+            return true;
+        }
+
+        // Returns:
+        // -1 if login fails
+        // the row id if login success (UserId)
         public int LoginUser(String username, String password, int zip)
         {
             // James Test DB Actions

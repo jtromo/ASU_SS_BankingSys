@@ -176,7 +176,6 @@
     <Content Include="CSS\style.css" />
     <Content Include="CSS\svwp_style.css" />
     <Content Include="ExternalUser.aspx" />
-    <Content Include="HomePage.aspx" />
     <Content Include="Images\banklogo.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
     <Content Include="Images\gallery\image_01_s.jpg" />
@@ -340,13 +339,6 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="HomePage.aspx.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HomePage.aspx.designer.cs">
-      <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
     <Compile Include="IndividualUser.aspx.cs">
       <DependentUpon>IndividualUser.aspx</DependentUpon>

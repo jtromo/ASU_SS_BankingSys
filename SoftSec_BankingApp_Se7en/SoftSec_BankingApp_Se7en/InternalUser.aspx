@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Final.Master" AutoEventWireup="true" CodeBehind="ExternalUser.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.ExternalUser" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Final.Master" AutoEventWireup="true" CodeBehind="InternalUser.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.InternalUser" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div style="height:800px";>
+    <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="641px" Width="874px">

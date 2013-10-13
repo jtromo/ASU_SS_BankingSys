@@ -10,7 +10,7 @@
 namespace SoftSec_BankingApp_Se7en {
     
     
-    public partial class ExternalUser {
+    public partial class InternalUser {
         
         /// <summary>
         /// ScriptManager1 control.

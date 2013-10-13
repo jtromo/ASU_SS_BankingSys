@@ -11,7 +11,7 @@ namespace SoftSec_BankingApp_Se7en.Models
     // the row id if login success (UserId)
     public class LoginModel
     {
-        public int LoginUser(String username, String password)
+        public int LoginUser(String username, String password, int zip)
         {
             // James Test DB Actions
             using (var db = new SSBankDBContext())

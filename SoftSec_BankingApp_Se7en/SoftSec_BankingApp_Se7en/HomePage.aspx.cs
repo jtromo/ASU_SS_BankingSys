@@ -14,7 +14,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             LoginModel login = new LoginModel();
             Response.Write("Returned id: ");
-            Response.Write(login.LoginUser("Username", "Password"));
+            Response.Write(login.LoginUser("Username", "Password", 85298));
         }
     }
 }

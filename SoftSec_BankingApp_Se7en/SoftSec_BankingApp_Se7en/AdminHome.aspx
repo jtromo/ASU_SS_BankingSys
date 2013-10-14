@@ -48,12 +48,12 @@
         </asp:TabPanel>
     </asp:TabContainer>
     <p>
-        <br /> <br/>
+        <br /> 
     </p>
     <p>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnUsrPrivDetails %>" SelectCommand="SELECT [User].firstName, [User].lastName, [User].username, Role.title FROM [User] INNER JOIN Role ON [User].roleId = Role.id"></asp:SqlDataSource>
     </p>
     <p>
     </p>
-    <br />
+ 
 </asp:Content>

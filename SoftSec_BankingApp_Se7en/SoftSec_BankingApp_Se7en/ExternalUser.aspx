@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="641px" Width="874px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="641px" Width="874px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <HeaderTemplate>
                     Accounts

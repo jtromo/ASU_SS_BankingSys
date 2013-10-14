@@ -118,6 +118,7 @@
     <Content Include="App_Data\bankDB_log.ldf">
       <DependentUpon>bankDB.mdf</DependentUpon>
     </Content>
+    <Content Include="AuthorizeUser.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -210,6 +211,21 @@
     <Content Include="Images\onebit_17.png" />
     <Content Include="Images\onebit_18.png" />
     <Content Include="Images\onebit_19.png" />
+    <Content Include="Images\SiteKeys\SiteKey1.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey10.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey11.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey12.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey13.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey14.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey15.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey2.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey3.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey4.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey5.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey6.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey7.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey8.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey9.jpg" />
     <Content Include="Images\slider\bank0.jpg" />
     <Content Include="Images\slider\bank1.jpg" />
     <Content Include="Images\slider\bank3.jpg" />
@@ -324,6 +340,13 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthorizeUser.aspx.cs">
+      <DependentUpon>AuthorizeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AuthorizeUser.aspx.designer.cs">
+      <DependentUpon>AuthorizeUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

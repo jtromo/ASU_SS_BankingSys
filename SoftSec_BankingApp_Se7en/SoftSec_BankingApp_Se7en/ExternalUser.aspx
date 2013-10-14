@@ -6,26 +6,43 @@
         <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
+
         <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="641px" Width="874px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
+                <HeaderTemplate>
+                    Accounts
+                </HeaderTemplate>
                 <ContentTemplate>
                     Checking Account:
-                    <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_checking" runat="server" ReadOnly="True"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_checking" runat="server"  Text="View Summary" />
                     <br />
                     Savings Account:&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_savings" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_savings" runat="server" ReadOnly="True"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_savings" runat="server"  Text="View Summary" />
                     <br />
                     Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_credit" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_credit" runat="server" ReadOnly="True"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_credit" runat="server"  Text="View Summary" />
                     <br />
                     <br />
-                    //display account summary<br></br>
+                    //display account summary<br/>
+                    <br/>
+                    <br/>
+                    <br/><br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/><br/>
+                    <br/>
+                    <br/>
+                    <br>
+                    </br>
+                    <br>
+                    </br>
                     <br>
                     </br>
                 </ContentTemplate>
@@ -40,26 +57,36 @@
                                 <p>&nbsp;</p>
                                 <p>
                                     From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="157px" Height="18px">
+                                    <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="186px" Height="32px">
                                         <asp:ListItem>Checking Account</asp:ListItem>
                                         <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
                                 </p>
                                 <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_amount" runat="server" Width="115px"></asp:TextBox>
+                                    <asp:FilteredTextBoxExtender ID="tb_amount_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" TargetControlID="tb_amount" ValidChars="0123456789.">
+                                    </asp:FilteredTextBoxExtender>
             </p>
             <p><strong>Recepient&#39;s Details:</strong></p>
             <p>&nbsp;Account Number:&nbsp;&nbsp;
-                <asp:TextBox ID="tb_recepient" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_recepient" runat="server" MaxLength="12"></asp:TextBox>
+                <asp:FilteredTextBoxExtender ID="tb_recepient_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" TargetControlID="tb_recepient" ValidChars="0123456789">
+                </asp:FilteredTextBoxExtender>
             </p>
             
              <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname" runat="server"></asp:TextBox>
+                 <asp:FilteredTextBoxExtender ID="tb_lastname_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterMode="InvalidChars" InvalidChars="0123456789.&lt;&gt;/:+=;'&quot;?,@#$%^&amp;*()" TargetControlID="tb_lastname">
+                 </asp:FilteredTextBoxExtender>
             </p>
             <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_zip" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_zip" runat="server" MaxLength="5"></asp:TextBox>
+                <asp:FilteredTextBoxExtender ID="tb_zip_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="tb_zip">
+                </asp:FilteredTextBoxExtender>
             </p>
             <p><strong>Your Details (Validation):</strong></p>
-            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server"></asp:TextBox>
+            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:FilteredTextBoxExtender ID="tb_card_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="tb_card">
+                </asp:FilteredTextBoxExtender>
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_month" runat="server">
@@ -121,7 +148,7 @@
             <p class="auto-style9">Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_emailoutside" runat="server"></asp:TextBox>
               </p>
-            <p class="auto-style9"><strong>Your Details (Validation):</strong>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="TextBox15" runat="server"></asp:TextBox>
+            <p class="auto-style9"><strong>Your Details (Validation):</strong>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
             </p>
             <p>
             </p>
@@ -346,9 +373,84 @@
 
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Bill Payment">
+            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Submit Payment">
                 <ContentTemplate>
                     <br />
+                    <br />
+                    <asp:TabContainer ID="TabContainer4" runat="server" ActiveTabIndex="0" Height="556px" Width="835px" style="margin-right: 709px">
+                        <asp:TabPanel ID="tab_cardpay" runat="server" HeaderText="Card Payment" Height="600px" Width="124px">
+                            <ContentTemplate>
+                                 <br />
+                                Card Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="dd_cardtype" runat="server">
+                                    <asp:ListItem>Select a Card Type</asp:ListItem>
+                                    <asp:ListItem>Visa</asp:ListItem>
+                                    <asp:ListItem>MasterCard</asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_cardnum" runat="server"></asp:TextBox>
+                                <br />
+                                Account Holder&#39;s Name:&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_customername" runat="server" Width="118px"></asp:TextBox>
+                                <br />
+                                (as printed on the card)<br />Expiry Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="dd_cardexpm" runat="server">
+                                    <asp:ListItem>MM</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                </asp:DropDownList>
+                                &nbsp;&nbsp;
+                                <asp:DropDownList ID="dd_cardexpy" runat="server">
+                                    <asp:ListItem>YY</asp:ListItem>
+                                    <asp:ListItem>13</asp:ListItem>
+                                    <asp:ListItem>17</asp:ListItem>
+                                    <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>18</asp:ListItem>
+                                    <asp:ListItem>19</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>16</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                </asp:DropDownList>
+                                &nbsp;<br /> Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <asp:TextBox ID="tb_amount3" runat="server" Width="118px"></asp:TextBox>
+                                 <br />
+                                <br />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_cardsubmitpayment" runat="server" Text="Submit Payment" />
+                                <br />
+                                &nbsp;&nbsp;&nbsp;
+                           
+                            </ContentTemplate>
+                        </asp:TabPanel>
+                        <asp:TabPanel ID="tab_echeckpay" runat="server" HeaderText="ECheck Payment" Height="600px" Width="124px">
+                            <ContentTemplate>
+                                <br />
+                                Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckaccno" runat="server"></asp:TextBox>
+                                <br />
+                                Routing Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckroutingno" runat="server"></asp:TextBox>
+                                <br />
+                                Account Holder&#39;s Name:&nbsp;&nbsp;<asp:TextBox ID="tb_echeckcustomername" runat="server" Width="118px"></asp:TextBox>
+                                <br />
+                                Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_amount4" runat="server" Width="118px"></asp:TextBox>
+                                <br />
+                                <br />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_echecksubmitpayment" runat="server" Text="Submit Payment" />
+                                </ContentTemplate>
+                        </asp:TabPanel>
+                    </asp:TabContainer>
                 </ContentTemplate>
             </asp:TabPanel>
         </asp:TabContainer>

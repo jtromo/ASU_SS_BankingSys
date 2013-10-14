@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -375,6 +375,15 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\Tables\Account.cs" />
+    <Compile Include="Models\Tables\Department.cs" />
+    <Compile Include="Models\Tables\Question.cs" />
+    <Compile Include="Models\Tables\Role.cs" />
+    <Compile Include="Models\Tables\SecurityQuestion.cs" />
+    <Compile Include="Models\SSBankDBConext.cs" />
+    <Compile Include="Models\Tables\User.cs" />
+    <Compile Include="Models\Tables\UserDepartment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
@@ -384,7 +393,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
   </ItemGroup>

@@ -139,15 +139,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_amount;
         
         /// <summary>
-        /// tb_amount_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_amount_FilteredTextBoxExtender;
-        
-        /// <summary>
         /// tb_recepient control.
         /// </summary>
         /// <remarks>
@@ -155,15 +146,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_recepient;
-        
-        /// <summary>
-        /// tb_recepient_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_recepient_FilteredTextBoxExtender;
         
         /// <summary>
         /// tb_lastname control.
@@ -175,15 +157,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_lastname;
         
         /// <summary>
-        /// tb_lastname_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_lastname_FilteredTextBoxExtender;
-        
-        /// <summary>
         /// tb_zip control.
         /// </summary>
         /// <remarks>
@@ -193,15 +166,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_zip;
         
         /// <summary>
-        /// tb_zip_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_zip_FilteredTextBoxExtender;
-        
-        /// <summary>
         /// tb_card control.
         /// </summary>
         /// <remarks>
@@ -209,15 +173,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_card;
-        
-        /// <summary>
-        /// tb_card_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_card_FilteredTextBoxExtender;
         
         /// <summary>
         /// dd_month control.

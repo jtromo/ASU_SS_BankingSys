@@ -23,7 +23,7 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void Btn_SignIn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ExternalUser.aspx");
+            Response.Redirect("AuthorizeUser.aspx");
         }
     }
 }

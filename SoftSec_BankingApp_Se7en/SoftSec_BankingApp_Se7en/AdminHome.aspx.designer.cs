@@ -40,6 +40,105 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel addEmpTabPanel;
         
         /// <summary>
+        /// firstnameLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label firstnameLB;
+        
+        /// <summary>
+        /// firstNameTb_AddEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox firstNameTb_AddEmp;
+        
+        /// <summary>
+        /// lastnameLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lastnameLB;
+        
+        /// <summary>
+        /// lastNameTb_AddEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lastNameTb_AddEmp;
+        
+        /// <summary>
+        /// MiddlenameLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label MiddlenameLB;
+        
+        /// <summary>
+        /// MiddleNameTb_AddEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MiddleNameTb_AddEmp;
+        
+        /// <summary>
+        /// emailLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label emailLB;
+        
+        /// <summary>
+        /// emailTb_AddEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox emailTb_AddEmp;
+        
+        /// <summary>
+        /// phoneLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label phoneLB;
+        
+        /// <summary>
+        /// phoneTb_AddEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox phoneTb_AddEmp;
+        
+        /// <summary>
+        /// AddEmployeeBt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddEmployeeBt;
+        
+        /// <summary>
         /// removeEmpTabPanel control.
         /// </summary>
         /// <remarks>
@@ -47,6 +146,96 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel removeEmpTabPanel;
+        
+        /// <summary>
+        /// userIdLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userIdLb_Remove;
+        
+        /// <summary>
+        /// userIdTb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox userIdTb_Remove;
+        
+        /// <summary>
+        /// detailsBT_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button detailsBT_Remove;
+        
+        /// <summary>
+        /// firstNameLB_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label firstNameLB_Remove;
+        
+        /// <summary>
+        /// firstNameTextLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label firstNameTextLb_Remove;
+        
+        /// <summary>
+        /// lastNameLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lastNameLb_Remove;
+        
+        /// <summary>
+        /// lastNameTextLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lastNameTextLb_Remove;
+        
+        /// <summary>
+        /// currentRoleLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label currentRoleLb_Remove;
+        
+        /// <summary>
+        /// currentRoleTextLb_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label currentRoleTextLb_Remove;
+        
+        /// <summary>
+        /// removeBt_Remove control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button removeBt_Remove;
         
         /// <summary>
         /// modifyAccessTabPanel control.
@@ -58,111 +247,192 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel modifyAccessTabPanel;
         
         /// <summary>
-        /// firstNameLB control.
+        /// userIdLabel_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label firstNameLB;
+        protected global::System.Web.UI.WebControls.Label userIdLabel_Modify;
         
         /// <summary>
-        /// firstNameTextLb control.
+        /// userIdTb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label firstNameTextLb;
+        protected global::System.Web.UI.WebControls.TextBox userIdTb_Modify;
         
         /// <summary>
-        /// lastNameLb control.
+        /// detailsBT_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lastNameLb;
+        protected global::System.Web.UI.WebControls.Button detailsBT_Modify;
         
         /// <summary>
-        /// lastNameTextLb control.
+        /// firstNameLB_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lastNameTextLb;
+        protected global::System.Web.UI.WebControls.Label firstNameLB_Modify;
         
         /// <summary>
-        /// roleLb control.
+        /// firstNameTextLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label roleLb;
+        protected global::System.Web.UI.WebControls.Label firstNameTextLb_Modify;
         
         /// <summary>
-        /// roleTextLb control.
+        /// lastNameLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label roleTextLb;
+        protected global::System.Web.UI.WebControls.Label lastNameLb_Modify;
         
         /// <summary>
-        /// Label1 control.
+        /// lastNameTextLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lastNameTextLb_Modify;
         
         /// <summary>
-        /// TextBox1 control.
+        /// currentRoleLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.Label currentRoleLb_Modify;
         
         /// <summary>
-        /// detailsBT control.
+        /// currentRoleTextLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button detailsBT;
+        protected global::System.Web.UI.WebControls.Label currentRoleTextLb_Modify;
         
         /// <summary>
-        /// modifyBT control.
+        /// newRoleLb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button modifyBT;
+        protected global::System.Web.UI.WebControls.Label newRoleLb_Modify;
         
         /// <summary>
-        /// deleteUserBt control.
+        /// newRoleTb_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button deleteUserBt;
+        protected global::System.Web.UI.WebControls.TextBox newRoleTb_Modify;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// modifyBT_Modify control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.Button modifyBT_Modify;
+        
+        /// <summary>
+        /// LogAccessTabPanel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel LogAccessTabPanel;
+        
+        /// <summary>
+        /// startDateLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label startDateLB;
+        
+        /// <summary>
+        /// startMonth_DD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList startMonth_DD;
+        
+        /// <summary>
+        /// startDay_DD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList startDay_DD;
+        
+        /// <summary>
+        /// startYearTb_SysLog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox startYearTb_SysLog;
+        
+        /// <summary>
+        /// endMonth_DD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList endMonth_DD;
+        
+        /// <summary>
+        /// endDay_DD control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList endDay_DD;
+        
+        /// <summary>
+        /// endYearTb_SysLog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox endYearTb_SysLog;
+        
+        /// <summary>
+        /// sysLog_GridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView sysLog_GridView;
     }
 }

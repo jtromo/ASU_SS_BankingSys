@@ -406,13 +406,23 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
+    <Compile Include="Models\Tables\AccountType.cs" />
+    <Compile Include="Models\Tables\Address.cs" />
+    <Compile Include="Models\Tables\Card.cs" />
+    <Compile Include="Models\Tables\CheckingAccount.cs" />
+    <Compile Include="Models\Tables\CreditAccount.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
+    <Compile Include="Models\Tables\SavingsAccount.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />
     <Compile Include="Models\SSBankDBConext.cs" />
+    <Compile Include="Models\Tables\Statement.cs" />
+    <Compile Include="Models\Tables\SystemLog.cs" />
+    <Compile Include="Models\Tables\Transaction.cs" />
     <Compile Include="Models\Tables\User.cs" />
     <Compile Include="Models\Tables\UserDepartment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

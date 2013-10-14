@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\..\Downloads\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -118,6 +118,7 @@
     <Content Include="App_Data\bankDB_log.ldf">
       <DependentUpon>bankDB.mdf</DependentUpon>
     </Content>
+    <Content Include="AuthorizeUser.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -182,6 +183,7 @@
     <Content Include="CSS\svwp_style.css" />
     <Content Include="ExternalHomePage.aspx" />
     <Content Include="ExternalUser.aspx" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="Images\banklogo.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
@@ -209,6 +211,21 @@
     <Content Include="Images\onebit_17.png" />
     <Content Include="Images\onebit_18.png" />
     <Content Include="Images\onebit_19.png" />
+    <Content Include="Images\SiteKeys\SiteKey1.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey10.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey11.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey12.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey13.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey14.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey15.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey2.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey3.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey4.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey5.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey6.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey7.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey8.jpg" />
+    <Content Include="Images\SiteKeys\SiteKey9.jpg" />
     <Content Include="Images\slider\bank0.jpg" />
     <Content Include="Images\slider\bank1.jpg" />
     <Content Include="Images\slider\bank3.jpg" />
@@ -323,6 +340,13 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthorizeUser.aspx.cs">
+      <DependentUpon>AuthorizeUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AuthorizeUser.aspx.designer.cs">
+      <DependentUpon>AuthorizeUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -358,6 +382,13 @@
     <Compile Include="Final.Master.designer.cs">
       <DependentUpon>Final.Master</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -375,13 +406,23 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
+    <Compile Include="Models\Tables\AccountType.cs" />
+    <Compile Include="Models\Tables\Address.cs" />
+    <Compile Include="Models\Tables\Card.cs" />
+    <Compile Include="Models\Tables\CheckingAccount.cs" />
+    <Compile Include="Models\Tables\CreditAccount.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
+    <Compile Include="Models\Tables\SavingsAccount.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />
     <Compile Include="Models\SSBankDBConext.cs" />
+    <Compile Include="Models\Tables\Statement.cs" />
+    <Compile Include="Models\Tables\SystemLog.cs" />
+    <Compile Include="Models\Tables\Transaction.cs" />
     <Compile Include="Models\Tables\User.cs" />
     <Compile Include="Models\Tables\UserDepartment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -393,9 +434,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Account\Web.config" />
   </ItemGroup>

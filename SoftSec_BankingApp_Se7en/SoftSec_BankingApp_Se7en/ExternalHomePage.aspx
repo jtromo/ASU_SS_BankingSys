@@ -11,7 +11,7 @@
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User Name :&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="TB_UserName" runat="server"></asp:TextBox>
-        <asp:FilteredTextBoxExtender ID="TB_UserName_FilteredTextBoxExtender" runat="server" Enabled="True" InvalidChars="&lt;,&gt;,:,/" TargetControlID="TB_UserName" FilterInterval="50" FilterMode="InvalidChars">
+        <asp:FilteredTextBoxExtender ID="TB_UserName_FilteredTextBoxExtender" runat="server" Enabled="True" InvalidChars=".&lt;&gt;/:+=;'&quot;?,@#$%^&amp;*()" TargetControlID="TB_UserName" FilterInterval="50" FilterMode="InvalidChars">
         </asp:FilteredTextBoxExtender>
         <asp:RequiredFieldValidator ID="RF_UserName" runat="server" ControlToValidate="TB_UserName" ErrorMessage="User Name is required" ForeColor="Red">*</asp:RequiredFieldValidator>
         <br />

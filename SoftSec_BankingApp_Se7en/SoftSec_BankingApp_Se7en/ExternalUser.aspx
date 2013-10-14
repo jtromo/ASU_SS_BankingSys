@@ -9,40 +9,24 @@
 
         <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="641px" Width="874px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
-                <HeaderTemplate>
-                    Accounts
-                </HeaderTemplate>
                 <ContentTemplate>
                     Checking Account:
-                    <asp:TextBox ID="tb_checking" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_checking" runat="server"  Text="View Summary" />
                     <br />
                     Savings Account:&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_savings" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="tb_savings" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_savings" runat="server"  Text="View Summary" />
                     <br />
                     Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_credit" runat="server" ReadOnly="True"></asp:TextBox>
+                    <asp:TextBox ID="tb_credit" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_credit" runat="server"  Text="View Summary" />
                     <br />
                     <br />
-                    //display account summary<br/>
-                    <br/>
-                    <br/>
-                    <br/><br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/><br/>
-                    <br/>
-                    <br/>
-                    <br>
-                    </br>
-                    <br>
-                    </br>
+                    //display account summary<br></br>
                     <br>
                     </br>
                 </ContentTemplate>
@@ -57,36 +41,26 @@
                                 <p>&nbsp;</p>
                                 <p>
                                     From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="186px" Height="32px">
+                                    <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="124px">
                                         <asp:ListItem>Checking Account</asp:ListItem>
                                         <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
                                 </p>
                                 <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_amount" runat="server" Width="115px"></asp:TextBox>
-                                    <asp:FilteredTextBoxExtender ID="tb_amount_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" TargetControlID="tb_amount" ValidChars="0123456789.">
-                                    </asp:FilteredTextBoxExtender>
             </p>
             <p><strong>Recepient&#39;s Details:</strong></p>
             <p>&nbsp;Account Number:&nbsp;&nbsp;
-                <asp:TextBox ID="tb_recepient" runat="server" MaxLength="12"></asp:TextBox>
-                <asp:FilteredTextBoxExtender ID="tb_recepient_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" TargetControlID="tb_recepient" ValidChars="0123456789">
-                </asp:FilteredTextBoxExtender>
+                <asp:TextBox ID="tb_recepient" runat="server"></asp:TextBox>
             </p>
             
              <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname" runat="server"></asp:TextBox>
-                 <asp:FilteredTextBoxExtender ID="tb_lastname_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterMode="InvalidChars" InvalidChars="0123456789.&lt;&gt;/:+=;'&quot;?,@#$%^&amp;*()" TargetControlID="tb_lastname">
-                 </asp:FilteredTextBoxExtender>
             </p>
             <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_zip" runat="server" MaxLength="5"></asp:TextBox>
-                <asp:FilteredTextBoxExtender ID="tb_zip_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="tb_zip">
-                </asp:FilteredTextBoxExtender>
+                <asp:TextBox ID="tb_zip" runat="server"></asp:TextBox>
             </p>
             <p><strong>Your Details (Validation):</strong></p>
-            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server" MaxLength="16"></asp:TextBox>
-                <asp:FilteredTextBoxExtender ID="tb_card_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="tb_card">
-                </asp:FilteredTextBoxExtender>
+            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server"></asp:TextBox>
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_month" runat="server">

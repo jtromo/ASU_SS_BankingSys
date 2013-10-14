@@ -179,6 +179,7 @@
     <Content Include="CSS\svwp_style.css" />
     <Content Include="ExternalHomePage.aspx" />
     <Content Include="ExternalUser.aspx" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="Images\banklogo.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
@@ -354,6 +355,13 @@
     </Compile>
     <Compile Include="Final.Master.designer.cs">
       <DependentUpon>Final.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

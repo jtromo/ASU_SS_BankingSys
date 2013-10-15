@@ -389,6 +389,7 @@
     <Compile Include="ExternalUser.aspx.designer.cs">
       <DependentUpon>ExternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FieldValidator.cs" />
     <Compile Include="Final.Master.cs">
       <DependentUpon>Final.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

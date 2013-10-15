@@ -275,7 +275,6 @@
     <Content Include="packages.config" />
     <Content Include="Final.Master" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Recaptcha.dll" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />

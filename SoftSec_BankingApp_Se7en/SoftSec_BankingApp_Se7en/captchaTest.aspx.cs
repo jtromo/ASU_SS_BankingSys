@@ -18,7 +18,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Page.IsValid)
             {
-                Label1.Text = "Successful";
+                Label1.Text = "Done";
             }
             else {
                 Label1.Text = "Unsuccesful";

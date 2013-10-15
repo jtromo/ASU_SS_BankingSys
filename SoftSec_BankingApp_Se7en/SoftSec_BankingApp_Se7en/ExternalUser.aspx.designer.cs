@@ -562,6 +562,24 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_oldpwd;
         
         /// <summary>
+        /// tb_newPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_newPass;
+        
+        /// <summary>
+        /// tb_confrimPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_confrimPass;
+        
+        /// <summary>
         /// dd_secque1 control.
         /// </summary>
         /// <remarks>

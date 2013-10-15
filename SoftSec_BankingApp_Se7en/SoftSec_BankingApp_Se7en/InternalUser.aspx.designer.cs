@@ -427,13 +427,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_debitfunds;
         
         /// <summary>
-        /// tb_card0 control.
+        /// tb_card_DebitFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_card0;
+        protected global::System.Web.UI.WebControls.TextBox tb_card_DebitFunds;
         
         /// <summary>
         /// dd_month0 control.
@@ -454,13 +454,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_year0;
         
         /// <summary>
-        /// tb_securitycode0 control.
+        /// tb_securitycode_DebitFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_securitycode0;
+        protected global::System.Web.UI.WebControls.TextBox tb_securitycode_DebitFunds;
         
         /// <summary>
         /// dd_acctypeoutside0 control.
@@ -472,22 +472,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_acctypeoutside0;
         
         /// <summary>
-        /// tb_amountoutside0 control.
+        /// tb_amountoutside_DebitFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amountoutside0;
+        protected global::System.Web.UI.WebControls.TextBox tb_amountoutside_DebitFunds;
         
         /// <summary>
-        /// btn_maketransinside0 control.
+        /// btn_maketransDebitFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_maketransinside0;
+        protected global::System.Web.UI.WebControls.Button btn_maketransDebitFunds;
         
         /// <summary>
         /// TabPanel4 control.
@@ -499,13 +499,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel TabPanel4;
         
         /// <summary>
-        /// tb_card1 control.
+        /// tb_card_CreditFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_card1;
+        protected global::System.Web.UI.WebControls.TextBox tb_card_CreditFunds;
         
         /// <summary>
         /// dd_month1 control.
@@ -526,13 +526,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_year1;
         
         /// <summary>
-        /// tb_securitycode1 control.
+        /// tb_securitycode_CreditFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_securitycode1;
+        protected global::System.Web.UI.WebControls.TextBox tb_securitycode_CreditFunds;
         
         /// <summary>
         /// dd_acctypeoutside1 control.
@@ -544,22 +544,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_acctypeoutside1;
         
         /// <summary>
-        /// tb_amountoutside1 control.
+        /// tb_amountoutside_CreditFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amountoutside1;
+        protected global::System.Web.UI.WebControls.TextBox tb_amountoutside_CreditFunds;
         
         /// <summary>
-        /// btn_maketransinside1 control.
+        /// btn_maketrans_CreditFunds control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_maketransinside1;
+        protected global::System.Web.UI.WebControls.Button btn_maketrans_CreditFunds;
         
         /// <summary>
         /// tab_profile control.
@@ -607,6 +607,33 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_usernameview;
         
         /// <summary>
+        /// tb_addrview0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_addrview0;
+        
+        /// <summary>
+        /// StateDD_View control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateDD_View;
+        
+        /// <summary>
+        /// tb_addrview2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_addrview2;
+        
+        /// <summary>
         /// tb_contactview control.
         /// </summary>
         /// <remarks>
@@ -652,40 +679,67 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tabeditprofile;
         
         /// <summary>
-        /// tb_emailedit control.
+        /// tb_email_Edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_emailedit;
+        protected global::System.Web.UI.WebControls.TextBox tb_email_Edit;
         
         /// <summary>
-        /// tb_addredit control.
+        /// tb_stAddr_Edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_addredit;
+        protected global::System.Web.UI.WebControls.TextBox tb_stAddr_Edit;
         
         /// <summary>
-        /// tb_contactedit control.
+        /// tb_city_Edit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_contactedit;
+        protected global::System.Web.UI.WebControls.TextBox tb_city_Edit;
         
         /// <summary>
-        /// tb_nicknameedit control.
+        /// StateDD_EditProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_nicknameedit;
+        protected global::System.Web.UI.WebControls.DropDownList StateDD_EditProfile;
+        
+        /// <summary>
+        /// tb_zipCode_Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_zipCode_Edit;
+        
+        /// <summary>
+        /// tb_contact_Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_contact_Edit;
+        
+        /// <summary>
+        /// tb_nickname_Edit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_nickname_Edit;
         
         /// <summary>
         /// btn_changesettings_profile control.
@@ -713,6 +767,24 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_oldpwd;
+        
+        /// <summary>
+        /// tb_newPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_newPassword;
+        
+        /// <summary>
+        /// tb_confrimPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_confrimPassword;
         
         /// <summary>
         /// dd_secque1 control.
@@ -769,13 +841,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_secans3;
         
         /// <summary>
-        /// btn_changepwd control.
+        /// btn_changepwd_Internal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_changepwd;
+        protected global::System.Web.UI.WebControls.Button btn_changepwd_Internal;
         
         /// <summary>
         /// tab_modtrans control.
@@ -967,13 +1039,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_cardexpy;
         
         /// <summary>
-        /// tb_amount3 control.
+        /// tb_amount_SubmitPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amount3;
+        protected global::System.Web.UI.WebControls.TextBox tb_amount_SubmitPayment;
         
         /// <summary>
         /// btn_cardsubmitpayment control.
@@ -1066,58 +1138,85 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_employee;
         
         /// <summary>
-        /// TextBox11 control.
+        /// tb_FirstName_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox11;
+        protected global::System.Web.UI.WebControls.TextBox tb_FirstName_Cust;
         
         /// <summary>
-        /// TextBox10 control.
+        /// tb_MiddleName_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox10;
+        protected global::System.Web.UI.WebControls.TextBox tb_MiddleName_Cust;
         
         /// <summary>
-        /// TextBox12 control.
+        /// tb_LastName_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox tb_LastName_Cust;
         
         /// <summary>
-        /// TextBox13 control.
+        /// tb_Email_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox13;
+        protected global::System.Web.UI.WebControls.TextBox tb_Email_Cust;
         
         /// <summary>
-        /// TextBox14 control.
+        /// tb_StreetAddr_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox14;
+        protected global::System.Web.UI.WebControls.TextBox tb_StreetAddr_Cust;
         
         /// <summary>
-        /// TextBox15 control.
+        /// tb_City_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox15;
+        protected global::System.Web.UI.WebControls.TextBox tb_City_Cust;
+        
+        /// <summary>
+        /// StateDD_Cust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateDD_Cust;
+        
+        /// <summary>
+        /// tb_Phone_Cust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_Phone_Cust;
+        
+        /// <summary>
+        /// tb_Zip_Cust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_Zip_Cust;
         
         /// <summary>
         /// CheckBoxList1 control.
@@ -1147,31 +1246,31 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_customer;
         
         /// <summary>
-        /// TextBox17 control.
+        /// tb_UserName_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox17;
+        protected global::System.Web.UI.WebControls.TextBox tb_UserName_Cust;
         
         /// <summary>
-        /// TextBox18 control.
+        /// tb_Password_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox18;
+        protected global::System.Web.UI.WebControls.TextBox tb_Password_Cust;
         
         /// <summary>
-        /// TextBox19 control.
+        /// tb_ConfPassword_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox19;
+        protected global::System.Web.UI.WebControls.TextBox tb_ConfPassword_Cust;
         
         /// <summary>
         /// DropDownList9 control.
@@ -1183,13 +1282,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList9;
         
         /// <summary>
-        /// TextBox20 control.
+        /// tb_SecAns1_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox20;
+        protected global::System.Web.UI.WebControls.TextBox tb_SecAns1_Cust;
         
         /// <summary>
         /// DropDownList10 control.
@@ -1201,13 +1300,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList10;
         
         /// <summary>
-        /// TextBox21 control.
+        /// tb_SecAns2_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox21;
+        protected global::System.Web.UI.WebControls.TextBox tb_SecAns2_Cust;
         
         /// <summary>
         /// DropDownList11 control.
@@ -1219,22 +1318,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList11;
         
         /// <summary>
-        /// TextBox22 control.
+        /// tb_SecAns3_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox22;
+        protected global::System.Web.UI.WebControls.TextBox tb_SecAns3_Cust;
         
         /// <summary>
-        /// TextBox23 control.
+        /// tb_SSN_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox23;
+        protected global::System.Web.UI.WebControls.TextBox tb_SSN_Cust;
         
         /// <summary>
         /// img_site1 control.
@@ -1417,13 +1516,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.ImageButton img_site20;
         
         /// <summary>
-        /// tb_sitekeyhint control.
+        /// tb_sitekeyhint_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_sitekeyhint;
+        protected global::System.Web.UI.WebControls.TextBox tb_sitekeyhint_Cust;
         
         /// <summary>
         /// DropDownList6 control.
@@ -1444,13 +1543,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList7;
         
         /// <summary>
-        /// TextBox16 control.
+        /// tb_BirthYear_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox16;
+        protected global::System.Web.UI.WebControls.TextBox tb_BirthYear_Cust;
         
         /// <summary>
         /// btn_sumbitcust control.
@@ -1489,31 +1588,31 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_addemp;
         
         /// <summary>
-        /// TextBox25 control.
+        /// tb_FirstName_Emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox25;
+        protected global::System.Web.UI.WebControls.TextBox tb_FirstName_Emp;
         
         /// <summary>
-        /// TextBox26 control.
+        /// tb_MidName_Emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox26;
+        protected global::System.Web.UI.WebControls.TextBox tb_MidName_Emp;
         
         /// <summary>
-        /// TextBox27 control.
+        /// tb_LastName_Emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox27;
+        protected global::System.Web.UI.WebControls.TextBox tb_LastName_Emp;
         
         /// <summary>
         /// DropDownList12 control.
@@ -1534,31 +1633,31 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList13;
         
         /// <summary>
-        /// TextBox28 control.
+        /// tb_Email_Emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox28;
+        protected global::System.Web.UI.WebControls.TextBox tb_Email_Emp;
         
         /// <summary>
-        /// TextBox29 control.
+        /// tb_Phone_Emp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox29;
+        protected global::System.Web.UI.WebControls.TextBox tb_Phone_Emp;
         
         /// <summary>
-        /// Button1 control.
+        /// btn_AddEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btn_AddEmp;
         
         /// <summary>
         /// tab_delemp control.

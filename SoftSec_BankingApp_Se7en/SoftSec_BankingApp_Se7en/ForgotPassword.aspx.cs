@@ -13,5 +13,10 @@ namespace SoftSec_BankingApp_Se7en
         {
 
         }
+
+        protected void btn_changepwd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

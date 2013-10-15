@@ -127,6 +127,90 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        protected void btn_changepwd_Click(object sender, EventArgs e)
+        {
+            //Make a payment on behalf of the customer
+            bool serverSideValidation = false;
+            try
+            {
+                Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                dictAns.Add(1, tb_secans1.Text.ToString());
+                dictAns.Add(2, tb_secans2.Text.ToString());
+                dictAns.Add(3, tb_secans3.Text.ToString());
+                serverSideValidation = validateFromFields(tb_oldpwd.Text.ToString(), dictAns ,tb_newPass.Text.ToString(), tb_confrimPass.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        /// <summary>
+        /// Validate the fields in the form while submiting
+        /// </summary>
+        /// <param name="strOldPassword">Old Password of the user</param>
+        /// <param name="dictAns">Dictonary of user questions and answers</param>
+        /// <param name="strNewPassword">New Password of the user</param>
+        /// <param name="strConfrimPassword">Re-Confirm the new password</param>
+        /// <returns></returns>
+        private bool validateFromFields(string strOldPassword, Dictionary<int,string> dictAns, string strNewPassword, string strConfrimPassword)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                string strOldPass = fieldValidator.validate_password(strOldPassword);
+                string strTemp = strOldPass.Substring(strOldPass.IndexOf('_'));
+                bool bOldPass = false;
+                if (strTemp.Equals("TRUE"))
+                {
+                    bOldPass = true;
+                }
+                string strNewPass = fieldValidator.validate_password(strNewPassword);
+                strTemp = strNewPass.Substring(strNewPass.IndexOf('_'));
+                bool bNewPass = false;
+                if (strTemp.Equals("TRUE"))
+                {
+                    bNewPass = true;
+                }
+                string strConfirmPass = fieldValidator.validate_password(strConfrimPassword);
+                strTemp = strConfirmPass.Substring(strConfirmPass.IndexOf('_'));
+                bool bConfPass = false;
+                if (strTemp.Equals("TRUE"))
+                {
+                    bConfPass = true;
+                }
+                int iCtr = 0;
+                List<int> iKeys = new List<int>(dictAns.Keys);
+                foreach (int i in iKeys)
+                {
+                    bool bAns = fieldValidator.validate_Names(dictAns[i]);
+                    if (bAns)
+                        iCtr++;
+                }
+                if (bOldPass && bNewPass && bConfPass && iCtr == 2)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
         /// <summary>
         /// Validate the fields in the form while submiting.
         /// </summary>
@@ -170,7 +254,6 @@ namespace SoftSec_BankingApp_Se7en
         /// <param name="strCardNum">Card number of the initiator</param>
         /// <param name="strSecCode">Security code of the card</param>
         /// <returns>True, if all the fields are validated. Otherwise false</returns>
-        /// <returns></returns>
         private bool validateFromFields(string strAmount, string strLName, string strEmail, string strCardNum, string strSecCode)
         {
             try
@@ -281,6 +364,8 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
+
+        
 
     }
 }

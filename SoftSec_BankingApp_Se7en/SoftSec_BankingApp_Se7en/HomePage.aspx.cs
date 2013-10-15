@@ -1,4 +1,5 @@
 ﻿﻿using SoftSec_BankingApp_Se7en.Models;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,23 @@ namespace SSBank
             DebugModel debug = new DebugModel();
             debug.InsertSampleUsers();
 
+            Response.Write(" Number of sample questions: ");
+            Response.Write(debug.NumberOfSecurityQuestions());
+
             PasswordModel password = new PasswordModel();
             Response.Write(" Password change: ");
             Response.Write(password.ChangePwd("jtromo", "newPasword"));
+
+            Response.Write(" Security qa for user: ");
+            SecurityQandA securityQuestions = password.GetSecurityQandA("jtromo");
+            foreach (string question in securityQuestions.questions)
+            {
+                Response.Write(" Question: " + question);
+            }
+            foreach (string answer in securityQuestions.answers)
+            {
+                Response.Write(" Answer: " + answer);
+            }
         }
     }
 }

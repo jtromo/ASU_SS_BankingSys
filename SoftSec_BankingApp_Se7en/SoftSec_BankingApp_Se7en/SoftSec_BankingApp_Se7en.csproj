@@ -40,12 +40,12 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=4.1.40412.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Downloads\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
+      <HintPath>externalLibs\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Recaptcha, Version=1.0.5.0, Culture=neutral, PublicKeyToken=9afc4d65b28c38c2, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Recaptcha.dll</HintPath>
+      <HintPath>externalLibs\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -187,6 +187,8 @@
     <Content Include="CSS\style.css" />
     <Content Include="CSS\svwp_style.css" />
     <Content Include="ExternalHomePage.aspx" />
+    <Content Include="externalLibs\AjaxControlToolkit.dll" />
+    <Content Include="externalLibs\Recaptcha.dll" />
     <Content Include="ExternalUser.aspx" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="HomePage.aspx" />

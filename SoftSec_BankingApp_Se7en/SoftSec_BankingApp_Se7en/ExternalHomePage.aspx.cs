@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SoftSec_BankingApp_Se7en.Models;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -46,6 +47,15 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    LoginModel lm = new LoginModel();
+                    if (lm.UserExists(TB_UserName.Text, Convert.ToInt32(TB_ZipCode)))
+                    {
+                        Response.Redirect("ExternalUser.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("ExternalHomePage.aspx");
+                    }
                 }
                 else
                 {

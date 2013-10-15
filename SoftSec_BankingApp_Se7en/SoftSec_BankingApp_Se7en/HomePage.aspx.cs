@@ -22,6 +22,10 @@ namespace SSBank
 
             DebugModel debug = new DebugModel();
             debug.InsertSampleUsers();
+
+            PasswordModel password = new PasswordModel();
+            Response.Write(" Password change: ");
+            Response.Write(password.ChangePwd("jtromo", "newPasword"));
         }
     }
 }

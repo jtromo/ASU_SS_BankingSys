@@ -6,7 +6,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="TabPanel1">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -15,7 +15,7 @@
 
                     <br />
                     Customer Details:<br />Card Number:&nbsp;
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbCardNumber_IU" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
                     <asp:DropDownList ID="DropDownList1" runat="server">
                         <asp:ListItem>MM</asp:ListItem>
@@ -66,14 +66,15 @@
                         <asp:ListItem>30</asp:ListItem>
                         <asp:ListItem>31</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:TextBox ID="TextBox2" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                    &nbsp;<asp:TextBox ID="tbYear_IU" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btnVerify" runat="server" OnClick="btnVerify_Click" Text="Verify" />
                     <br />
                     Photo Identification Verification<asp:RadioButtonList ID="RadioButtonList1" runat="server" Width="55px">
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem>No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="4" Width="925px">
                          <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     Checking Account:
@@ -113,20 +114,20 @@
                                     </asp:DropDownList>
                                 </p>
                                 <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_amount" runat="server" Width="115px"></asp:TextBox>
+                <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px"></asp:TextBox>
             </p>
             <p><strong>Recepient&#39;s Details:</strong></p>
             <p>&nbsp;Account Number:&nbsp;&nbsp;
-                <asp:TextBox ID="tb_recepient" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server"></asp:TextBox>
             </p>
             
-             <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname" runat="server"></asp:TextBox>
+             <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_zip" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_zip_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p><strong>Your Details (Validation):</strong></p>
-            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server"></asp:TextBox>
+            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_month" runat="server">
@@ -161,10 +162,10 @@
                 </asp:DropDownList>
             </p>
             <p>Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_securitycode" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" />
+                <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
             </p>
             <p>&nbsp;</p>
         </ContentTemplate>
@@ -239,7 +240,7 @@
             </p>
               <p>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <asp:Button ID="btn_maketransferoutside" runat="server" Text="Make Transfer" />
+                  <asp:Button ID="btn_maketransferoutside" runat="server" Text="Make Transfer" OnClick="btn_maketransferoutside_Click" />
               </p>
 	
 
@@ -272,7 +273,7 @@
 
              <p class="auto-style5">
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <asp:Button ID="btn_maketransbetween" runat="server" Text="Make Transfer" />
+                 <asp:Button ID="btn_maketransbetween" runat="server" Text="Make Transfer" OnClick="btn_maketransbetween_Click" />
             </p>
 	
 
@@ -288,7 +289,7 @@
                                 <br />
                                 <p>
                                     Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_card0" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_card_DebitFunds" runat="server"></asp:TextBox>
                                 </p>
                                 <p>
                                     Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -325,7 +326,7 @@
                                 </p>
                                 <p>
                                     Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_securitycode0" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_securitycode_DebitFunds" runat="server"></asp:TextBox>
                                 </p>
                                 <p class="auto-style5">
                                     To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -336,13 +337,13 @@
                                 </p>
                                 <p class="auto-style5">
                                     Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_amountoutside0" runat="server" Width="115px"></asp:TextBox>
+                                    <asp:TextBox ID="tb_amountoutside_DebitFunds" runat="server" Width="115px"></asp:TextBox>
                                 </p>
                                 <p class="auto-style5">
                                     &nbsp;
                                 </p>
                                 <p class="auto-style5">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketransinside0" runat="server" Text="Debit Funds" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketransDebitFunds" runat="server" Text="Debit Funds" OnClick="btn_maketransDebitFunds_Click" />
                                 </p>
                                 <p>
                                     &nbsp;</p>
@@ -358,7 +359,7 @@
                                 <br />
                                 <p>
                                     Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_card1" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_card_CreditFunds" runat="server"></asp:TextBox>
                                 </p>
                                 <p>
                                     Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -395,7 +396,7 @@
                                 </p>
                                 <p>
                                     Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_securitycode1" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_securitycode_CreditFunds" runat="server"></asp:TextBox>
                                 </p>
                                 <p class="auto-style5">
                                     From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="dd_acctypeoutside1" runat="server" CssClass="auto-style4" Width="124px">
@@ -405,13 +406,13 @@
                                 </p>
                                 <p class="auto-style5">
                                     Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_amountoutside1" runat="server" Width="115px"></asp:TextBox>
+                                    <asp:TextBox ID="tb_amountoutside_CreditFunds" runat="server" Width="115px"></asp:TextBox>
                                 </p>
                                 <p class="auto-style5">
                                     &nbsp;
                                 </p>
                                 <p class="auto-style5">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketransinside1" runat="server" Text="Credit Funds" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketrans_CreditFunds" runat="server" Text="Credit Funds" OnClick="btn_maketrans_CreditFunds_Click" />
                                 </p>
 
                                 </ContentTemplate>
@@ -425,15 +426,75 @@
                     <br />
                     <h6>Contact Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Settings</h6>
   
-                     <p>Email Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                     <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                          <asp:TextBox ID="tb_emailview" runat="server"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password (last updated):
                          <asp:TextBox ID="tb_pwdlastview" runat="server"></asp:TextBox>
                     </p>
-                     <p>Residential Address:&nbsp;&nbsp;
+                     <p>Street&nbsp; Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
                          <asp:TextBox ID="tb_addrview" runat="server"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                          <asp:TextBox ID="tb_usernameview" runat="server"></asp:TextBox>
+                    </p>
+                     <p>
+                         City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <asp:TextBox ID="tb_addrview0" runat="server"></asp:TextBox>
+                         &nbsp;&nbsp;&nbsp;&nbsp; State&nbsp;&nbsp;
+                         <asp:DropDownList ID="StateDD_View" runat="server">
+                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                             <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                             <asp:ListItem Value="CA">California</asp:ListItem>
+                             <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                             <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                             <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                             <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                             <asp:ListItem Value="FL">Florida</asp:ListItem>
+                             <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                             <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                             <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                             <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                             <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                             <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                             <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                             <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                             <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                             <asp:ListItem Value="ME">Maine</asp:ListItem>
+                             <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                             <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                             <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                             <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                             <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                             <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                             <asp:ListItem Value="MT">Montana</asp:ListItem>
+                             <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                             <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                             <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                             <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                             <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                             <asp:ListItem Value="NY">New York</asp:ListItem>
+                             <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                             <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                             <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                             <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                             <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                             <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                             <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                             <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                             <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                             <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                             <asp:ListItem Value="TX">Texas</asp:ListItem>
+                             <asp:ListItem Value="UT">Utah</asp:ListItem>
+                             <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                             <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                             <asp:ListItem Value="WA">Washington</asp:ListItem>
+                             <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                         </asp:DropDownList>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zip&nbsp;
+                         <asp:TextBox ID="tb_addrview2" runat="server"></asp:TextBox>
                     </p>
                      <p>Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                          <asp:TextBox ID="tb_contactview" runat="server"></asp:TextBox>
@@ -443,8 +504,6 @@
                     </p>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_editprof" runat="server" Text="Edit Profile" />
                     </p>
-                     <p>
-                    </p>
                     <asp:TabContainer ID="TabContainer4" runat="server" ActiveTabIndex="1" Height="369px" Width="837px">
                         <asp:TabPanel ID="tabeditprofile" runat="server" HeaderText="Edit Profile" Height="600px" Width="124px">
                             <ContentTemplate>
@@ -452,24 +511,85 @@
                                 <br />
                                 <h6>Contact Information</h6>
                                 <p>
-                                    Email Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_emailedit" runat="server"></asp:TextBox>
+                                    Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;
+                                    <asp:TextBox ID="tb_email_Edit" runat="server"></asp:TextBox>
                                 </p>
                                 <p>
-                                    Residential Address:&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_addredit" runat="server"></asp:TextBox>
+                                    Street Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
+                                    <asp:TextBox ID="tb_stAddr_Edit" runat="server"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp; City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                                    <asp:TextBox ID="tb_city_Edit" runat="server"></asp:TextBox>
+                                    &nbsp;
                                 </p>
                                 <p>
-                                    Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_contactedit" runat="server"></asp:TextBox>
+                                    State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                                    <asp:DropDownList ID="StateDD_EditProfile" runat="server">
+                                        <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                        <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                        <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                        <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                        <asp:ListItem Value="CA">California</asp:ListItem>
+                                        <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                        <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                        <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                        <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                        <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                        <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                        <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                        <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                        <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                        <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                        <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                        <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                        <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                        <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                        <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                        <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                        <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                        <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                        <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                        <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                        <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                        <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                        <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                        <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                        <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                        <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                        <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                        <asp:ListItem Value="NY">New York</asp:ListItem>
+                                        <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                        <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                        <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                        <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                        <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                        <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                        <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                        <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                        <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                        <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                        <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                        <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                        <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                        <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                        <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                        <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                    </asp:DropDownList>
+                                    &nbsp; ZipCode&nbsp; :
+                                    <asp:TextBox ID="tb_zipCode_Edit" runat="server"></asp:TextBox>
+                                </p>
+                                <p>
+                                    Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                                    <asp:TextBox ID="tb_contact_Edit" runat="server"></asp:TextBox>
                                     &nbsp;&nbsp;&nbsp;</p>
                                 <p>
-                                    Nickname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_nicknameedit" runat="server"></asp:TextBox>
+                                    Nickname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                                    <asp:TextBox ID="tb_nickname_Edit" runat="server"></asp:TextBox>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_changesettings_profile" runat="server" Text="Change Profile Settings" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_changesettings_profile" runat="server" Text="Change Profile Settings" OnClick="btn_changesettings_profile_Click" />
                                 </p>
                                 <p>
                                     &nbsp;</p>
@@ -483,9 +603,15 @@
                         <ContentTemplate>
                             <h6>&nbsp;</h6>
                             <h6>Security Questions</h6>
-            <p>Old Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <p>Old Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_oldpwd" runat="server"></asp:TextBox>
-            </p>
+                &nbsp;</p>
+                            <p>
+                                New Password :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_newPassword" runat="server"></asp:TextBox>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
+                                <asp:TextBox ID="tb_confrimPassword" runat="server"></asp:TextBox>
+                            </p>
             <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="dd_secque1" runat="server">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
                     <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
@@ -536,11 +662,10 @@
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_secans3" runat="server" Height="22px" Width="128px"></asp:TextBox>
-                &nbsp;&nbsp;</p>
-                            <p>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                            <asp:Button ID="btn_changepwd" runat="server" CssClass="auto-style3" Text="Change Password" />
+                <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <asp:Button ID="btn_changepwd_Internal" runat="server" CssClass="auto-style3" Text="Change Password" OnClick="btn_changepwd_Internal_Click" />
 
                             <p>
                             </p>
@@ -702,11 +827,11 @@
                                     <asp:ListItem>15</asp:ListItem>
                                 </asp:DropDownList>
                                 &nbsp;<br /> Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 <asp:TextBox ID="tb_amount3" runat="server" Width="118px"></asp:TextBox>
+                                 <asp:TextBox ID="tb_amount_SubmitPayment" runat="server" Width="118px"></asp:TextBox>
                                  <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_cardsubmitpayment" runat="server" Text="Submit Payment" />
+                                <asp:Button ID="btn_cardsubmitpayment" runat="server" Text="Submit Payment" OnClick="btn_cardsubmitpayment_Click" />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;
                            
@@ -741,28 +866,93 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
+
+                            <HeaderTemplate>
+                                Customer Details
+                            </HeaderTemplate>
 
                             <ContentTemplate>
                                 <br />
-                                First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox11" runat="server"></asp:TextBox>
+                                First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_FirstName_Cust" runat="server"></asp:TextBox>
                                 <br />
-                                Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox10" runat="server"></asp:TextBox>
+                                Middle Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_MiddleName_Cust" runat="server"></asp:TextBox>
                                 <br />
-                                Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox12" runat="server"></asp:TextBox>
+                                Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                <asp:TextBox ID="tb_LastName_Cust" runat="server"></asp:TextBox>
                                 <br />
-                                Address:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox13" runat="server"></asp:TextBox>
+                                Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_Email_Cust" runat="server"></asp:TextBox>
                                 <br />
-                                Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox14" runat="server"></asp:TextBox>
+                                Street Address:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_StreetAddr_Cust" runat="server"></asp:TextBox>
                                 <br />
-                                Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox15" runat="server"></asp:TextBox>
+                                City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_City_Cust" runat="server"></asp:TextBox>
+                                <br />
+                                State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="StateDD_Cust" runat="server">
+                                    <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                    <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                    <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                    <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                    <asp:ListItem Value="CA">California</asp:ListItem>
+                                    <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                    <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                    <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                    <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                    <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                    <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                    <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                    <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                    <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                    <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                    <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                    <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                    <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                    <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                    <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                    <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                    <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                    <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                    <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                    <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                    <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                    <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                    <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                    <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                    <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                    <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                    <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                    <asp:ListItem Value="NY">New York</asp:ListItem>
+                                    <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                    <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                    <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                    <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                    <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                    <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                    <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                    <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                    <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                    <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                    <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                    <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                    <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                    <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                    <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                    <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_Phone_Cust" runat="server"></asp:TextBox>
+                                <br />
+                                Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_Zip_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
                                 Account Types:&nbsp;&nbsp;
@@ -774,47 +964,50 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_createcust" runat="server" Text="Create" />
+                                <asp:Button ID="btn_createcust" runat="server" Text="Create" OnClick="btn_createcust_Click" />
                                 <br />
                                 <br />
                             </ContentTemplate>
 
                         </asp:TabPanel>
                         <asp:TabPanel ID="tab_customer" runat="server" HeaderText="Customer">
+                            <HeaderTemplate>
+                                Personal Information
+                            </HeaderTemplate>
                             <ContentTemplate>
                                 <br />
                                 Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox17" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox18" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Password_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox19" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_ConfPassword_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList9" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox20" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns1_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList10" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox21" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns2_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList11" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox22" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns3_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Social Security Number:&nbsp;
-                                <asp:TextBox ID="TextBox23" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SSN_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
                                 SiteKey:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -828,7 +1021,7 @@
                                 <asp:ImageButton ID="img_site7" runat="server" OnClick="img_site7_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site8" runat="server" OnClick="img_site8_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site9" runat="server" OnClick="img_site9_Click" />&nbsp;&nbsp;
-                                <asp:ImageButton ID="img_site10" runat="server" OnClick="img_site10_Click" />&nbsp;<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                <asp:ImageButton ID="img_site10" runat="server" OnClick="img_site10_Click" />&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
                                 <asp:ImageButton ID="img_site11" runat="server" OnClick="img_site11_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site12" runat="server" OnClick="img_site12_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site13" runat="server" OnClick="img_site13_Click" />&nbsp;&nbsp;
@@ -838,8 +1031,8 @@
                                 <asp:ImageButton ID="img_site17" runat="server" OnClick="img_site17_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site18" runat="server" OnClick="img_site18_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site19" runat="server" OnClick="img_site19_Click" />&nbsp;&nbsp;
-                                <asp:ImageButton ID="img_site20" runat="server" OnClick="img_site20_Click" />&nbsp;<br /> Sitekey Hint:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_sitekeyhint" runat="server"></asp:TextBox>
+                                <asp:ImageButton ID="img_site20" runat="server" OnClick="img_site20_Click" />&nbsp;<br />Sitekey Hint:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_sitekeyhint_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList6" runat="server">
@@ -891,11 +1084,11 @@
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:TextBox ID="TextBox16" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                <asp:TextBox ID="tb_BirthYear_Cust" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_sumbitcust" runat="server" Text="Submit" />
+                                <asp:Button ID="btn_sumbitcust" runat="server" Text="Submit" OnClick="btn_sumbitcust_Click" />
                             </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>
@@ -912,13 +1105,13 @@
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox25" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="TextBox26" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MidName_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox27" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DropDownList12" runat="server">
@@ -929,14 +1122,14 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox28" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox29" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button1" runat="server" Text="Add" />
+                                <asp:Button ID="btn_AddEmp" runat="server" Text="Add" OnClick="btn_AddEmp_Click" />
                                 <br />
 
                             </ContentTemplate>

@@ -100,7 +100,9 @@
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
             </p>
-            <p>&nbsp;</p>
+            <p>
+                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                                </p>
         </ContentTemplate>
      </asp:TabPanel>
      <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">

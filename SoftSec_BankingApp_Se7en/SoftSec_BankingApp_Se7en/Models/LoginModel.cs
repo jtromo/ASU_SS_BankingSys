@@ -6,15 +6,35 @@ using System.Web;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
-    
+
     public class LoginModel
     {
         // Returns: True false if the user information exists
         public bool UserExists(String username, int zip)
         {
+            using (var db = new SSBankDBContext())
+            {
+                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
+                if (users.Count() < 1)
+                {
+                    return false;
+                }
 
-            return true;
+                User user = users.First();
+                Address address = user.Address;
+                if (address == null)
+                {
+                    return false;
+                }
+
+                if (address.zip != zip)
+                {
+                    return false;
+                }
+
+                return true;
+            }
         }
 
         // Returns:
@@ -22,26 +42,34 @@ namespace SoftSec_BankingApp_Se7en.Models
         // the row id if login success (UserId)
         public int LoginUser(String username, String password, int zip)
         {
-            // James Test DB Actions
             using (var db = new SSBankDBContext())
             {
-                var question = new Question { question1 = "What is your mother's maiden name?" };
-                db.Questions.Add(question);
-                db.SaveChanges();
+                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
-                var query = from b in db.Questions
-                            orderby b.question1
-                            select b;
-
-                String databaseString = "All Questions in the database:";
-                int count = 0;
-                foreach (var item in query)
+                if (users.Count() < 1)
                 {
-                    count++;
-                    databaseString = databaseString + item.question1 + ", ";
+                    return -1;
                 }
-               // Response.Write(databaseString);
-                return count;
+
+                User user = users.First();
+                Address address = user.Address;
+                if (address == null)
+                {
+                    return -1;
+                }
+
+                if (address.zip != zip)
+                {
+                    return -1;
+                }
+
+                // JR: Warning this needs to be changed to compare to the hash
+                if (!String.Equals(password,user.hash))
+                {
+                    return -1;
+                }
+
+                return user.id;
             }
         }
     }

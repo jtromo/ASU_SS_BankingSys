@@ -118,10 +118,6 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="AdminHome.aspx" />
-    <Content Include="App_Data\bankDB.mdf" />
-    <Content Include="App_Data\bankDB_log.ldf">
-      <DependentUpon>bankDB.mdf</DependentUpon>
-    </Content>
     <Content Include="AuthorizeUser.aspx" />
     <Content Include="captchaTest.aspx" />
     <Content Include="Contact.aspx" />
@@ -299,7 +295,9 @@
     <Content Include="script\mootools-1.2.1-core.js" />
     <Content Include="script\slideitmoo-1.1.js" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminHome.aspx.cs">
@@ -432,8 +430,14 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310150908274_Initial.cs" />
+    <Compile Include="Migrations\201310150908274_Initial.Designer.cs">
+      <DependentUpon>201310150908274_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DebugModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
     <Compile Include="Models\Tables\AccountType.cs" />
     <Compile Include="Models\Tables\Address.cs" />
@@ -445,7 +449,7 @@
     <Compile Include="Models\Tables\Role.cs" />
     <Compile Include="Models\Tables\SavingsAccount.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />
-    <Compile Include="Models\SSBankDBConext.cs" />
+    <Compile Include="Models\SSBankDBContext.cs" />
     <Compile Include="Models\Tables\Statement.cs" />
     <Compile Include="Models\Tables\SystemLog.cs" />
     <Compile Include="Models\Tables\Transaction.cs" />
@@ -467,7 +471,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
   </ItemGroup>
@@ -478,6 +484,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201310150908274_Initial.resx">
+      <DependentUpon>201310150908274_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

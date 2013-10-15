@@ -8,10 +8,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
 {
     public class Address
     {
-        public Address()
-        {
-        }
-
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
@@ -19,10 +15,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string street2 { get; set; }
         public string city { get; set; }
         public string state { get; set; }
-        [MinLength(5)]
-        [MaxLength(5)]
-        public string zip { get; set; }
+        public int zip { get; set; }
         public string country { get; set; }
-        public string isActive { get; set; }
+        public bool isActive { get; set; }
     }
 }

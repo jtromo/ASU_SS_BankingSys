@@ -5,6 +5,14 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class SSBankDBContext : DbContext
     {
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasRequired(a => a.Address)
+                .WithMany()
+                .HasForeignKey(u => u.addressId);
+        }
+
         public DbSet<SoftSec_BankingApp_Se7en.Models.Tables.Account> Accounts { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }

@@ -11,19 +11,77 @@ namespace SoftSec_BankingApp_Se7en
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TB_UserName.Text = "";
-            TB_ZipCode.Text = "";
+            try
+            {
+                TB_UserName.Text = "";
+                TB_ZipCode.Text = "";
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
         }
 
         protected void Btn_Reset_Click(object sender, EventArgs e)
         {
-            TB_UserName.Text = "";
-            TB_ZipCode.Text = "";
+            try
+            {
+                TB_UserName.Text = "";
+                TB_ZipCode.Text = "";
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+            }
         }
 
         protected void Btn_SignIn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AuthorizeUser.aspx");
+            bool serverSideValidation = false;
+            try
+            {
+                Response.Redirect("AuthorizeUser.aspx");
+                //Validating user name and zip code
+                serverSideValidation = validateFromFields(TB_UserName.Text.ToString(), TB_ZipCode.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception Exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        /// <summary>
+        /// Validate the form fields inputs.
+        /// </summary>
+        /// <param name="strUserName">User name field text value</param>
+        /// <param name="zipCode">Zip Code field text value</param>
+        /// <returns>True if the text values are valid, false otherwise</returns>
+        private bool validateFromFields(string strUserName, string zipCode)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool buserName = fieldValidator.validate_UserName(strUserName);
+                bool bZipCode = fieldValidator.validate_ZipAccCrdPhn(zipCode, 5);
+                if (buserName && bZipCode)
+                    return true;
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception exp){
+                //Log Exception Here
+                return false;
+            }
         }
     }
 }

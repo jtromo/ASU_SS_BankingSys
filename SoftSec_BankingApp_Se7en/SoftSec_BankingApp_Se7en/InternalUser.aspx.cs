@@ -199,5 +199,109 @@ namespace SoftSec_BankingApp_Se7en
             img_site20.BorderColor = System.Drawing.Color.DarkBlue;
             img_site20.BorderStyle = BorderStyle.Solid;
         }
+
+        protected void btn_maketransinside_Click(object sender, EventArgs e)
+        {
+            //Transfer Money to Accounts within the bank
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
+                                            tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
+                                            tb_securitycode_IU_Inside.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }        
+
+        protected void btnVerify_Click(object sender, EventArgs e)
+        {   
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields(tbCardNumber_IU.Text.ToString(), tbYear_IU.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        /// <summary>
+        /// Validate the from fields
+        /// </summary>
+        /// <param name="strCardNum">Validate the card number</param>
+        /// <returns>True if the card number is valid, else false</returns>
+        private bool validateFromFields(string strCardNum,string strYear)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
+                bool bYear = fieldValidator.validate_ZipAccCrdPhn(strYear, 16);
+                if (bCard && bYear)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validate the fields in the form while submiting.
+        /// </summary>
+        /// <param name="strAmount">Amount involved in the transfer</param>
+        /// <param name="strAccountNum">Account number of the recepient</param>
+        /// <param name="strLName">Last Name of the recepient</param>
+        /// <param name="strZipCode">Zip Code of the recepient</param>
+        /// <param name="strCardNum">Card number of the initiator</param>
+        /// <param name="strSecCode">Security code of the card</param>
+        /// <returns>True, if all the fields are validated. Otherwise false</returns>
+        private bool validateFromFields(string strAmount, string strAccountNum, string strLName, string strZipCode, string strCardNum, string strSecCode)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bAmt = fieldValidator.validate_Amount(strAmount);
+                bool bAccNum = fieldValidator.validate_ZipAccCrdPhn(strAccountNum, 12);
+                bool bLName = fieldValidator.validate_Names(strLName);
+                bool bZip = fieldValidator.validate_ZipAccCrdPhn(strZipCode, 5);
+                bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
+                bool bSCode = fieldValidator.validate_ZipAccCrdPhn(strSecCode, 3);
+
+                if (bAmt && bAccNum && bLName && bZip && bCard && bSCode)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
     }
 }

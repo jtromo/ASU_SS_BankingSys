@@ -5,7 +5,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </p>
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="2" Height="400px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="0" Height="400px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>
@@ -76,8 +76,13 @@
                 <br />
                 &nbsp;
                 <asp:Label ID="newRoleLb_Modify" runat="server" Text="New Role"></asp:Label>
-                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-                <asp:TextBox ID="newRoleTb_Modify" runat="server" Height="15px" style="margin-left: 40px" TabIndex="3"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:ListItem Value="1">Regular</asp:ListItem>
+                    <asp:ListItem Value="2">Dept. Manager</asp:ListItem>
+                    <asp:ListItem Value="3">Vice President</asp:ListItem>
+                    <asp:ListItem Value="4">President</asp:ListItem>
+                </asp:DropDownList>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br />
@@ -195,6 +200,9 @@
                 <asp:TextBox ID="endYearTb_SysLog" runat="server" Width="35px" TabIndex="5"></asp:TextBox>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="FetchLogsBT" runat="server" OnClick="FetchLogsBT_Click" Text="Fetch Logs" />
                 <br />
                 <br />
                 <asp:GridView ID="sysLog_GridView" runat="server" Width="636px" AutoGenerateColumns="False" BorderStyle="Solid" ShowHeaderWhenEmpty="True" TabIndex="6" >

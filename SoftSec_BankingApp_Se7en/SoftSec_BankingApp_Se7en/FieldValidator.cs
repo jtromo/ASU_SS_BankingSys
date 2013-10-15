@@ -253,5 +253,37 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
+
+        /// <summary>
+        /// Validates if the transaction is just numbers- Max Length 20
+        /// </summary>
+        /// <param name="TransactionId">Transaction ID to be validated</param>
+        /// <returns>True if the ID is valid, else false</returns>
+        public bool validate_TransID(string TransactionId)
+        {
+            try
+            {
+                if (TransactionId.Length <= 20)
+                {
+                    Regex descriptionRegex = new Regex(@"^\d+$");
+                    Match descriptionMatch = descriptionRegex.Match(TransactionId);
+                    if (descriptionMatch.Success)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception exp
+                return false;
+            }
+        }
     }
 }

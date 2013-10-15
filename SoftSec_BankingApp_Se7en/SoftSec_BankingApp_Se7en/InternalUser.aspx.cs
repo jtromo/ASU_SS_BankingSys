@@ -454,40 +454,133 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_AddEmp_Click(object sender, EventArgs e)
         {
-
-        }
-
-        /// <summary>
-        /// Validates the Form fields
-        /// </summary>
-        /// <param name="strFName"> First name of the employee</param>
-        /// <param name="strMName"> Middle name of employee</param>
-        /// <param name="strLName">Last Name of employee</param>
-        /// <param name="strEmail">Mail address of Employee</param>
-        /// <param name="strContact"> Phone number</param>
-        /// <returns>IF all fields are valid, returns true: false otherwise</returns>
-        private bool validateFromFields_Emp(string strFName, string strMName, string strLName, string strEmail, string strContact)
-        {
+            bool serverSideValidation = false;
             try
             {
-                FieldValidator fieldValidator = new FieldValidator();
-                bool bFName = fieldValidator.validate_Names(strFName);
-                bool bMName = fieldValidator.validate_Names(strMName);
-                bool bLName = fieldValidator.validate_Names(strLName);
-                bool bEmail = fieldValidator.validate_Email(strEmail);
-                bool bPhn = fieldValidator.validate_ZipAccCrdPhn(strContact, 10);
-                if (bFName && bLName && bMName && bEmail && bPhn)
-                    return true;
+                serverSideValidation = validateFromFields_Emp(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
+                                            , tb_Email_Emp.Text.ToString(), tb_Phone_Emp.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
                 else
-                    return false;
+                {
+                    //Update the UI with error message.
+                }
             }
             catch (Exception exp)
             {
-                //Log Exception Here
-                return false;
+                //Log Exception here
             }
         }
 
+        protected void btn_ViewDetails_DelEmp_Click(object sender, EventArgs e)
+        {
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields_Emp(tb_UserName_DelEmp.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void btn_ViewDetails_TransEmp_Click(object sender, EventArgs e)
+        {
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields_Emp(tb_UserName_transEmp.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void btn_ViewDetails_ViewEmp_Click(object sender, EventArgs e)
+        {
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields_Emp(tb_userName_ViewEmp.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void btn_viewtransdetails1_Click(object sender, EventArgs e)
+        {
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields_Emp(tb_userName_ViewEmp.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void btn_echecksubmitpayment_Click(object sender, EventArgs e)
+        {
+            //
+            bool serverSideValidation = false;
+            try
+            {
+                serverSideValidation = validateFromFields_ECheck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString()
+                                            , tb_echeckcustomername.Text.ToString(), tbAmount_EcheckPayment.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+        
         #region ValidateFormFields
         /// <summary>
         /// Validate the from fields
@@ -839,8 +932,116 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
-        #endregion
 
+        /// <summary>
+        /// Validate the form fields
+        /// </summary>
+        /// <param name="strTransID">Transaction ID to be validated</param>
+        /// <param name="strYear">Year field</param>
+        /// <returns>True if all the fields are valid, false otherwise</returns>
+        private bool validateFromFields_Emp(string strTransID, string strYear)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bUName = fieldValidator.validate_TransID(strTransID);
+                bool bYear = fieldValidator.validate_ZipAccCrdPhn(strYear, 4);
+                if (bUName && bYear)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validates if the username is valid input
+        /// </summary>
+        /// <param name="strUserName">User name of the employee</param>
+        /// <returns>True if the input is valid, else false</returns>
+        private bool validateFromFields_Emp(string strUserName)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bUName = fieldValidator.validate_UserName(strUserName);
+                if (bUName)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validates the Form fields
+        /// </summary>
+        /// <param name="strFName"> First name of the employee</param>
+        /// <param name="strMName"> Middle name of employee</param>
+        /// <param name="strLName">Last Name of employee</param>
+        /// <param name="strEmail">Mail address of Employee</param>
+        /// <param name="strContact"> Phone number</param>
+        /// <returns>IF all fields are valid, returns true: false otherwise</returns>
+        private bool validateFromFields_Emp(string strFName, string strMName, string strLName, string strEmail, string strContact)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bFName = fieldValidator.validate_Names(strFName);
+                bool bMName = fieldValidator.validate_Names(strMName);
+                bool bLName = fieldValidator.validate_Names(strLName);
+                bool bEmail = fieldValidator.validate_Email(strEmail);
+                bool bPhn = fieldValidator.validate_ZipAccCrdPhn(strContact, 10);
+                if (bFName && bLName && bMName && bEmail && bPhn)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Validate the form fields
+        /// </summary>
+        /// <param name="strAccNum">Account number of recepient</param>
+        /// <param name="strRoutingNum">Routing number recepient</param>
+        /// <param name="strName">Name of recepient</param>
+        /// <param name="strAmount">Amount involved in transaction</param>
+        /// <returns></returns>
+        private bool validateFromFields_ECheck(string strAccNum, string strRoutingNum, string strName, string strAmount)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bAcc = fieldValidator.validate_ZipAccCrdPhn(strAccNum,12);
+                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum,10);
+                bool bName = fieldValidator.validate_Names(strName);
+                bool bAmt = fieldValidator.validate_Amount(strAmount);
+                
+                if (bAcc && bName && bRoute && bAmt)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+        #endregion
 
     }
 }

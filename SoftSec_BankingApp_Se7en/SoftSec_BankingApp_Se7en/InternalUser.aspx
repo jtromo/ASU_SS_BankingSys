@@ -17,7 +17,7 @@
                     Customer Details:<br />Card Number:&nbsp;
                     <asp:TextBox ID="tbCardNumber_IU" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
-                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    <asp:DropDownList ID="MonthDD_ExistingCustomer_Verify" runat="server">
                         <asp:ListItem>MM</asp:ListItem>
                         <asp:ListItem>01</asp:ListItem>
                         <asp:ListItem>02</asp:ListItem>
@@ -32,7 +32,7 @@
                         <asp:ListItem>11</asp:ListItem>
                         <asp:ListItem>12</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:DropDownList ID="DropDownList2" runat="server">
+                    &nbsp;<asp:DropDownList ID="DayDD_ExistingCustomer_Verify" runat="server">
                         <asp:ListItem>DD</asp:ListItem>
                         <asp:ListItem>01</asp:ListItem>
                         <asp:ListItem>02</asp:ListItem>
@@ -102,13 +102,13 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="4" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
                                 <p>
                                     From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="124px">
+                                    <asp:DropDownList ID="fromAccTypeDD_TransferExistingCust_Inside" runat="server" CssClass="auto-style4" Width="124px">
                                         <asp:ListItem>Checking Account</asp:ListItem>
                                         <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
@@ -130,7 +130,7 @@
             <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_month" runat="server">
+                <asp:DropDownList ID="monthDD_TransferExistingCust_Inside" runat="server">
                     <asp:ListItem>MM</asp:ListItem>
                     <asp:ListItem>Jan</asp:ListItem>
                     <asp:ListItem>Feb</asp:ListItem>
@@ -146,7 +146,7 @@
                     <asp:ListItem>Dec</asp:ListItem>
                 </asp:DropDownList>
 &nbsp;
-                <asp:DropDownList ID="dd_year" runat="server">
+                <asp:DropDownList ID="yearDD_TransferExistingCust_Inside" runat="server">
                     <asp:ListItem>YYYY</asp:ListItem>
                     <asp:ListItem>2013</asp:ListItem>
                     <asp:ListItem>2014</asp:ListItem>
@@ -174,7 +174,7 @@
           <ContentTemplate>
               <p class="auto-style5">&nbsp;</p>
             <p class="auto-style5">From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_acctypeoutside" runat="server" CssClass="auto-style4" Width="124px">
+                <asp:DropDownList ID="accTypeDD_TransferExistingCust_Outside" runat="server" CssClass="auto-style4" Width="124px">
                     <asp:ListItem>Checking Account</asp:ListItem>
                     <asp:ListItem>Savings Account</asp:ListItem>
                 </asp:DropDownList>
@@ -197,7 +197,7 @@
               </p>
             <p>
                 &nbsp;Expiry:
-                <asp:DropDownList ID="dd_monthoutside" runat="server">
+                <asp:DropDownList ID="monthDD_TransferExistingCust_Outside" runat="server">
                     <asp:ListItem>MM</asp:ListItem>
                     <asp:ListItem>Jan</asp:ListItem>
                     <asp:ListItem>Feb</asp:ListItem>
@@ -213,7 +213,7 @@
                     <asp:ListItem>Dec</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
-                <asp:DropDownList ID="dd_yearoutside" runat="server">
+                <asp:DropDownList ID="yearDD_TransferExistingCust_Outside" runat="server">
                     <asp:ListItem>YYYY</asp:ListItem>
                     <asp:ListItem>2013</asp:ListItem>
                     <asp:ListItem>2014</asp:ListItem>
@@ -254,13 +254,13 @@
             <p class="auto-style5">&nbsp;</p>
             <p class="auto-style5">
             From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="dd_acctypebetween1" runat="server" CssClass="auto-style4" Width="124px">
+            <asp:DropDownList ID="fromAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
             <asp:ListItem>Checking Account</asp:ListItem>
             <asp:ListItem>Savings Account</asp:ListItem>
             </asp:DropDownList>
                                  </p>
             <p class="auto-style5">To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_acctypebetween2" runat="server" CssClass="auto-style4" Width="124px">
+                <asp:DropDownList ID="toAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
                     <asp:ListItem>Checking Account</asp:ListItem>
                     <asp:ListItem>Savings Account</asp:ListItem>
                     <asp:ListItem>Credit Account</asp:ListItem>
@@ -293,7 +293,7 @@
                                 </p>
                                 <p>
                                     Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_month0" runat="server">
+                                    <asp:DropDownList ID="monthDD_TransferExistingCust_Debit" runat="server">
                                         <asp:ListItem>MM</asp:ListItem>
                                         <asp:ListItem>Jan</asp:ListItem>
                                         <asp:ListItem>Feb</asp:ListItem>
@@ -309,7 +309,7 @@
                                         <asp:ListItem>Dec</asp:ListItem>
                                     </asp:DropDownList>
                                     &nbsp;
-                                    <asp:DropDownList ID="dd_year0" runat="server">
+                                    <asp:DropDownList ID="yearDD_TransferExistingCust_Debit" runat="server">
                                         <asp:ListItem>YYYY</asp:ListItem>
                                         <asp:ListItem>2013</asp:ListItem>
                                         <asp:ListItem>2014</asp:ListItem>
@@ -330,7 +330,7 @@
                                 </p>
                                 <p class="auto-style5">
                                     To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_acctypeoutside0" runat="server" CssClass="auto-style4" Width="124px">
+                                    <asp:DropDownList ID="accTypeDD_TransferExistingCust_Debit" runat="server" CssClass="auto-style4" Width="124px">
                                         <asp:ListItem>Checking Account</asp:ListItem>
                                         <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
@@ -363,7 +363,7 @@
                                 </p>
                                 <p>
                                     Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <asp:DropDownList ID="dd_month1" runat="server">
+                                    <asp:DropDownList ID="monthDD_TransferExistingCust_Credit" runat="server">
                                         <asp:ListItem>MM</asp:ListItem>
                                         <asp:ListItem>Jan</asp:ListItem>
                                         <asp:ListItem>Feb</asp:ListItem>
@@ -379,7 +379,7 @@
                                         <asp:ListItem>Dec</asp:ListItem>
                                     </asp:DropDownList>
                                     &nbsp;
-                                    <asp:DropDownList ID="dd_year1" runat="server">
+                                    <asp:DropDownList ID="yearDD_TransferExistingCust_Credit" runat="server">
                                         <asp:ListItem>YYYY</asp:ListItem>
                                         <asp:ListItem>2013</asp:ListItem>
                                         <asp:ListItem>2014</asp:ListItem>
@@ -399,7 +399,7 @@
                                     <asp:TextBox ID="tb_securitycode_CreditFunds" runat="server"></asp:TextBox>
                                 </p>
                                 <p class="auto-style5">
-                                    From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="dd_acctypeoutside1" runat="server" CssClass="auto-style4" Width="124px">
+                                    From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="accTypeDD_TransferExistingCust_Credit" runat="server" CssClass="auto-style4" Width="124px">
                                         <asp:ListItem>Checking Account</asp:ListItem>
                                         <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
@@ -612,7 +612,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
                                 <asp:TextBox ID="tb_confrimPassword" runat="server"></asp:TextBox>
                             </p>
-            <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="dd_secque1" runat="server">
+            <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="Sec1DD_ExistingCust_EditProf" runat="server">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
                     <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
                     <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -629,7 +629,7 @@
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_secans1" runat="server"></asp:TextBox>
             </p>
             <p>Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_secque2" runat="server">
+                <asp:DropDownList ID="Sec2DD_ExistingCust_EditProf" runat="server">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
                     <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
                     <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -647,7 +647,7 @@
                 <asp:TextBox ID="tb_secans2" runat="server"></asp:TextBox>
             </p>
             <p>Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_secque3" runat="server">
+                <asp:DropDownList ID="Sec3DD_ExistingCust_EditProf" runat="server">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
                     <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
                     <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -687,7 +687,7 @@
 
                     <br />
                     Show transfers for:
-                    <asp:DropDownList ID="DropDownList3" runat="server">
+                    <asp:DropDownList ID="transferDD_ModifyTrans" runat="server">
                         <asp:ListItem>Last 30 days and Future Scheduled Transfers</asp:ListItem>
                         <asp:ListItem>Prior 2 months</asp:ListItem>
                         <asp:ListItem>Prior 3 months</asp:ListItem>
@@ -699,9 +699,9 @@
                     <br />
                     <br />
                     Transaction ID:
-                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_transID_ModifyTrans" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
-                    <asp:DropDownList ID="DropDownList4" runat="server">
+                    <asp:DropDownList ID="monthDD_ModifyTrans" runat="server">
                         <asp:ListItem>MM</asp:ListItem>
                         <asp:ListItem>01</asp:ListItem>
                         <asp:ListItem>02</asp:ListItem>
@@ -716,7 +716,7 @@
                         <asp:ListItem>11</asp:ListItem>
                         <asp:ListItem>12</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:DropDownList ID="DropDownList5" runat="server">
+                    &nbsp;<asp:DropDownList ID="dayDD_ModifyTrans" runat="server">
                         <asp:ListItem>DD</asp:ListItem>
                         <asp:ListItem>01</asp:ListItem>
                         <asp:ListItem>02</asp:ListItem>
@@ -750,21 +750,21 @@
                         <asp:ListItem>30</asp:ListItem>
                         <asp:ListItem>31</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:TextBox ID="TextBox5" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                    &nbsp;<asp:TextBox ID="tb_year_ModifyTrans" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails" runat="server" Text="View Details" />
                     <br />
                     <br />
                     <br />
                     Account Number: [AccNum]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Number:
-                    <asp:TextBox ID="TextBox6" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_AccNum_modifyTrans" runat="server"></asp:TextBox>
                     <br />
                     Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Type]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="TextBox7" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_Type_modifyTrans" runat="server"></asp:TextBox>
                     <br />
                     Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="TextBox8" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_Status_ModifyTrans" runat="server"></asp:TextBox>
                     <br />
-                    Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Amount]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="TextBox9" runat="server"></asp:TextBox>
+                    Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Amount]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_Amount_ModifyTrans" runat="server"></asp:TextBox>
                     <br />
                     <br />
                     <br />
@@ -781,12 +781,12 @@
                 <ContentTemplate>
                     <br />
                     <br />
-                    <asp:TabContainer ID="TabContainer5" runat="server" ActiveTabIndex="0" Height="556px" Width="835px" style="margin-right: 709px">
+                    <asp:TabContainer ID="TabContainer5" runat="server" ActiveTabIndex="1" Height="556px" Width="835px" style="margin-right: 709px">
                         <asp:TabPanel ID="tab_cardpay" runat="server" HeaderText="Card Payment" Height="600px" Width="124px">
                             <ContentTemplate>
                                  <br />
                                 Card Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="dd_cardtype" runat="server">
+                                <asp:DropDownList ID="cardTypeDD_CardPayment" runat="server">
                                     <asp:ListItem>Select a Card Type</asp:ListItem>
                                     <asp:ListItem>Visa</asp:ListItem>
                                     <asp:ListItem>MasterCard</asp:ListItem>
@@ -799,7 +799,7 @@
                                 <asp:TextBox ID="tb_customername" runat="server" Width="118px"></asp:TextBox>
                                 <br />
                                 (as printed on the card)<br />Expiry Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="dd_cardexpm" runat="server">
+                                <asp:DropDownList ID="cardExpDD_CardPayment" runat="server">
                                     <asp:ListItem>MM</asp:ListItem>
                                     <asp:ListItem>01</asp:ListItem>
                                     <asp:ListItem>02</asp:ListItem>
@@ -815,7 +815,7 @@
                                     <asp:ListItem>12</asp:ListItem>
                                 </asp:DropDownList>
                                 &nbsp;&nbsp;
-                                <asp:DropDownList ID="dd_cardexpy" runat="server">
+                                <asp:DropDownList ID="yearDD_CardPayment" runat="server">
                                     <asp:ListItem>YY</asp:ListItem>
                                     <asp:ListItem>13</asp:ListItem>
                                     <asp:ListItem>17</asp:ListItem>
@@ -847,11 +847,11 @@
                                 Account Holder&#39;s Name:&nbsp;&nbsp;<asp:TextBox ID="tb_echeckcustomername" runat="server" Width="118px"></asp:TextBox>
                                 <br />
                                 Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_amount4" runat="server" Width="118px"></asp:TextBox>
+                                <asp:TextBox ID="tbAmount_EcheckPayment" runat="server" Width="118px"></asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_echecksubmitpayment" runat="server" Text="Submit Payment" />
+                                <asp:Button ID="btn_echecksubmitpayment" runat="server" Text="Submit Payment" OnClick="btn_echecksubmitpayment_Click" />
                                 </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>
@@ -866,7 +866,7 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
 
                             <HeaderTemplate>
@@ -986,21 +986,21 @@
                                 <asp:TextBox ID="tb_ConfPassword_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList9" runat="server">
+                                <asp:DropDownList ID="Sec1DD_PersonalInformation" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_SecAns1_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList10" runat="server">
+                                <asp:DropDownList ID="Sec2DD_PersonalInformation" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_SecAns2_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList11" runat="server">
+                                <asp:DropDownList ID="Sec3DD_PersonalInformation" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1035,7 +1035,7 @@
                                 <asp:TextBox ID="tb_sitekeyhint_Cust" runat="server"></asp:TextBox>
                                 <br />
                                 Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList6" runat="server">
+                                <asp:DropDownList ID="monthDD_PersonalInformation" runat="server">
                                     <asp:ListItem>MM</asp:ListItem>
                                     <asp:ListItem>01</asp:ListItem>
                                     <asp:ListItem>02</asp:ListItem>
@@ -1050,7 +1050,7 @@
                                     <asp:ListItem>11</asp:ListItem>
                                     <asp:ListItem>12</asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:DropDownList ID="DropDownList7" runat="server">
+                                <asp:DropDownList ID="dayDD_PersonalInformation" runat="server">
                                     <asp:ListItem>DD</asp:ListItem>
                                     <asp:ListItem>01</asp:ListItem>
                                     <asp:ListItem>02</asp:ListItem>
@@ -1095,9 +1095,12 @@
                 </ContentTemplate>
             </asp:TabPanel>
             <asp:TabPanel ID="tab_dept" runat="server" HeaderText="Department">
+                <HeaderTemplate>
+                    Department
+                </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="4" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 
@@ -1111,14 +1114,14 @@
                                 <asp:TextBox ID="tb_MidName_Emp" runat="server"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_LastName_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList12" runat="server">
+                                <asp:DropDownList ID="DeptDD_AddEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList13" runat="server">
+                                <asp:DropDownList ID="RoleDD_AddEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1139,39 +1142,39 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox35" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_DelEmp" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button7" runat="server" Text="View Details" />
+                                <asp:Button ID="btnViewEmpDetails_delEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_DelEmp_Click" />
                                 <br />
                                 <br />
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox30" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tbFirstName_DelEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="TextBox31" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MidName_DelEMp" runat="server"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="TextBox32" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_DelEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList14" runat="server">
+                                <asp:DropDownList ID="DeptDD_DelEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList15" runat="server">
+                                <asp:DropDownList ID="RoleDD_DelEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox33" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_DelEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox34" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_DelEmp" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button2" runat="server" Text="Delete" />
+                                <asp:Button ID="btn_delEmp" runat="server" Text="Delete" />
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1180,44 +1183,44 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox36" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_transEmp" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button5" runat="server" Text="View Details" />
+                                <asp:Button ID="btn_ViewDetails_TransEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_TransEmp_Click" />
                                 <br />
                                 <br />
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox37" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FName_TransEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="TextBox38" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MName_TransEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="TextBox39" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LName_TransEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList16" runat="server">
+                                <asp:DropDownList ID="FROM_DeptDD_TransEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList17" runat="server">
+                                <asp:DropDownList ID="RoleDD_TransEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox40" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_TransEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox41" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Contact_TransEmp" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
                                 Transfer To Details:<br />Department:&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList18" runat="server">
+                                <asp:DropDownList ID="TO_DeptDD_TransDept" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button3" runat="server" Text="Transfer" />
+                                <asp:Button ID="btn_TransEmp" runat="server" Text="Transfer" />
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1226,42 +1229,38 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox42" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_userName_ViewEmp" runat="server"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="Button6" runat="server" Text="View Details" />
+                                <asp:Button ID="btn_ViewDetails_ViewEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_ViewEmp_Click" />
                                 <br />
                                 <br />
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox43" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FName_ViewEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="TextBox44" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MName_ViewEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="TextBox45" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LName_ViewEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList19" runat="server">
+                                <asp:DropDownList ID="DeptDD_viewEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:DropDownList ID="DropDownList20" runat="server">
+                                <asp:DropDownList ID="RoleDD_ViewEmp" runat="server">
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox46" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_ViewEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="TextBox47" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_ViewEmp" runat="server"></asp:TextBox>
                                 <br />
                                 <br />
-                                Transfer To Details:<br />Department:&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="DropDownList21" runat="server">
-                                </asp:DropDownList>
-                                <br />
-                                <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="Button4" runat="server" Text="Transfer" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1270,7 +1269,7 @@
 
                                 <br />
                                 Show transfers for:
-                                <asp:DropDownList ID="DropDownList26" runat="server">
+                                <asp:DropDownList ID="DeptTransfersDD_ViewTrans" runat="server">
                                     <asp:ListItem>Last 30 days and Future Scheduled Transfers</asp:ListItem>
                                     <asp:ListItem>Prior 2 months</asp:ListItem>
                                     <asp:ListItem>Prior 3 months</asp:ListItem>
@@ -1282,8 +1281,8 @@
                                 <br />
                                 <br />
                                 Transaction ID:
-                                <asp:TextBox ID="TextBox50" runat="server"></asp:TextBox>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
+                                <asp:TextBox ID="tbTransID_ViewDeptTrans" runat="server" Height="22px"></asp:TextBox>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date :&nbsp;
                                 <asp:DropDownList ID="DropDownList27" runat="server">
                                     <asp:ListItem>MM</asp:ListItem>
                                     <asp:ListItem>01</asp:ListItem>
@@ -1333,8 +1332,8 @@
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
-                                &nbsp;<asp:TextBox ID="TextBox51" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails1" runat="server" Text="View Details" />
+                                &nbsp;<asp:TextBox ID="tb_Year_ViewDeptTrans" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails1" runat="server" Text="View Details" OnClick="btn_viewtransdetails1_Click" />
                                 <br />
                                 <br />
                                 <br />

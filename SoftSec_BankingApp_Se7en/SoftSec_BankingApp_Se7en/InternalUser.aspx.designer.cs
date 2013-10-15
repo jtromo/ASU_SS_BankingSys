@@ -40,13 +40,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// tbCardNumber_IU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox tbCardNumber_IU;
         
         /// <summary>
         /// DropDownList1 control.
@@ -67,13 +67,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
         
         /// <summary>
-        /// TextBox2 control.
+        /// tbYear_IU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox tbYear_IU;
+        
+        /// <summary>
+        /// btnVerify control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVerify;
         
         /// <summary>
         /// RadioButtonList1 control.
@@ -193,49 +202,49 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_acctype;
         
         /// <summary>
-        /// tb_amount control.
+        /// tb_amount_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amount;
+        protected global::System.Web.UI.WebControls.TextBox tb_amount_IU_Inside;
         
         /// <summary>
-        /// tb_recepient control.
+        /// tb_recepient_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_recepient;
+        protected global::System.Web.UI.WebControls.TextBox tb_recepient_IU_Inside;
         
         /// <summary>
-        /// tb_lastname control.
+        /// tb_lastname_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_lastname;
+        protected global::System.Web.UI.WebControls.TextBox tb_lastname_IU_Inside;
         
         /// <summary>
-        /// tb_zip control.
+        /// tb_zip_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_zip;
+        protected global::System.Web.UI.WebControls.TextBox tb_zip_IU_Inside;
         
         /// <summary>
-        /// tb_card control.
+        /// tb_card_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_card;
+        protected global::System.Web.UI.WebControls.TextBox tb_card_IU_Inside;
         
         /// <summary>
         /// dd_month control.
@@ -256,13 +265,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_year;
         
         /// <summary>
-        /// tb_securitycode control.
+        /// tb_securitycode_IU_Inside control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_securitycode;
+        protected global::System.Web.UI.WebControls.TextBox tb_securitycode_IU_Inside;
         
         /// <summary>
         /// btn_maketransinside control.

@@ -5,7 +5,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Width="949px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="TabPanel1">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -14,7 +14,7 @@
 
                     <br />
                     Customer Details:<br />Card Number:&nbsp;
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbCardNumber_IU" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
                     <asp:DropDownList ID="DropDownList1" runat="server">
                         <asp:ListItem>MM</asp:ListItem>
@@ -65,14 +65,15 @@
                         <asp:ListItem>30</asp:ListItem>
                         <asp:ListItem>31</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:TextBox ID="TextBox2" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                    &nbsp;<asp:TextBox ID="tbYear_IU" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btnVerify" runat="server" OnClick="btnVerify_Click" Text="Get Access" />
                     <br />
                     Photo Identification Verification<asp:RadioButtonList ID="RadioButtonList1" runat="server" Width="55px">
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem>No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Width="925px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Width="925px">
                          <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     Checking Account:
@@ -100,7 +101,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="4" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -112,20 +113,20 @@
                                     </asp:DropDownList>
                                 </p>
                                 <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_amount" runat="server" Width="115px"></asp:TextBox>
+                <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px"></asp:TextBox>
             </p>
             <p><strong>Recepient&#39;s Details:</strong></p>
             <p>&nbsp;Account Number:&nbsp;&nbsp;
-                <asp:TextBox ID="tb_recepient" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server"></asp:TextBox>
             </p>
             
-             <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname" runat="server"></asp:TextBox>
+             <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_zip" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_zip_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p><strong>Your Details (Validation):</strong></p>
-            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card" runat="server"></asp:TextBox>
+            <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_month" runat="server">
@@ -160,10 +161,10 @@
                 </asp:DropDownList>
             </p>
             <p>Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_securitycode" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server"></asp:TextBox>
             </p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" />
+                <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
             </p>
             <p>&nbsp;</p>
         </ContentTemplate>
@@ -739,7 +740,7 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
 
                             <ContentTemplate>

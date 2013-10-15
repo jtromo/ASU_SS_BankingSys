@@ -40,5 +40,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public virtual ICollection<SecurityQuestion> SecurityQuestions { get; set; }
         public virtual UserDepartment UserDepartment { get; set; }
         public virtual Address Address { get; set; }
+
+        //public bool test { get; set; }
     }
 }

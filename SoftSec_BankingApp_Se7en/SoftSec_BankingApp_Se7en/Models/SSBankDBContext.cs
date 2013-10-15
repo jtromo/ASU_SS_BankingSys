@@ -5,6 +5,11 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class SSBankDBContext : DbContext
     {
+        //static SSBankDBContext()
+        //{
+        //    Database.SetInitializer<SSBankDBContext>(new SSBankDBContextInitializer());
+        //}
+
         public DbSet<SoftSec_BankingApp_Se7en.Models.Tables.Account> Accounts { get; set; }
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }

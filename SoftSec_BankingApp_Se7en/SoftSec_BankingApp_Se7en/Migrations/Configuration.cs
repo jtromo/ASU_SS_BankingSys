@@ -1,5 +1,6 @@
 namespace SoftSec_BankingApp_Se7en.Migrations
 {
+    using SoftSec_BankingApp_Se7en.Models.Tables;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,18 +15,15 @@ namespace SoftSec_BankingApp_Se7en.Migrations
 
         protected override void Seed(SoftSec_BankingApp_Se7en.Models.SSBankDBContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles ON");
+             context.Roles.AddOrUpdate(
+                     new Role { id = 1, title = "No Access" },
+                     new Role { id = 2, title = "External User" },
+                     new Role { id = 3, title = "Internal User" },
+                     new Role { id = 4, title = "Super User" }
+                 );
+             context.SaveChanges();
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles OFF");
         }
     }
 }

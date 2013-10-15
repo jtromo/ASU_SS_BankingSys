@@ -12,9 +12,34 @@ namespace SoftSec_BankingApp_Se7en.Models
         // Returns: True false if the user information exists
         public bool UserExists(String username, int zip)
         {
+            using (var db = new SSBankDBContext())
+            {
+                //var users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE id = @p0", 1).ToList();
+                //List<Question> questions = db.Questions.SqlQuery("SELECT * FROM dbo.Questions WHERE id = @p0", 1).ToList();
 
+                //if (questions.Count() > 0)
+                //{
+                //    return true;
+                //}
+                //else
+                //{
+                //    return false;
+                //}
 
-            return true;
+                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE id = @p0", 1).ToList();
+
+                if (users.Count() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+                //User user = db.Users.Find(username);
+                //Question user = db.Questions.Find(2);
+            }
         }
 
         // Returns:

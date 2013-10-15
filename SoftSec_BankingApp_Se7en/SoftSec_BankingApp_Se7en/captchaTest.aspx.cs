@@ -13,5 +13,16 @@ namespace SoftSec_BankingApp_Se7en
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label1.Text = "Successful";
+            }
+            else {
+                Label1.Text = "Unsuccesful";
+            }
+        }
     }
 }

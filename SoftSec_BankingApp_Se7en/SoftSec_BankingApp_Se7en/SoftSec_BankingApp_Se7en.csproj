@@ -43,8 +43,8 @@
       <HintPath>..\..\..\..\..\Downloads\AjaxControlToolkit.Binary.NET4\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MSCaptcha">
-      <HintPath>..\..\..\..\..\Desktop\mscaptcha4\MSCaptcha.dll</HintPath>
+    <Reference Include="Recaptcha">
+      <HintPath>..\..\..\..\..\Desktop\recaptcha-dotnet-1.0.5.0-binary\Recaptcha.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

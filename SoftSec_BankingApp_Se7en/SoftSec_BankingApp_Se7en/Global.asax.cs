@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
 using SoftSec_BankingApp_Se7en;
+using System.Data.Entity;
+using SoftSec_BankingApp_Se7en.Models;
 
 namespace SoftSec_BankingApp_Se7en
 {

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
-    
+
     public class LoginModel
     {
         // Returns: True false if the user information exists
@@ -14,31 +14,26 @@ namespace SoftSec_BankingApp_Se7en.Models
         {
             using (var db = new SSBankDBContext())
             {
-                //var users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE id = @p0", 1).ToList();
-                //List<Question> questions = db.Questions.SqlQuery("SELECT * FROM dbo.Questions WHERE id = @p0", 1).ToList();
+                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
-                //if (questions.Count() > 0)
-                //{
-                //    return true;
-                //}
-                //else
-                //{
-                //    return false;
-                //}
-
-                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE id = @p0", 1).ToList();
-
-                if (users.Count() > 0)
-                {
-                    return true;
-                }
-                else
+                if (users.Count() < 1)
                 {
                     return false;
                 }
 
-                //User user = db.Users.Find(username);
-                //Question user = db.Questions.Find(2);
+                User user = users.First();
+                Address address = user.Address;
+                if (address == null)
+                {
+                    return false;
+                }
+
+                if (address.zip != zip)
+                {
+                    return false;
+                }
+
+                return true;
             }
         }
 
@@ -47,26 +42,34 @@ namespace SoftSec_BankingApp_Se7en.Models
         // the row id if login success (UserId)
         public int LoginUser(String username, String password, int zip)
         {
-            // James Test DB Actions
             using (var db = new SSBankDBContext())
             {
-                var question = new Question { question1 = "What is your mother's maiden name?" };
-                db.Questions.Add(question);
-                db.SaveChanges();
+                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
-                var query = from b in db.Questions
-                            orderby b.question1
-                            select b;
-
-                String databaseString = "All Questions in the database:";
-                int count = 0;
-                foreach (var item in query)
+                if (users.Count() < 1)
                 {
-                    count++;
-                    databaseString = databaseString + item.question1 + ", ";
+                    return -1;
                 }
-               // Response.Write(databaseString);
-                return count;
+
+                User user = users.First();
+                Address address = user.Address;
+                if (address == null)
+                {
+                    return -1;
+                }
+
+                if (address.zip != zip)
+                {
+                    return -1;
+                }
+
+                // JR: Warning this needs to be changed to compare to the hash
+                if (!String.Equals(password,user.hash))
+                {
+                    return -1;
+                }
+
+                return user.id;
             }
         }
     }

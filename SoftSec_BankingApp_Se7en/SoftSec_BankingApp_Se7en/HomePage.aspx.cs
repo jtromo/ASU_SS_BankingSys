@@ -12,14 +12,16 @@ namespace SSBank
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Database test methods
             LoginModel login = new LoginModel();
             Response.Write("Does the user exist?: ");
-            Response.Write(login.UserExists("Username", 85298));
+            Response.Write(login.UserExists("jtromo", 12345));
 
-            Response.Write("Returned id: ");
-            Response.Write(login.LoginUser("Username", "Password", 85298));
+            Response.Write(" Returned id: ");
+            Response.Write(login.LoginUser("jtromo", "adfaf", 12345));
 
-
+            DebugModel debug = new DebugModel();
+            debug.InsertSampleUsers();
         }
     }
 }

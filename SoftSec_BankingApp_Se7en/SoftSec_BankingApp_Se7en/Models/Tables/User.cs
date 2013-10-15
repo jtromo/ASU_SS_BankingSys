@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,11 +13,11 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         {
             this.Accounts = new HashSet<Account>();
             this.SecurityQuestions = new HashSet<SecurityQuestion>();
-            this.Address = new Address();
         }
 
         public int id { get; set; }
-        public int roleId { get; set; }
+        public int? roleId { get; set; }
+        public int? addressId { get; set; }
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }
@@ -26,8 +27,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string hash { get; set; }
         public string phone { get; set; }
         public string organization { get; set; }
-        [MinLength(1)]
-        [MaxLength(15)]
         public int siteKeyVal { get; set; }
         public bool isActive { get; set; }
         public System.DateTimeOffset creationTime { get; set; }
@@ -39,8 +38,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public virtual Role Role { get; set; }
         public virtual ICollection<SecurityQuestion> SecurityQuestions { get; set; }
         public virtual UserDepartment UserDepartment { get; set; }
+        
         public virtual Address Address { get; set; }
-
-        //public bool test { get; set; }
     }
 }

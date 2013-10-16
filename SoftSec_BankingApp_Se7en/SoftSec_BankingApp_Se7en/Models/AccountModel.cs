@@ -9,6 +9,23 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class AccountModel
     {
+        public Tables.Account GetAccount(int accountNumber)
+        {
+            using (var db = new SSBankDBContext())
+            {
+                List<Tables.Account> accounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
+
+                if (accounts.Count() < 1)
+                {
+                    return null;
+                }
+
+                Tables.Account account = accounts.First();
+
+                return account;
+            }
+        }
+
         public ICollection<Tables.Account> GetAccountsForUser(string username)
         {
             using (var db = new SSBankDBContext())

@@ -54,6 +54,9 @@ namespace SSBank
             
             bool testInsert = account.MakeInternalTransfer(12345, 12334123, 0.11, "test transfer", new DateTimeOffset(DateTime.Now));
             Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testInsert);
+
+            Account foundAccount = account.GetAccount(12334123);
+            Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);
         }
     }
 }

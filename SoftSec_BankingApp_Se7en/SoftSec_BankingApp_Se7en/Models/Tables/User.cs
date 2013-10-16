@@ -28,6 +28,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string phone { get; set; }
         public string organization { get; set; }
         public int siteKeyVal { get; set; }
+        [MaxLength(30)]
+        public string siteKeyString { get; set; }
         public bool isActive { get; set; }
         public System.DateTimeOffset creationTime { get; set; }
         public System.DateTimeOffset modificationTime { get; set; }

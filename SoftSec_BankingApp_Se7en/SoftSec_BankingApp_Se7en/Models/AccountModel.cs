@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Transactions;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
@@ -31,7 +32,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public ICollection<Transaction> GetTransactionsForAccount(int accountNumber)
+        public ICollection<Tables.Transaction> GetTransactionsForAccount(int accountNumber)
         {
             using (var db = new SSBankDBContext())
             {
@@ -43,7 +44,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                 }
 
                 Tables.Account account = accounts.First();
-                ICollection<Transaction> transactions = account.Transactions;
+                ICollection<Tables.Transaction> transactions = account.Transactions;
 
                 if (transactions == null)
                 {
@@ -53,5 +54,85 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return transactions;
             }
         }
+
+        public LastNameZipcode GetLastNameAndZipcode(int accountNumber)
+        {
+            using (var db = new SSBankDBContext())
+            {
+                List<Tables.Account> accounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
+
+                if (accounts.Count() < 1)
+                {
+                    return null;
+                }
+
+                Tables.Account account = accounts.First();
+
+                User user = account.User;
+                Address address = user.Address;
+
+                LastNameZipcode lastnamezip = new LastNameZipcode(user.lastName, address.zip);
+
+                if (lastnamezip == null)
+                {
+                    return null;
+                }
+
+                return lastnamezip;
+            }
+        }
+
+        public bool MakeInternalTransfer(int fromAccountNumber, int toAccountNumber, double amount, string description, DateTimeOffset timestamp)
+        {
+            using (TransactionScope scope = new TransactionScope())
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", fromAccountNumber).ToList();
+                    if (fromAccounts.Count() < 1)
+                    {
+                        return false;
+                    }
+                    Tables.Account fromAccount = fromAccounts.First();
+
+                    List<Tables.Account> toAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", toAccountNumber).ToList();
+                    if (toAccounts.Count() < 1)
+                    {
+                        return false;
+                    }
+                    Tables.Account toAccount = toAccounts.First();
+
+                    if ((fromAccount.balance - amount) >= 0)
+                    {
+                        fromAccount.balance = fromAccount.balance - amount;
+                        toAccount.balance = toAccount.balance - amount;
+                    }
+
+                    Tables.Transaction transaction = new Tables.Transaction();
+                    transaction.toAccountNumber = toAccountNumber;
+                    transaction.fromAccountNumber = fromAccountNumber;
+                    transaction.description = description;
+                    transaction.amount = amount;
+                    transaction.processedTime = timestamp;
+                    transaction.creationTime = timestamp;
+                    db.Transactions.Add(transaction);
+
+                    db.SaveChanges();
+                    scope.Complete();
+
+                    return true;
+                }
+            }
+        }
+    }
+    public class LastNameZipcode
+    {
+        public LastNameZipcode(string lastName, int zipcode)
+        {
+            this.lastName = lastName;
+            this.zipcode = zipcode;
+        }
+        public string lastName;
+        public int zipcode;
     }
 }

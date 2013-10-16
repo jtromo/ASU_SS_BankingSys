@@ -48,6 +48,12 @@ namespace SSBank
 
             ICollection<Transaction> transaction = account.GetTransactionsForAccount(12334123);
             Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
+
+            LastNameZipcode lastNameZip = account.GetLastNameAndZipcode(12334123);
+            Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
+            
+            bool testInsert = account.MakeInternalTransfer(12345, 12334123, 0.11, "test transfer", new DateTimeOffset(DateTime.Now));
+            Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testInsert);
         }
     }
 }

@@ -1100,7 +1100,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="4" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

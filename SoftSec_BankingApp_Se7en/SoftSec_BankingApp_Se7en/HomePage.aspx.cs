@@ -42,10 +42,12 @@ namespace SSBank
                 Response.Write(" Answer: " + answer);
             }
 
-
             AccountModel account = new AccountModel();
             ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = account.GetAccountsForUser("jtromo");
-            Response.Write(" Number of accounts for jromo: " + accounts.Count());
+            Response.Write(" Number of accounts for jtromo: " + accounts.Count());
+
+            ICollection<Transaction> transaction = account.GetTransactionsForAccount(12334123);
+            Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
         }
     }
 }

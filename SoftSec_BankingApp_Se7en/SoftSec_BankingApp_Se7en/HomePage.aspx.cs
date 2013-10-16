@@ -41,6 +41,11 @@ namespace SSBank
             {
                 Response.Write(" Answer: " + answer);
             }
+
+
+            AccountModel account = new AccountModel();
+            ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = account.GetAccountsForUser("jtromo");
+            Response.Write(" Number of accounts for jromo: " + accounts.Count());
         }
     }
 }

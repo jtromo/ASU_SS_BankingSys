@@ -36,6 +36,17 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                 );
             context.SaveChanges();
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions OFF");
+
+            // Adds initial account types
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes ON");
+            context.AccountTypes.AddOrUpdate(
+                    new AccountType { id = 1, title = "Unknown" },
+                    new AccountType { id = 2, title = "Checking" },
+                    new AccountType { id = 3, title = "Savings" },
+                    new AccountType { id = 4, title = "Credit" }
+                );
+            context.SaveChanges();
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
         }
     }
 }

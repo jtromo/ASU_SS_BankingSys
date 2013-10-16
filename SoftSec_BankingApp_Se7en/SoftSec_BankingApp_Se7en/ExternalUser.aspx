@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="711px" Width="874px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="711px" Width="874px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     Checking Account:
@@ -35,7 +35,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -101,8 +101,7 @@
                 <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
             </p>
             <p>
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                                </p>
+                &nbsp;</p>
         </ContentTemplate>
      </asp:TabPanel>
      <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">
@@ -124,11 +123,15 @@
             <p class="auto-style9">Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_emailoutside" runat="server"></asp:TextBox>
               </p>
-            <p class="auto-style9"><strong>Your Details (Validation):</strong>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
-            </p>
+            <p class="auto-style9"><strong>Your Details (Validation):</strong></p>
+              <p class="auto-style9">
+                  Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
+              </p>
             <p>
                 &nbsp;</p>
             <p>
+                Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_monthoutside" runat="server">
                     <asp:ListItem>MM</asp:ListItem>
                     <asp:ListItem>Jan</asp:ListItem>
@@ -159,12 +162,16 @@
                     <asp:ListItem>2022</asp:ListItem>
                     <asp:ListItem>2023</asp:ListItem>
                 </asp:DropDownList>
-                Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_securitycodeoutside" runat="server"></asp:TextBox>
             </p>
 	
 
-            <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <p>
+                  Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="tb_securitycodeoutside" runat="server"></asp:TextBox>
+              </p>
+	
+
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
               <p>
                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

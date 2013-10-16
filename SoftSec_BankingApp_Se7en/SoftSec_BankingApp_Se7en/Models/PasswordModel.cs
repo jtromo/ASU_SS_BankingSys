@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class PasswordModel
     {
-        public SecurityQandA GetSecurityQandA(String username)
+        public SecurityQandA GetSecurityQandA(string username)
         {
             using (var db = new SSBankDBContext())
             {
@@ -33,7 +33,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool ChangePwd(String username, String password)
+        public bool ChangePwd(string username, string password)
         {
             using (var db = new SSBankDBContext())
             {

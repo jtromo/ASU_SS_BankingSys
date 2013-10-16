@@ -42,24 +42,31 @@ namespace SSBank
                 Response.Write(" Answer: " + answer);
             }
 
-            AccountModel account = new AccountModel();
-            ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = account.GetAccountsForUser("jtromo");
+            AccountModel accountModel = new AccountModel();
+            ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = accountModel.GetAccountsForUser("jtromo");
             Response.Write(" Number of accounts for jtromo: " + accounts.Count());
 
-            ICollection<Transaction> transaction = account.GetTransactionsForAccount(12334123);
+            ICollection<Transaction> transaction = accountModel.GetTransactionsForAccount(12334123);
             Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
 
-            LastNameZipcode lastNameZip = account.GetLastNameAndZipcode(12334123);
+            LastNameZipcode lastNameZip = accountModel.GetLastNameAndZipcode(12334123);
             Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
-            
-            bool testTransferInternal = account.MakeInternalTransfer(12345, 12334123, 0.11, "test internal transfer");
+
+            bool testTransferInternal = accountModel.MakeInternalTransfer(12345, 12334123, 0.11, "test internal transfer");
             Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
 
-            bool testTransferExternal = account.MakeExternalTransfer(12345, 12334123, 1231231, 0.11, "test transfer");
+            bool testTransferExternal = accountModel.MakeExternalTransfer(12345, 12334123, 1231231, 0.11, "test transfer");
             Response.Write(" Creating test transfer External between 12345 and 12334123: " + testTransferExternal);
 
-            Account foundAccount = account.GetAccount(12334123);
+            Account foundAccount = accountModel.GetAccount(12334123);
             Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);
+
+            UserModel userModel = new UserModel();
+            User user = userModel.GetUser("jtromo");
+            Response.Write(" Retrieving user jtromo: " + user.username + " " + user.hash);
+
+            Card card = accountModel.GetCardDetails(98999999);
+            Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.experationDate);
         }
     }
 }

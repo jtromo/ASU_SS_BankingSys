@@ -27,6 +27,23 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public Card GetCardDetails(int cardNumber)
+        {
+            using (var db = new SSBankDBContext())
+            {
+                List<Card> cards = db.Cards.SqlQuery("SELECT * FROM dbo.Cards WHERE cardNumber = @p0", cardNumber).ToList();
+
+                if (cards.Count() < 1)
+                {
+                    return null;
+                }
+                
+                Card card = cards.First();
+
+                return card;
+            }
+        }
+
         public ICollection<Tables.Account> GetAccountsForUser(string username)
         {
             using (var db = new SSBankDBContext())

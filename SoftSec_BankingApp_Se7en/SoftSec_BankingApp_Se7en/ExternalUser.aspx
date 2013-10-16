@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="711px" Width="874px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="711px" Width="874px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     Checking Account:
@@ -35,7 +35,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -189,7 +189,7 @@
             <p class="auto-style5">&nbsp;</p>
             <p class="auto-style5">
             From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:DropDownList ID="dd_acctypebetween1" runat="server" CssClass="auto-style4" Width="124px">
+            <asp:DropDownList ID="dd_acctypebetween1" runat="server" CssClass="auto-style4" Width="124px" OnSelectedIndexChanged="dd_acctypebetween1_SelectedIndexChanged">
             <asp:ListItem>Checking Account</asp:ListItem>
             <asp:ListItem>Savings Account</asp:ListItem>
             </asp:DropDownList>

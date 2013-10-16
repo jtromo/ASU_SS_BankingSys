@@ -365,6 +365,11 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        protected void dd_acctypebetween1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         
 
     }

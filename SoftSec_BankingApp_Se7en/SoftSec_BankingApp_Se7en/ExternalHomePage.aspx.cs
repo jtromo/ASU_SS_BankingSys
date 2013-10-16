@@ -23,18 +23,6 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
-        protected void Btn_Reset_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                TB_UserName.Text = "";
-                TB_ZipCode.Text = "";
-            }
-            catch (Exception exp)
-            {
-                //Log exception here
-            }
-        }
 
         protected void Btn_SignIn_Click(object sender, EventArgs e)
         {

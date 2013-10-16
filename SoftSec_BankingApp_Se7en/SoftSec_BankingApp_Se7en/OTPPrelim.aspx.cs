@@ -33,7 +33,7 @@ namespace SoftSec_BankingApp_Se7en
             // Set the sender address of the mail message
             mMailMessage.From = new MailAddress("bankse7en@gmail.com");
             // Set the recepient address of the mail message
-            mMailMessage.To.Add(new MailAddress("ukuchibh@asu.edu"));
+            mMailMessage.To.Add(new MailAddress("yashuyodha@gmail.com"));
 
 
             mMailMessage.Subject = "Your Bank account has been hacked!!!";

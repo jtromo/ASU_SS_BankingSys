@@ -52,8 +52,11 @@ namespace SSBank
             LastNameZipcode lastNameZip = account.GetLastNameAndZipcode(12334123);
             Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
             
-            bool testInsert = account.MakeInternalTransfer(12345, 12334123, 0.11, "test transfer", new DateTimeOffset(DateTime.Now));
-            Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testInsert);
+            bool testTransferInternal = account.MakeInternalTransfer(12345, 12334123, 0.11, "test internal transfer");
+            Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
+
+            bool testTransferExternal = account.MakeExternalTransfer(12345, 12334123, 1231231, 0.11, "test transfer");
+            Response.Write(" Creating test transfer External between 12345 and 12334123: " + testTransferExternal);
 
             Account foundAccount = account.GetAccount(12334123);
             Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);

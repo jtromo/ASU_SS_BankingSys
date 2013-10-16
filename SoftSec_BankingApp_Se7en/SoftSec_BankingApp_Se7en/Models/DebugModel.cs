@@ -23,15 +23,14 @@ namespace SoftSec_BankingApp_Se7en.Models
         }
 
         // Return the count of number of questions
-        public int InsertSampleQuestions()
+        public int NumberOfSecurityQuestions()
         {
-            // James Test DB Actions
             using (var db = new SSBankDBContext())
             {
-                var question = new Question { question1 = "What is your mother's maiden name?" };
+                /*var question = new Question { question1 = "What is your mother's maiden name?" };
                 db.Questions.Add(question);
                 db.SaveChanges();
-
+                */
                 var query = from b in db.Questions
                             orderby b.question1
                             select b;
@@ -45,6 +44,30 @@ namespace SoftSec_BankingApp_Se7en.Models
                 }
                 // Response.Write(databaseString);
                 return count;
+            }
+        }
+
+        public bool InsertSecurityQuestionsForUser(String username)
+        {
+            using (var db = new SSBankDBContext())
+            {
+                /*var question = new Question { question1 = "What is your mother's maiden name?" };
+                db.Questions.Add(question);
+                db.SaveChanges();
+                */
+                var query = from b in db.Questions
+                            orderby b.question1
+                            select b;
+
+                String databaseString = "All Questions in the database:";
+                int count = 0;
+                foreach (var item in query)
+                {
+                    count++;
+                    databaseString = databaseString + item.question1 + ", ";
+                }
+                // Response.Write(databaseString);
+                return false;
             }
         }
     }

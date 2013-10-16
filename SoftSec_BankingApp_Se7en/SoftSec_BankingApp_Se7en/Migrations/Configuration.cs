@@ -25,6 +25,28 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                 );
             context.SaveChanges();
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles OFF");
+
+            // Adds initial questions
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions ON");
+            context.Questions.AddOrUpdate(
+                    new Question { id = 1, question1 = "What was the name of your first pet?" },
+                    new Question { id = 2, question1 = "What was the name of your childhood best friend?" },
+                    new Question { id = 3, question1 = "What was the name of your first school?" },
+                    new Question { id = 4, question1 = "What is your mother's maiden name?" }
+                );
+            context.SaveChanges();
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions OFF");
+
+            // Adds initial account types
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes ON");
+            context.AccountTypes.AddOrUpdate(
+                    new AccountType { id = 1, title = "Unknown" },
+                    new AccountType { id = 2, title = "Checking" },
+                    new AccountType { id = 3, title = "Savings" },
+                    new AccountType { id = 4, title = "Credit" }
+                );
+            context.SaveChanges();
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
         }
     }
 }

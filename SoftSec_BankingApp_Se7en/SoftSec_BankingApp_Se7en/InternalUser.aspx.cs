@@ -799,21 +799,21 @@ namespace SoftSec_BankingApp_Se7en
             {
                 FieldValidator fieldValidator = new FieldValidator();
                 string strOldPass = fieldValidator.validate_password(strOldPassword);
-                string strTemp = strOldPass.Substring(strOldPass.IndexOf('_'));
+                string strTemp = strOldPass.Substring(strOldPass.IndexOf('_')+1);
                 bool bOldPass = false;
                 if (strTemp.Equals("TRUE"))
                 {
                     bOldPass = true;
                 }
                 string strNewPass = fieldValidator.validate_password(strNewPassword);
-                strTemp = strNewPass.Substring(strNewPass.IndexOf('_'));
+                strTemp = strNewPass.Substring(strNewPass.IndexOf('_')+1);
                 bool bNewPass = false;
                 if (strTemp.Equals("TRUE"))
                 {
                     bNewPass = true;
                 }
                 string strConfirmPass = fieldValidator.validate_password(strConfrimPassword);
-                strTemp = strConfirmPass.Substring(strConfirmPass.IndexOf('_'));
+                strTemp = strConfirmPass.Substring(strConfirmPass.IndexOf('_')+1);
                 bool bConfPass = false;
                 if (strTemp.Equals("TRUE"))
                 {
@@ -904,12 +904,12 @@ namespace SoftSec_BankingApp_Se7en
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bUName = fieldValidator.validate_UserName(strUserName);
                 string strPass = fieldValidator.validate_password(strPassword);
-                string strTemp = strPass.Substring(strPass.IndexOf('_'));
+                string strTemp = strPass.Substring(strPass.IndexOf('_')+1);
                 bool bPass = false;
                 if (strTemp.Equals("TRUE"))
                     bPass = true;
                 string strRePass = fieldValidator.validate_password(strRe_Password);
-                strTemp = strRePass.Substring(strRePass.IndexOf('_'));
+                strTemp = strRePass.Substring(strRePass.IndexOf('_')+1);
                 bool bRePass = false;
                 if (strTemp.Equals("TRUE"))
                     bRePass = true;

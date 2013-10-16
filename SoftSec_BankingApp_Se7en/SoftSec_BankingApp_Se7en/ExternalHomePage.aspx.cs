@@ -14,8 +14,12 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
-                TB_UserName.Text = "";
-                TB_ZipCode.Text = "";
+                if (!IsPostBack)
+                {
+                    TB_UserName.Text = "";
+                    TB_ZipCode.Text = "";
+                    lblErrorMessage.Visible = false;
+                }
             }
             catch (Exception exp)
             {
@@ -29,25 +33,35 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                Response.Redirect("AuthorizeUser.aspx");
+                lblErrorMessage.Visible = false;
                 //Validating user name and zip code
                 serverSideValidation = validateFromFields(TB_UserName.Text.ToString(), TB_ZipCode.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    LoginModel lm = new LoginModel();
-                    if (lm.UserExists(TB_UserName.Text, Convert.ToInt32(TB_ZipCode)))
+                    LoginModel objlm = new LoginModel();
+                    
+                    if (objlm.UserExists(TB_UserName.Text.ToString(), Convert.ToInt32(TB_ZipCode.Text.ToString())))
                     {
-                        Response.Redirect("ExternalUser.aspx");
+                        Session["userName"] = TB_UserName.Text.ToString();
+                        Response.Redirect("AuthorizeUser.aspx",false);
                     }
                     else
                     {
-                        Response.Redirect("ExternalHomePage.aspx");
+                        //Update UI with appropriate error message
+                        TB_UserName.Text = "";
+                        TB_ZipCode.Text = "";
+                        lblErrorMessage.Text = "Invalid USerName or ZipCode. Please Try again";
+                        lblErrorMessage.Visible = true;                        
                     }
                 }
                 else
                 {
                     //Update the UI with error message.
+                    TB_UserName.Text = "";
+                    TB_ZipCode.Text = "";
+                    lblErrorMessage.Text = "Invalid USerName or ZipCode. Please Try again";
+                    lblErrorMessage.Visible = true;     
                 }
             }
             catch (Exception Exp)

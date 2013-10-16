@@ -49,6 +49,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RF_Password;
         
         /// <summary>
+        /// lblErrorMessage_Authorize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage_Authorize;
+        
+        /// <summary>
         /// Btn_SignIn control.
         /// </summary>
         /// <remarks>

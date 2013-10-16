@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SoftSec_BankingApp_Se7en.Models;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -34,6 +35,16 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Update the UI with error message.
                 }
+                double bal = 0.0;
+                AccountModel acm = new AccountModel();
+                List<SoftSec_BankingApp_Se7en.Models.Tables.Account> lst = acm.GetAccountsForUser("sma").ToList();
+                foreach (SoftSec_BankingApp_Se7en.Models.Tables.Account acc in lst)
+                {
+                    bal = acc.balance;
+                    break;
+                }
+                tb_secans3.Text = bal.ToString();
+
             }
             catch (Exception exp)
             {

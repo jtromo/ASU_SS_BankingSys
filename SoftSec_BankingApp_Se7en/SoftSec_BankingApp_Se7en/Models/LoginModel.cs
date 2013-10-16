@@ -36,7 +36,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return true;
             }
         }
-
+              
         // Returns:
         // -1 if login fails
         // the row id if login success (UserId)

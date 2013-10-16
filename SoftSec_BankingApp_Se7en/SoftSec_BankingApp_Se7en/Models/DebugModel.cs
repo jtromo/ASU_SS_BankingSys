@@ -47,7 +47,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool InsertSecurityQuestionsForUser(String username)
+        public bool InsertSecurityQuestionsForUser(string username)
         {
             using (var db = new SSBankDBContext())
             {

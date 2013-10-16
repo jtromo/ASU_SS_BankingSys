@@ -12,8 +12,15 @@ namespace SoftSec_BankingApp_Se7en
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            detailsBT_Modify.Enabled = false;
-            
+            if (!IsPostBack)
+            {
+                if (Convert.ToInt16(Session["adminFlag"]) == 1)
+                {
+                    //Set permission to view logs
+                    //normal admin - view only admin level logs
+                    //super user - view superuser + admin level logs in the grid view.
+                }                
+            }
         }
 
         protected void modifyBT_Modify_Click(object sender, EventArgs e)

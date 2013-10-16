@@ -33,6 +33,23 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         //public virtual CreditAccount CreditAccount { get; set; }
         //public virtual SavingsAccount SavingsAccount { get; set; }
         //public virtual Statement Statement { get; set; }
-        public virtual ICollection<Transaction> Transactions { get; set; }
+        private ICollection<Transaction> _transactions;
+        [NotMapped]
+        public virtual ICollection<Transaction> Transactions
+        {
+            get
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    ICollection<Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber = @p0", accountNumber).ToList();
+
+                    return transactions;
+                }
+            }
+            set
+            {
+                _transactions = value;
+            }
+        }
     }
 }

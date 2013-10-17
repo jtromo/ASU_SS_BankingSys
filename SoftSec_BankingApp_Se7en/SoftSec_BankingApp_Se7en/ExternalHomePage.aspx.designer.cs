@@ -31,15 +31,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender TB_UserName_FilteredTextBoxExtender;
         
         /// <summary>
-        /// RF_UserName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RF_UserName;
-        
-        /// <summary>
         /// TB_ZipCode control.
         /// </summary>
         /// <remarks>
@@ -58,24 +49,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender TB_ZipCode_FilteredTextBoxExtender;
         
         /// <summary>
-        /// RF_ZipCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RF_ZipCode;
-        
-        /// <summary>
-        /// lblErrorMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
-        
-        /// <summary>
         /// Btn_SignIn control.
         /// </summary>
         /// <remarks>
@@ -85,13 +58,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button Btn_SignIn;
         
         /// <summary>
-        /// ValidationSummary1 control.
+        /// lblErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage;
         
         /// <summary>
         /// SqlDataSource1 control.

@@ -67,6 +67,14 @@ namespace SSBank
 
             Card card = accountModel.GetCardDetails(98999999);
             Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.experationDate);
+
+            Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
+            User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "@gmail.com", salt = "adfa", hash = "adfaf", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
+            List<string> newAnswers = new List<string>{ "answer1", "answer2" };
+            List<string> newQuestions = new List<string>{ "test1", "test2" };
+            SecurityQandA newSecurityQandA = new SecurityQandA(newQuestions, newAnswers);
+            bool newUserCreated = userModel.creatUser(newUser, newAddress, newSecurityQandA);
+            Response.Write(" New user was created: " + newUserCreated);
         }
     }
 }

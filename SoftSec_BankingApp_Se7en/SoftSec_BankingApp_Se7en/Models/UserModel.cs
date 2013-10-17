@@ -12,6 +12,15 @@ namespace SoftSec_BankingApp_Se7en.Models
         {
             using (var db = new SSBankDBContext())
             {
+                if (newUser == null)
+                    return false;
+                if (address == null)
+                    return false;
+
+                newUser.Address = address;
+                db.Users.Add(newUser);
+                db.SaveChanges();
+
                 /*List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
                 if (users.Count() < 1)

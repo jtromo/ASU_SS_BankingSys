@@ -62,8 +62,12 @@ namespace SoftSec_BankingApp_Se7en.Models
         public List<string> questions;
         public List<string> answers;
 
+        ICollection<SecurityQuestion> securityQuestions;
+
         public SecurityQandA(ICollection<SecurityQuestion> securityQuestions)
         {
+            this.securityQuestions = securityQuestions;
+
             questions = new List<string>();
             answers = new List<string>();
 
@@ -74,6 +78,20 @@ namespace SoftSec_BankingApp_Se7en.Models
                 questions.Add(question1);
 
                 answers.Add(securityQuestion.answer);
+            }
+        }
+
+        public SecurityQandA(List<string> questions, List<string> answers)
+        {
+            List<SecurityQuestion> securityQuest = new List<SecurityQuestion>();
+
+            if (questions.Count() == answers.Count())
+            {
+                foreach (string answer in answers)
+                {
+                    SecurityQuestion newQuest = new SecurityQuestion { answer = answer, isActive = true };
+                    securityQuest.Add(newQuest);
+                }
             }
         }
     }

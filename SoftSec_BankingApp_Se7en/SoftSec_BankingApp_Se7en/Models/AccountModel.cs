@@ -140,7 +140,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     if ((fromAccount.balance - amount) >= 0)
                     {
                         fromAccount.balance = fromAccount.balance - amount;
-                        toAccount.balance = toAccount.balance - amount;
+                        toAccount.balance = toAccount.balance + amount;
                     }
 
                     Tables.Transaction transaction = new Tables.Transaction();
@@ -174,17 +174,18 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
                     Tables.Account fromAccount = fromAccounts.First();
 
-                    List<Tables.Account> toAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0 AND routingNumber = @p1", toAccountNumber, toRoutingNumber).ToList();
+                    //Since its an outside bank account ! We need not worry about the balance of that account. We will not have the details of that account.
+                    /*List<Tables.Account> toAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0 AND routingNumber = @p1", toAccountNumber, toRoutingNumber).ToList();
                     if (toAccounts.Count() < 1)
                     {
                         return false;
                     }
-                    Tables.Account toAccount = toAccounts.First();
+                    Tables.Account toAccount = toAccounts.First();*/
 
                     if ((fromAccount.balance - amount) >= 0)
                     {
                         fromAccount.balance = fromAccount.balance - amount;
-                        toAccount.balance = toAccount.balance - amount;
+                        //toAccount.balance = toAccount.balance + amount;
                     }
 
                     Tables.Transaction transaction = new Tables.Transaction();

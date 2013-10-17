@@ -202,6 +202,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_securitycode;
         
         /// <summary>
+        /// lblTransStatus_IB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTransStatus_IB;
+        
+        /// <summary>
         /// btn_maketransinside control.
         /// </summary>
         /// <remarks>
@@ -245,6 +254,24 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_lastnameoutside;
+        
+        /// <summary>
+        /// tb_toAccNum_OutsideBank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_toAccNum_OutsideBank;
+        
+        /// <summary>
+        /// tb_toRoutingNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_toRoutingNumber;
         
         /// <summary>
         /// tb_emailoutside control.
@@ -292,6 +319,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_securitycodeoutside;
         
         /// <summary>
+        /// lblTranStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTranStatus;
+        
+        /// <summary>
         /// btn_maketransferoutside control.
         /// </summary>
         /// <remarks>
@@ -310,22 +346,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_trans_between;
         
         /// <summary>
-        /// dd_acctypebetween1 control.
+        /// dd_acctypebetween_From control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dd_acctypebetween1;
+        protected global::System.Web.UI.WebControls.DropDownList dd_acctypebetween_From;
         
         /// <summary>
-        /// dd_acctypebetween2 control.
+        /// dd_acctypebetween_To control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dd_acctypebetween2;
+        protected global::System.Web.UI.WebControls.DropDownList dd_acctypebetween_To;
         
         /// <summary>
         /// tb_amountbetween control.
@@ -335,6 +371,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_amountbetween;
+        
+        /// <summary>
+        /// lblTransStatus_Between control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTransStatus_Between;
         
         /// <summary>
         /// btn_maketransbetween control.

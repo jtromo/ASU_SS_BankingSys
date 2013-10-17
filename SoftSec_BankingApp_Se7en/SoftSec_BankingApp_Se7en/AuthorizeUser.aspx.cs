@@ -39,6 +39,8 @@ namespace SoftSec_BankingApp_Se7en
                         if (objuser.roleId == 1)
                         {
                             //External Individual
+                            
+                            Response.Redirect("ExternalUser.aspx", false);
                         }
                         else if (objuser.roleId == 2)
                         {
@@ -47,6 +49,7 @@ namespace SoftSec_BankingApp_Se7en
                         else if (objuser.roleId == 3)
                         {
                             //Internal_Regular
+                            
                         }
                         else if (objuser.roleId == 4)
                         {

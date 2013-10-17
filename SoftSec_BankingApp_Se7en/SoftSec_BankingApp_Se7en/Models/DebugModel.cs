@@ -8,18 +8,18 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class DebugModel
     {
-        public void InsertSampleUsers()
+        public bool InsertSampleUsers()
         {
-            using (var db = new SSBankDBContext())
-            {
-                Address address1 = new Address { firstName = "James", lastName = "Romo", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
+            UserModel userModel = new UserModel();
 
-                User user1 = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", salt = "adfa", hash = "adfaf", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = address1 };
-                db.Users.Add(user1);
+            Address newAddress = new Address { firstName = "James", lastName = "Romo", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
+            User newUser = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", salt = "adfa", hash = "adfaf", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
+            List<string> newAnswers = new List<string> { "answer1", "answer2" };
+            List<string> newQuestions = new List<string> { "test1", "test2" };
+            SecurityQandA newSecurityQandA = new SecurityQandA(newQuestions, newAnswers);
+            bool newUserCreated = userModel.creatUser(newUser, newAddress, newSecurityQandA);
 
-                db.SaveChanges();
-            }
-
+            return newUserCreated;
         }
 
         // Return the count of number of questions

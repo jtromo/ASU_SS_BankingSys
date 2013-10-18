@@ -45,12 +45,11 @@ namespace SoftSec_BankingApp_Se7en.Models
                 }
 
                 User updatedUser = users.First();
-                // JR: warning! need to change this to hash
-                updatedUser.hash = password;
-
+                updatedUser.SetHashandSaltForPassword(password);
                 db.Users.Attach(updatedUser);
                 var entry = db.Entry(updatedUser);
                 entry.Property(e => e.hash).IsModified = true;
+                entry.Property(e => e.salt).IsModified = true;
                 db.SaveChanges();
 
                 return true;

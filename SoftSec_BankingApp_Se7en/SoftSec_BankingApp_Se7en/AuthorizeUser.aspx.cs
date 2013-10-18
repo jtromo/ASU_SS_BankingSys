@@ -33,8 +33,9 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     //Place the logic for comparing the salts with the password entered
-                    if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
-                    {
+                    // From James: The salt/hash will not be accessable outside the database. Need to Use the login model
+                    //if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
+                    //{
                         //Valid User
                         if (objuser.roleId == 1)
                         {
@@ -71,13 +72,13 @@ namespace SoftSec_BankingApp_Se7en
                             lblErrorMessage_Authorize.Visible = false; 
                             Response.Redirect("AdminHome.aspx", false);
                         }
-                    }
-                    else
-                    {
-                        lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
-                        TB_Password.Text = "";
-                        lblErrorMessage_Authorize.Visible = true;
-                    }
+                    //}
+                    //else
+                    //{
+                    //    lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
+                    //    TB_Password.Text = "";
+                    //    lblErrorMessage_Authorize.Visible = true;
+                    //}
                 }
                 else
                 {

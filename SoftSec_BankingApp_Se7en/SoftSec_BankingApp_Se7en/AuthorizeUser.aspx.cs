@@ -40,30 +40,31 @@ namespace SoftSec_BankingApp_Se7en
                     LoginModel objLogin = new LoginModel();
                     if (objLogin.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
                     {
-                        if (objuser.roleId == 1)
+                        if (objuser.roleId == 2)
                         {
                             //External Individual
 
                             Response.Redirect("ExternalUser.aspx", false);
                         }
-                        else if (objuser.roleId == 2)
+                        else if (objuser.roleId == 3)
                         {
                             //External Merchant
+                            Response.Redirect("ExternalUser.aspx", false);
                         }
-                        else if (objuser.roleId == 3)
+                        else if (objuser.roleId == 4)
                         {
                             //Internal_Regular
 
                         }
-                        else if (objuser.roleId == 4)
+                        else if (objuser.roleId == 5)
                         {
                             //Internal_DeptManager
                         }
-                        else if (objuser.roleId == 5)
+                        else if (objuser.roleId == 6)
                         {
                             //Internal_HigherManager
                         }
-                        else if (objuser.roleId == 6 || objuser.roleId == 7)
+                        else if (objuser.roleId == 7 || objuser.roleId == 8)
                         {
                             //Internal_Admin || Superuser
                             if (objuser.roleId == 6)

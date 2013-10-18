@@ -126,7 +126,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (name.Length < 30)
                 {
-                    if (Regex.IsMatch(name, @"^[a-zA-Z]+$"))
+                    if (Regex.IsMatch(name, @"^[a-zA-Z ]+$"))
                         return true;
                     else
                         return false;

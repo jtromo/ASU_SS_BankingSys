@@ -38,7 +38,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public Card GetCardDetails(int cardNumber)
+        public Card GetCardDetails(string cardNumber)
         {
             try
             {

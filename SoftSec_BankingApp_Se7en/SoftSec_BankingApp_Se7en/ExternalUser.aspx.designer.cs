@@ -571,6 +571,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_nicknameedit;
         
         /// <summary>
+        /// lblChaneProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChaneProfile;
+        
+        /// <summary>
         /// btn_changesettings_profile control.
         /// </summary>
         /// <remarks>
@@ -751,13 +760,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList dd_cardexpy;
         
         /// <summary>
-        /// tb_amount_CheckPayment control.
+        /// tb_amount_CardPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amount_CheckPayment;
+        protected global::System.Web.UI.WebControls.TextBox tb_amount_CardPayment;
+        
+        /// <summary>
+        /// lblSubmitPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubmitPayment;
         
         /// <summary>
         /// btn_cardsubmitpayment control.

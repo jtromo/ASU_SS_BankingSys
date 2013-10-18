@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -13,14 +14,30 @@ namespace SoftSec_BankingApp_Se7en
         private static AccountModel objAccMod = new AccountModel();
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
         private static UserModel objUser = new UserModel();
+        private string merchant_savingsAccNum = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {            
             try
             {
                 if (!IsPostBack)
-                {
-                    TabContainer1.ActiveTabIndex = 1;
+                {                    
                     lblTranStatus.Visible = false;
+                    if (objUser.GetUser(Session["userName"].ToString()).roleId == 3)
+                    {
+                        TabContainer1.Visible = true;
+                        TabContainer1.Tabs[0].Visible = true;
+                        TabContainer1.Tabs[1].Visible = true;
+                        TabContainer1.Tabs[2].Visible = true;
+                        TabContainer1.Tabs[3].Visible = true;
+                    }
+                    else
+                    {
+                        TabContainer1.Visible = true;
+                        TabContainer1.Tabs[0].Visible = true;
+                        TabContainer1.Tabs[1].Visible = true;
+                        TabContainer1.Tabs[2].Visible = true;
+                        TabContainer1.Tabs[3].Visible = false;
+                    }
                     TabContainer1.ActiveTabIndex = 0;
                     //Fetch all the accounts of the user.
                     ICollection<Models.Tables.Account> objCol = objAccMod.GetAccountsForUser(Session["userName"].ToString());
@@ -79,14 +96,14 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = objAccMod.GetCardDetails(Convert.ToInt32(tb_usercardno.Text.ToString()));
+                    objCard = objAccMod.GetCardDetails(tb_usercardno.Text.ToString());
                     if (objCard != null)
                     {
                         if (objCard.accountNumber.Equals(dd_acctypeoutside.SelectedValue.ToString()))
                         {
-                            int iCardExp = 0;
-                            iCardExp = Convert.ToInt32(dd_monthoutside.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_yearoutside.SelectedValue.ToString());
-                            if (objCard.expirationDate.Equals(iCardExp))
+                            string sCardExp = string.Empty;
+                            sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
+                            if (objCard.expirationDate.Equals(sCardExp))
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
                                 {
@@ -97,6 +114,13 @@ namespace SoftSec_BankingApp_Se7en
                                     if (success)
                                     {
                                         lblTranStatus.Text = "Transaction Successful";
+                                        tb_toRoutingNumber.Text = "";
+                                        tb_toAccNum_OutsideBank.Text = "";
+                                        lblTranStatus.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblTranStatus.Text = "Transaction Unsuccessful";
                                         tb_toRoutingNumber.Text = "";
                                         tb_toAccNum_OutsideBank.Text = "";
                                         lblTranStatus.Visible = true;
@@ -145,14 +169,15 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = objAccMod.GetCardDetails(Convert.ToInt32(tb_card.Text.ToString()));
+                    objCard = objAccMod.GetCardDetails(tb_card.Text.ToString());
                     if (objCard != null)
                     {
                         if (objCard.accountNumber.Equals(dd_acctype.SelectedValue.ToString()))
                         {
-                            int iCardExp = 0;
-                            iCardExp = Convert.ToInt32(dd_month.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_year.SelectedValue.ToString());
-                            if (objCard.expirationDate.Equals(iCardExp))
+                            string sCardExp = string.Empty;
+                            sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
+                            
+                            if (objCard.expirationDate.Equals(sCardExp))
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                                 {
@@ -166,6 +191,13 @@ namespace SoftSec_BankingApp_Se7en
                                         if (success)
                                         {
                                             lblTransStatus_IB.Text = "Transaction Successful";
+                                            tb_toRoutingNumber.Text = "";
+                                            tb_toAccNum_OutsideBank.Text = "";
+                                            lblTransStatus_IB.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblTransStatus_IB.Text = "Transaction Unsuccessful";
                                             tb_toRoutingNumber.Text = "";
                                             tb_toAccNum_OutsideBank.Text = "";
                                             lblTransStatus_IB.Visible = true;
@@ -215,12 +247,20 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
                     string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
-                    objAccMod.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                    bool success = objAccMod.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
                                 "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
                                     "To : " + dd_acctypebetween_To.Text.ToString() +
                                         "- Amount : " + tb_amountbetween.Text.ToString());
-                    lblTransStatus_Between.Text = "Transaction Successful";
-                    lblTransStatus_Between.Visible = true;
+                    if (success)
+                    {
+                        lblTransStatus_Between.Text = "Transaction Successful";
+                        lblTransStatus_Between.Visible = true;
+                    }
+                    else
+                    {
+                        lblTransStatus_Between.Text = "Transaction Unsuccessful";
+                        lblTransStatus_Between.Visible = true;
+                    }
                 }
                 else
                 {
@@ -244,7 +284,17 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    objUser.updateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
+                    bool success = objUser.updateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
+                    if (success)
+                    {
+                        lblChaneProfile.Text = "Update Successful";
+                        lblChaneProfile.Visible = false;
+                    }
+                    else
+                    {
+                        lblChaneProfile.Text = "Update Unsuccessful";
+                        lblChaneProfile.Visible = true;
+                    }
                 }
                 else
                 {
@@ -263,10 +313,48 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CheckPayment.Text.ToString());
+                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    //Similar to inside bank transfers
+                    
+                    Models.Tables.Card objCard = objAccMod.GetCardDetails(tb_cardnum.Text.ToString());
+                    if (objCard != null)
+                    {
+                        string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
+                        string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
+                        if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
+                        {
+                            string strExpDate = string.Empty;
+                            strExpDate = dd_cardexpm.SelectedValue.ToString() + dd_cardexpy.SelectedValue.ToString();
+                            if (objCard.expirationDate.Equals(strExpDate))
+                            {
+                                string sToAcc = merchant_savingsAccNum;
+                                string sfromAcc = objCard.accountNumber;
+                                bool success = objAccMod.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
+                                            "From : " + sToAcc + "To : " + sfromAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
+                                if (success)
+                                {
+                                    lblSubmitPayment.Text = "Transaction Successful";
+                                    lblSubmitPayment.Visible = true;
+                                }
+                                else
+                                {
+                                    lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                    lblSubmitPayment.Visible = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Update UI with error messages
+                        }
+                    }
+                    else
+                    {
+                        //Update UI with error messages
+                    }
                 }
                 else
                 {
@@ -543,6 +631,28 @@ namespace SoftSec_BankingApp_Se7en
                         //Add Nick Name to DB 
                         //Do we require to show the user last password modified time ??
                         //tb_nicknameview.Text = objUsr.nickName;
+                    }
+                }
+                else if (TabContainer1.ActiveTabIndex == 3)
+                {
+                    Models.Tables.User objUsr = objUser.GetUser(Session["userName"].ToString());
+                    if (objUsr != null)
+                    {
+                        
+                        AccountModel objAccMod = new AccountModel();
+                        List<Models.Tables.Account> lstAcc = objAccMod.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                        foreach (Models.Tables.Account acc in lstAcc)
+                        {
+                            if (acc.accountTypeId == 3)
+                            {
+                                merchant_savingsAccNum = acc.accountNumber;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //No such user exists
                     }
                 }
             }

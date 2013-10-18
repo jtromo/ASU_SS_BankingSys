@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
@@ -35,7 +35,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -64,23 +64,23 @@
             </p>
             <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_month" runat="server">
-                    <asp:ListItem Value="0">MM</asp:ListItem>
-                    <asp:ListItem Value="1">Jan</asp:ListItem>
-                    <asp:ListItem Value="2">Feb</asp:ListItem>
-                    <asp:ListItem Value="3">Mar</asp:ListItem>
-                    <asp:ListItem Value="4">Apr</asp:ListItem>
-                    <asp:ListItem Value="5">May</asp:ListItem>
-                    <asp:ListItem Value="6">June</asp:ListItem>
-                    <asp:ListItem Value="7">Jul</asp:ListItem>
-                    <asp:ListItem Value="8">Aug</asp:ListItem>
-                    <asp:ListItem Value="9">Sep</asp:ListItem>
+                    <asp:ListItem Value="00">MM</asp:ListItem>
+                    <asp:ListItem Value="01">Jan</asp:ListItem>
+                    <asp:ListItem Value="02">Feb</asp:ListItem>
+                    <asp:ListItem Value="03">Mar</asp:ListItem>
+                    <asp:ListItem Value="04">Apr</asp:ListItem>
+                    <asp:ListItem Value="05">May</asp:ListItem>
+                    <asp:ListItem Value="06">June</asp:ListItem>
+                    <asp:ListItem Value="07">Jul</asp:ListItem>
+                    <asp:ListItem Value="08">Aug</asp:ListItem>
+                    <asp:ListItem Value="09">Sep</asp:ListItem>
                     <asp:ListItem Value="10">Oct</asp:ListItem>
                     <asp:ListItem Value="11">Nov</asp:ListItem>
                     <asp:ListItem Value="12">Dec</asp:ListItem>
                 </asp:DropDownList>
 &nbsp;
                 <asp:DropDownList ID="dd_year" runat="server">
-                    <asp:ListItem Value="0">YYYY</asp:ListItem>
+                    <asp:ListItem Value="0000">YYYY</asp:ListItem>
                     <asp:ListItem Value="13">2013</asp:ListItem>
                     <asp:ListItem Value="14">2014</asp:ListItem>
                     <asp:ListItem Value="15">2015</asp:ListItem>
@@ -142,23 +142,23 @@
             <p>
                 Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_monthoutside" runat="server">
-                    <asp:ListItem Value="0">MM</asp:ListItem>
-                    <asp:ListItem Value="1">Jan</asp:ListItem>
-                    <asp:ListItem Value="2">Feb</asp:ListItem>
-                    <asp:ListItem Value="3">Mar</asp:ListItem>
-                    <asp:ListItem Value="4">Apr</asp:ListItem>
-                    <asp:ListItem Value="5">May</asp:ListItem>
-                    <asp:ListItem Value="6">June</asp:ListItem>
-                    <asp:ListItem Value="7">Jul</asp:ListItem>
-                    <asp:ListItem Value="8">Aug</asp:ListItem>
-                    <asp:ListItem Value="9">Sep</asp:ListItem>
+                    <asp:ListItem Value="00">MM</asp:ListItem>
+                    <asp:ListItem Value="01">Jan</asp:ListItem>
+                    <asp:ListItem Value="02">Feb</asp:ListItem>
+                    <asp:ListItem Value="03">Mar</asp:ListItem>
+                    <asp:ListItem Value="04">Apr</asp:ListItem>
+                    <asp:ListItem Value="05">May</asp:ListItem>
+                    <asp:ListItem Value="06">June</asp:ListItem>
+                    <asp:ListItem Value="07">Jul</asp:ListItem>
+                    <asp:ListItem Value="08">Aug</asp:ListItem>
+                    <asp:ListItem Value="09">Sep</asp:ListItem>
                     <asp:ListItem Value="10">Oct</asp:ListItem>
                     <asp:ListItem Value="11">Nov</asp:ListItem>
                     <asp:ListItem Value="12">Dec</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
                 <asp:DropDownList ID="dd_yearoutside" runat="server">
-                    <asp:ListItem>YYYY</asp:ListItem>
+                    <asp:ListItem Value="0000">YYYY</asp:ListItem>
                     <asp:ListItem Value="13">2013</asp:ListItem>
                     <asp:ListItem Value="14">2014</asp:ListItem>
                     <asp:ListItem Value="15">2015</asp:ListItem>
@@ -410,7 +410,11 @@
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 </p>
                                 <p>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_changesettings_profile" runat="server" Text="Change Profile Settings" OnClick="btn_changesettings_profile_Click" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblChaneProfile" runat="server" Visible="False"></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_changesettings_profile" runat="server" OnClick="btn_changesettings_profile_Click" Text="Change Profile Settings" />
                                 </p>
                                 <p>
                                     &nbsp;</p>
@@ -503,7 +507,7 @@
 
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Submit Payment" TabIndex="4">
+            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Submit Payment" TabIndex="4" Visible =" false">
                 <ContentTemplate>
                     <br />
                     <br />
@@ -526,7 +530,7 @@
                                 <br />
                                 (as printed on the card)<br />Expiry Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="dd_cardexpm" runat="server">
-                                    <asp:ListItem>MM</asp:ListItem>
+                                    <asp:ListItem Value="00">MM</asp:ListItem>
                                     <asp:ListItem>01</asp:ListItem>
                                     <asp:ListItem>02</asp:ListItem>
                                     <asp:ListItem>03</asp:ListItem>
@@ -542,19 +546,24 @@
                                 </asp:DropDownList>
                                 &nbsp;&nbsp;
                                 <asp:DropDownList ID="dd_cardexpy" runat="server">
-                                    <asp:ListItem>YY</asp:ListItem>
+                                    <asp:ListItem Value="00">YY</asp:ListItem>
                                     <asp:ListItem>13</asp:ListItem>
-                                    <asp:ListItem>17</asp:ListItem>
                                     <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>16</asp:ListItem>
+                                    <asp:ListItem>17</asp:ListItem>
                                     <asp:ListItem>18</asp:ListItem>
                                     <asp:ListItem>19</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>16</asp:ListItem>
-                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>21</asp:ListItem>
+                                    <asp:ListItem>22</asp:ListItem>
+                                    <asp:ListItem>23</asp:ListItem>
                                 </asp:DropDownList>
                                 &nbsp;<br /> Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 <asp:TextBox ID="tb_amount_CheckPayment" runat="server" Width="118px"></asp:TextBox>
+                                 <asp:TextBox ID="tb_amount_CardPayment" runat="server" Width="118px"></asp:TextBox>
                                  <br />
+                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <asp:Label ID="lblSubmitPayment" runat="server" Visible="False"></asp:Label>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_cardsubmitpayment" runat="server" Text="Submit Payment" OnClick="btn_cardsubmitpayment_Click" />

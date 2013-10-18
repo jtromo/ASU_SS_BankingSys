@@ -71,7 +71,7 @@ namespace SSBank
             if(user !=null)
                 Response.Write(" Retrieving user jtromo: " + user.username);
 
-            Card card = accountModel.GetCardDetails(98999999);
+            Card card = accountModel.GetCardDetails(Convert.ToString(98999999));
             if(card != null)
                 Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.expirationDate);
 
@@ -99,6 +99,14 @@ namespace SSBank
             SecurityQandA newSecurityQandA2 = new SecurityQandA(newQuestions2, newAnswers2);
             bool newUserCreated2 = userModel.CreatUser(newUser2, "udayKum2#", newAddress2, newSecurityQandA2);
             Response.Write(" New user was created: " + newUserCreated2);
+
+            Address newAddress3 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
+            User newUser3 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "merchant1", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, isActive = true, UserDepartment = null, Address = newAddress2 };
+            List<string> newAnswers3 = new List<string> { "merchantans", "secondans" };
+            List<string> newQuestions3 = new List<string> { "anstest", "Anstest" };
+            SecurityQandA newSecurityQandA3 = new SecurityQandA(newQuestions3, newAnswers3);
+            bool newUserCreated3 = userModel.CreatUser(newUser3, "udayKum3#", newAddress3, newSecurityQandA3);
+            Response.Write(" New user was created: " + newUserCreated3);
 
             AccountType accType1 = new AccountType { title = "Savings Account" };
             AccountType accType2 = new AccountType { title = "Checkings Account" };

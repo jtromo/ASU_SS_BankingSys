@@ -15,6 +15,7 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            TabContainer1.ActiveTabIndex = 1;
             try
             {
                 if (!IsPostBack)

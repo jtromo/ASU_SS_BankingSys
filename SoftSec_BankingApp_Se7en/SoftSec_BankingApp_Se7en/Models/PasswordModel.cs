@@ -10,49 +10,65 @@ namespace SoftSec_BankingApp_Se7en.Models
     {
         public SecurityQandA GetSecurityQandA(string username)
         {
-            using (var db = new SSBankDBContext())
+            try
             {
-                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
-
-                if (users.Count() < 1)
+                using (var db = new SSBankDBContext())
                 {
-                    return null;
-                }
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
-                User user = users.First();
-                ICollection<SecurityQuestion> securityQuestions = user.SecurityQuestions;
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
 
-                if (securityQuestions.Count() > 0)
-                {
-                    return new SecurityQandA(securityQuestions);
+                    User user = users.First();
+                    ICollection<SecurityQuestion> securityQuestions = user.SecurityQuestions;
+
+                    if (securityQuestions.Count() > 0)
+                    {
+                        return new SecurityQandA(securityQuestions);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
-                {
-                    return null;
-                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
             }
         }
 
         public bool ChangePwd(string username, string password)
         {
-            using (var db = new SSBankDBContext())
+            try
             {
-                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
-
-                if (users.Count() < 1)
+                using (var db = new SSBankDBContext())
                 {
-                    return false;
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User updatedUser = users.First();
+                    updatedUser.SetHashandSaltForPassword(password);
+                    db.Users.Attach(updatedUser);
+                    var entry = db.Entry(updatedUser);
+                    entry.Property(e => e.hash).IsModified = true;
+                    entry.Property(e => e.salt).IsModified = true;
+                    db.SaveChanges();
+
+                    return true;
                 }
-
-                User updatedUser = users.First();
-                updatedUser.SetHashandSaltForPassword(password);
-                db.Users.Attach(updatedUser);
-                var entry = db.Entry(updatedUser);
-                entry.Property(e => e.hash).IsModified = true;
-                entry.Property(e => e.salt).IsModified = true;
-                db.SaveChanges();
-
-                return true;
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
             }
         }
     }

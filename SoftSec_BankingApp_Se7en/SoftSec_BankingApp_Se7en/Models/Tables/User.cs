@@ -50,6 +50,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         [MaxLength(30)]
         public string siteKeyString { get; set; }
         public bool isActive { get; set; }
+        [Required]
         public System.DateTimeOffset creationTime { get; set; }
         public System.DateTimeOffset? modificationTime { get; set; }
         public System.DateTimeOffset? deletionTime { get; set; }

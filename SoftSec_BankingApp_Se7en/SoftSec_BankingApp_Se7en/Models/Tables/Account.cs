@@ -16,15 +16,16 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         }
 
         public int id { get; set; }
-        public int accountNumber { get; set; }
-        public int routingNumber { get; set; }
+        public string accountNumber { get; set; }
+        public string routingNumber { get; set; }
         public int accountTypeId { get; set; }
         public int primaryUserId { get; set; }
         public double balance { get; set; }
         public bool isActive { get; set; }
+        [Required]
         public System.DateTimeOffset creationTime { get; set; }
-        public System.DateTimeOffset modificationTime { get; set; }
-        public System.DateTimeOffset deletionTime { get; set; }
+        public System.DateTimeOffset? modificationTime { get; set; }
+        public System.DateTimeOffset? deletionTime { get; set; }
 
         public virtual AccountType AccountType { get; set; }
         public virtual User User { get; set; }
@@ -42,7 +43,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
                 using (var db = new SSBankDBContext())
                 {
                     ICollection<Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber = @p0", accountNumber).ToList();
-
+                    //ICollection<Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions").ToList();
                     return transactions;
                 }
             }

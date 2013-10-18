@@ -15,8 +15,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public int departmentId { get; set; }
         public int isActive { get; set; }
         public System.DateTimeOffset creationTime { get; set; }
-        public System.DateTimeOffset modificationTime { get; set; }
-        public System.DateTimeOffset deletionTime { get; set; }
+        public System.DateTimeOffset? modificationTime { get; set; }
+        public System.DateTimeOffset? deletionTime { get; set; }
 
         public virtual Department Department { get; set; }
 

@@ -82,7 +82,7 @@ namespace SoftSec_BankingApp_Se7en
                     objCard = objAccMod.GetCardDetails(Convert.ToInt32(tb_usercardno.Text.ToString()));
                     if (objCard != null)
                     {
-                        if (objCard.accountNumber == Convert.ToInt32(dd_acctypeoutside.SelectedValue.ToString()))
+                        if (objCard.accountNumber.Equals(dd_acctypeoutside.SelectedValue.ToString()))
                         {
                             int iCardExp = 0;
                             iCardExp = Convert.ToInt32(dd_monthoutside.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_yearoutside.SelectedValue.ToString());
@@ -92,8 +92,8 @@ namespace SoftSec_BankingApp_Se7en
                                 {
                                     string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
                                                                            " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                    bool success = objAccMod.MakeExternalTransfer(objCard.accountNumber, Convert.ToInt32(tb_toAccNum_OutsideBank.Text.ToString()),
-                                                                Convert.ToInt32(tb_toRoutingNumber.Text.ToString()), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                    bool success = objAccMod.MakeExternalTransfer(objCard.accountNumber, tb_toAccNum_OutsideBank.Text.ToString(),
+                                                                tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
                                     if (success)
                                     {
                                         lblTranStatus.Text = "Transaction Successful";
@@ -148,7 +148,7 @@ namespace SoftSec_BankingApp_Se7en
                     objCard = objAccMod.GetCardDetails(Convert.ToInt32(tb_card.Text.ToString()));
                     if (objCard != null)
                     {
-                        if (objCard.accountNumber == Convert.ToInt32(dd_acctype.SelectedValue.ToString()))
+                        if (objCard.accountNumber.Equals(dd_acctype.SelectedValue.ToString()))
                         {
                             int iCardExp = 0;
                             iCardExp = Convert.ToInt32(dd_month.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_year.SelectedValue.ToString());
@@ -156,12 +156,12 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                                 {
-                                    LastNameZipcode objLastZip = objAccMod.GetLastNameAndZipcode(Convert.ToInt32(tb_recepient.Text.ToString()));
+                                    LastNameZipcode objLastZip = objAccMod.GetLastNameAndZipcode(tb_recepient.Text.ToString());
                                     if (objLastZip.lastName.Equals(tb_lastname.Text.ToString()) && objLastZip.zipcode.Equals(tb_zip.Text.ToString()))
                                     {
                                         string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
                                                                            " Amount : " + tb_amount.Text.ToString();
-                                        bool success = objAccMod.MakeInternalTransfer(objCard.accountNumber, Convert.ToInt32(tb_recepient.Text.ToString()),
+                                        bool success = objAccMod.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
                                                                    Convert.ToDouble(tb_amount.Text.ToString()), desc);
                                         if (success)
                                         {
@@ -213,8 +213,8 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    int iToAcc = Convert.ToInt32(dd_acctypebetween_To.SelectedValue.ToString());
-                    int ifromAcc = Convert.ToInt32(dd_acctypebetween_From.SelectedValue.ToString());
+                    string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
+                    string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
                     objAccMod.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
                                 "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
                                     "To : " + dd_acctypebetween_To.Text.ToString() +

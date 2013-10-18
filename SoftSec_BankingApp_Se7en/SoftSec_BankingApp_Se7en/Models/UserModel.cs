@@ -10,66 +10,82 @@ namespace SoftSec_BankingApp_Se7en.Models
     {
         public bool CreatUser(User newUser, string password, Address address, SecurityQandA securityQandA)
         {
-            using (var db = new SSBankDBContext())
+            try
             {
-                if (newUser == null)
-                    return false;
-                if (address == null)
-                    return false;
-
-                DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                newUser.creationTime = timestamp;
-                newUser.Address = address;
-
-                // Hash generation
-                if (newUser.SetHashandSaltForPassword(password))
+                using (var db = new SSBankDBContext())
                 {
-                    //Response.Write("Valid");
+                    if (newUser == null)
+                        return false;
+                    if (address == null)
+                        return false;
+
+                    DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                    newUser.creationTime = timestamp;
+                    newUser.Address = address;
+
+                    // Hash generation
+                    if (newUser.SetHashandSaltForPassword(password))
+                    {
+                        //Response.Write("Valid");
+                    }
+                    else
+                    {
+                        //Response.Write("Not Valid");
+                    }
+
+
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+
+                    /*List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+                    */
+                    return true;
                 }
-                else
-                {
-                    //Response.Write("Not Valid");
-                }
-
-
-                db.Users.Add(newUser);
-                db.SaveChanges();
-
-                /*List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
-
-                if (users.Count() < 1)
-                {
-                    return false;
-                }
-
-                User user = users.First();
-                Address address = user.Address;
-                ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
-                */
-                return true;
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
             }
         }
 
         public User GetUser(string username)
         {
-            using (var db = new SSBankDBContext())
+            try
             {
-                List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
-
-                if (users.Count() < 1)
+                using (var db = new SSBankDBContext())
                 {
-                    return null;
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+
+                    return user;
                 }
-
-                User user = users.First();
-                Address address = user.Address;
-                ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
-
-                return user;
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
             }
         }
 
-        public bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode,string phoneNo)
+        public bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try
             {

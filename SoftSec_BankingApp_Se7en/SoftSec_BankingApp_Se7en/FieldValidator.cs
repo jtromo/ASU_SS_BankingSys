@@ -236,7 +236,7 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
 
-                Regex descriptionRegex = new Regex(@"^[a-zA-Z0-9_.#/- ,]+$");
+                Regex descriptionRegex = new Regex(@"^[a-zA-Z0-9_.#/ -,]+$");
                 Match descriptionMatch = descriptionRegex.Match(streetAddress);
                 if (descriptionMatch.Success)
                 {

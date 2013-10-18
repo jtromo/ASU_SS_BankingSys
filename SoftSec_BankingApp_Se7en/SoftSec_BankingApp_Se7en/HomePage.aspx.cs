@@ -22,7 +22,7 @@ namespace SSBank
             Response.Write(login.LoginUser("jtromo", "adfaf", 12345));
 
             DebugModel debug = new DebugModel();
-            debug.InsertSampleUsers();
+            Response.Write(" New user created: " + debug.InsertSampleUsers());
 
             Response.Write(" Number of sample questions: ");
             Response.Write(debug.NumberOfSecurityQuestions());

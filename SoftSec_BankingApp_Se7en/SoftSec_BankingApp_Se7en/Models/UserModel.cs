@@ -17,6 +17,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                 if (address == null)
                     return false;
 
+                DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                newUser.creationTime = timestamp;
+
                 newUser.Address = address;
                 db.Users.Add(newUser);
                 db.SaveChanges();

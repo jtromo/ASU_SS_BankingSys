@@ -22,7 +22,7 @@ namespace SSBank
             Response.Write(login.LoginUser("jtromo", "adfaf", 12345));
 
             DebugModel debug = new DebugModel();
-            debug.InsertSampleUsers();
+            Response.Write(" New user created: " + debug.InsertSampleUsers());
 
             Response.Write(" Number of sample questions: ");
             Response.Write(debug.NumberOfSecurityQuestions());
@@ -66,7 +66,7 @@ namespace SSBank
             Response.Write(" Retrieving user jtromo: " + user.username + " " + user.hash);
 
             Card card = accountModel.GetCardDetails(98999999);
-            Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.experationDate);
+            Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.expirationDate);
 
             Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
             User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "@gmail.com", salt = "adfa", hash = "adfaf", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };

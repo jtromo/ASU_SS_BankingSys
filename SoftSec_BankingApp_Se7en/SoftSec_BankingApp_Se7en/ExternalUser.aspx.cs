@@ -12,7 +12,7 @@ namespace SoftSec_BankingApp_Se7en
     {
         private static AccountModel objAccMod = new AccountModel();
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
-
+        private static UserModel objUser = new UserModel();
         protected void Page_Load(object sender, EventArgs e)
         {
             TabContainer1.ActiveTabIndex = 1;
@@ -21,6 +21,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (!IsPostBack)
                 {
                     lblTranStatus.Visible = false;
+                    TabContainer1.ActiveTabIndex = 0;
                     //Fetch all the accounts of the user.
                     ICollection<Models.Tables.Account> objCol = objAccMod.GetAccountsForUser(Session["userName"].ToString());
                     if (objCol != null)
@@ -85,7 +86,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             int iCardExp = 0;
                             iCardExp = Convert.ToInt32(dd_monthoutside.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_yearoutside.SelectedValue.ToString());
-                            if (objCard.experationDate == iCardExp)
+                            if (objCard.expirationDate.Equals(iCardExp))
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
                                 {
@@ -151,7 +152,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             int iCardExp = 0;
                             iCardExp = Convert.ToInt32(dd_month.SelectedValue.ToString()) * 100 + Convert.ToInt32(dd_year.SelectedValue.ToString());
-                            if (objCard.experationDate == iCardExp)
+                            if (objCard.expirationDate.Equals(iCardExp))
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                                 {
@@ -243,6 +244,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    objUser.updateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
                 }
                 else
                 {
@@ -521,7 +523,52 @@ namespace SoftSec_BankingApp_Se7en
 
         }
 
-        
+        protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {                
+                if (TabContainer1.ActiveTabIndex == 2)
+                {
+                    Models.Tables.User objUsr = objUser.GetUser(Session["userName"].ToString());
+                    if (objUsr != null)
+                    {
+                        tb_usernameview.Text = Session["userName"].ToString();
+                        Models.Tables.Address objUsrAddr = objUsr.Address;
+                        tb_streetAddress.Text = objUsrAddr.street1;
+                        tb_city.Text = objUsrAddr.city;                        
+                        StateDD_Profile.SelectedValue = objUsrAddr.state;
+                        tb_ZipCode_Profile.Text = Convert.ToString(objUsrAddr.zip);
+                        tb_contactview.Text = objUsr.phone;
+                        tb_emailview.Text = objUsr.email;
+                        //Add Nick Name to DB 
+                        //Do we require to show the user last password modified time ??
+                        //tb_nicknameview.Text = objUsr.nickName;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+            }
+        }
+
+        protected void btnEditProfile_Click(object sender, EventArgs e)
+        {
+            TabContainer3.Visible = true;
+            try
+            {
+                tb_emailedit.Text = tb_emailview.Text;
+                tb_addr_editprofile.Text = tb_streetAddress.Text;
+                tb_city_editProfile.Text = tb_city.Text;
+                tb_zip_editProfile.Text = tb_ZipCode_Profile.Text;
+                tb_contactedit.Text = tb_contactview.Text;
+                StateDD_EditProfile.SelectedValue = StateDD_Profile.SelectedValue;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
 
     }
 }

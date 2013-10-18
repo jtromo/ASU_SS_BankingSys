@@ -33,24 +33,28 @@ namespace SSBank
 
             Response.Write(" Security qa for user: ");
             SecurityQandA securityQuestions = password.GetSecurityQandA("jtromo");
-            foreach (string question in securityQuestions.questions)
+            if (securityQuestions != null)
             {
-                Response.Write(" Question: " + question);
+                foreach (string question in securityQuestions.questions)
+                {
+                    Response.Write(" Question: " + question);
+                }
+                foreach (string answer in securityQuestions.answers)
+                {
+                    Response.Write(" Answer: " + answer);
+                }
             }
-            foreach (string answer in securityQuestions.answers)
-            {
-                Response.Write(" Answer: " + answer);
-            }
-
             AccountModel accountModel = new AccountModel();
             ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = accountModel.GetAccountsForUser("jtromo");
             Response.Write(" Number of accounts for jtromo: " + accounts.Count());
 
             ICollection<Transaction> transaction = accountModel.GetTransactionsForAccount("12334123");
-            Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
+            if(transaction !=null)
+                Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
 
             LastNameZipcode lastNameZip = accountModel.GetLastNameAndZipcode("12334123");
-            Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
+            if(lastNameZip != null)
+                Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
 
             bool testTransferInternal = accountModel.MakeInternalTransfer("12345", "12334123", 0.11, "test internal transfer");
             Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
@@ -59,14 +63,17 @@ namespace SSBank
             Response.Write(" Creating test transfer External between 12345 and 12334123: " + testTransferExternal);
 
             Account foundAccount = accountModel.GetAccount("12334123");
-            Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);
+            if(foundAccount != null)
+                Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);
 
             UserModel userModel = new UserModel();
             User user = userModel.GetUser("jtromo");
-            Response.Write(" Retrieving user jtromo: " + user.username);
+            if(user !=null)
+                Response.Write(" Retrieving user jtromo: " + user.username);
 
             Card card = accountModel.GetCardDetails(98999999);
-            Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.expirationDate);
+            if(card != null)
+                Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.expirationDate);
 
             Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
             User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };

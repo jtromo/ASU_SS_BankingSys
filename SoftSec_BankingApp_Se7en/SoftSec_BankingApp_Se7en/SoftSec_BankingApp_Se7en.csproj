@@ -439,6 +439,10 @@
     <Compile Include="Migrations\201310180325078_AccountNumberChange.Designer.cs">
       <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310180420471_vLabFix.cs" />
+    <Compile Include="Migrations\201310180420471_vLabFix.Designer.cs">
+      <DependentUpon>201310180420471_vLabFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\DebugModel.cs" />
@@ -499,6 +503,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310180325078_AccountNumberChange.resx">
       <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310180420471_vLabFix.resx">
+      <DependentUpon>201310180420471_vLabFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

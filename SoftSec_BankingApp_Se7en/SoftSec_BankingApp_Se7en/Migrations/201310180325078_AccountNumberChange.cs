@@ -7,8 +7,8 @@ namespace SoftSec_BankingApp_Se7en.Migrations
     {
         public override void Up()
         {
-            Sql("ALTER TABLE dbo.Transactions DROP CONSTRAINT DF__Transacti__fromA__5070F446");
-            Sql("ALTER TABLE dbo.Transactions DROP CONSTRAINT DF__Transacti__toAcc__5165187F");
+            Sql("ALTER TABLE dbo.Transactions DROP CONSTRAINT DF__Transacti__fromA__3D5E1FD2");
+            Sql("ALTER TABLE dbo.Transactions DROP CONSTRAINT DF__Transacti__toAcc__3E52440B");
             AddColumn("dbo.Cards", "expirationDate", c => c.String());
             AddColumn("dbo.Transactions", "fromRoutingNumber", c => c.String());
             AddColumn("dbo.Transactions", "toRoutingNumber", c => c.String());

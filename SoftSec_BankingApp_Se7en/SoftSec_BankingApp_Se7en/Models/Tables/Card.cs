@@ -12,7 +12,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public int cardNumber { get; set; }
         public int accountNumber { get; set; }
         public int cvv { get; set; }
-        public int experationDate { get; set; }
+        public string expirationDate { get; set; }
         public string firstName { get; set; }
         public string middleInitial { get; set; }
         public string lastName { get; set; }

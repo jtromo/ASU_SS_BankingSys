@@ -7,8 +7,8 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="711px" Width="874px">
-            <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True">
+            <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
                     <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
@@ -31,7 +31,7 @@
                     </br>
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers">
+            <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers" TabIndex="2">
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
@@ -235,29 +235,29 @@
                     </asp:TabContainer>
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel ID="tab_profile" runat="server" HeaderText="Profile">
+            <asp:TabPanel ID="tab_profile" runat="server" HeaderText="Profile" TabIndex="3">
                 <ContentTemplate>
 
                     <br />
                     <h6>Contact Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Settings</h6>
   
                      <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_emailview" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_emailview" runat="server" Enabled="False"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password (last updated):
-                         <asp:TextBox ID="tb_pwdlastview" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_pwdlastview" runat="server" Enabled="False"></asp:TextBox>
                     </p>
                      <p>Street Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                         <asp:TextBox ID="tb_streetAddress" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_streetAddress" runat="server" Enabled="False"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_usernameview" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_usernameview" runat="server" Enabled="False"></asp:TextBox>
                     </p>
                      <p>
                          City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                         <asp:TextBox ID="tb_city" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_city" runat="server" Enabled="False"></asp:TextBox>
                          &nbsp;</p>
                      <p>
                          State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                         <asp:DropDownList ID="StateDD_Profile" runat="server">
+                         <asp:DropDownList ID="StateDD_Profile" runat="server" Enabled="False">
                              <asp:ListItem Value="AL">Alabama</asp:ListItem>
                              <asp:ListItem Value="AK">Alaska</asp:ListItem>
                              <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -313,19 +313,19 @@
                     </p>
                     <p>
                         ZipCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                        <asp:TextBox ID="tb_ZipCode_Profile" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="tb_ZipCode_Profile" runat="server" Enabled="False"></asp:TextBox>
                     </p>
                      <p>Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
-                         <asp:TextBox ID="tb_contactview" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_contactview" runat="server" Enabled="False"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nickname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_nicknameview" runat="server"></asp:TextBox>
+                         <asp:TextBox ID="tb_nicknameview" runat="server" Enabled="False"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
-                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="Button1" runat="server" Text="Edit Profile" />
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
                     </p>
                      <p>
                     </p>
-                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="1" Height="362px" Width="837px">
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="362px" Width="837px" Visible="False">
                         <asp:TabPanel ID="tabeditprofile" runat="server" HeaderText="Edit Profile" Height="600px" Width="124px">
                             <ContentTemplate>
 
@@ -503,7 +503,7 @@
 
                 </ContentTemplate>
             </asp:TabPanel>
-            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Submit Payment">
+            <asp:TabPanel ID="tab_billpayment" runat="server" HeaderText="Submit Payment" TabIndex="4">
                 <ContentTemplate>
                     <br />
                     <br />

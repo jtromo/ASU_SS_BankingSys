@@ -13,11 +13,11 @@ namespace SoftSec_BankingApp_Se7en.Models
             UserModel userModel = new UserModel();
 
             Address newAddress = new Address { firstName = "James", lastName = "Romo", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
-            User newUser = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", salt = "adfa", hash = "adfaf", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
+            User newUser = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
             List<string> newAnswers = new List<string> { "answer1", "answer2" };
             List<string> newQuestions = new List<string> { "test1", "test2" };
             SecurityQandA newSecurityQandA = new SecurityQandA(newQuestions, newAnswers);
-            bool newUserCreated = userModel.creatUser(newUser, newAddress, newSecurityQandA);
+            bool newUserCreated = userModel.CreatUser(newUser, "password", newAddress, newSecurityQandA);
 
             return newUserCreated;
         }

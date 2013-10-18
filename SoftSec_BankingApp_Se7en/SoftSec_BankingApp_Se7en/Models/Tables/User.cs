@@ -15,6 +15,25 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
             this.SecurityQuestions = new HashSet<SecurityQuestion>();
         }
 
+        public bool SetHashandSaltForPassword(string password) 
+        {
+            this.salt = HashController.CreateSalt();
+            this.hash = HashController.CreateHash(password, this.salt);
+
+            return true;
+        }
+
+        public bool VerifyPassword(string password)
+        {
+            if (hash == null)
+                return false;
+            if (password == null)
+                return false;
+
+            string hashedPassword = HashController.CreateHash(password, salt);
+            return hashedPassword.Equals(hash);
+        }
+
         public int id { get; set; }
         public int? roleId { get; set; }
         public int? addressId { get; set; }

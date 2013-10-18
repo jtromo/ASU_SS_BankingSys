@@ -63,8 +63,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     return -1;
                 }
 
-                // JR: Warning this needs to be changed to compare to the hash
-                if (!String.Equals(password,user.hash))
+                if (!user.VerifyPassword(password))
                 {
                     return -1;
                 }

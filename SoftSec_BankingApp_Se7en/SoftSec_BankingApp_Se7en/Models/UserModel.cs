@@ -75,6 +75,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     Address address = updatedUser.Address;
                     address.city = city;
                     address.state = state;
+                    address.street1 = staddress;
                     address.zip = Convert.ToInt32(zipCode);
                     updatedUser.phone = phoneNo;
                     updatedUser.email = email;

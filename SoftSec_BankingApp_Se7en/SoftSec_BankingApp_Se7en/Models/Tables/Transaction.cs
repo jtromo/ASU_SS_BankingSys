@@ -8,8 +8,10 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     public class Transaction
     {
         public int id { get; set; }
-        public int fromAccountNumber { get; set; }
-        public int toAccountNumber { get; set; }
+        public string fromAccountNumber { get; set; }
+        public string fromRoutingNumber { get; set; }
+        public string toAccountNumber { get; set; }
+        public string toRoutingNumber { get; set; }
         public string description { get; set; }
         public int type { get; set; }
         public int status { get; set; }

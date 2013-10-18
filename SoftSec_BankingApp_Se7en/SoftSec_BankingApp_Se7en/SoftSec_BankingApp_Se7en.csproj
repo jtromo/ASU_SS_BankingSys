@@ -435,11 +435,14 @@
     <Compile Include="Migrations\201310150908274_Initial.Designer.cs">
       <DependentUpon>201310150908274_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310180325078_AccountNumberChange.cs" />
+    <Compile Include="Migrations\201310180325078_AccountNumberChange.Designer.cs">
+      <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\DebugModel.cs" />
     <Compile Include="Models\HashController.cs" />
-    <Compile Include="Models\InitializeDBwithVals.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
@@ -493,6 +496,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201310150908274_Initial.resx">
       <DependentUpon>201310150908274_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310180325078_AccountNumberChange.resx">
+      <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

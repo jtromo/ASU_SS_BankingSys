@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     public class Statement
     {
         public int id { get; set; }
-        public int accountNumber { get; set; }
+        public string accountNumber { get; set; }
         public System.DateTimeOffset statementStart { get; set; }
         public System.DateTimeOffset statementEnd { get; set; }
         public double endingBalance { get; set; }

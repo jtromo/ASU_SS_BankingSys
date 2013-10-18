@@ -37,10 +37,13 @@ namespace SoftSec_BankingApp_Se7en
                     //if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
                     //{
                         //Valid User
+                    LoginModel objLogin = new LoginModel();
+                    if (objLogin.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
+                    {
                         if (objuser.roleId == 1)
                         {
                             //External Individual
-                            
+
                             Response.Redirect("ExternalUser.aspx", false);
                         }
                         else if (objuser.roleId == 2)
@@ -50,7 +53,7 @@ namespace SoftSec_BankingApp_Se7en
                         else if (objuser.roleId == 3)
                         {
                             //Internal_Regular
-                            
+
                         }
                         else if (objuser.roleId == 4)
                         {
@@ -69,16 +72,16 @@ namespace SoftSec_BankingApp_Se7en
                                 Session["adminFlag"] = 0;
                             else
                                 Session["adminFlag"] = -1;
-                            lblErrorMessage_Authorize.Visible = false; 
+                            lblErrorMessage_Authorize.Visible = false;
                             Response.Redirect("AdminHome.aspx", false);
                         }
-                    //}
-                    //else
-                    //{
-                    //    lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
-                    //    TB_Password.Text = "";
-                    //    lblErrorMessage_Authorize.Visible = true;
-                    //}
+                    }                    
+                    else
+                    {
+                        lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
+                        TB_Password.Text = "";
+                        lblErrorMessage_Authorize.Visible = true;
+                    }
                 }
                 else
                 {

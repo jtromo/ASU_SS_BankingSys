@@ -19,7 +19,7 @@ namespace SSBank
             Response.Write(login.UserExists("jtromo", 12345));
 
             Response.Write(" Returned id: ");
-            Response.Write(login.LoginUser("jtromo", "newPasword", 12345));
+            Response.Write(login.LoginUser("jtromo", "newPasword"));
 
             DebugModel debug = new DebugModel();
             Response.Write(" New user created: " + debug.InsertSampleUsers());
@@ -82,6 +82,28 @@ namespace SSBank
             SecurityQandA newSecurityQandA = new SecurityQandA(newQuestions, newAnswers);
             bool newUserCreated = userModel.CreatUser(newUser, "password", newAddress, newSecurityQandA);
             Response.Write(" New user was created: " + newUserCreated);
+
+            //Sample Script
+            Address newAddress1 = new Address { firstName = "uday", lastName = "mac", street1 = "Street 123", city = "Tempe", state = "AZ", zip = 85281, country = "US", isActive = true };
+            User newUser1 = new User { roleId = 1, firstName = "uday", middleName = "K", lastName = "Mac", username = "umac18", email = "uday@gmail.com", phone = "1234567890", organization = "ASU", siteKeyVal = 5, isActive = true, UserDepartment = null, Address = newAddress1 };
+            List<string> newAnswers1 = new List<string> { "hello", "world" };
+            List<string> newQuestions1 = new List<string> { "Questest", "Qsttest" };
+            SecurityQandA newSecurityQandA1 = new SecurityQandA(newQuestions1, newAnswers1);
+            bool newUserCreated1 = userModel.CreatUser(newUser1, "udayKum1#", newAddress1, newSecurityQandA1);
+            Response.Write(" New user was created: " + newUserCreated1);
+
+            Address newAddress2 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 87223, country = "US", isActive = true };
+            User newUser2 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "manu01", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, isActive = true, UserDepartment = null, Address = newAddress2 };
+            List<string> newAnswers2 = new List<string> { "myanswer", "youranswer" };
+            List<string> newQuestions2 = new List<string> { "Anstest", "Anstest" };
+            SecurityQandA newSecurityQandA2 = new SecurityQandA(newQuestions2, newAnswers2);
+            bool newUserCreated2 = userModel.CreatUser(newUser2, "udayKum2#", newAddress2, newSecurityQandA2);
+            Response.Write(" New user was created: " + newUserCreated2);
+
+            AccountType accType1 = new AccountType { title = "Savings Account" };
+            AccountType accType2 = new AccountType { title = "Checkings Account" };
+            AccountType accType3 = new AccountType { title = "Credit Account" };
+
         }
     }
 }

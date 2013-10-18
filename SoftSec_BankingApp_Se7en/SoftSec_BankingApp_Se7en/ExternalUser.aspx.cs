@@ -14,12 +14,12 @@ namespace SoftSec_BankingApp_Se7en
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
         private static UserModel objUser = new UserModel();
         protected void Page_Load(object sender, EventArgs e)
-        {
-            TabContainer1.ActiveTabIndex = 1;
+        {            
             try
             {
                 if (!IsPostBack)
                 {
+                    TabContainer1.ActiveTabIndex = 1;
                     lblTranStatus.Visible = false;
                     TabContainer1.ActiveTabIndex = 0;
                     //Fetch all the accounts of the user.

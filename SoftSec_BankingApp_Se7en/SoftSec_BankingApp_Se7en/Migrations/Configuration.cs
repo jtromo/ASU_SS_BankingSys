@@ -19,9 +19,13 @@ namespace SoftSec_BankingApp_Se7en.Migrations
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles ON");
             context.Roles.AddOrUpdate(
                     new Role { id = 1, title = "No Access" },
-                    new Role { id = 2, title = "External User" },
-                    new Role { id = 3, title = "Internal User" },
-                    new Role { id = 4, title = "Super User" }
+                    new Role { id = 2, title = "External Individual" },
+                    new Role { id = 3, title = "External Merchant" },
+                    new Role { id = 4, title = "Internal Regular" },
+                    new Role { id = 5, title = "Internal DeptMgr" },
+                    new Role { id = 6, title = "Internal HigherMgr" },
+                    new Role { id = 7, title = "Admin" },
+                    new Role { id = 8, title = "SuperUser" }
                 );
             context.SaveChanges();
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles OFF");

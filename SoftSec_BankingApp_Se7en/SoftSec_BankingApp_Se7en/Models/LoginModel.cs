@@ -48,7 +48,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         // Returns:
         // -1 if login fails
         // the row id if login success (UserId)
-        public int LoginUser(string username, string password, int zip)
+        public int LoginUser(string username, string password)
         {
             try
             {
@@ -62,16 +62,16 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     User user = users.First();
-                    Address address = user.Address;
-                    if (address == null)
-                    {
-                        return -1;
-                    }
+                    //Address address = user.Address;
+                    //if (address == null)
+                    //{
+                    //    return -1;
+                    //}
 
-                    if (address.zip != zip)
-                    {
-                        return -1;
-                    }
+                    //if (address.zip != zip)
+                    //{
+                    //    return -1;
+                    //}
 
                     if (!user.VerifyPassword(password))
                     {

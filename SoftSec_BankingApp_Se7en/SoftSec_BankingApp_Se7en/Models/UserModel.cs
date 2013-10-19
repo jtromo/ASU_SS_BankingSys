@@ -86,6 +86,38 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        /// <summary>
+        /// Returns the user object, given the Row ID.
+        /// </summary>
+        /// <param name="iuserId">Row ID</param>
+        /// <returns>User Object</returns>
+        public User GetUser(int iuserId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE id = @p0", iuserId).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+
+                    return user;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
         public bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try

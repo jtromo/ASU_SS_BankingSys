@@ -823,13 +823,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_echeckcustomername;
         
         /// <summary>
-        /// tb_amount4 control.
+        /// tb_amountECheck control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_amount4;
+        protected global::System.Web.UI.WebControls.TextBox tb_amountECheck;
+        
+        /// <summary>
+        /// lblEcheckPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEcheckPayment;
         
         /// <summary>
         /// btn_echecksubmitpayment control.

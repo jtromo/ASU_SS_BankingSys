@@ -333,7 +333,7 @@ namespace SoftSec_BankingApp_Se7en
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = objCard.accountNumber;
                                 bool success = objAccMod.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
-                                            "From : " + sToAcc + "To : " + sfromAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
+                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
                                 if (success)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
@@ -677,6 +677,83 @@ namespace SoftSec_BankingApp_Se7en
             catch (Exception exp)
             {
                 //Log Exception here
+            }
+        }
+
+        protected void btn_echecksubmitpayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serverSideValidation = false;
+                serverSideValidation = validateFromFields_echeck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString(),
+                                        tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString());
+                if (serverSideValidation)
+                {
+                    Models.Tables.Account objAcc = objAccMod.GetAccount(tb_echeckaccno.Text.ToString());
+                    if (objAcc != null)
+                    {
+                        if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
+                        {
+                            Models.Tables.User obUser = objUser.GetUser(objAcc.primaryUserId);
+                            string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
+                            string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
+                            if (strFullName.Equals(checkUserNameInput))
+                            {
+                                string sToAcc = merchant_savingsAccNum;
+                                string sfromAcc = tb_echeckaccno.Text.ToString();
+                                bool success = objAccMod.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
+                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
+                                if (success)
+                                {
+                                    lblEcheckPayment.Text = "Transaction Successful";
+                                    lblEcheckPayment.Visible = true;
+                                }
+                                else
+                                {
+                                    lblEcheckPayment.Text = "Transaction Unsuccessful";
+                                    lblEcheckPayment.Visible = true;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Update the UI with Error Message
+                    }
+                }
+                else
+                {
+                    //Update UI with error message
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        private bool validateFromFields_echeck(string strAccNum, string strRoutingNum, string strAccName, string  strAmount)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bAcc = fieldValidator.validate_ZipAccCrdPhn(strAccNum, 12);
+                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum, 10);
+                bool bName = fieldValidator.validate_Names(strAccName);
+                bool bAmount = fieldValidator.validate_Amount(strAmount);
+                if (bAcc && bRoute && bName && bAmount)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exceptions here
+                return false;
             }
         }
 

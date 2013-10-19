@@ -10,7 +10,7 @@ namespace SoftSec_BankingApp_Se7en.Models
     public class LoginModel
     {
         // Returns: True false if the user information exists
-        public bool UserExists(string username, int zip)
+        public static bool UserExists(string username, int zip)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         // Returns:
         // -1 if login fails
         // the row id if login success (UserId)
-        public int LoginUser(string username, string password)
+        public static int LoginUser(string username, string password)
         {
             try
             {

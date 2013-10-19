@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
-        public bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool CreateEmployee(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateEmployee(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -102,7 +102,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public User GetUser(string username)
+        public static User GetUser(string username)
         {
             try
             {
@@ -134,7 +134,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         /// </summary>
         /// <param name="iuserId">Row ID</param>
         /// <returns>User Object</returns>
-        public User GetUser(int iuserId)
+        public static User GetUser(int iuserId)
         {
             try
             {
@@ -161,7 +161,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool CheckRegularAccess(string username, int departmentId)
+        public static bool CheckRegularAccess(string username, int departmentId)
         {
             try
             {
@@ -197,7 +197,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool CheckSuperiorAccess(string username, int departmentId)
+        public static bool CheckSuperiorAccess(string username, int departmentId)
         {
             try
             {
@@ -232,7 +232,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
+        public static bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try
             {

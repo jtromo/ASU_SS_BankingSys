@@ -28,7 +28,7 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                     new Role { id = 8, title = "SuperUser" }
                 );
             context.SaveChanges();
-            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles OFF");
+            //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Roles OFF");
 
             // Adds initial questions
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions ON");
@@ -39,18 +39,17 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                     new Question { id = 4, question1 = "What is your mother's maiden name?" }
                 );
             context.SaveChanges();
-            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions OFF");
+            //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Questions OFF");
 
             // Adds initial account types
             context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes ON");
             context.AccountTypes.AddOrUpdate(
                     new AccountType { id = 1, title = "Unknown" },
                     new AccountType { id = 2, title = "Checking" },
-                    new AccountType { id = 3, title = "Savings" },
-                    new AccountType { id = 4, title = "Credit" }
+                    new AccountType { id = 3, title = "Savings" }
                 );
             context.SaveChanges();
-            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
+            //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
         }
     }
 }

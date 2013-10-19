@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class PasswordModel
     {
-        public SecurityQandA GetSecurityQandA(string username)
+        public List<SecurityQuestion> GetSecurityQandA(string username)
         {
             try
             {
@@ -22,11 +22,11 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     User user = users.First();
-                    ICollection<SecurityQuestion> securityQuestions = user.SecurityQuestions;
+                    List<SecurityQuestion> securityQuestions = user.SecurityQuestions.ToList();
 
                     if (securityQuestions.Count() > 0)
                     {
-                        return new SecurityQandA(securityQuestions);
+                        return securityQuestions;
                     }
                     else
                     {
@@ -72,6 +72,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
     }
+    /*
     public class SecurityQandA
     {
         public List<string> questions;
@@ -95,7 +96,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                 answers.Add(securityQuestion.answer);
             }
         }
-
+        
         public SecurityQandA(List<string> questions, List<string> answers)
         {
             List<SecurityQuestion> securityQuest = new List<SecurityQuestion>();
@@ -109,5 +110,5 @@ namespace SoftSec_BankingApp_Se7en.Models
                 }
             }
         }
-    }
+    }*/
 }

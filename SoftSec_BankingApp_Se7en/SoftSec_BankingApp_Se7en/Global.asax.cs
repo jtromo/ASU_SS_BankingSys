@@ -7,6 +7,7 @@ using System.Web.Security;
 using SoftSec_BankingApp_Se7en;
 using System.Data.Entity;
 using SoftSec_BankingApp_Se7en.Models;
+using System.Data.SqlClient;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -15,6 +16,8 @@ namespace SoftSec_BankingApp_Se7en
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
+            //SqlConnection.ClearAllPools();
+            //Database.SetInitializer(new DropCreateDatabaseAlways<SSBankDBContext>());
             AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

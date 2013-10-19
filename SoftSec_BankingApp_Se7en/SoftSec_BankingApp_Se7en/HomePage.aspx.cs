@@ -32,16 +32,12 @@ namespace SSBank
             Response.Write(password.ChangePwd("jtromo", "newPasword"));
 
             Response.Write(" Security qa for user: ");
-            SecurityQandA securityQuestions = password.GetSecurityQandA("jtromo");
+            List<SecurityQuestion> securityQuestions = password.GetSecurityQandA("jtromo");
             if (securityQuestions != null)
             {
-                foreach (string question in securityQuestions.questions)
+                foreach (SecurityQuestion question in securityQuestions)
                 {
-                    Response.Write(" Question: " + question);
-                }
-                foreach (string answer in securityQuestions.answers)
-                {
-                    Response.Write(" Answer: " + answer);
+                    Response.Write(" QuestionId: " + question.questionId + " Answer: " + question.answer);
                 }
             }
             else
@@ -93,35 +89,39 @@ namespace SSBank
 
             Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
             User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
-            List<string> newAnswers = new List<string>{ "answer1", "answer2" };
-            List<string> newQuestions = new List<string>{ "test1", "test2" };
-            SecurityQandA newSecurityQandA = new SecurityQandA(newQuestions, newAnswers);
-            bool newUserCreated = userModel.CreatUser(newUser, "password", newAddress, newSecurityQandA);
+            SecurityQuestion question1 = new SecurityQuestion { answer = "Speedy", questionId = 1 };
+            SecurityQuestion question2 = new SecurityQuestion { answer = "John", questionId = 2 };
+            SecurityQuestion question3 = new SecurityQuestion { answer = "School", questionId = 3 };
+            List<SecurityQuestion> questions = new List<SecurityQuestion> { question1, question2, question3 };
+            bool newUserCreated = userModel.CreateUser(newUser, "password", newAddress, questions);
             Response.Write(" New user was created: " + newUserCreated);
 
             //Sample Script
             Address newAddress1 = new Address { firstName = "uday", lastName = "mac", street1 = "Street 123", city = "Tempe", state = "AZ", zip = 85281, country = "US", isActive = true };
             User newUser1 = new User { roleId = 1, firstName = "uday", middleName = "K", lastName = "Mac", username = "umac18", email = "uday@gmail.com", phone = "1234567890", organization = "ASU", siteKeyVal = 5, isActive = true, UserDepartment = null, Address = newAddress1 };
-            List<string> newAnswers1 = new List<string> { "hello", "world" };
-            List<string> newQuestions1 = new List<string> { "Questest", "Qsttest" };
-            SecurityQandA newSecurityQandA1 = new SecurityQandA(newQuestions1, newAnswers1);
-            bool newUserCreated1 = userModel.CreatUser(newUser1, "udayKum1#", newAddress1, newSecurityQandA1);
+            SecurityQuestion newQuestion11 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
+            SecurityQuestion newQuestion21 = new SecurityQuestion { answer = "John1", questionId = 2 };
+            SecurityQuestion newQuestion31 = new SecurityQuestion { answer = "School1", questionId = 3 };
+            List<SecurityQuestion> newQuestions = new List<SecurityQuestion> { newQuestion11, newQuestion21, newQuestion31 };
+            bool newUserCreated1 = userModel.CreateUser(newUser1, "udayKum1#", newAddress1, newQuestions);
             Response.Write(" New user was created: " + newUserCreated1);
 
             Address newAddress2 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 87223, country = "US", isActive = true };
             User newUser2 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "manu01", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, isActive = true, UserDepartment = null, Address = newAddress2 };
-            List<string> newAnswers2 = new List<string> { "myanswer", "youranswer" };
-            List<string> newQuestions2 = new List<string> { "Anstest", "Anstest" };
-            SecurityQandA newSecurityQandA2 = new SecurityQandA(newQuestions2, newAnswers2);
-            bool newUserCreated2 = userModel.CreatUser(newUser2, "udayKum2#", newAddress2, newSecurityQandA2);
+            SecurityQuestion newQuestion12 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
+            SecurityQuestion newQuestion22 = new SecurityQuestion { answer = "John1", questionId = 2 };
+            SecurityQuestion newQuestion32 = new SecurityQuestion { answer = "School1", questionId = 3 };
+            List<SecurityQuestion> newQuestions2 = new List<SecurityQuestion> { newQuestion12, newQuestion22, newQuestion32 };
+            bool newUserCreated2 = userModel.CreateUser(newUser2, "udayKum2#", newAddress2, newQuestions2);
             Response.Write(" New user was created: " + newUserCreated2);
 
             Address newAddress3 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
             User newUser3 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "merchant1", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, isActive = true, UserDepartment = null, Address = newAddress2 };
-            List<string> newAnswers3 = new List<string> { "merchantans", "secondans" };
-            List<string> newQuestions3 = new List<string> { "anstest", "Anstest" };
-            SecurityQandA newSecurityQandA3 = new SecurityQandA(newQuestions3, newAnswers3);
-            bool newUserCreated3 = userModel.CreatUser(newUser3, "udayKum3#", newAddress3, newSecurityQandA3);
+            SecurityQuestion newQuestion13 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
+            SecurityQuestion newQuestion23 = new SecurityQuestion { answer = "John1", questionId = 2 };
+            SecurityQuestion newQuestion33 = new SecurityQuestion { answer = "School1", questionId = 3 };
+            List<SecurityQuestion> newQuestions3 = new List<SecurityQuestion> { newQuestion13, newQuestion23, newQuestion33 };
+            bool newUserCreated3 = userModel.CreateUser(newUser3, "udayKum3#", newAddress3, newQuestions3);
             Response.Write(" New user was created: " + newUserCreated3);
 
             AccountType accType1 = new AccountType { title = "Savings Account" };

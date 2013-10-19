@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
-        public bool CreatUser(User newUser, string password, Address address, SecurityQandA securityQandA)
+        public bool CreateUser(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -22,6 +22,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
                     newUser.creationTime = timestamp;
                     newUser.Address = address;
+                    newUser.SecurityQuestions = securityQuestions;
 
                     // Hash generation
                     if (newUser.SetHashandSaltForPassword(password))

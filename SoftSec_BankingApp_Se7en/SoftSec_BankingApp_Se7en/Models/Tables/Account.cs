@@ -30,10 +30,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public virtual AccountType AccountType { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Card> Cards { get; set; }
-       //public virtual CheckingAccount CheckingAccount { get; set; }
-        //public virtual CreditAccount CreditAccount { get; set; }
-        //public virtual SavingsAccount SavingsAccount { get; set; }
-        //public virtual Statement Statement { get; set; }
         private ICollection<Transaction> _transactions;
         [NotMapped]
         public virtual ICollection<Transaction> Transactions
@@ -43,7 +39,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
                 using (var db = new SSBankDBContext())
                 {
                     ICollection<Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber = @p0", accountNumber).ToList();
-                    //ICollection<Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions").ToList();
                     return transactions;
                 }
             }

@@ -431,17 +431,9 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201310150908274_Initial.cs" />
-    <Compile Include="Migrations\201310150908274_Initial.Designer.cs">
-      <DependentUpon>201310150908274_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201310180325078_AccountNumberChange.cs" />
-    <Compile Include="Migrations\201310180325078_AccountNumberChange.Designer.cs">
-      <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201310180420471_vLabFix.cs" />
-    <Compile Include="Migrations\201310180420471_vLabFix.Designer.cs">
-      <DependentUpon>201310180420471_vLabFix.cs</DependentUpon>
+    <Compile Include="Migrations\201310190157476_InitialMigration.cs" />
+    <Compile Include="Migrations\201310190157476_InitialMigration.Designer.cs">
+      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -454,15 +446,12 @@
     <Compile Include="Models\Tables\AccountType.cs" />
     <Compile Include="Models\Tables\Address.cs" />
     <Compile Include="Models\Tables\Card.cs" />
-    <Compile Include="Models\Tables\CheckingAccount.cs" />
     <Compile Include="Models\Tables\CreditAccount.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
-    <Compile Include="Models\Tables\SavingsAccount.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />
     <Compile Include="Models\SSBankDBContext.cs" />
-    <Compile Include="Models\Tables\Statement.cs" />
     <Compile Include="Models\Tables\SystemLog.cs" />
     <Compile Include="Models\Tables\Transaction.cs" />
     <Compile Include="Models\Tables\User.cs" />
@@ -499,14 +488,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310150908274_Initial.resx">
-      <DependentUpon>201310150908274_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201310180325078_AccountNumberChange.resx">
-      <DependentUpon>201310180325078_AccountNumberChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201310180420471_vLabFix.resx">
-      <DependentUpon>201310180420471_vLabFix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201310190157476_InitialMigration.resx">
+      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

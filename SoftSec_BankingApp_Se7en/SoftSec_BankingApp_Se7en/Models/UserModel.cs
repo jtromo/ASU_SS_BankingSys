@@ -25,7 +25,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                     newUser.SecurityQuestions = securityQuestions;
 
                     Tables.Account checkingAccount = new Tables.Account { accountNumber=checkingAccountNumber, routingNumber=routingNumber, balance=0.0, isActive=true, accountTypeId=2, creationTime=timestamp };
-                    //checkingAccount.Cards = new List<Card> { checkingCard };
+                    // Add Card
+                    checkingCard.accountNumber = checkingAccountNumber;
+                    checkingAccount.Card = checkingCard;
 
                     Tables.Account savingsAccount = new Tables.Account { accountNumber = savingsAccountNumber, routingNumber = routingNumber, balance = 0.0, isActive = true, accountTypeId = 1, creationTime = timestamp };
 
@@ -42,11 +44,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                         //Response.Write("Not Valid");
                     }
 
-
                     db.Users.Add(newUser);
-
-                    checkingCard.accountNumber = checkingAccountNumber;
-                    db.Cards.Add(checkingCard);
                     db.SaveChanges();
 
                     return true;

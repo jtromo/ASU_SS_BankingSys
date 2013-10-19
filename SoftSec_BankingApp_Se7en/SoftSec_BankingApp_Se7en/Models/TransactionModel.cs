@@ -11,6 +11,12 @@ namespace SoftSec_BankingApp_Se7en.Models
     {
         public const int TRANSFER_TYPE_INTERNAL = 1;
         public const int TRANSFER_TYPE_EXTERNAL = 2;
+        public const int TRANSFER_TYPE_WITHDRAW = 3;
+        public const int TRANSFER_TYPE_DEPOSIT = 4;
+
+        public const int TRANSFER_STATUS_PROCESSING = 1;
+        public const int TRANSFER_STATUS_APPROVED = 2;
+        public const int TRANSFER_STATUS_REJECTED = 3;
 
         public static List<Tables.Transaction> GetTransactionsForAccount(string accountNumber)
         {
@@ -104,11 +110,12 @@ namespace SoftSec_BankingApp_Se7en.Models
                         }
                         Tables.Account toAccount = toAccounts.First();
 
-                        if ((fromAccount.balance - amount) >= 0)
+                        if ((fromAccount.balance - amount) < 0)
                         {
-                            fromAccount.balance = fromAccount.balance - amount;
-                            toAccount.balance = toAccount.balance + amount;
+                        // Log Error
                         }
+                        fromAccount.balance = fromAccount.balance - amount;
+                        toAccount.balance = toAccount.balance + amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = toAccountNumber;
@@ -116,6 +123,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_INTERNAL;
+                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
                         transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;
@@ -136,7 +144,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         }
 
         //Since its an outside bank account ! We need not worry about the balance of that account. We will not have the details of that account.
-        public static bool MakeExternalTransfer(string fromAccountNumber, string toAccountNumber, string toRoutingNumber, double amount, string description)
+        public static bool MakeExternalTransfer(string fromAccountNumber, string fromRoutingNumber, string toAccountNumber, string toRoutingNumber, double amount, string description)
         {
             try
             {
@@ -144,8 +152,6 @@ namespace SoftSec_BankingApp_Se7en.Models
                 {
                     using (var db = new SSBankDBContext())
                     {
-                        string fromRoutingNumber = "why do we need this?";
-
                         //List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0 AND routingNumber = @p1", fromAccountNumber, fromRoutingNumber).ToList();
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", fromAccountNumber).ToList();
                         if (fromAccounts.Count() < 1)
@@ -154,17 +160,117 @@ namespace SoftSec_BankingApp_Se7en.Models
                         }
                         Tables.Account fromAccount = fromAccounts.First();
 
-                        if ((fromAccount.balance - amount) >= 0)
+                        if ((fromAccount.balance - amount) < 0)
                         {
-                            fromAccount.balance = fromAccount.balance - amount;
+                            // Log Error
                         }
+                        fromAccount.balance = fromAccount.balance - amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = toAccountNumber;
+                        transaction.toRoutingNumber = toRoutingNumber;
                         transaction.fromAccountNumber = fromAccountNumber;
+                        transaction.fromRoutingNumber = fromRoutingNumber;
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_EXTERNAL;
+                        transaction.status = TRANSFER_STATUS_APPROVED;
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.processedTime = timestamp;
+                        transaction.creationTime = timestamp;
+                        db.Transactions.Add(transaction);
+
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool WithdrawFundsFromAccoount(string accountNumber, double amount)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
+                        if (fromAccounts.Count() < 1)
+                        {
+                            return false;
+                        }
+                        Tables.Account account = fromAccounts.First();
+
+                        if ((account.balance - amount) < 0)
+                        {
+                            //Log Error. OVERDRAFT!
+                        }
+                        account.balance = account.balance - amount;
+
+                        Tables.Transaction transaction = new Tables.Transaction();
+                        transaction.toAccountNumber = null;
+                        transaction.toRoutingNumber = null;
+                        transaction.fromAccountNumber = accountNumber;
+                        transaction.fromRoutingNumber = null;
+                        string description = "Withdraw: " + amount + " from account: " + accountNumber;
+                        transaction.description = description;
+                        transaction.amount = amount;
+                        transaction.type = TRANSFER_TYPE_WITHDRAW;
+                        transaction.status = TRANSFER_STATUS_APPROVED;
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.processedTime = timestamp;
+                        transaction.creationTime = timestamp;
+                        db.Transactions.Add(transaction);
+
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool DepositFundsToAccoount(string accountNumber, double amount)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
+                        if (fromAccounts.Count() < 1)
+                        {
+                            return false;
+                        }
+                        Tables.Account account = fromAccounts.First();
+
+                        account.balance = account.balance + amount;
+
+                        Tables.Transaction transaction = new Tables.Transaction();
+                        transaction.toAccountNumber = accountNumber;
+                        transaction.toRoutingNumber = null;
+                        transaction.fromAccountNumber = null;
+                        transaction.fromRoutingNumber = null;
+                        string description = "Deposit: " + amount + " to account: " + accountNumber;
+                        transaction.description = description;
+                        transaction.amount = amount;
+                        transaction.type = TRANSFER_TYPE_DEPOSIT;
+                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
                         transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;

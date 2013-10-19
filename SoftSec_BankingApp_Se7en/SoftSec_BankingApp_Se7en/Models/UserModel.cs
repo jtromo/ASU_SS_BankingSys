@@ -44,6 +44,13 @@ namespace SoftSec_BankingApp_Se7en.Models
 
 
                     db.Users.Add(newUser);
+                    //db.SaveChanges();
+
+                    //checkingAccount.Card = checkingCard;
+                    checkingCard.accountNumber = checkingAccountNumber;
+                    //db.Accounts.Add(checkingAccount);
+                    //db.Users.Add(newUser);
+                    db.Cards.Add(checkingCard);
                     db.SaveChanges();
 
                     return true;

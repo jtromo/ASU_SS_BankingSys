@@ -11,10 +11,10 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     {
         public Account()
         {
-            this.Cards = new HashSet<Card>();
+            //this.Cards = new HashSet<Card>();
             this.Transactions = new HashSet<Transaction>();
         }
-
+        [Key]
         public int id { get; set; }
         public string accountNumber { get; set; }
         public string routingNumber { get; set; }
@@ -27,9 +27,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public System.DateTimeOffset? modificationTime { get; set; }
         public System.DateTimeOffset? deletionTime { get; set; }
 
-        //public virtual AccountType AccountType { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<Card> Cards { get; set; }
+        public virtual Card Card { get; set; }
         private ICollection<Transaction> _transactions;
         [NotMapped]
         public virtual ICollection<Transaction> Transactions

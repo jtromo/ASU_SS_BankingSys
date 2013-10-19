@@ -6,7 +6,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="TabPanel1">
                 <HeaderTemplate>
                     Existing Customer Account Access

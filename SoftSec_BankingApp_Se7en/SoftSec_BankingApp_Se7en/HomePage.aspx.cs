@@ -92,8 +92,9 @@ namespace SSBank
             SecurityQuestion question1 = new SecurityQuestion { answer = "Speedy", questionId = 1 };
             SecurityQuestion question2 = new SecurityQuestion { answer = "John", questionId = 2 };
             SecurityQuestion question3 = new SecurityQuestion { answer = "School", questionId = 3 };
-            List<SecurityQuestion> questions = new List<SecurityQuestion> { question1, question2, question3 };
-            bool newUserCreated = userModel.CreateUser(newUser, "password", newAddress, questions);
+            List<SecurityQuestion> newQuestions = new List<SecurityQuestion> { question1, question2, question3 };
+            Card newCard = new Card { cardNumber = "12345678910", cvv=1234, expirationDate="09/15", firstName="John", middleInitial="T", lastName="Smith" };
+            bool newUserCreated = userModel.CreateUser(newUser, "password", "12345678910", "10987654321", "123456", newCard, newAddress, newQuestions);
             Response.Write(" New user was created: " + newUserCreated);
 
             //Sample Script
@@ -102,8 +103,9 @@ namespace SSBank
             SecurityQuestion newQuestion11 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
             SecurityQuestion newQuestion21 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion31 = new SecurityQuestion { answer = "School1", questionId = 3 };
-            List<SecurityQuestion> newQuestions = new List<SecurityQuestion> { newQuestion11, newQuestion21, newQuestion31 };
-            bool newUserCreated1 = userModel.CreateUser(newUser1, "udayKum1#", newAddress1, newQuestions);
+            List<SecurityQuestion> newQuestions1 = new List<SecurityQuestion> { newQuestion11, newQuestion21, newQuestion31 };
+            Card newCard1 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "uday", middleInitial = "k", lastName = "mac" };
+            bool newUserCreated1 = userModel.CreateUser(newUser, "udayKum1", "12345678910", "10987654321", "123456", newCard1, newAddress1, newQuestions1);
             Response.Write(" New user was created: " + newUserCreated1);
 
             Address newAddress2 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 87223, country = "US", isActive = true };
@@ -112,7 +114,8 @@ namespace SSBank
             SecurityQuestion newQuestion22 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion32 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions2 = new List<SecurityQuestion> { newQuestion12, newQuestion22, newQuestion32 };
-            bool newUserCreated2 = userModel.CreateUser(newUser2, "udayKum2#", newAddress2, newQuestions2);
+            Card newCard2 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum2", middleInitial = "k", lastName = "mac" };
+            bool newUserCreated2 = userModel.CreateUser(newUser, "udayKum2", "12345678910", "10987654321", "123456", newCard1, newAddress2, newQuestions2);
             Response.Write(" New user was created: " + newUserCreated2);
 
             Address newAddress3 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
@@ -121,7 +124,8 @@ namespace SSBank
             SecurityQuestion newQuestion23 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion33 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions3 = new List<SecurityQuestion> { newQuestion13, newQuestion23, newQuestion33 };
-            bool newUserCreated3 = userModel.CreateUser(newUser3, "udayKum3#", newAddress3, newQuestions3);
+            Card newCard3 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum3#", middleInitial = "k", lastName = "mac" };
+            bool newUserCreated3 = userModel.CreateUser(newUser, "udayKum3#", "12345678910", "10987654321", "123456", newCard1, newAddress3, newQuestions3);
             Response.Write(" New user was created: " + newUserCreated3);
 
             AccountType accType1 = new AccountType { title = "Savings Account" };

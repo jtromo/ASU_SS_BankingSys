@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
-        public bool CreateUser(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
+        public bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -24,6 +24,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                     newUser.Address = address;
                     newUser.SecurityQuestions = securityQuestions;
 
+                    Tables.Account checkingAccount = new Tables.Account { accountNumber=checkingAccountNumber, routingNumber=routingNumber, balance=0.0, isActive=true, accountTypeId=2, creationTime=timestamp };
+                    //checkingAccount.Cards = new List<Card> { checkingCard };
+
+                    Tables.Account savingsAccount = new Tables.Account { accountNumber = savingsAccountNumber, routingNumber = routingNumber, balance = 0.0, isActive = true, accountTypeId = 1, creationTime = timestamp };
+
+                    List<Tables.Account> accounts = new List<Tables.Account> { checkingAccount, savingsAccount };
+                    newUser.Accounts = accounts;
+
                     // Hash generation
                     if (newUser.SetHashandSaltForPassword(password))
                     {
@@ -38,22 +46,12 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.Users.Add(newUser);
                     db.SaveChanges();
 
-                    /*List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
-
-                    if (users.Count() < 1)
-                    {
-                        return false;
-                    }
-
-                    User user = users.First();
-                    Address address = user.Address;
-                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
-                    */
                     return true;
                 }
             }
             catch (Exception exp)
             {
+                Console.WriteLine("Exception occurred: " + exp.Message);
                 //Log exception here
                 return false;
             }

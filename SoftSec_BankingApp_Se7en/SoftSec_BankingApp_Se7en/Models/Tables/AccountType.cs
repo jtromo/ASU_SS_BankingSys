@@ -10,12 +10,12 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     {
         public AccountType()
         {
-            this.Accounts = new HashSet<Account>();
+            //this.Accounts = new HashSet<Account>();
         }
 
         public int id { get; set; }
         public string title { get; set; }
 
-        public virtual ICollection<Account> Accounts { get; set; }
+        //public virtual ICollection<Account> Accounts { get; set; }
     }
 }

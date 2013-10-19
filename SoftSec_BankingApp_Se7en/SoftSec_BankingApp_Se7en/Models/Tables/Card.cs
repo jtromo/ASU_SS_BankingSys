@@ -16,7 +16,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string firstName { get; set; }
         public string middleInitial { get; set; }
         public string lastName { get; set; }
-        public bool isCredit { get; set; }
 
         public virtual Account Account { get; set; }
     }

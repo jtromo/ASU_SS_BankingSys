@@ -27,7 +27,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public System.DateTimeOffset? modificationTime { get; set; }
         public System.DateTimeOffset? deletionTime { get; set; }
 
-        public virtual AccountType AccountType { get; set; }
+        //public virtual AccountType AccountType { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Card> Cards { get; set; }
         private ICollection<Transaction> _transactions;

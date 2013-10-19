@@ -17,7 +17,6 @@ namespace SoftSec_BankingApp_Se7en.Models
         public DbSet<AccountType> AccountTypes { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<CreditAccount> CreditAccounts { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Role> Roles { get; set; }

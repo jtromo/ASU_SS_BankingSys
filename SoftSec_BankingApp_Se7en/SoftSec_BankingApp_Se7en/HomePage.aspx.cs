@@ -46,7 +46,7 @@ namespace SSBank
             else
                 Response.Write(" Null. Please fix");
 
-            ICollection<Transaction> transaction = TransactionModel.GetTransactionsForAccount("12334123");
+            List<Transaction> transaction = TransactionModel.GetTransactionsForAccount("12334123");
             if(transaction !=null)
                 Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
             else
@@ -134,8 +134,6 @@ namespace SSBank
             bool newEmployeeCreated1 = UserModel.CreateEmployee(newEmployee, "udayKum3#", newAddress4, newQuestions4);
             Response.Write(" New employee was created: " + newEmployeeCreated1);
             
-
-            CardModel cardModel = new CardModel();
             User cardUser = CardModel.UserForCard("98999999");
             if(cardUser != null)
                 Response.Write(" Card found for user: " + cardUser.username + " Card: 98999999");
@@ -147,6 +145,12 @@ namespace SSBank
 
             bool regularAccessTrue = UserModel.CheckRegularAccess("employee1", 2);
             Response.Write(" Check access for employee1, should have access: " + regularAccessTrue);
+
+            List<Transaction> userTransactions = TransactionModel.GetTransactionsForUser("jtromo");
+            if (userTransactions != null)
+                Response.Write(" Number of transactions for jtromo: " + userTransactions.Count());
+            else
+                Response.Write(" Null. Please fix");
         }
     }
 }

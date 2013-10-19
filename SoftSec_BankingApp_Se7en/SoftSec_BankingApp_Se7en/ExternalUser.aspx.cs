@@ -636,8 +636,6 @@ namespace SoftSec_BankingApp_Se7en
                     Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
                     if (objUsr != null)
                     {
-                        
-                        AccountModel objAccMod = new AccountModel();
                         List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
                         foreach (Models.Tables.Account acc in lstAcc)
                         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Transactions;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
@@ -11,7 +12,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         public const int TRANSFER_TYPE_INTERNAL = 1;
         public const int TRANSFER_TYPE_EXTERNAL = 2;
 
-        public static ICollection<Tables.Transaction> GetTransactionsForAccount(string accountNumber)
+        public static List<Tables.Transaction> GetTransactionsForAccount(string accountNumber)
         {
             try
             {
@@ -25,11 +26,50 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     Tables.Account account = accounts.First();
-                    ICollection<Tables.Transaction> transactions = account.Transactions;
+                    List<Tables.Transaction> transactions = account.Transactions.ToList();
 
                     if (transactions == null)
                     {
                         return null;
+                    }
+
+                    return transactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static List<Tables.Transaction> GetTransactionsForUser(string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    User user = users.First();
+                    List<Tables.Account> accounts = user.Accounts.ToList();
+
+                    if (accounts.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    List<Tables.Transaction> transactions = new List<Tables.Transaction>();
+                    foreach (Tables.Account account in accounts)
+                    {
+                        List<Tables.Transaction> accountTransactions = account.Transactions.ToList();
+                        if(accountTransactions.Count() > 0)
+                            transactions.AddRange(accountTransactions);
                     }
 
                     return transactions;

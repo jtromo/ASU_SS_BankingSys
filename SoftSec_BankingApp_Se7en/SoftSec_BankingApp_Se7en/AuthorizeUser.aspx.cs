@@ -10,14 +10,13 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class AuthorizeUser : System.Web.UI.Page
     {
-        private static UserModel objum = new UserModel();
         private static Models.Tables.User objuser = new Models.Tables.User();
         protected void Page_Load(object sender, EventArgs e)
         {
             
             if (!IsPostBack)
-            {                
-                objuser = objum.GetUser(Session["userName"].ToString());
+            {
+                objuser = UserModel.GetUser(Session["userName"].ToString());
                 SiteKey.ImageUrl = "./Images/SiteKeys/SiteKey" + objuser.siteKeyVal + ".jpg";
                 lblErrorMessage_Authorize.Visible = false;
             }
@@ -37,8 +36,7 @@ namespace SoftSec_BankingApp_Se7en
                     //if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
                     //{
                         //Valid User
-                    LoginModel objLogin = new LoginModel();
-                    if (objLogin.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
+                    if (LoginModel.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
                     {
                         if (objuser.roleId == 2)
                         {

@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class PasswordModel
     {
-        public List<SecurityQuestion> GetSecurityQandA(string username)
+        public static List<SecurityQuestion> GetSecurityQandA(string username)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool ChangePwd(string username, string password)
+        public static bool ChangePwd(string username, string password)
         {
             try
             {
@@ -72,43 +72,4 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
     }
-    /*
-    public class SecurityQandA
-    {
-        public List<string> questions;
-        public List<string> answers;
-
-        ICollection<SecurityQuestion> securityQuestions;
-
-        public SecurityQandA(ICollection<SecurityQuestion> securityQuestions)
-        {
-            this.securityQuestions = securityQuestions;
-
-            questions = new List<string>();
-            answers = new List<string>();
-
-            foreach (SecurityQuestion securityQuestion in securityQuestions)
-            {
-                Question question = securityQuestion.Question;
-                string question1 = question.question1;
-                questions.Add(question1);
-
-                answers.Add(securityQuestion.answer);
-            }
-        }
-        
-        public SecurityQandA(List<string> questions, List<string> answers)
-        {
-            List<SecurityQuestion> securityQuest = new List<SecurityQuestion>();
-
-            if (questions.Count() == answers.Count())
-            {
-                foreach (string answer in answers)
-                {
-                    SecurityQuestion newQuest = new SecurityQuestion { answer = answer, isActive = true };
-                    securityQuest.Add(newQuest);
-                }
-            }
-        }
-    }*/
 }

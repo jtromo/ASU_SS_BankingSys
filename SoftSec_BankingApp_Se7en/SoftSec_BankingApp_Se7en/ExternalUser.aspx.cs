@@ -11,9 +11,7 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class ExternalUser : System.Web.UI.Page
     {
-        private static AccountModel objAccMod = new AccountModel();
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
-        private static UserModel objUser = new UserModel();
         private string merchant_savingsAccNum = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {            
@@ -22,7 +20,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (!IsPostBack)
                 {                    
                     lblTranStatus.Visible = false;
-                    if (objUser.GetUser(Session["userName"].ToString()).roleId == 3)
+                    if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
                     {
                         TabContainer1.Visible = true;
                         TabContainer1.Tabs[0].Visible = true;
@@ -40,7 +38,7 @@ namespace SoftSec_BankingApp_Se7en
                     }
                     TabContainer1.ActiveTabIndex = 0;
                     //Fetch all the accounts of the user.
-                    ICollection<Models.Tables.Account> objCol = objAccMod.GetAccountsForUser(Session["userName"].ToString());
+                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
                     if (objCol != null)
                     {
                         List<Models.Tables.Account> lstAcc = objCol.ToList();
@@ -96,7 +94,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = objAccMod.GetCardDetails(tb_usercardno.Text.ToString());
+                    objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString());
                     if (objCard != null)
                     {
                         if (objCard.accountNumber.Equals(dd_acctypeoutside.SelectedValue.ToString()))
@@ -109,7 +107,7 @@ namespace SoftSec_BankingApp_Se7en
                                 {
                                     string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
                                                                            " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                    bool success = objAccMod.MakeExternalTransfer(objCard.accountNumber, tb_toAccNum_OutsideBank.Text.ToString(),
+                                    bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, tb_toAccNum_OutsideBank.Text.ToString(),
                                                                 tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
                                     if (success)
                                     {
@@ -169,7 +167,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = objAccMod.GetCardDetails(tb_card.Text.ToString());
+                    objCard = AccountModel.GetCardDetails(tb_card.Text.ToString());
                     if (objCard != null)
                     {
                         if (objCard.accountNumber.Equals(dd_acctype.SelectedValue.ToString()))
@@ -181,12 +179,12 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                                 {
-                                    LastNameZipcode objLastZip = objAccMod.GetLastNameAndZipcode(tb_recepient.Text.ToString());
+                                    LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
                                     if (objLastZip.lastName.Equals(tb_lastname.Text.ToString()) && objLastZip.zipcode.Equals(tb_zip.Text.ToString()))
                                     {
                                         string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
                                                                            " Amount : " + tb_amount.Text.ToString();
-                                        bool success = objAccMod.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
+                                        bool success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
                                                                    Convert.ToDouble(tb_amount.Text.ToString()), desc);
                                         if (success)
                                         {
@@ -247,7 +245,7 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
                     string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
-                    bool success = objAccMod.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                    bool success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
                                 "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
                                     "To : " + dd_acctypebetween_To.Text.ToString() +
                                         "- Amount : " + tb_amountbetween.Text.ToString());
@@ -284,7 +282,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    bool success = objUser.updateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
+                    bool success = UserModel.updateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
                     if (success)
                     {
                         lblChaneProfile.Text = "Update Successful";
@@ -319,7 +317,7 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     //Similar to inside bank transfers
                     
-                    Models.Tables.Card objCard = objAccMod.GetCardDetails(tb_cardnum.Text.ToString());
+                    Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
                     if (objCard != null)
                     {
                         string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
@@ -332,7 +330,7 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = objCard.accountNumber;
-                                bool success = objAccMod.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
+                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
                                 if (success)
                                 {
@@ -617,7 +615,7 @@ namespace SoftSec_BankingApp_Se7en
             {                
                 if (TabContainer1.ActiveTabIndex == 2)
                 {
-                    Models.Tables.User objUsr = objUser.GetUser(Session["userName"].ToString());
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
                     if (objUsr != null)
                     {
                         tb_usernameview.Text = Session["userName"].ToString();
@@ -635,12 +633,10 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else if (TabContainer1.ActiveTabIndex == 3)
                 {
-                    Models.Tables.User objUsr = objUser.GetUser(Session["userName"].ToString());
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
                     if (objUsr != null)
                     {
-                        
-                        AccountModel objAccMod = new AccountModel();
-                        List<Models.Tables.Account> lstAcc = objAccMod.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                        List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
                         foreach (Models.Tables.Account acc in lstAcc)
                         {
                             if (acc.accountTypeId == 3)
@@ -689,19 +685,19 @@ namespace SoftSec_BankingApp_Se7en
                                         tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString());
                 if (serverSideValidation)
                 {
-                    Models.Tables.Account objAcc = objAccMod.GetAccount(tb_echeckaccno.Text.ToString());
+                    Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
                     if (objAcc != null)
                     {
                         if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
                         {
-                            Models.Tables.User obUser = objUser.GetUser(objAcc.primaryUserId);
+                            Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
                             string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
                             string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
                             if (strFullName.Equals(checkUserNameInput))
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = tb_echeckaccno.Text.ToString();
-                                bool success = objAccMod.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
+                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
                                 if (success)
                                 {

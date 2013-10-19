@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
-        public bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -44,6 +44,9 @@ namespace SoftSec_BankingApp_Se7en.Models
 
 
                     db.Users.Add(newUser);
+
+                    checkingCard.accountNumber = checkingAccountNumber;
+                    db.Cards.Add(checkingCard);
                     db.SaveChanges();
 
                     return true;
@@ -57,7 +60,49 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public User GetUser(string username)
+        public static bool CreateEmployee(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    if (newUser == null)
+                        return false;
+                    if (address == null)
+                        return false;
+
+                    DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                    newUser.creationTime = timestamp;
+                    newUser.Address = address;
+                    newUser.SecurityQuestions = securityQuestions;
+
+                    // Hash generation
+                    if (newUser.SetHashandSaltForPassword(password))
+                    {
+                        //Response.Write("Valid");
+                    }
+                    else
+                    {
+                        //Response.Write("Not Valid");
+                    }
+
+
+                    db.Users.Add(newUser);
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Exception occurred: " + exp.Message);
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static User GetUser(string username)
         {
             try
             {
@@ -89,7 +134,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         /// </summary>
         /// <param name="iuserId">Row ID</param>
         /// <returns>User Object</returns>
-        public User GetUser(int iuserId)
+        public static User GetUser(int iuserId)
         {
             try
             {
@@ -116,7 +161,78 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
+        public static bool CheckRegularAccess(string username, int departmentId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    // id 1 is invalid
+                    if (departmentId < 2)
+                        return false;
+
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+
+                    // Role 1 is invalid. 2/3 are external users. Must be at least 4 to have a department
+                    if (user.roleId < 4)
+                        return false;
+
+                    if (user.departmentId == departmentId)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool CheckSuperiorAccess(string username, int departmentId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    // id 1 is invalid
+                    if (departmentId < 2)
+                        return false;
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+
+                    // Must be role 5 or higher to have superior access
+                    if (user.roleId < 5)
+                        return false;
+
+                    if (user.departmentId == departmentId)
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try
             {

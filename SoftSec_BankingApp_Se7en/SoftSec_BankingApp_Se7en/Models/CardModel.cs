@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class CardModel
     {
-        public User UserForCard(string cardNumber)
+        public static User UserForCard(string cardNumber)
         {
             try
             {

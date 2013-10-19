@@ -37,6 +37,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public int id { get; set; }
         public int? roleId { get; set; }
         public int? addressId { get; set; }
+        public int? departmentId { get; set; }
         public string firstName { get; set; }
         public string middleName { get; set; }
         public string lastName { get; set; }
@@ -61,7 +62,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public virtual ICollection<Account> Accounts { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<SecurityQuestion> SecurityQuestions { get; set; }
-        public virtual UserDepartment UserDepartment { get; set; }
+        public virtual Department department { get; set; }
         
         public virtual Address Address { get; set; }
     }

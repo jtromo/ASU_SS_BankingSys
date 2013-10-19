@@ -39,9 +39,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    LoginModel objlm = new LoginModel();
-                    
-                    if (objlm.UserExists(TB_UserName.Text.ToString(), Convert.ToInt32(TB_ZipCode.Text.ToString())))
+                    if (LoginModel.UserExists(TB_UserName.Text.ToString(), Convert.ToInt32(TB_ZipCode.Text.ToString())))
                     {
                         Session["userName"] = TB_UserName.Text.ToString();
                         Response.Redirect("AuthorizeUser.aspx",false);

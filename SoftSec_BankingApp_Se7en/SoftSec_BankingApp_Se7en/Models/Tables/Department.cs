@@ -9,13 +9,9 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     {
         public Department()
         {
-            this.UserDepartments = new HashSet<UserDepartment>();
         }
 
         public int id { get; set; }
         public string title { get; set; }
-        public bool isActive { get; set; }
-
-        public virtual ICollection<UserDepartment> UserDepartments { get; set; }
     }
 }

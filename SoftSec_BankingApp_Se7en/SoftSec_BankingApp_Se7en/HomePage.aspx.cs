@@ -61,7 +61,7 @@ namespace SSBank
             bool testTransferInternal = TransactionModel.MakeInternalTransfer("12345", "12334123", 0.11, "test internal transfer");
             Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
 
-            bool testTransferExternal = TransactionModel.MakeExternalTransfer("12345", "12334123", "1231231", 0.11, "test transfer");
+            bool testTransferExternal = TransactionModel.MakeExternalTransfer("12345", "fromRoute", "12334123", "1231231", 0.11, "test transfer");
             Response.Write(" Creating test transfer External between 12345 and 12334123: " + testTransferExternal);
 
             Account foundAccount = AccountModel.GetAccount("12334123");
@@ -151,6 +151,12 @@ namespace SSBank
                 Response.Write(" Number of transactions for jtromo: " + userTransactions.Count());
             else
                 Response.Write(" Null. Please fix");
+
+            bool userRemoved = UserModel.RemoveUser("jtromo1");
+            if (userRemoved)
+                Response.Write(" User jtromo1 successfully removed");
+            else
+                Response.Write(" User jtromo1 failed to be removed");
         }
     }
 }

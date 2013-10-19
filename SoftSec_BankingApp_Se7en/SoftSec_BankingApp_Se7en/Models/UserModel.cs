@@ -161,6 +161,35 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool RemoveUser(string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+                    db.Users.Remove(user);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
         public static bool CheckRegularAccess(string username, int departmentId)
         {
             try

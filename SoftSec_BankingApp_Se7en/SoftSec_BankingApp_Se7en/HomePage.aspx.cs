@@ -147,6 +147,11 @@ namespace SSBank
             else
                 Response.Write(" Null. Please fix");
 
+            bool regularAccessFalse = userModel.CheckRegularAccess("jtromo", 2);
+            Response.Write(" Check access for jtromo, should not have access: " + regularAccessFalse);
+
+            bool regularAccessTrue = userModel.CheckRegularAccess("employee1", 2);
+            Response.Write(" Check access for employee1, should have access: " + regularAccessTrue);
         }
     }
 }

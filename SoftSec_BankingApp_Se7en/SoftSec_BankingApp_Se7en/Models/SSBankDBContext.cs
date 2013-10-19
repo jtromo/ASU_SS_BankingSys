@@ -24,6 +24,5 @@ namespace SoftSec_BankingApp_Se7en.Models
         public DbSet<SystemLog> SystemLogs { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<UserDepartment> UserDepartments { get; set; }
     }
 }

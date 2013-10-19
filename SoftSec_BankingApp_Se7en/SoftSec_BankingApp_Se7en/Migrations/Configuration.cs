@@ -50,6 +50,19 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                 );
             context.SaveChanges();
             //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
+
+            // Adds initial Department types
+            context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes ON");
+            context.Departments.AddOrUpdate(
+                    new Department { id = 1, title = "Unknown" },
+                    new Department { id = 2, title = "Sales" },
+                    new Department { id = 3, title = "ITTechSupport" },
+                    new Department { id = 4, title = "Transactions" },
+                    new Department { id = 5, title = "HumanResources" },
+                    new Department { id = 6, title = "CompanyManagement" }
+                );
+            context.SaveChanges();
+            //context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.AccountTypes OFF");
         }
     }
 }

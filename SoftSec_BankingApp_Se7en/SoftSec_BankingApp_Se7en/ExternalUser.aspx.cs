@@ -694,7 +694,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
                         {
-                            Models.Tables.User obUser = objUser.GetUser(objAcc.primaryUserId);
+                            Models.Tables.User obUser = objUser.GetUser(objAcc.userId);
                             string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
                             string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
                             if (strFullName.Equals(checkUserNameInput))

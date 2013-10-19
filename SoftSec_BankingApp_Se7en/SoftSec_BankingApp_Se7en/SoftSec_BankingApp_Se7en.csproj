@@ -454,7 +454,6 @@
     <Compile Include="Models\Tables\SystemLog.cs" />
     <Compile Include="Models\Tables\Transaction.cs" />
     <Compile Include="Models\Tables\User.cs" />
-    <Compile Include="Models\Tables\UserDepartment.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="OTPPrelim.aspx.cs">
       <DependentUpon>OTPPrelim.aspx</DependentUpon>

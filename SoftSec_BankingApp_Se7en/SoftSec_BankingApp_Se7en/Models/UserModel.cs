@@ -44,13 +44,51 @@ namespace SoftSec_BankingApp_Se7en.Models
 
 
                     db.Users.Add(newUser);
-                    //db.SaveChanges();
 
-                    //checkingAccount.Card = checkingCard;
                     checkingCard.accountNumber = checkingAccountNumber;
-                    //db.Accounts.Add(checkingAccount);
-                    //db.Users.Add(newUser);
                     db.Cards.Add(checkingCard);
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                Console.WriteLine("Exception occurred: " + exp.Message);
+                //Log exception here
+                return false;
+            }
+        }
+
+        public bool CreateEmployee(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    if (newUser == null)
+                        return false;
+                    if (address == null)
+                        return false;
+
+                    DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                    newUser.creationTime = timestamp;
+                    newUser.Address = address;
+                    newUser.SecurityQuestions = securityQuestions;
+
+                    // Hash generation
+                    if (newUser.SetHashandSaltForPassword(password))
+                    {
+                        //Response.Write("Valid");
+                    }
+                    else
+                    {
+                        //Response.Write("Not Valid");
+                    }
+
+
+                    db.Users.Add(newUser);
+
                     db.SaveChanges();
 
                     return true;

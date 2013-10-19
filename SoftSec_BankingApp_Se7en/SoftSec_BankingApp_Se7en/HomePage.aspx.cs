@@ -44,17 +44,27 @@ namespace SSBank
                     Response.Write(" Answer: " + answer);
                 }
             }
+            else
+                Response.Write(" Null. Please fix");
+
             AccountModel accountModel = new AccountModel();
             ICollection<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = accountModel.GetAccountsForUser("jtromo");
-            Response.Write(" Number of accounts for jtromo: " + accounts.Count());
+            if(accounts != null)
+                Response.Write(" Number of accounts for jtromo: " + accounts.Count());
+            else
+                Response.Write(" Null. Please fix");
 
             ICollection<Transaction> transaction = accountModel.GetTransactionsForAccount("12334123");
             if(transaction !=null)
                 Response.Write(" Number of transactions for account 12334123: " + transaction.Count());
+            else
+                Response.Write(" Null. Please fix");
 
             LastNameZipcode lastNameZip = accountModel.GetLastNameAndZipcode("12334123");
             if(lastNameZip != null)
                 Response.Write(" Last name and zip for account 12334123: " + lastNameZip.lastName + " " + lastNameZip.zipcode);
+            else
+                Response.Write(" Null. Please fix");
 
             bool testTransferInternal = accountModel.MakeInternalTransfer("12345", "12334123", 0.11, "test internal transfer");
             Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
@@ -65,15 +75,21 @@ namespace SSBank
             Account foundAccount = accountModel.GetAccount("12334123");
             if(foundAccount != null)
                 Response.Write(" Retrieving account: 12334123 " + " Account balance: " + foundAccount.balance);
+            else
+                Response.Write(" Null. Please fix");
 
             UserModel userModel = new UserModel();
             User user = userModel.GetUser("jtromo");
             if(user !=null)
                 Response.Write(" Retrieving user jtromo: " + user.username);
+            else
+                Response.Write(" Null. Please fix");
 
             Card card = accountModel.GetCardDetails(Convert.ToString(98999999));
             if(card != null)
                 Response.Write(" Retrieving card for 98999999: " + card.firstName + " " + card.lastName + " CVV " + card.cvv + " experation: " + card.expirationDate);
+            else
+                Response.Write(" Null. Please fix");
 
             Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
             User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, isActive = true, UserDepartment = null, Address = newAddress };
@@ -111,6 +127,13 @@ namespace SSBank
             AccountType accType1 = new AccountType { title = "Savings Account" };
             AccountType accType2 = new AccountType { title = "Checkings Account" };
             AccountType accType3 = new AccountType { title = "Credit Account" };
+
+            CardModel cardModel = new CardModel();
+            User cardUser = cardModel.UserForCard("98999999");
+            if(cardUser != null)
+                Response.Write(" Card found for user: " + cardUser.username + " Card: 98999999");
+            else
+                Response.Write(" Null. Please fix");
 
         }
     }

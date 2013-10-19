@@ -46,6 +46,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string hash { get; set; }
         public string phone { get; set; }
         public string organization { get; set; }
+        public string socialSecurityNumber { get; set; }
+        public string dateOfBirth { get; set; }
         public int siteKeyVal { get; set; }
         [MaxLength(30)]
         public string siteKeyString { get; set; }

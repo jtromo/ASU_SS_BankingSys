@@ -15,28 +15,19 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                         accountNumber = c.String(),
                         routingNumber = c.String(),
                         accountTypeId = c.Int(nullable: false),
-                        primaryUserId = c.Int(nullable: false),
                         balance = c.Double(nullable: false),
                         isActive = c.Boolean(nullable: false),
                         creationTime = c.DateTimeOffset(nullable: false),
                         modificationTime = c.DateTimeOffset(),
                         deletionTime = c.DateTimeOffset(),
-                        User_id = c.Int(),
+                        userId = c.Int(nullable: false),
+                        cardId = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.AccountTypes", t => t.accountTypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.User_id)
-                .Index(t => t.accountTypeId)
-                .Index(t => t.User_id);
-            
-            CreateTable(
-                "dbo.AccountTypes",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        title = c.String(),
-                    })
-                .PrimaryKey(t => t.id);
+                .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: true)
+                .ForeignKey("dbo.Cards", t => t.cardId)
+                .Index(t => t.userId)
+                .Index(t => t.cardId);
             
             CreateTable(
                 "dbo.Users",
@@ -45,6 +36,7 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                         id = c.Int(nullable: false, identity: true),
                         roleId = c.Int(),
                         addressId = c.Int(nullable: false),
+                        departmentId = c.Int(),
                         firstName = c.String(),
                         middleName = c.String(),
                         lastName = c.String(),
@@ -63,14 +55,13 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                         modificationTime = c.DateTimeOffset(),
                         deletionTime = c.DateTimeOffset(),
                         lockoutTime = c.DateTimeOffset(),
-                        UserDepartment_id = c.Int(),
                     })
                 .PrimaryKey(t => t.id)
                 .ForeignKey("dbo.Roles", t => t.roleId)
-                .ForeignKey("dbo.UserDepartments", t => t.UserDepartment_id)
+                .ForeignKey("dbo.Departments", t => t.departmentId)
                 .ForeignKey("dbo.Addresses", t => t.addressId, cascadeDelete: true)
                 .Index(t => t.roleId)
-                .Index(t => t.UserDepartment_id)
+                .Index(t => t.departmentId)
                 .Index(t => t.addressId);
             
             CreateTable(
@@ -90,38 +81,10 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                         userId = c.Int(nullable: false),
                         questionId = c.Int(nullable: false),
                         answer = c.String(),
-                        isActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Questions", t => t.questionId, cascadeDelete: true)
                 .ForeignKey("dbo.Users", t => t.userId, cascadeDelete: true)
-                .Index(t => t.questionId)
                 .Index(t => t.userId);
-            
-            CreateTable(
-                "dbo.Questions",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        question1 = c.String(),
-                    })
-                .PrimaryKey(t => t.id);
-            
-            CreateTable(
-                "dbo.UserDepartments",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        userId = c.Int(nullable: false),
-                        departmentId = c.Int(nullable: false),
-                        isActive = c.Int(nullable: false),
-                        creationTime = c.DateTimeOffset(nullable: false),
-                        modificationTime = c.DateTimeOffset(),
-                        deletionTime = c.DateTimeOffset(),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Departments", t => t.departmentId, cascadeDelete: true)
-                .Index(t => t.departmentId);
             
             CreateTable(
                 "dbo.Departments",
@@ -129,7 +92,6 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         title = c.String(),
-                        isActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
             
@@ -162,73 +124,26 @@ namespace SoftSec_BankingApp_Se7en.Migrations
                         firstName = c.String(),
                         middleInitial = c.String(),
                         lastName = c.String(),
-                        isCredit = c.Boolean(nullable: false),
-                        Account_id = c.Int(),
                     })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Accounts", t => t.Account_id)
-                .Index(t => t.Account_id);
+                .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.CheckingAccounts",
+                "dbo.AccountTypes",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
-                        accountNumber = c.String(),
-                        routingNumber = c.String(),
-                        interestRate = c.Double(nullable: false),
-                        Account_id = c.Int(),
+                        title = c.String(),
                     })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Accounts", t => t.Account_id)
-                .Index(t => t.Account_id);
+                .PrimaryKey(t => t.id);
             
             CreateTable(
-                "dbo.CreditAccounts",
+                "dbo.Questions",
                 c => new
                     {
                         id = c.Int(nullable: false, identity: true),
-                        accountNumber = c.String(),
-                        creditLimit = c.Double(nullable: false),
-                        paymentDueDay = c.Int(nullable: false),
-                        interestRate = c.Double(nullable: false),
-                        Account_id = c.Int(),
+                        question1 = c.String(),
                     })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Accounts", t => t.Account_id)
-                .Index(t => t.Account_id);
-            
-            CreateTable(
-                "dbo.SavingsAccounts",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        accountNumber = c.String(),
-                        routingNumber = c.String(),
-                        minimumBalance = c.Double(nullable: false),
-                        withdrawlNumLimit = c.Int(nullable: false),
-                        interestRate = c.Double(nullable: false),
-                        Account_id = c.Int(),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Accounts", t => t.Account_id)
-                .Index(t => t.Account_id);
-            
-            CreateTable(
-                "dbo.Statements",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        accountNumber = c.String(),
-                        statementStart = c.DateTimeOffset(nullable: false),
-                        statementEnd = c.DateTimeOffset(nullable: false),
-                        endingBalance = c.Double(nullable: false),
-                        creationDate = c.DateTimeOffset(nullable: false),
-                        Account_id = c.Int(),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Accounts", t => t.Account_id)
-                .Index(t => t.Account_id);
+                .PrimaryKey(t => t.id);
             
             CreateTable(
                 "dbo.SystemLogs",
@@ -267,47 +182,28 @@ namespace SoftSec_BankingApp_Se7en.Migrations
         
         public override void Down()
         {
-            DropIndex("dbo.Statements", new[] { "Account_id" });
-            DropIndex("dbo.SavingsAccounts", new[] { "Account_id" });
-            DropIndex("dbo.CreditAccounts", new[] { "Account_id" });
-            DropIndex("dbo.CheckingAccounts", new[] { "Account_id" });
-            DropIndex("dbo.Cards", new[] { "Account_id" });
-            DropIndex("dbo.UserDepartments", new[] { "departmentId" });
             DropIndex("dbo.SecurityQuestions", new[] { "userId" });
-            DropIndex("dbo.SecurityQuestions", new[] { "questionId" });
             DropIndex("dbo.Users", new[] { "addressId" });
-            DropIndex("dbo.Users", new[] { "UserDepartment_id" });
+            DropIndex("dbo.Users", new[] { "departmentId" });
             DropIndex("dbo.Users", new[] { "roleId" });
-            DropIndex("dbo.Accounts", new[] { "User_id" });
-            DropIndex("dbo.Accounts", new[] { "accountTypeId" });
-            DropForeignKey("dbo.Statements", "Account_id", "dbo.Accounts");
-            DropForeignKey("dbo.SavingsAccounts", "Account_id", "dbo.Accounts");
-            DropForeignKey("dbo.CreditAccounts", "Account_id", "dbo.Accounts");
-            DropForeignKey("dbo.CheckingAccounts", "Account_id", "dbo.Accounts");
-            DropForeignKey("dbo.Cards", "Account_id", "dbo.Accounts");
-            DropForeignKey("dbo.UserDepartments", "departmentId", "dbo.Departments");
+            DropIndex("dbo.Accounts", new[] { "cardId" });
+            DropIndex("dbo.Accounts", new[] { "userId" });
             DropForeignKey("dbo.SecurityQuestions", "userId", "dbo.Users");
-            DropForeignKey("dbo.SecurityQuestions", "questionId", "dbo.Questions");
             DropForeignKey("dbo.Users", "addressId", "dbo.Addresses");
-            DropForeignKey("dbo.Users", "UserDepartment_id", "dbo.UserDepartments");
+            DropForeignKey("dbo.Users", "departmentId", "dbo.Departments");
             DropForeignKey("dbo.Users", "roleId", "dbo.Roles");
-            DropForeignKey("dbo.Accounts", "User_id", "dbo.Users");
-            DropForeignKey("dbo.Accounts", "accountTypeId", "dbo.AccountTypes");
+            DropForeignKey("dbo.Accounts", "cardId", "dbo.Cards");
+            DropForeignKey("dbo.Accounts", "userId", "dbo.Users");
             DropTable("dbo.Transactions");
             DropTable("dbo.SystemLogs");
-            DropTable("dbo.Statements");
-            DropTable("dbo.SavingsAccounts");
-            DropTable("dbo.CreditAccounts");
-            DropTable("dbo.CheckingAccounts");
+            DropTable("dbo.Questions");
+            DropTable("dbo.AccountTypes");
             DropTable("dbo.Cards");
             DropTable("dbo.Addresses");
             DropTable("dbo.Departments");
-            DropTable("dbo.UserDepartments");
-            DropTable("dbo.Questions");
             DropTable("dbo.SecurityQuestions");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
-            DropTable("dbo.AccountTypes");
             DropTable("dbo.Accounts");
         }
     }

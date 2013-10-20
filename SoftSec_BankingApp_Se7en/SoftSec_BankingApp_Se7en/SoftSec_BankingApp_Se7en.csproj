@@ -431,10 +431,6 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201310190157476_InitialMigration.cs" />
-    <Compile Include="Migrations\201310190157476_InitialMigration.Designer.cs">
-      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
@@ -485,11 +481,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310190157476_InitialMigration.resx">
-      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

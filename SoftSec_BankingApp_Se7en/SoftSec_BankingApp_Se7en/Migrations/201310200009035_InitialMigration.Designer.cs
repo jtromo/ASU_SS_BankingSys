@@ -11,7 +11,7 @@ namespace SoftSec_BankingApp_Se7en.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201310190157476_InitialMigration"; }
+            get { return "201310200009035_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

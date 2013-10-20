@@ -34,6 +34,31 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static Card GetCardDetails(string cardNumber, string accNumber)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Card> cards = db.Cards.SqlQuery("SELECT * FROM dbo.Cards WHERE cardNumber = @p0 AND accountNumber = @p1", cardNumber, accNumber).ToList();
+
+                    if (cards.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    Card card = cards.First();
+
+                    return card;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
         public static Card GetCardDetails(string cardNumber)
         {
             try

@@ -94,39 +94,32 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString());
+                    objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString(), dd_acctypeoutside.SelectedValue.ToString());
                     if (objCard != null)
                     {
-                        if (objCard.accountNumber.Equals(dd_acctypeoutside.SelectedValue.ToString()))
+                        string sCardExp = string.Empty;
+                        sCardExp = dd_monthoutside.SelectedValue.ToString() + dd_yearoutside.SelectedValue.ToString();
+                        if (objCard.expirationDate.Equals(sCardExp))
                         {
-                            string sCardExp = string.Empty;
-                            sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
-                            if (objCard.expirationDate.Equals(sCardExp))
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
                             {
-                                if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
+                                string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
+                                                                       " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
+                                bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, "FromRoute", tb_toAccNum_OutsideBank.Text.ToString(),
+                                                            tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                if (success)
                                 {
-                                    string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
-                                                                           " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                    bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, "FromRoute", tb_toAccNum_OutsideBank.Text.ToString(),
-                                                                tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
-                                    if (success)
-                                    {
-                                        lblTranStatus.Text = "Transaction Successful";
-                                        tb_toRoutingNumber.Text = "";
-                                        tb_toAccNum_OutsideBank.Text = "";
-                                        lblTranStatus.Visible = true;
-                                    }
-                                    else
-                                    {
-                                        lblTranStatus.Text = "Transaction Unsuccessful";
-                                        tb_toRoutingNumber.Text = "";
-                                        tb_toAccNum_OutsideBank.Text = "";
-                                        lblTranStatus.Visible = true;
-                                    }
+                                    lblTranStatus.Text = "Transaction Successful";
+                                    tb_toRoutingNumber.Text = "";
+                                    tb_toAccNum_OutsideBank.Text = "";
+                                    lblTranStatus.Visible = true;
                                 }
                                 else
                                 {
-                                    //Invalid Card Details
+                                    lblTranStatus.Text = "Transaction Unsuccessful";
+                                    tb_toRoutingNumber.Text = "";
+                                    tb_toAccNum_OutsideBank.Text = "";
+                                    lblTranStatus.Visible = true;
                                 }
                             }
                             else
@@ -137,7 +130,7 @@ namespace SoftSec_BankingApp_Se7en
                         else
                         {
                             //Invalid Card Details
-                        }
+                        }                        
                     }
                     else
                     {
@@ -167,20 +160,20 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = AccountModel.GetCardDetails(tb_card.Text.ToString());
+                    objCard = AccountModel.GetCardDetails(tb_card.Text.ToString(), dd_acctype.SelectedValue.ToString());
                     if (objCard != null)
                     {
-                        if (objCard.accountNumber.Equals(dd_acctype.SelectedValue.ToString()))
+                        string sCardExp = string.Empty;
+                        sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
+
+                        if (objCard.expirationDate.Equals(sCardExp))
                         {
-                            string sCardExp = string.Empty;
-                            sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
-                            
-                            if (objCard.expirationDate.Equals(sCardExp))
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                             {
-                                if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
+                                LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
+                                if (objLastZip != null)
                                 {
-                                    LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
-                                    if (objLastZip.lastName.Equals(tb_lastname.Text.ToString()) && objLastZip.zipcode.Equals(tb_zip.Text.ToString()))
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname.Text.ToLower()) && objLastZip.zipcode.Equals(tb_zip.Text.ToString()))
                                     {
                                         string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
                                                                            " Amount : " + tb_amount.Text.ToString();
@@ -200,11 +193,11 @@ namespace SoftSec_BankingApp_Se7en
                                             tb_toAccNum_OutsideBank.Text = "";
                                             lblTransStatus_IB.Visible = true;
                                         }
-                                    }                                    
+                                    }
                                 }
                                 else
                                 {
-                                    //Invalid Card Details
+                                    //Invalid Zip and Last name combination
                                 }
                             }
                             else
@@ -316,7 +309,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     //Similar to inside bank transfers
-                    
+
                     Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
                     if (objCard != null)
                     {

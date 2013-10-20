@@ -439,6 +439,7 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\DebugModel.cs" />
+    <Compile Include="Models\DepartmentTransactionModel.cs" />
     <Compile Include="Models\HashController.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
@@ -447,6 +448,7 @@
     <Compile Include="Models\Tables\Address.cs" />
     <Compile Include="Models\Tables\Card.cs" />
     <Compile Include="Models\Tables\Department.cs" />
+    <Compile Include="Models\Tables\DepartmentTransaction.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />

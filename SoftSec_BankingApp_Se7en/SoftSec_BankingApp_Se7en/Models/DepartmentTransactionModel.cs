@@ -1,0 +1,75 @@
+﻿using SoftSec_BankingApp_Se7en.Models.Tables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace SoftSec_BankingApp_Se7en.Models
+{
+
+    public class DepartmentTransactionModel
+    {
+        public const int DEPARTMENT_TRANSFER_TYPE_ROLE_EXCALATION = 1;
+        public const int DEPARTMENT_TRANSFER_TYPE_DEPT_CHANGE = 2;
+
+        public const int DEPARTMENT_TRANSFER_STATUS_PROCESSING = 1;
+        public const int DEPARTMENT_TRANSFER_STATUS_APPROVED = 2;
+        public const int DEPARTMENT_TRANSFER_STATUS_REJECTED = 3;
+
+        public static DepartmentTransaction GetDepartmentTransaction(int deptTransactionId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE id = @p0", deptTransactionId).ToList();
+
+                    if (deptTransactions.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    DepartmentTransaction deptTransaction = deptTransactions.First();
+
+                    if (deptTransaction == null)
+                    {
+                        return null;
+                    }
+
+                    return deptTransaction;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static List<DepartmentTransaction> GetTransactionsForDepartment(int deptId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Department> departments = db.Departments.SqlQuery("SELECT * FROM dbo.Departments WHERE id = @p0", deptId).ToList();
+
+                    if (departments.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    Department department = departments.First();
+                    List<DepartmentTransaction> departmentTransactions = department.DepartmentTransactions.ToList();
+
+                    return departmentTransactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+    }
+}

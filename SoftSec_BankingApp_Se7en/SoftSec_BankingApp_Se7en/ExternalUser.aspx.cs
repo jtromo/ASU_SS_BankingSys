@@ -172,7 +172,7 @@ namespace SoftSec_BankingApp_Se7en
                                 LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
                                 if (objLastZip != null)
                                 {
-                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname.Text.ToLower()) && objLastZip.zipcode.Equals(tb_zip.Text.ToString()))
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname.Text.ToLower()) && objLastZip.zipcode.ToString().Equals(tb_zip.Text.ToString()))
                                     {
                                         string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
                                                                            " Amount : " + tb_amount.Text.ToString();

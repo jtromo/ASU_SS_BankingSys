@@ -112,7 +112,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                         if ((fromAccount.balance - amount) < 0)
                         {
-                        // Log Error
+                            return false;
                         }
                         fromAccount.balance = fromAccount.balance - amount;
                         toAccount.balance = toAccount.balance + amount;
@@ -162,7 +162,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                         if ((fromAccount.balance - amount) < 0)
                         {
-                            // Log Error
+                            return false;
                         }
                         fromAccount.balance = fromAccount.balance - amount;
 

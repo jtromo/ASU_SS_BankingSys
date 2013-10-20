@@ -19,6 +19,13 @@ namespace SoftSec_BankingApp_Se7en
                 if (!IsPostBack)
                 {
                     TabContainer2.Visible = false;
+                    TabContainer1.ActiveTabIndex = 0;
+                    TabContainer2.ActiveTabIndex = 0;
+                    TabContainer3.ActiveTabIndex = 0;
+                    TabContainer4.ActiveTabIndex = 0;
+                    TabContainer5.ActiveTabIndex = 0;
+                    TabContainer6.ActiveTabIndex = 0;
+                    TabContainer7.ActiveTabIndex = 0;
                     img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
                     img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
                     img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
@@ -319,7 +326,8 @@ namespace SoftSec_BankingApp_Se7en
                                 LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
                                 if (objLastZip != null)
                                 {
-                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) && objLastZip.zipcode.Equals(tb_zip_IU_Inside.Text.ToString()))
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
+                                            && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
                                         string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
                                                                            " Amount : " + tb_amount_IU_Inside.Text.ToString();

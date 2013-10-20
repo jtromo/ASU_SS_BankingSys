@@ -74,7 +74,7 @@
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Width="925px" AutoPostBack="True" Visible="False">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px" AutoPostBack="True" Visible="False">
                          <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
@@ -106,7 +106,7 @@
             <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers">
                 <ContentTemplate>
                     <br />
-                    Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="3" Height="515px" Width="850px">
+                    Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -215,33 +215,33 @@
                 &nbsp;Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="monthDD_TransferExistingCust_Outside" runat="server">
                     <asp:ListItem>MM</asp:ListItem>
-                    <asp:ListItem>Jan</asp:ListItem>
-                    <asp:ListItem>Feb</asp:ListItem>
-                    <asp:ListItem>Mar</asp:ListItem>
-                    <asp:ListItem>Apr</asp:ListItem>
-                    <asp:ListItem>May</asp:ListItem>
-                    <asp:ListItem>June</asp:ListItem>
-                    <asp:ListItem>Jul</asp:ListItem>
-                    <asp:ListItem>Aug</asp:ListItem>
-                    <asp:ListItem>Sep</asp:ListItem>
-                    <asp:ListItem>Oct</asp:ListItem>
-                    <asp:ListItem>Nov</asp:ListItem>
-                    <asp:ListItem>Dec</asp:ListItem>
+                    <asp:ListItem Value="01">Jan</asp:ListItem>
+                    <asp:ListItem Value="02">Feb</asp:ListItem>
+                    <asp:ListItem Value="03">Mar</asp:ListItem>
+                    <asp:ListItem Value="04">Apr</asp:ListItem>
+                    <asp:ListItem Value="05">May</asp:ListItem>
+                    <asp:ListItem Value="06">June</asp:ListItem>
+                    <asp:ListItem Value="07">Jul</asp:ListItem>
+                    <asp:ListItem Value="08">Aug</asp:ListItem>
+                    <asp:ListItem Value="09">Sep</asp:ListItem>
+                    <asp:ListItem Value="10">Oct</asp:ListItem>
+                    <asp:ListItem Value="11">Nov</asp:ListItem>
+                    <asp:ListItem Value="12">Dec</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
                 <asp:DropDownList ID="yearDD_TransferExistingCust_Outside" runat="server">
                     <asp:ListItem>YYYY</asp:ListItem>
-                    <asp:ListItem>2013</asp:ListItem>
-                    <asp:ListItem>2014</asp:ListItem>
-                    <asp:ListItem>2015</asp:ListItem>
-                    <asp:ListItem>2016</asp:ListItem>
-                    <asp:ListItem>2017</asp:ListItem>
-                    <asp:ListItem>2018</asp:ListItem>
-                    <asp:ListItem>2019</asp:ListItem>
-                    <asp:ListItem>2020</asp:ListItem>
-                    <asp:ListItem>2021</asp:ListItem>
-                    <asp:ListItem>2022</asp:ListItem>
-                    <asp:ListItem>2023</asp:ListItem>
+                    <asp:ListItem Value="13">2013</asp:ListItem>
+                    <asp:ListItem Value="14">2014</asp:ListItem>
+                    <asp:ListItem Value="15">2015</asp:ListItem>
+                    <asp:ListItem Value="16">2016</asp:ListItem>
+                    <asp:ListItem Value="17">2017</asp:ListItem>
+                    <asp:ListItem Value="18">2018</asp:ListItem>
+                    <asp:ListItem Value="19">2019</asp:ListItem>
+                    <asp:ListItem Value="20">2020</asp:ListItem>
+                    <asp:ListItem Value="21">2021</asp:ListItem>
+                    <asp:ListItem Value="22">2022</asp:ListItem>
+                    <asp:ListItem Value="23">2023</asp:ListItem>
                 </asp:DropDownList>
             </p>
 	

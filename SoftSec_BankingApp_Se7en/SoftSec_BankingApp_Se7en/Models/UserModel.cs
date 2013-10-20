@@ -313,5 +313,36 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return false;
             }
         }
+        public static bool TransferToDept(string username, int ToDepartmentId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+                    user.departmentId = ToDepartmentId;
+                    db.Users.Attach(user);
+                    var vdeptId = db.Entry(user);
+                    vdeptId.Property(e => e.departmentId).IsModified = true;
+                    
+                    db.SaveChanges();
+
+                    return true;
+                   
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
     }
 }

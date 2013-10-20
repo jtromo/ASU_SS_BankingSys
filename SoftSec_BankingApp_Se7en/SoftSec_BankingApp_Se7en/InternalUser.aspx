@@ -6,7 +6,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="TabPanel1">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -866,7 +866,7 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
 
                             <HeaderTemplate>
@@ -1100,28 +1100,98 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="3" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 
                                 <br />
-                                Employee Details:
-                                <br />
+                                Employee Details: (You need to have the employee with you while adding him)<br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_FirstName_Emp" runat="server"></asp:TextBox>
-                                <br />
-                                Middle Name:&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp; Middle Name:&nbsp;
                                 <asp:TextBox ID="tb_MidName_Emp" runat="server"></asp:TextBox>
-                                <br />
-                                Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp; Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px"></asp:TextBox>
+                                <br />
+                                Street Address:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_StreetAddr_Emp" runat="server"></asp:TextBox>
+                                <br />
+                                City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_City_Emp" runat="server"></asp:TextBox>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zip:
+                                <asp:TextBox ID="tb_Zip_Emp" runat="server"></asp:TextBox>
+                                <br />
+                                State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="StateDD_Emp" runat="server">
+                                    <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                    <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                    <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                    <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                    <asp:ListItem Value="CA">California</asp:ListItem>
+                                    <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                    <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                    <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                    <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                    <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                    <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                    <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                    <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                    <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                    <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                    <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                    <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                    <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                    <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                    <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                    <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                    <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                    <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                    <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                    <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                    <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                    <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                    <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                    <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                    <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                    <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                    <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                    <asp:ListItem Value="NY">New York</asp:ListItem>
+                                    <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                    <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                    <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                    <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                    <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                    <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                    <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                    <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                    <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                    <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                    <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                    <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                    <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                    <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                    <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                    <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                </asp:DropDownList>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_AddEmp" runat="server">
+                                     <asp:ListItem Value="1">Unknown</asp:ListItem>
+                                     <asp:ListItem Value="2">Sales</asp:ListItem>
+                                     <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
+                                     <asp:ListItem Value="4">Transactions</asp:ListItem>
+                                     <asp:ListItem Value="5">Human Resources</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Management</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="RoleDD_AddEmp" runat="server">
+                                     <asp:ListItem Value="4">Regular Employee</asp:ListItem>
+                                     <asp:ListItem Value="5">Department Manager</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Official</asp:ListItem>
+                                     <asp:ListItem Value="7">Admin</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1130,10 +1200,149 @@
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_Phone_Emp" runat="server"></asp:TextBox>
                                 <br />
+                                Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server"></asp:TextBox>
                                 <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_AddEmp" runat="server" Text="Add" OnClick="btn_AddEmp_Click" />
+                                Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_Password_AddEmp" runat="server"></asp:TextBox>
                                 <br />
+                                Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="Sec1DD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_SecAns1_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="Sec2DD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_SecAns2_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="Sec3DD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_SecAns3_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                Social Security Number:&nbsp;
+                                <asp:TextBox ID="tb_SSN_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                <br />
+                                SiteKey:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site1_AE" runat="server" OnClick="img_site1_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site2_AE" runat="server" OnClick="img_site2_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site3_AE" runat="server" OnClick="img_site3_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site4_AE" runat="server" OnClick="img_site4_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site5_AE" runat="server" OnClick="img_site5_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site6_AE" runat="server" OnClick="img_site6_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site7_AE" runat="server" OnClick="img_site7_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site8_AE" runat="server" OnClick="img_site8_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site9_AE" runat="server" OnClick="img_site9_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site10_AE" runat="server" OnClick="img_site10_Click" />
+                                &nbsp;<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                <asp:ImageButton ID="img_site11_AE" runat="server" OnClick="img_site11_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site12_AE" runat="server" OnClick="img_site12_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site13_AE" runat="server" OnClick="img_site13_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site14_AE" runat="server" OnClick="img_site14_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site15_AE" runat="server" OnClick="img_site15_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site16_AE" runat="server" OnClick="img_site16_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site17_AE" runat="server" OnClick="img_site17_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site18_AE" runat="server" OnClick="img_site18_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site19_AE" runat="server" OnClick="img_site19_Click" />
+                                &nbsp;&nbsp;
+                                <asp:ImageButton ID="img_site20_AE" runat="server" OnClick="img_site20_Click" />
+                                &nbsp;<br /> Sitekey Hint:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_sitekeyhint_AddEmp" runat="server"></asp:TextBox>
+                                <br />
+                                Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="monthDD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem>MM</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="dayDD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem>DD</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                    <asp:ListItem>13</asp:ListItem>
+                                    <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>16</asp:ListItem>
+                                    <asp:ListItem>17</asp:ListItem>
+                                    <asp:ListItem>18</asp:ListItem>
+                                    <asp:ListItem>19</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>21</asp:ListItem>
+                                    <asp:ListItem>22</asp:ListItem>
+                                    <asp:ListItem>23</asp:ListItem>
+                                    <asp:ListItem>24</asp:ListItem>
+                                    <asp:ListItem>25</asp:ListItem>
+                                    <asp:ListItem>26</asp:ListItem>
+                                    <asp:ListItem>27</asp:ListItem>
+                                    <asp:ListItem>28</asp:ListItem>
+                                    <asp:ListItem>29</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>31</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="tb_BirthYear_AddEmp" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                <br />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_AddEmp" runat="server" Text="Add Employee" OnClick="btn_AddEmp_Click" />
+                                <br />
+
+                                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1150,7 +1359,7 @@
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tbFirstName_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_DelEmp" runat="server"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
                                 <asp:TextBox ID="tb_MidName_DelEMp" runat="server"></asp:TextBox>
@@ -1160,10 +1369,20 @@
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_DelEmp" runat="server">
+                                    <asp:ListItem Value="1">Unknown</asp:ListItem>
+                                     <asp:ListItem Value="2">Sales</asp:ListItem>
+                                     <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
+                                     <asp:ListItem Value="4">Transactions</asp:ListItem>
+                                     <asp:ListItem Value="5">Human Resources</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Management</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="RoleDD_DelEmp" runat="server">
+                                    <asp:ListItem Value="4">Regular Employee</asp:ListItem>
+                                     <asp:ListItem Value="5">Department Manager</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Official</asp:ListItem>
+                                     <asp:ListItem Value="7">Admin</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1174,7 +1393,10 @@
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_delEmp" runat="server" Text="Delete" />
+                                <asp:Button ID="btn_delEmp" runat="server" Text="Delete Employee" OnClick="btn_delEmp_Click" />
+
+                                <br />
+                                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1201,10 +1423,20 @@
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="FROM_DeptDD_TransEmp" runat="server">
+                                    <asp:ListItem Value="1">Unknown</asp:ListItem>
+                                     <asp:ListItem Value="2">Sales</asp:ListItem>
+                                     <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
+                                     <asp:ListItem Value="4">Transactions</asp:ListItem>
+                                     <asp:ListItem Value="5">Human Resources</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Management</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="RoleDD_TransEmp" runat="server">
+                                    <asp:ListItem Value="4">Regular Employee</asp:ListItem>
+                                     <asp:ListItem Value="5">Department Manager</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Official</asp:ListItem>
+                                     <asp:ListItem Value="7">Admin</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1216,11 +1448,20 @@
                                 <br />
                                 Transfer To Details:<br />Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="TO_DeptDD_TransDept" runat="server">
+                                    <asp:ListItem Value="1">Unknown</asp:ListItem>
+                                     <asp:ListItem Value="2">Sales</asp:ListItem>
+                                     <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
+                                     <asp:ListItem Value="4">Transactions</asp:ListItem>
+                                     <asp:ListItem Value="5">Human Resources</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Management</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_TransEmp" runat="server" Text="Transfer" />
+                                <asp:Button ID="btn_TransEmp" runat="server" Text="Transfer Employee" OnClick="btn_TransEmp_Click" />
+
+                                <br />
+                                <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1247,10 +1488,20 @@
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_viewEmp" runat="server">
+                                    <asp:ListItem Value="1">Unknown</asp:ListItem>
+                                     <asp:ListItem Value="2">Sales</asp:ListItem>
+                                     <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
+                                     <asp:ListItem Value="4">Transactions</asp:ListItem>
+                                     <asp:ListItem Value="5">Human Resources</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Management</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="RoleDD_ViewEmp" runat="server">
+                                    <asp:ListItem Value="4">Regular Employee</asp:ListItem>
+                                     <asp:ListItem Value="5">Department Manager</asp:ListItem>
+                                     <asp:ListItem Value="6">Company Official</asp:ListItem>
+                                     <asp:ListItem Value="7">Admin</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

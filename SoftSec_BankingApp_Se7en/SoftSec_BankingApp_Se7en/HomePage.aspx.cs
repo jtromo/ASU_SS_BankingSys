@@ -158,5 +158,10 @@ namespace SSBank
             else
                 Response.Write(" User jtromo1 failed to be removed");
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

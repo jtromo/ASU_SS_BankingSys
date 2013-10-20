@@ -6,7 +6,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Width="949px">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="TabPanel1">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -967,6 +967,7 @@
                                 <asp:Button ID="btn_createcust" runat="server" Text="Create" OnClick="btn_createcust_Click" />
                                 <br />
                                 <br />
+                                <asp:Label ID="fieldValidationErrorLabel" runat="server" Text="Label" Width="300px"></asp:Label>
                             </ContentTemplate>
 
                         </asp:TabPanel>
@@ -987,6 +988,9 @@
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec1DD_PersonalInformation" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -994,6 +998,9 @@
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec2DD_PersonalInformation" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1001,6 +1008,9 @@
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec3DD_PersonalInformation" runat="server">
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1089,6 +1099,9 @@
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_sumbitcust" runat="server" Text="Submit" OnClick="btn_sumbitcust_Click" />
+                                <br />
+                                <br />
+                                <asp:Label ID="ErrorLabelInNewCustPI" runat="server" Text="Label" Width="300px"></asp:Label>
                             </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>
@@ -1100,7 +1113,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="3" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

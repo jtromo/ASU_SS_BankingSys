@@ -1237,6 +1237,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btn_createcust;
         
         /// <summary>
+        /// fieldValidationErrorLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label fieldValidationErrorLabel;
+        
+        /// <summary>
         /// tab_customer control.
         /// </summary>
         /// <remarks>
@@ -1559,6 +1568,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_sumbitcust;
+        
+        /// <summary>
+        /// ErrorLabelInNewCustPI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorLabelInNewCustPI;
         
         /// <summary>
         /// tab_dept control.

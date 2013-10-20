@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Crypto;
 using System.Net.Mail;
+using SoftSec_BankingApp_Se7en.Models;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -15,7 +16,7 @@ namespace SoftSec_BankingApp_Se7en
         static String otpStr = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            TransactionModel.GetTransactionsForAccount("32984930284");
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -61,6 +62,11 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
                 Label2.Text = "Get Lost!";
+
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

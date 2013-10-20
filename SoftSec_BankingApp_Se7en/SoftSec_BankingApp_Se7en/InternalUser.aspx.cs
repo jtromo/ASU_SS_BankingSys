@@ -496,11 +496,14 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    //Change active tab index to Personal Information
+                    TabContainer6.ActiveTabIndex = 1;
+                    ErrorLabelInNewCustPI.Visible = false;
                 }
                 else
                 {
                     //Update the UI with error message.
+                    fieldValidationErrorLabel.Visible = true;
+                    fieldValidationErrorLabel.Text = "Please verify the data you have entered";
                 }
             }
             catch (Exception exp)
@@ -516,11 +519,104 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 serverSideValidation = validateFromFields(tb_UserName_Cust.Text.ToString(), tb_Password_Cust.Text.ToString(), tb_ConfPassword_Cust.Text.ToString()
-                    , tb_SecAns1_Cust.Text.ToString(), tb_SecAns2_Cust.Text.ToString(), tb_SecAns3_Cust.Text.ToString(), tb_SSN_Cust.Text.ToString()
-                    , tb_sitekeyhint_Cust.Text.ToString(), tb_BirthYear_Cust.Text.ToString());
+                       , tb_SecAns1_Cust.Text.ToString(), tb_SecAns2_Cust.Text.ToString(), tb_SecAns3_Cust.Text.ToString(), tb_SSN_Cust.Text.ToString()
+                       , tb_sitekeyhint_Cust.Text.ToString(), tb_BirthYear_Cust.Text.ToString());
                 if (serverSideValidation)
                 {
-                    //Proceed with business logic here
+                    User userForName = new User();
+                    userForName = UserModel.GetUser(tb_UserName_Cust.Text.ToString());
+                    if (userForName != null)
+                    {
+
+                        ErrorLabelInNewCustPI.Visible = true;
+                        ErrorLabelInNewCustPI.Text = "User name already Exists";
+                    }
+                    else
+                    {
+
+                        string passwordForUser = tb_Password_Cust.Text.ToString();
+                        string confirmPassword = tb_ConfPassword_Cust.Text.ToString();
+                        if (passwordForUser.Equals(confirmPassword))
+                        {
+                            User userToCreate = new User();
+                            userToCreate.firstName = tb_FirstName_Cust.Text.ToString();
+                            userToCreate.middleName = tb_MiddleName_Cust.Text.ToString();
+                            userToCreate.lastName = tb_LastName_Cust.Text.ToString();
+                            userToCreate.email = tb_Email_Cust.Text.ToString();
+                            userToCreate.roleId = 1;
+                            Address addressForUser = new Address();
+                            addressForUser.street1 = tb_StreetAddr_Cust.Text.ToString();
+                            addressForUser.city = tb_City_Cust.Text.ToString();
+                            addressForUser.state = StateDD_Cust.Text.ToString();
+                            addressForUser.country = "US";
+                            addressForUser.zip = Convert.ToInt32(tb_Zip_Cust.Text);
+                            userToCreate.phone = tb_Phone_Cust.Text.ToString();
+                            userToCreate.username = tb_UserName_Cust.Text.ToString();
+                            string checkingAccountNumber;
+                            string savingsAccountNumber;
+                            string cardNumber;
+                            string routingAccountNumber = "1234056789";
+                            string randomNum;
+                            int cvvNum;
+                            while (true)
+                            {
+                                if ((randomNum = randomAccountNumberGenerator()) != null)
+                                {
+                                    checkingAccountNumber = randomNum + randomNum + randomNum;
+                                    int ran = Convert.ToInt16(randomNum);
+                                    savingsAccountNumber = randomNum + randomNum + (ran + 1).ToString();
+                                    cardNumber = randomNum + randomNum + randomNum + (ran + 2).ToString();
+                                    cvvNum = ran / 10;
+                                    break;
+                                }
+                            }
+                            Card cardForUser = new Card();
+                            cardForUser.cardNumber = cardNumber;
+                            cardForUser.accountNumber = checkingAccountNumber;
+                            cardForUser.cvv = cvvNum;
+                            cardForUser.expirationDate = "11/2018";
+                            cardForUser.firstName = userToCreate.firstName;
+                            cardForUser.middleInitial = userToCreate.middleName;
+                            cardForUser.lastName = userToCreate.lastName;
+                            List<SecurityQuestion> securityQuestionsForUser = new List<SecurityQuestion>();
+                            SecurityQuestion securityQuestionForUser1 = new SecurityQuestion();
+                            securityQuestionForUser1.questionId = Sec1DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser1.answer = tb_SecAns1_Cust.Text.ToString();
+                            securityQuestionsForUser.Add(securityQuestionForUser1);
+                            SecurityQuestion securityQuestionForUser2 = new SecurityQuestion();
+                            securityQuestionForUser2.questionId = Sec2DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser2.answer = tb_SecAns2_Cust.Text.ToString();
+                            securityQuestionsForUser.Add(securityQuestionForUser2);
+                            SecurityQuestion securityQuestionForUser3 = new SecurityQuestion();
+                            securityQuestionForUser3.questionId = Sec3DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser3.answer = tb_SecAns3_Cust.Text.ToString();
+                            securityQuestionsForUser.Add(securityQuestionForUser3);
+                            userToCreate.socialSecurityNumber = tb_SSN_Cust.Text.ToString();
+                            userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
+                            userToCreate.siteKeyString = tb_sitekeyhint_Cust.Text.ToString();
+                            string userDOB = monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
+                            userToCreate.dateOfBirth = userDOB;
+                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, cardForUser, addressForUser, securityQuestionsForUser);
+                            if (userCreated)
+                            {
+                                ErrorLabelInNewCustPI.Visible = true;
+                                ErrorLabelInNewCustPI.Text = "User successfully created";
+                            }
+                            else
+                            {
+                                ErrorLabelInNewCustPI.Visible = true;
+                                ErrorLabelInNewCustPI.Text = "User could Not be created";
+                            }
+
+                        }
+                        else
+                        {
+                            ErrorLabelInNewCustPI.Visible = true;
+                            ErrorLabelInNewCustPI.Text = "Passwords Do Not Match";
+
+                        }
+
+                    }
                 }
                 else
                 {
@@ -630,6 +726,28 @@ namespace SoftSec_BankingApp_Se7en
             {
                 //Log Exception here
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Account Number generation</returns>
+        protected string randomAccountNumberGenerator()
+        {
+            int myRandomNumber = 0;
+            Random myRandomNUmberGenerator = new Random();
+            myRandomNumber = myRandomNUmberGenerator.Next(1001, 9996);
+            string randocAccNum = myRandomNumber.ToString() + myRandomNumber.ToString() + myRandomNumber.ToString();
+            SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
+            if (checkingforAccount == null)
+            {
+                return myRandomNumber.ToString();
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         protected void btn_ViewDetails_DelEmp_Click(object sender, EventArgs e)

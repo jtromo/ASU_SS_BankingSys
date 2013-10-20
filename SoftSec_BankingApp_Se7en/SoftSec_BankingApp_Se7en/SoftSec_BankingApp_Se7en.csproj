@@ -431,9 +431,9 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201310190157476_InitialMigration.cs" />
-    <Compile Include="Migrations\201310190157476_InitialMigration.Designer.cs">
-      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201310200009035_InitialMigration.cs" />
+    <Compile Include="Migrations\201310200009035_InitialMigration.Designer.cs">
+      <DependentUpon>201310200009035_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
@@ -487,8 +487,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310190157476_InitialMigration.resx">
-      <DependentUpon>201310190157476_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201310200009035_InitialMigration.resx">
+      <DependentUpon>201310200009035_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

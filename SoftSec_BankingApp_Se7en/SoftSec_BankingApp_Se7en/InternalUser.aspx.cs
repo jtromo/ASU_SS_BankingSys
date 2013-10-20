@@ -384,7 +384,7 @@ namespace SoftSec_BankingApp_Se7en
                             + '/' + tbYear_IU.Text.ToString();
                         if (objUser.dateOfBirth.Equals(strDob))
                         {
-                            if(rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
+                            if (rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
                             {
                                 if (objUser.roleId == 3)
                                 {
@@ -445,6 +445,10 @@ namespace SoftSec_BankingApp_Se7en
                                     }
                                 }
 
+                            }
+                            else
+                            {
+                                TabContainer2.Visible = false;
                             }
                         }
                         else

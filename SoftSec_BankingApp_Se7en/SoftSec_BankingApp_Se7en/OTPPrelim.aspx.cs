@@ -16,7 +16,10 @@ namespace SoftSec_BankingApp_Se7en
         static String otpStr = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            TransactionModel.GetTransactionsForAccount("32984930284");
+            var db = new SSBankDBContext();
+            List<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", "2222222222").ToList();
+            GridView2.DataSource = accounts;
+            GridView2.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)

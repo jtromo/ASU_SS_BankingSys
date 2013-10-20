@@ -52,7 +52,7 @@ namespace SoftSec_BankingApp_Se7en
                         else if (objuser.roleId == 4)
                         {
                             //Internal_Regular
-
+                            Response.Redirect("InternalUser.aspx", false);
                         }
                         else if (objuser.roleId == 5)
                         {

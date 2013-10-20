@@ -14,46 +14,57 @@ namespace SoftSec_BankingApp_Se7en
         protected static String siteKeySelected = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-            img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-            img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-            img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-            img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-            img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-            img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-            img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-            img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-            img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-            img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-            img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-            img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-            img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-            img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-            img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-            img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-            img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-            img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-            img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
-            img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-            img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-            img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-            img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-            img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-            img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-            img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-            img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-            img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-            img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-            img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-            img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-            img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-            img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-            img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-            img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-            img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-            img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-            img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-            img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+            try
+            {
+                if (!IsPostBack)
+                {
+                    TabContainer2.Visible = false;
+                    img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                    img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                    img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                    img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                    img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                    img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                    img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                    img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                    img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                    img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                    img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                    img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                    img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                    img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                    img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                    img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                    img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                    img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                    img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                    img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                    img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                    img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                    img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                    img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                    img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                    img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                    img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                    img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                    img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                    img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                    img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                    img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                    img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                    img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                    img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                    img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                    img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                    img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                    img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                    img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+            }
         }
         protected void deselect_All_Images()
         {
@@ -294,6 +305,57 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    Models.Tables.Card objCard = new Models.Tables.Card();
+                    objCard = AccountModel.GetCardDetails(tb_card_IU_Inside.Text.ToString(), fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString());
+                    if (objCard != null)
+                    {
+                        string sCardExp = string.Empty;
+                        sCardExp = monthDD_TransferExistingCust_Inside.SelectedValue.ToString() + yearDD_TransferExistingCust_Inside.SelectedValue.ToString();
+
+                        if (objCard.expirationDate.Equals(sCardExp))
+                        {
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycode_IU_Inside.Text.ToString()))
+                            {
+                                LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
+                                if (objLastZip != null)
+                                {
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) && objLastZip.zipcode.Equals(tb_zip_IU_Inside.Text.ToString()))
+                                    {
+                                        string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
+                                                                           " Amount : " + tb_amount_IU_Inside.Text.ToString();
+                                        bool success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                                                   Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+                                        if (success)
+                                        {
+                                            lblSuccess_IUInside.Text = "Transaction Successful";
+                                            lblSuccess_IUInside.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblSuccess_IUInside.Text = "Transaction Unsuccessful";
+                                            lblSuccess_IUInside.Visible = true;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //Invalid Zip and Last name combination
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
+                    else
+                    {
+                        //Invalid Card Details
+                    }
                 }
                 else
                 {
@@ -315,6 +377,85 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    User objUser = CardModel.UserForCard(tbCardNumber_IU.Text.ToString());
+                    if (objUser != null)
+                    {
+                        string strDob = MonthDD_ExistingCustomer_Verify.SelectedValue.ToString() + '/' + DayDD_ExistingCustomer_Verify.SelectedValue.ToString()
+                            + '/' + tbYear_IU.Text.ToString();
+                        if (objUser.dateOfBirth.Equals(strDob))
+                        {
+                            if(rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
+                            {
+                                if (objUser.roleId == 3)
+                                {
+                                    TabContainer2.Visible = true;
+                                    TabContainer2.Tabs[0].Visible = true;
+                                    TabContainer2.Tabs[1].Visible = true;
+                                    TabContainer2.Tabs[2].Visible = true;
+                                    TabContainer2.Tabs[3].Visible = true;
+                                    TabContainer2.Tabs[4].Visible = true;
+                                }
+                                else
+                                {
+                                    TabContainer2.Visible = true;
+                                    TabContainer2.Tabs[0].Visible = true;
+                                    TabContainer2.Tabs[1].Visible = true;
+                                    TabContainer2.Tabs[2].Visible = true;
+                                    TabContainer2.Tabs[3].Visible = true;
+                                    TabContainer2.Tabs[4].Visible = false;
+                                }
+                                TabContainer2.ActiveTabIndex = 0;
+                                //Fetch all the accounts of the user.
+                                ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(objUser.username);
+                                if (objCol != null)
+                                {
+                                    List<Models.Tables.Account> lstAcc = objCol.ToList();
+                                    foreach (Models.Tables.Account acc in lstAcc)
+                                    {
+                                        if (acc.accountTypeId == 1)
+                                        {
+                                            //Savings Account
+                                            tb_savings.Text = acc.accountNumber.ToString();
+                                            fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
+                                            fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                            toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                            tb_savings.ReadOnly = true;
+                                        }
+                                        else if (acc.accountTypeId == 2)
+                                        {
+                                            //checkings account
+                                            tb_checking.Text = acc.accountNumber.ToString();
+                                            fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
+                                            fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                            toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
+                                            accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                            tb_checking.ReadOnly = true;
+                                        }
+                                        else if (acc.accountTypeId == 3)
+                                        {
+                                            //credit account
+                                            tb_credit.Text = acc.accountNumber.ToString();
+                                            tb_credit.ReadOnly = true;
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        else
+                        {
+                            //Invalid DOB.
+                        }
+                    }
+                    else
+                    {
+                        //Invalid Card Details
+                    }
                 }
                 else
                 {
@@ -332,11 +473,52 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(), tb_emailoutside.Text.ToString(),
-                                        tb_usercardno.Text.ToString(),tb_securitycodeoutside.Text.ToString());
+                serverSideValidation = validateFromFields_InternalTransfer(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(), tb_emailoutside.Text.ToString(),
+                                        tb_usercardno.Text.ToString(), tb_securitycodeoutside.Text.ToString(), tb_AccNumoutside_Intenal.Text.ToString(), tb_toRoutingNum_OutsideBank.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    Models.Tables.Card objCard = new Models.Tables.Card();
+                    objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString(), accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString());
+                    if (objCard != null)
+                    {
+                        string sCardExp = string.Empty;
+                        sCardExp = monthDD_TransferExistingCust_Outside.SelectedValue.ToString() + yearDD_TransferExistingCust_Outside.SelectedValue.ToString();
+                        if (objCard.expirationDate.Equals(sCardExp))
+                        {
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
+                            {
+                                string desc = "From : " + accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString() + " To : " + tb_AccNumoutside_Intenal.Text.ToString() +
+                                                                       " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
+                                bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
+                                                            tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                if (success)
+                                {
+                                    lblStatus_OutsideBank.Text = "Transaction Successful";
+
+                                    lblStatus_OutsideBank.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_OutsideBank.Text = "Transaction Unsuccessful";
+
+                                    lblStatus_OutsideBank.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
+                    else
+                    {
+                        //Invalid Card Details
+                    }
                 }
                 else
                 {
@@ -358,6 +540,22 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    string iToAcc = toAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
+                    string ifromAcc = fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
+                    bool success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                                "From : " + fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString() +
+                                    "To : " + toAccTypeDD_TransferExistingCust_Between.Text.ToString() +
+                                        "- Amount : " + tb_amountbetween.Text.ToString());
+                    if (success)
+                    {
+                        lblStatus_Between.Text = "Transaction Successful";
+                        lblStatus_Between.Visible = true;
+                    }
+                    else
+                    {
+                        lblStatus_Between.Text = "Transaction Unsuccessful";
+                        lblStatus_Between.Visible = true;
+                    }
                 }
                 else
                 {
@@ -381,6 +579,39 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    Models.Tables.Card objCard = new Models.Tables.Card();
+                    objCard = AccountModel.GetCardDetails(tb_card_DebitFunds.Text.ToString(), accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString());
+                    if (objCard != null)
+                    {
+                        string sCardExp = string.Empty;
+                        sCardExp = monthDD_TransferExistingCust_Debit.SelectedValue.ToString() + yearDD_TransferExistingCust_Debit.SelectedValue.ToString();
+                        if (objCard.expirationDate.Equals(sCardExp))
+                        {
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycode_DebitFunds.Text.ToString()))
+                            {                                
+                                bool success = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                                                             Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                                if (success)
+                                {
+                                    lblStatus_DebitFunds.Text = "Transaction Successful";
+                                    lblStatus_DebitFunds.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_DebitFunds.Text = "Transaction Unsuccessful";
+                                    lblStatus_DebitFunds.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
                 }
                 else
                 {
@@ -403,6 +634,39 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    Models.Tables.Card objCard = new Models.Tables.Card();
+                    objCard = AccountModel.GetCardDetails(tb_card_CreditFunds.Text.ToString(), accTypeDD_TransferExistingCust_Credit.SelectedValue.ToString());
+                    if (objCard != null)
+                    {
+                        string sCardExp = string.Empty;
+                        sCardExp = monthDD_TransferExistingCust_Credit.SelectedValue.ToString() + yearDD_TransferExistingCust_Credit.SelectedValue.ToString();
+                        if (objCard.expirationDate.Equals(sCardExp))
+                        {
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycode_CreditFunds.Text.ToString()))
+                            {
+                                bool success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                                                             Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                                if (success)
+                                {
+                                    lblStatus_CreditFunds.Text = "Transaction Successful";
+                                    lblStatus_CreditFunds.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_CreditFunds.Text = "Transaction Unsuccessful";
+                                    lblStatus_CreditFunds.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
                 }
                 else
                 {
@@ -1066,7 +1330,7 @@ namespace SoftSec_BankingApp_Se7en
         /// <param name="strCardNum">Card number of the initiator</param>
         /// <param name="strSecCode">Security code of the card</param>
         /// <returns>True, if all the fields are validated. Otherwise false</returns>
-        private bool validateFromFields(string strAmount, string strLName, string strEmail, string strCardNum, string strSecCode)
+        private bool validateFromFields_InternalTransfer(string strAmount, string strLName, string strEmail, string strCardNum, string strSecCode,string strAccNum, string strRouteNum)
         {
             try
             {
@@ -1076,8 +1340,9 @@ namespace SoftSec_BankingApp_Se7en
                 bool bLName = fieldValidator.validate_Names(strLName);
                 bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
                 bool bSCode = fieldValidator.validate_ZipAccCrdPhn(strSecCode, 3);
-
-                if (bAmt && bEmail && bLName && bCard && bSCode)
+                bool bAccnum = fieldValidator.validate_ZipAccCrdPhn(strAccNum, 12);
+                bool bRouNum = fieldValidator.validate_ZipAccCrdPhn(strRouteNum, 10);
+                if (bAmt && bEmail && bLName && bCard && bSCode && bAccnum && bRouNum)
                     return true;
                 else
                     return false;

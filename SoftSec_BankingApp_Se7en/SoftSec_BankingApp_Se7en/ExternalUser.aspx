@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
@@ -122,8 +122,11 @@
             <p class="auto-style5">Amount:&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_amountoutside" runat="server" Width="115px"></asp:TextBox>
               </p>
-            <p class="auto-style5"><strong>Recepient&#39;s Details:</strong>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastnameoutside" runat="server"></asp:TextBox>
-            </p>
+            <p class="auto-style5"><strong>Recepient&#39;s Details:</strong></p>
+              <p class="auto-style5">
+                  Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <asp:TextBox ID="tb_lastnameoutside" runat="server"></asp:TextBox>
+              </p>
             <p class="auto-style9">
                 Account Number :
                 <asp:TextBox ID="tb_toAccNum_OutsideBank" runat="server"></asp:TextBox>

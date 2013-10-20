@@ -70,8 +70,7 @@ namespace SoftSec_BankingApp_Se7en
                                 tb_credit.Text = acc.accountNumber.ToString();
                                 tb_credit.ReadOnly = true;
                             }
-                        }
-                        
+                        }                        
                     }
                 }
             }
@@ -105,7 +104,7 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
                                                                        " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, "FromRoute", tb_toAccNum_OutsideBank.Text.ToString(),
+                                bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_toAccNum_OutsideBank.Text.ToString(),
                                                             tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
                                 if (success)
                                 {

@@ -431,10 +431,15 @@
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310200009035_InitialMigration.cs" />
+    <Compile Include="Migrations\201310200009035_InitialMigration.Designer.cs">
+      <DependentUpon>201310200009035_InitialMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
     <Compile Include="Models\DebugModel.cs" />
+    <Compile Include="Models\DepartmentTransactionModel.cs" />
     <Compile Include="Models\HashController.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
@@ -443,6 +448,7 @@
     <Compile Include="Models\Tables\Address.cs" />
     <Compile Include="Models\Tables\Card.cs" />
     <Compile Include="Models\Tables\Department.cs" />
+    <Compile Include="Models\Tables\DepartmentTransaction.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />
@@ -481,6 +487,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201310200009035_InitialMigration.resx">
+      <DependentUpon>201310200009035_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

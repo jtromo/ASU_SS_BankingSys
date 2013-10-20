@@ -11,7 +11,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     {
         public Account()
         {
-            //this.Cards = new HashSet<Card>();
             this.Transactions = new HashSet<Transaction>();
         }
         [Key]

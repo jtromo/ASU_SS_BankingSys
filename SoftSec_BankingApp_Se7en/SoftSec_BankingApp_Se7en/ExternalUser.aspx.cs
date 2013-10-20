@@ -745,6 +745,5 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
-
     }
 }

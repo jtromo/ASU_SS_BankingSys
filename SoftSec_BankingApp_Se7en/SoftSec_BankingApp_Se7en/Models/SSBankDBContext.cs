@@ -18,6 +18,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<DepartmentTransaction> DepartmentTransactions { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<SecurityQuestion> SecurityQuestions { get; set; }

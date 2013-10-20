@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Core.Crypto;
 using System.Net.Mail;
+using SoftSec_BankingApp_Se7en.Models;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -15,7 +16,10 @@ namespace SoftSec_BankingApp_Se7en
         static String otpStr = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            var db = new SSBankDBContext();
+            List<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", "2222222222").ToList();
+            GridView2.DataSource = accounts;
+            GridView2.DataBind();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -61,6 +65,11 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
                 Label2.Text = "Get Lost!";
+
+        }
+
+        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

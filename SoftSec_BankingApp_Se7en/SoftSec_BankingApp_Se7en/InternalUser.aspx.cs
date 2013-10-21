@@ -6,12 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace SoftSec_BankingApp_Se7en
 {
     public partial class InternalUser : System.Web.UI.Page
     {
         protected static String siteKeySelected = "";
+        private static List<SecurityQuestion> lstQandA = null;
+        private static string merchant_savingsAccNum = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -394,6 +397,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
                             {
+                                Session["ExistingCustName"] = objUser.username;
                                 if (objUser.roleId == 3)
                                 {
                                     TabContainer2.Visible = true;
@@ -420,7 +424,7 @@ namespace SoftSec_BankingApp_Se7en
                                     List<Models.Tables.Account> lstAcc = objCol.ToList();
                                     foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        if (acc.accountTypeId == 1)
+                                        if (acc.accountTypeId == 3)
                                         {
                                             //Savings Account
                                             tb_savings.Text = acc.accountNumber.ToString();
@@ -702,6 +706,18 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    bool success = UserModel.updateUser(Session["ExistingCustName"].ToString(), tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(), tb_city_Edit.Text.ToString(),
+                                                StateDD_EditProfile.SelectedValue.ToString(), tb_zipCode_Edit.Text.ToString(), tb_contact_Edit.Text.ToString());
+                    if (success)
+                    {
+                        lblStatus_ChangeProf.Text = "Update Successful";
+                        lblStatus_ChangeProf.Visible = false;
+                    }
+                    else
+                    {
+                        lblStatus_ChangeProf.Text = "Update Unsuccessful";
+                        lblStatus_ChangeProf.Visible = true;
+                    }
                 }
                 else
                 {
@@ -728,6 +744,43 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    if (LoginModel.LoginUser(Session["ExistingCustName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
+                    {
+                        string strAns1 = (lstQandA.First().answer).ToLower();
+                        string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                        string strAns3 = (lstQandA.Last().answer).ToLower();
+
+                        if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
+                                && tb_secans3.Text.ToLower().Equals(strAns3))
+                        {
+                            if (tb_newPassword.Text.Equals(tb_confrimPassword.Text))
+                            {
+                                bool success = PasswordModel.ChangePwd(Session["ExistingCustName"].ToString(), tb_newPassword.Text.ToString());
+                                if (success)
+                                {
+                                    lblStatus_ChangePswd.Text = "Password Changed Successfully";
+                                    lblStatus_ChangePswd.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_ChangePswd.Text = "Password Changed Failed, Please try again";
+                                    lblStatus_ChangePswd.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //New Passwords Dont match
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Answers
+                        }
+                    }
+                    else
+                    {
+                        //Old Password is not true
+                    }
                 }
                 else
                 {
@@ -745,10 +798,47 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(),tb_amount_SubmitPayment.Text.ToString());
+                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(),tb_customername.Text.ToString(),tb_amount_SubmitPayment.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    //Similar to inside bank transfers
+                    Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
+                    if (objCard != null)
+                    {
+                        string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
+                        string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
+                        if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
+                        {
+                            string strExpDate = string.Empty;
+                            strExpDate = cardExpDD_CardPayment.SelectedValue.ToString() + yearDD_CardPayment.SelectedValue.ToString();
+                            if (objCard.expirationDate.Equals(strExpDate))
+                            {
+                                string sToAcc = merchant_savingsAccNum;
+                                string sfromAcc = objCard.accountNumber;
+                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_SubmitPayment.Text.ToString()),
+                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_SubmitPayment.Text.ToString());
+                                if (success)
+                                {
+                                    lblSubmitPayment.Text = "Transaction Successful";
+                                    lblSubmitPayment.Visible = true;
+                                }
+                                else
+                                {
+                                    lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                    lblSubmitPayment.Visible = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Update UI with error messages
+                        }
+                    }
+                    else
+                    {
+                        //Update UI with error messages
+                    }
                 }
                 else
                 {
@@ -1149,6 +1239,37 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
+                    if (objAcc != null)
+                    {
+                        if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
+                        {
+                            Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
+                            string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
+                            string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
+                            if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
+                            {
+                                string sToAcc = merchant_savingsAccNum;
+                                string sfromAcc = tb_echeckaccno.Text.ToString();
+                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tbAmount_EcheckPayment.Text.ToString()),
+                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tbAmount_EcheckPayment.Text.ToString());
+                                if (success)
+                                {
+                                    lblEcheckPayment.Text = "Transaction Successful";
+                                    lblEcheckPayment.Visible = true;
+                                }
+                                else
+                                {
+                                    lblEcheckPayment.Text = "Transaction Unsuccessful";
+                                    lblEcheckPayment.Visible = true;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Update the UI with Error Message
+                    }
                 }
                 else
                 {
@@ -1229,15 +1350,15 @@ namespace SoftSec_BankingApp_Se7en
         /// <param name="strCardNum">Validate the card number</param>
         /// <param name="strYear">Validate the card Expiry Year</param>
         /// <returns>True if the card number is valid, else false</returns>
-        private bool validateFromFields(string strCardNum, string StrSecCode,string strAmount)
+        private bool validateFromFields(string strCardNum, string strCustName,string strAmount)
         {
             try
             {
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
-                bool bSecCode = fieldValidator.validate_ZipAccCrdPhn(StrSecCode, 3);
+                bool bCustName = fieldValidator.validate_Names(strCustName);
                 bool bAmt = fieldValidator.validate_Amount(strAmount);
-                if (bCard && bSecCode && bAmt)
+                if (bCard && bCustName && bAmt)
                     return true;
                 else
                     return false;
@@ -1404,11 +1525,11 @@ namespace SoftSec_BankingApp_Se7en
                 List<int> iKeys = new List<int>(dictAns.Keys);
                 foreach (int i in iKeys)
                 {
-                    bool bAns = fieldValidator.validate_Names(dictAns[i]);
+                    bool bAns = fieldValidator.validate_UserName(dictAns[i]);
                     if (bAns)
                         iCtr++;
                 }
-                if (bOldPass && bNewPass && bConfPass && iCtr == 2)
+                if (bOldPass && bNewPass && bConfPass && iCtr == 3)
                 {
                     return true;
                 }
@@ -1649,6 +1770,131 @@ namespace SoftSec_BankingApp_Se7en
             else
             {
                 Label3.Text = "Transfer Phrooo :P ";
+            }
+        }
+
+        protected void btn_checking_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                if (lstTrans != null)
+                {
+                    grdTransaction.DataSource = lstTrans;
+                    grdTransaction.DataBind();
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void btn_savings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
+                if (lstTrans != null)
+                {
+                    grdTransaction.DataSource = lstTrans;
+                    grdTransaction.DataBind();
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void TabContainer2_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TabContainer2.ActiveTabIndex == 2)
+                {
+                    TabContainer4.Visible = false;
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["ExistingCustName"].ToString());
+                    if (objUsr != null)
+                    {
+                        tb_usernameview.Text = Session["ExistingCustName"].ToString();
+                        Models.Tables.Address objUsrAddr = objUsr.Address;
+                        tb_addrview.Text = objUsrAddr.street1;
+                        tb_cityView.Text = objUsrAddr.city;
+                        StateDD_View.SelectedValue = objUsrAddr.state;
+                        tb_zipView.Text = Convert.ToString(objUsrAddr.zip);
+                        tb_contactview.Text = objUsr.phone;
+                        tb_emailview.Text = objUsr.email;
+                        
+                    }
+                }
+                else if (TabContainer2.ActiveTabIndex == 4)
+                {
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["ExistingCustName"].ToString());
+                    if (objUsr != null)
+                    {
+                        List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["ExistingCustName"].ToString()).ToList();
+                        foreach (Models.Tables.Account acc in lstAcc)
+                        {
+                            if (acc.accountTypeId == 3)
+                            {
+                                merchant_savingsAccNum = acc.accountNumber;
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //No such user exists
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+            }
+        }
+
+        protected void btn_editprof_Click(object sender, EventArgs e)
+        {
+            TabContainer4.Visible = true;
+            try
+            {
+                tb_email_Edit.Text = tb_emailview.Text;
+                tb_stAddr_Edit.Text = tb_addrview.Text;
+                tb_city_Edit.Text = tb_cityView.Text;
+                tb_zipCode_Edit.Text = tb_zipView.Text;
+                tb_contact_Edit.Text = tb_contactview.Text;
+                StateDD_EditProfile.SelectedValue = StateDD_View.SelectedValue;
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void TabContainer4_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TabContainer4.ActiveTabIndex == 0)
+                {
+                    //Reset the fields if required
+                }
+                else if (TabContainer4.ActiveTabIndex == 1)
+                {
+                    lstQandA = PasswordModel.GetSecurityQandA(Session["ExistingCustName"].ToString());
+                    Sec1DD_ExistingCust_EditProf.SelectedValue = Convert.ToString(lstQandA.First().questionId);
+                    Sec2DD_ExistingCust_EditProf.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
+                    Sec3DD_ExistingCust_EditProf.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                    Sec1DD_ExistingCust_EditProf.Enabled = false;
+                    Sec2DD_ExistingCust_EditProf.Enabled = false;
+                    Sec3DD_ExistingCust_EditProf.Enabled = false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception
             }
         }
 

@@ -46,7 +46,7 @@ namespace SoftSec_BankingApp_Se7en
                         List<Models.Tables.Account> lstAcc = objCol.ToList();
                         foreach (Models.Tables.Account acc in lstAcc)
                         {
-                            if (acc.accountTypeId == 1)
+                            if (acc.accountTypeId == 3)
                             {
                                 //Savings Account
                                 tb_savings.Text = acc.accountNumber.ToString();
@@ -460,11 +460,11 @@ namespace SoftSec_BankingApp_Se7en
                 List<int> iKeys = new List<int>(dictAns.Keys);
                 foreach (int i in iKeys)
                 {
-                    bool bAns = fieldValidator.validate_Names(dictAns[i]);
+                    bool bAns = fieldValidator.validate_UserName(dictAns[i]);
                     if (bAns)
                         iCtr++;
                 }
-                if (bOldPass && bNewPass && bConfPass && iCtr == 2)
+                if (bOldPass && bNewPass && bConfPass && iCtr == 3)
                 {
                     return true;
                 }
@@ -724,7 +724,7 @@ namespace SoftSec_BankingApp_Se7en
                             Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
                             string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
                             string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
-                            if (strFullName.Equals(checkUserNameInput))
+                            if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = tb_echeckaccno.Text.ToString();
@@ -807,6 +807,41 @@ namespace SoftSec_BankingApp_Se7en
             {
                 //Log Exception
             }
+        }
+
+        protected void btn_checking_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                if (lstTrans != null)
+                {                
+                    grdTransactions.DataSource = lstTrans;
+                    grdTransactions.DataBind();    
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void btn_savings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
+                if (lstTrans != null)
+                {
+                    grdTransactions.DataSource = lstTrans;
+                    grdTransactions.DataBind();
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+            
         }
     }
 }

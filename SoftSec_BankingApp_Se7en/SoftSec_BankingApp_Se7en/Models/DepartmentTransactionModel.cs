@@ -71,5 +71,28 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return null;
             }
         }
+
+        public static List<Tables.DepartmentTransaction> GetDepartmentTransactionsForUser(string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<DepartmentTransaction> departmentTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE usernameInitiated = @p0 OR usernameEffected = @p0", username).ToList();
+
+                    if (departmentTransactions.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    return departmentTransactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
     }
 }

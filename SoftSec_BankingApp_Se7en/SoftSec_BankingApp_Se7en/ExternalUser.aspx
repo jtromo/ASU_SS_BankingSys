@@ -7,18 +7,18 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="711px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
                     <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;
-                    <asp:Button ID="btn_checking" runat="server"  Text="View Summary" />
+                    <asp:Button ID="btn_checking" runat="server"  Text="View Summary" OnClick="btn_checking_Click" />
                     <br />
                     Savings Account:&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="tb_savings" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;
-                    <asp:Button ID="btn_savings" runat="server"  Text="View Summary" />
+                    <asp:Button ID="btn_savings" runat="server"  Text="View Summary" OnClick="btn_savings_Click" />
                     <br />
                     Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:TextBox ID="tb_credit" runat="server"></asp:TextBox>
@@ -26,10 +26,71 @@
                     <asp:Button ID="btn_credit" runat="server"  Text="View Summary" />
                     <br />
                     <br />
-                    //display account summary<br /> <br>
+                    <br /> <br>
+                    <asp:GridView ID="grdTransactions" runat="server" BorderStyle="Solid" EmptyDataText="No Transactions available" Font-Italic="True" HorizontalAlign="Justify">
+                        <AlternatingRowStyle BorderStyle="Solid" />
+                    </asp:GridView>
+                    <br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br></br>
                     <br></br>
                     <br>
                     <br></br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
                     </br>
                     </br>
                 </ContentTemplate>

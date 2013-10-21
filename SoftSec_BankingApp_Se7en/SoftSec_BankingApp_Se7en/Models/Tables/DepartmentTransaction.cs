@@ -9,8 +9,8 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
     {
         public int id { get; set; }
         public int type { get; set; }
-        public string fromDepartmentId { get; set; }
-        public string toDepartmentId { get; set; }
+        public int? fromDepartmentId { get; set; }
+        public int? toDepartmentId { get; set; }
         public string usernameInitiated { get; set; }
         public string usernameEffected { get; set; }
         public int? roleOld { get; set; }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using System.Web;
 
 namespace SoftSec_BankingApp_Se7en.Models
@@ -159,6 +160,142 @@ namespace SoftSec_BankingApp_Se7en.Models
                     return true;
                 }
 
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool AcceptDepartmentTransaction(int deptTransactionId)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE id = @p0", deptTransactionId).ToList();
+
+                        if (deptTransactions.Count() < 1)
+                        {
+                            return false;
+                        }
+
+                        DepartmentTransaction deptTransaction = deptTransactions.First();
+
+                        if (deptTransaction == null)
+                        {
+                            return false;
+                        }
+
+                        deptTransaction.status = DEPARTMENT_TRANSFER_STATUS_APPROVED;
+
+                        db.DepartmentTransactions.Attach(deptTransaction);
+                        var vdeptTransaction = db.Entry(deptTransaction);
+                        vdeptTransaction.Property(e => e.status).IsModified = true;
+
+                        if (deptTransaction.type == DEPARTMENT_TRANSFER_TYPE_DEPT_CHANGE)
+                        {
+                            if (deptTransaction.usernameEffected == null)
+                                return false;
+
+                            List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", deptTransaction.usernameEffected).ToList();
+
+                            if (users.Count() < 1)
+                            {
+                                return false;
+                            }
+
+                            User user = users.First();
+                            if (user.departmentId != deptTransaction.fromDepartmentId)
+                            {
+                                // This is an error. We need to determine how to handle it
+                                Console.Write("From department does not match!");
+                            }
+
+                            user.departmentId = deptTransaction.toDepartmentId;
+
+                            db.Users.Attach(user);
+                            var vdeptId = db.Entry(user);
+                            vdeptId.Property(e => e.departmentId).IsModified = true;
+
+                        }
+                        else if (deptTransaction.type == DEPARTMENT_TRANSFER_TYPE_ROLE_ESCALATION)
+                        {
+                            if (deptTransaction.usernameEffected == null)
+                                return false;
+
+                            List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", deptTransaction.usernameEffected).ToList();
+
+                            if (users.Count() < 1)
+                            {
+                                return false;
+                            }
+
+                            User user = users.First();
+                            if (user.roleId != deptTransaction.roleOld)
+                            {
+                                // This is an error. We need to determine how to handle it
+                                Console.Write("Old role does not match!");
+                            }
+
+                            user.roleId = deptTransaction.roleNew;
+
+                            db.Users.Attach(user);
+                            var vdeptId = db.Entry(user);
+                            vdeptId.Property(e => e.roleId).IsModified = true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool RejectDepartmentTransaction(int deptTransactionId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE id = @p0", deptTransactionId).ToList();
+
+                    if (deptTransactions.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    DepartmentTransaction deptTransaction = deptTransactions.First();
+
+                    if (deptTransaction == null)
+                    {
+                        return false;
+                    }
+
+                    deptTransaction.status = DEPARTMENT_TRANSFER_STATUS_REJECTED;
+
+                    db.DepartmentTransactions.Attach(deptTransaction);
+                    var vdeptTransaction = db.Entry(deptTransaction);
+                    vdeptTransaction.Property(e => e.status).IsModified = true;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
             }
             catch (Exception exp)
             {

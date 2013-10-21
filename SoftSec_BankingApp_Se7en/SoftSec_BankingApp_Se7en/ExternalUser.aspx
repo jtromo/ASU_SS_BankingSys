@@ -7,7 +7,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="711px" Width="874px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
@@ -331,7 +331,7 @@
                     </p>
                      <p>
                     </p>
-                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="362px" Width="837px" Visible="False">
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="1" Height="362px" Width="837px" Visible="False" OnActiveTabChanged="TabContainer3_ActiveTabChanged" AutoPostBack="True">
                         <asp:TabPanel ID="tabeditprofile" runat="server" HeaderText="Edit Profile" Height="600px" Width="124px">
                             <ContentTemplate>
 
@@ -427,7 +427,7 @@
 
                             </ContentTemplate>
                         </asp:TabPanel>
-                        <asp:TabPanel ID="tabchangepwd" runat="server" HeaderText="Change Password" Height="680px" Width="124px">
+                        <asp:TabPanel ID="tabchangepwd" runat="server" HeaderText="Change Password" Height="680px" Width="124px" TabIndex="1">
                             <HeaderTemplate>
                                 Change Password
                             </HeaderTemplate>
@@ -444,58 +444,59 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
                                 <asp:TextBox ID="tb_confrimPass" runat="server"></asp:TextBox>
                             </p>
-            <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="dd_secque1" runat="server">
+            <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="dd_secque1" runat="server" Enabled="False" EnableTheming="True">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
-                    <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="Question3">What is the name of your favorite childhood friend? </asp:ListItem>
-                    <asp:ListItem Value="Question4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
-                    <asp:ListItem Value="Question5">In what city does your nearest sibling live? </asp:ListItem>
-                    <asp:ListItem Value="Question6">In what city or town was your first job?</asp:ListItem>
-                    <asp:ListItem Value="Question7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
-                    <asp:ListItem Value="Question8">What was your favorite place to visit as a child?</asp:ListItem>
-                    <asp:ListItem Value="Question9">What is the name of your favorite childhood teacher?</asp:ListItem>
-                    <asp:ListItem Value="Question10">What was the first concert you attended?</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_secans1" runat="server"></asp:TextBox>
             </p>
             <p>Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_secque2" runat="server">
+                <asp:DropDownList ID="dd_secque2" runat="server" Enabled="False">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
-                    <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="Question3">What is the name of your favorite childhood friend? </asp:ListItem>
-                    <asp:ListItem Value="Question4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
-                    <asp:ListItem Value="Question5">In what city does your nearest sibling live? </asp:ListItem>
-                    <asp:ListItem Value="Question6">In what city or town was your first job?</asp:ListItem>
-                    <asp:ListItem Value="Question7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
-                    <asp:ListItem Value="Question8">What was your favorite place to visit as a child?</asp:ListItem>
-                    <asp:ListItem Value="Question9">What is the name of your favorite childhood teacher?</asp:ListItem>
-                    <asp:ListItem Value="Question10">What was the first concert you attended?</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_secans2" runat="server"></asp:TextBox>
             </p>
             <p>Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:DropDownList ID="dd_secque3" runat="server">
+                <asp:DropDownList ID="dd_secque3" runat="server" Enabled="False">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
-                    <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="Question3">What is the name of your favorite childhood friend? </asp:ListItem>
-                    <asp:ListItem Value="Question4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
-                    <asp:ListItem Value="Question5">In what city does your nearest sibling live? </asp:ListItem>
-                    <asp:ListItem Value="Question6">In what city or town was your first job?</asp:ListItem>
-                    <asp:ListItem Value="Question7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
-                    <asp:ListItem Value="Question8">What was your favorite place to visit as a child?</asp:ListItem>
-                    <asp:ListItem Value="Question9">What is the name of your favorite childhood teacher?</asp:ListItem>
-                    <asp:ListItem Value="Question10">What was the first concert you attended?</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="lblStatus_ChgPwd" runat="server" Visible="False"></asp:Label>
             </p>
                             <p>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

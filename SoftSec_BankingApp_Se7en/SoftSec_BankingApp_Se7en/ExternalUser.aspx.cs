@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -13,6 +14,7 @@ namespace SoftSec_BankingApp_Se7en
     {
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
         private string merchant_savingsAccNum = string.Empty;
+        private static List<SecurityQuestion> lstQandA = null;
         protected void Page_Load(object sender, EventArgs e)
         {            
             try
@@ -371,6 +373,43 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
+                    if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
+                    {
+                        string strAns1 = (lstQandA.First().answer).ToLower();
+                        string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                        string strAns3 = (lstQandA.Last().answer).ToLower();
+
+                        if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
+                                && tb_secans3.Text.ToLower().Equals(strAns3))
+                        {
+                            if (tb_newPass.Text.Equals(tb_confrimPass.Text))
+                            {
+                                bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
+                                if (success)
+                                {
+                                    lblStatus_ChgPwd.Text = "Password Changed Successfully";
+                                    lblStatus_ChgPwd.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
+                                    lblStatus_ChgPwd.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //New Passwords Dont match
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Answers
+                        }
+                    }
+                    else
+                    {
+                        //Old Password is not true
+                    }                    
                 }
                 else
                 {
@@ -742,6 +781,31 @@ namespace SoftSec_BankingApp_Se7en
             {
                 //Log exceptions here
                 return false;
+            }
+        }
+
+        protected void TabContainer3_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TabContainer3.ActiveTabIndex == 0)
+                {
+                    //Reset the fields if required
+                }
+                else if (TabContainer3.ActiveTabIndex == 1)
+                {
+                    lstQandA = PasswordModel.GetSecurityQandA(Session["userName"].ToString());
+                    dd_secque1.SelectedValue = Convert.ToString(lstQandA.First().questionId);
+                    dd_secque2.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
+                    dd_secque3.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                    dd_secque1.Enabled = false;
+                    dd_secque2.Enabled = false;
+                    dd_secque3.Enabled = false;
+                }
+            }
+            catch(Exception exp)
+            {
+                //Log Exception
             }
         }
     }

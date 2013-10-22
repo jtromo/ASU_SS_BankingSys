@@ -311,6 +311,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return false;
             }
         }
+
+        // Needs to be removed. (no one should be able to do this without access)
         public static bool TransferToDept(string username, int ToDepartmentId)
         {
             try

@@ -5,7 +5,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </p>
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="1" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="4" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>
@@ -96,7 +96,8 @@
                 &nbsp;<br /> 
                 <asp:Label ID="lastNameLb_Modify" runat="server" Text="Last Name"></asp:Label>
                 <asp:Label ID="lastNameTextLb_Modify" runat="server" Width="200px" style="margin-left: 64px"></asp:Label>
-                &nbsp;&nbsp;<br />&nbsp;<asp:Label ID="currentRoleLb_Modify" runat="server" Text="Current Role"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<asp:Label ID="errorLbModify" runat="server"></asp:Label>
+                <br />&nbsp;<asp:Label ID="currentRoleLb_Modify" runat="server" Text="Current Role"></asp:Label>
                 <asp:Label ID="currentRoleTextLb_Modify" runat="server" Height="18px" style="margin-left: 55px; margin-right: 0px" Width="200px"></asp:Label>
                 <br />
                 <br />
@@ -104,10 +105,10 @@
                 <asp:Label ID="newRoleLb_Modify" runat="server" Text="New Role"></asp:Label>
                 &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="DropDownList1" runat="server">
-                    <asp:ListItem Value="1">Regular</asp:ListItem>
-                    <asp:ListItem Value="2">Dept. Manager</asp:ListItem>
-                    <asp:ListItem Value="3">Vice President</asp:ListItem>
-                    <asp:ListItem Value="4">President</asp:ListItem>
+                    <asp:ListItem Value="4">Internal Regular</asp:ListItem>
+                    <asp:ListItem Value="5">Internal Dept. Manager</asp:ListItem>
+                    <asp:ListItem Value="6">Higher level Manager</asp:ListItem>
+                    <asp:ListItem Value="7">Admin</asp:ListItem>
                 </asp:DropDownList>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -242,7 +243,23 @@
         </asp:TabPanel>
         <asp:TabPanel ID="RequestTabPanel" runat="server" HeaderText="Requests">
             <ContentTemplate>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                &nbsp;<br />
+                <asp:Label ID="Label2" runat="server" Text="deptID:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="deptIDlookupTB" runat="server"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="deptIDLookUpBT" runat="server" Text="LookUp" OnClick="deptIDLookUpBT_Click" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="reqErrorLb" runat="server" Width="300px"></asp:Label>
+                <br />
+                &nbsp;<asp:Label ID="Label3" runat="server" Text="UserName:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="userNameLookUpTb" runat="server"></asp:TextBox>
+
+                &nbsp;&nbsp;
+                <asp:Button ID="UserNameLookUpBT" runat="server" Text="LookUp" OnClick="UserNameLookUpBT_Click" />
+                <asp:GridView ID="RequestsGridV" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" Height="145px" Width="840px">
+                </asp:GridView>
+
             </ContentTemplate>
 
         </asp:TabPanel>

@@ -28,10 +28,30 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void modifyBT_Modify_Click(object sender, EventArgs e)
         {
-            //Confirm this operation using a message box.
-            //If YES then continue.
-            //Clicking modify will alter the role in the DB and return the success/ failure. 
-            //Depending on this the message is displayed and the fields are cleared.
+            
+            User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
+            if (checkforUSer != null)
+            {
+                int newRoleID =Convert.ToInt32(DropDownList1.SelectedValue); 
+                string deptTransDesc= "Admin escalted"+checkforUSer.username+"from role"+checkforUSer.roleId.ToString()+"to role"+newRoleID.ToString();
+                bool roleEscalationReqPlaced = false;
+               roleEscalationReqPlaced= DepartmentTransactionModel.MakeRoleEscalation("Admin",checkforUSer.username,Convert.ToInt32( checkforUSer.roleId),newRoleID,deptTransDesc,0,"");
+               if (roleEscalationReqPlaced)
+               {
+                   
+
+               }
+               else {
+
+                   errorLbModify.Text = "Could not place modify request";
+               }
+            }
+            else {
+
+                errorLbModify.Text = "No user exists";
+            }
+
+
         }
 
         protected void detailsBT_Modify_Click(object sender, EventArgs e)
@@ -42,11 +62,54 @@ namespace SoftSec_BankingApp_Se7en
                 serverSideValidation = validateFromFields(userIdTb_Modify.Text.ToString());
                 if (serverSideValidation)
                 {
-                    //Proceed with business logic here
+                    User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
+                    if (checkforUSer != null)
+                    {
+                        if (checkforUSer.roleId > 3)
+                        {
+
+                            errorLbModify.Text = "has access";
+                            firstNameTextLb_Modify.Text=checkforUSer.firstName;
+                            lastNameTextLb_Modify.Text = checkforUSer.lastName;
+                            
+                            int userrole = Convert.ToInt32(checkforUSer.roleId);
+                            switch (userrole)
+                            {
+                                case 2: currentRoleTextLb_Modify.Text = "External Individual";
+                                    break;
+                                case 3: currentRoleTextLb_Modify.Text = "External Merchant";
+                                    break;
+                                case 4: currentRoleTextLb_Modify.Text = "Internal Regular";
+                                    break;
+                                case 5: currentRoleTextLb_Modify.Text = "Internal Dept Mgr";
+                                    break;
+                                case 6: currentRoleTextLb_Modify.Text = "Internal Higher Mgr";
+                                    break;
+                                case 7: currentRoleTextLb_Modify.Text = "Admin";
+                                    break;
+                                case 8: currentRoleTextLb_Modify.Text = "Super User";
+                                    break;
+                                default: currentRoleTextLb_Modify.Text = "Invalid Role";
+                                    break;
+
+
+                            }
+                        }
+                        else
+                        {
+                            errorLbModify.Text = "You do not have access for this user";
+                        }
+
+                    }
+                    else
+                    {
+
+                        errorLbModify.Text = "User does not exist";
+                    }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    errorLbModify.Text = "Please check what you have entered";
                 }
             }
             catch (Exception exp)
@@ -388,6 +451,7 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+
         /// <summary>
         /// Validate the form fields
         /// </summary>
@@ -413,6 +477,97 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        private bool validateUserNameField(string username)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool userNamevalidation = fieldValidator.validate_UserName(username);
+                if (userNamevalidation)
+                {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+                
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
 
+        private bool validateDeptField(string deptID)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool deptValidation = fieldValidator.validate_TransID(deptID);
+                if (deptValidation)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        protected void deptIDLookUpBT_Click(object sender, EventArgs e)
+        {
+            string deptID = deptIDlookupTB.Text.ToString();
+            if (validateDeptField(deptID))
+            {
+                List<DepartmentTransaction> transactionResults = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
+                if (transactionResults.Count > 0)
+                {
+
+                    RequestsGridV.DataSource = transactionResults;
+                    RequestsGridV.DataBind();
+
+                }
+                else {
+
+                    reqErrorLb.Text = "No transactions on this dept";
+                }
+            }
+            else {
+                reqErrorLb.Text = "please check the dept ID you have entered";
+            }
+        }
+
+        protected void UserNameLookUpBT_Click(object sender, EventArgs e)
+        {
+            string username = userNameLookUpTb.Text.ToString();
+            if (validateUserNameField(username))
+            {
+                List<DepartmentTransaction> transactionResults = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
+                if (transactionResults.Count > 0)
+                {
+
+                    RequestsGridV.DataSource = transactionResults;
+                    RequestsGridV.DataBind();
+
+                }
+                else
+                {
+
+                    reqErrorLb.Text = "No transactions for this user";
+                }
+            }
+            else
+            {
+                reqErrorLb.Text = "please check the User name you have entered";
+            }
+        }
     }
 }

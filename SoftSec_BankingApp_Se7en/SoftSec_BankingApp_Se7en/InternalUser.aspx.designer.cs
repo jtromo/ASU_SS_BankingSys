@@ -958,6 +958,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList transferDD_ModifyTrans;
         
         /// <summary>
+        /// grdTransactions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdTransactions;
+        
+        /// <summary>
         /// tb_transID_ModifyTrans control.
         /// </summary>
         /// <remarks>
@@ -965,33 +974,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_transID_ModifyTrans;
-        
-        /// <summary>
-        /// monthDD_ModifyTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList monthDD_ModifyTrans;
-        
-        /// <summary>
-        /// dayDD_ModifyTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dayDD_ModifyTrans;
-        
-        /// <summary>
-        /// tb_year_ModifyTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_year_ModifyTrans;
         
         /// <summary>
         /// btn_viewtransdetails control.
@@ -1003,6 +985,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btn_viewtransdetails;
         
         /// <summary>
+        /// lblAccount_ModifyTrans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAccount_ModifyTrans;
+        
+        /// <summary>
         /// tb_AccNum_modifyTrans control.
         /// </summary>
         /// <remarks>
@@ -1012,22 +1003,31 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_AccNum_modifyTrans;
         
         /// <summary>
-        /// tb_Type_modifyTrans control.
+        /// lblRoutingNum_ModifyTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Type_modifyTrans;
+        protected global::System.Web.UI.WebControls.Label lblRoutingNum_ModifyTrans;
         
         /// <summary>
-        /// tb_Status_ModifyTrans control.
+        /// tb_RoutNum_modifyTrans control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Status_ModifyTrans;
+        protected global::System.Web.UI.WebControls.TextBox tb_RoutNum_modifyTrans;
+        
+        /// <summary>
+        /// lblAmount_ModifyTrans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAmount_ModifyTrans;
         
         /// <summary>
         /// tb_Amount_ModifyTrans control.
@@ -1037,6 +1037,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_Amount_ModifyTrans;
+        
+        /// <summary>
+        /// lblStatus_ModifyStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus_ModifyStatus;
         
         /// <summary>
         /// btn_modifytrans control.

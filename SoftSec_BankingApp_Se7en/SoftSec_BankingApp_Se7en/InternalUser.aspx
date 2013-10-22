@@ -75,7 +75,7 @@
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
                     <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
-                        <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="0">
+                        <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
                     <br></br>
@@ -718,91 +718,41 @@
 
                     <br />
                     Show transfers for:
-                    <asp:DropDownList ID="transferDD_ModifyTrans" runat="server">
-                        <asp:ListItem>Last 30 days and Future Scheduled Transfers</asp:ListItem>
-                        <asp:ListItem>Prior 2 months</asp:ListItem>
-                        <asp:ListItem>Prior 3 months</asp:ListItem>
-                        <asp:ListItem>Prior 6 months</asp:ListItem>
+                    <asp:DropDownList ID="transferDD_ModifyTrans" runat="server" AutoPostBack="True" OnSelectedIndexChanged="transferDD_ModifyTrans_SelectedIndexChanged">
+                        <asp:ListItem>Accounts</asp:ListItem>
                     </asp:DropDownList>
+                    <br></br>
                     <br />
+                    <asp:GridView ID="grdTransactions" runat="server" AllowPaging="True" OnPageIndexChanging="grdTransactions_PageIndexChanging" PageSize="3">
+                    </asp:GridView>
                     <br />
-                    //display transfers in grid view<br />
                     <br />
                     <br />
                     Transaction ID:
                     <asp:TextBox ID="tb_transID_ModifyTrans" runat="server"></asp:TextBox>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
-                    <asp:DropDownList ID="monthDD_ModifyTrans" runat="server">
-                        <asp:ListItem>MM</asp:ListItem>
-                        <asp:ListItem>01</asp:ListItem>
-                        <asp:ListItem>02</asp:ListItem>
-                        <asp:ListItem>03</asp:ListItem>
-                        <asp:ListItem>04</asp:ListItem>
-                        <asp:ListItem>05</asp:ListItem>
-                        <asp:ListItem>06</asp:ListItem>
-                        <asp:ListItem>07</asp:ListItem>
-                        <asp:ListItem>08</asp:ListItem>
-                        <asp:ListItem>09</asp:ListItem>
-                        <asp:ListItem>10</asp:ListItem>
-                        <asp:ListItem>11</asp:ListItem>
-                        <asp:ListItem>12</asp:ListItem>
-                    </asp:DropDownList>
-                    &nbsp;<asp:DropDownList ID="dayDD_ModifyTrans" runat="server">
-                        <asp:ListItem>DD</asp:ListItem>
-                        <asp:ListItem>01</asp:ListItem>
-                        <asp:ListItem>02</asp:ListItem>
-                        <asp:ListItem>03</asp:ListItem>
-                        <asp:ListItem>04</asp:ListItem>
-                        <asp:ListItem>05</asp:ListItem>
-                        <asp:ListItem>06</asp:ListItem>
-                        <asp:ListItem>07</asp:ListItem>
-                        <asp:ListItem>08</asp:ListItem>
-                        <asp:ListItem>09</asp:ListItem>
-                        <asp:ListItem>10</asp:ListItem>
-                        <asp:ListItem>11</asp:ListItem>
-                        <asp:ListItem>12</asp:ListItem>
-                        <asp:ListItem>13</asp:ListItem>
-                        <asp:ListItem>14</asp:ListItem>
-                        <asp:ListItem>15</asp:ListItem>
-                        <asp:ListItem>16</asp:ListItem>
-                        <asp:ListItem>17</asp:ListItem>
-                        <asp:ListItem>18</asp:ListItem>
-                        <asp:ListItem>19</asp:ListItem>
-                        <asp:ListItem>20</asp:ListItem>
-                        <asp:ListItem>21</asp:ListItem>
-                        <asp:ListItem>22</asp:ListItem>
-                        <asp:ListItem>23</asp:ListItem>
-                        <asp:ListItem>24</asp:ListItem>
-                        <asp:ListItem>25</asp:ListItem>
-                        <asp:ListItem>26</asp:ListItem>
-                        <asp:ListItem>27</asp:ListItem>
-                        <asp:ListItem>28</asp:ListItem>
-                        <asp:ListItem>29</asp:ListItem>
-                        <asp:ListItem>30</asp:ListItem>
-                        <asp:ListItem>31</asp:ListItem>
-                    </asp:DropDownList>
-                    &nbsp;<asp:TextBox ID="tb_year_ModifyTrans" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
-                    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails" runat="server" Text="View Details" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btn_viewtransdetails" runat="server" OnClick="btn_viewtransdetails_Click" Text="View Details" />
                     <br />
                     <br />
                     <br />
-                    Account Number: [AccNum]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Number:
+                    Account Number:<asp:Label ID="lblAccount_ModifyTrans" runat="server" Visible="False"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Number
                     <asp:TextBox ID="tb_AccNum_modifyTrans" runat="server"></asp:TextBox>
                     <br />
-                    Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Type]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_Type_modifyTrans" runat="server"></asp:TextBox>
+                    Routing Number:
+                    <asp:Label ID="lblRoutingNum_ModifyTrans" runat="server" Visible="False"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Routing Number&nbsp;
+                    <asp:TextBox ID="tb_RoutNum_modifyTrans" runat="server"></asp:TextBox>
                     <br />
-                    Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Status]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_Status_ModifyTrans" runat="server"></asp:TextBox>
+                    Amount:&nbsp;<asp:Label ID="lblAmount_ModifyTrans" runat="server" Visible="False"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_Amount_ModifyTrans" runat="server"></asp:TextBox>
                     <br />
-                    Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [Amount]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_Amount_ModifyTrans" runat="server"></asp:TextBox>
-                    <br />
-                    <br />
-                    <br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="btn_modifytrans" runat="server" Text="Modify!" />
+                    Status :&nbsp;<asp:Label ID="lblStatus_ModifyStatus" runat="server" Visible="False"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btn_modifytrans" runat="server" OnClick="btn_modifytrans_Click" Text="Modify" />
                     &nbsp;&nbsp;
-                    <asp:Button ID="btn_deltrans" runat="server" Text="Delete" />
+                    <asp:Button ID="btn_deltrans" runat="server" OnClick="btn_deltrans_Click" Text="Delete" />
+                    </br>
 
                     </Contenttemplate>
 
@@ -1152,7 +1102,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="2" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

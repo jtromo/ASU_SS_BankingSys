@@ -15,6 +15,9 @@ namespace SoftSec_BankingApp_Se7en
         protected static String siteKeySelected = "";
         private static List<SecurityQuestion> lstQandA = null;
         private static string merchant_savingsAccNum = string.Empty;
+        private static List<Models.Tables.Transaction> lstTransaction = null;
+        private static string fromAccNum_ModTrans = string.Empty;
+        private static string toAccNum_ModTrans = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -552,7 +555,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(tb_amountoutside.Text.ToString());
+                serverSideValidation = validateFromFields(tb_amountbetween.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
@@ -1828,20 +1831,37 @@ namespace SoftSec_BankingApp_Se7en
                         
                     }
                 }
+                else if (TabContainer2.ActiveTabIndex == 3)
+                {
+                    List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["ExistingCustName"].ToString()).ToList();
+                    if (transferDD_ModifyTrans.Items.Count > 0)
+                    {
+                        transferDD_ModifyTrans.Items.Clear();
+                    }
+                    transferDD_ModifyTrans.Items.Add("Accounts");
+                    foreach (Models.Tables.Account acc in lstAcc)
+                    {
+                        transferDD_ModifyTrans.Items.Add(acc.accountNumber);
+                    }
+                    
+                }
                 else if (TabContainer2.ActiveTabIndex == 4)
                 {
                     Models.Tables.User objUsr = UserModel.GetUser(Session["ExistingCustName"].ToString());
                     if (objUsr != null)
-                    {
+                    {   
                         List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["ExistingCustName"].ToString()).ToList();
-                        foreach (Models.Tables.Account acc in lstAcc)
+                        if (lstAcc != null)
                         {
-                            if (acc.accountTypeId == 3)
+                            foreach (Models.Tables.Account acc in lstAcc)
                             {
-                                merchant_savingsAccNum = acc.accountNumber;
-                                break;
+                                if (acc.accountTypeId == 3)
+                                {
+                                    merchant_savingsAccNum = acc.accountNumber;
+                                    break;
+                                }
                             }
-                        }
+                        }                        
                     }
                     else
                     {
@@ -1898,5 +1918,287 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        protected void btn_viewtransdetails_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serverSideValidation = false;
+                FieldValidator objField = new FieldValidator();
+                serverSideValidation = objField.validate_TransID(tb_transID_ModifyTrans.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                    
+                    Models.Tables.Transaction objTrans = TransactionModel.GetTransactions(tb_transID_ModifyTrans.Text.ToString());
+                    if (transferDD_ModifyTrans.SelectedValue.ToString().Equals(objTrans.fromAccountNumber))
+                    {
+                        btn_modifytrans.Enabled = true;
+                        fromAccNum_ModTrans = objTrans.fromAccountNumber;
+                        toAccNum_ModTrans = objTrans.toAccountNumber;
+                        lblAccount_ModifyTrans.Text = objTrans.toAccountNumber;
+                        lblAmount_ModifyTrans.Text = Convert.ToString(objTrans.amount);
+                        lblRoutingNum_ModifyTrans.Text = objTrans.toRoutingNumber;
+                        lblRoutingNum_ModifyTrans.Visible = true;
+                        lblAccount_ModifyTrans.Visible = true;
+                        lblAmount_ModifyTrans.Enabled = false;
+                        lblAccount_ModifyTrans.Enabled = false;
+                        lblAmount_ModifyTrans.Visible = true;
+                        tb_AccNum_modifyTrans.Text = objTrans.toAccountNumber;
+                        tb_Amount_ModifyTrans.Text = Convert.ToString(objTrans.amount);
+                        tb_RoutNum_modifyTrans.Text = objTrans.toRoutingNumber;
+                        //lblType_ModifyTrans.Text = objTrans.type;
+                    }
+                    else
+                    {
+                        btn_modifytrans.Enabled = false;
+                        lblStatus_ModifyStatus.Text = "Cant modify this transaction";
+                        lblStatus_ModifyStatus.Visible = true;
+                    }
+                }
+                else
+                { 
+                    //Update the UI with error message
+                }
+            }
+            catch
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void btn_modifytrans_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serverSideValidation = false;
+                FieldValidator objField = new FieldValidator();
+                serverSideValidation = objField.validate_TransID(tb_transID_ModifyTrans.Text) 
+                            && objField.validate_Amount(tb_Amount_ModifyTrans.Text) && objField.validate_ZipAccCrdPhn(tb_AccNum_modifyTrans.Text,12);
+                if (serverSideValidation)
+                {
+                    Models.Tables.Account objToNewAccount = AccountModel.GetAccount(tb_AccNum_modifyTrans.Text);
+                    Models.Tables.Account objFromAccount = AccountModel.GetAccount(fromAccNum_ModTrans);
+                    Models.Tables.Account objToOrgAccount = AccountModel.GetAccount(toAccNum_ModTrans);
+                    if (transferDD_ModifyTrans.SelectedValue.ToString().Equals(objFromAccount.accountNumber))
+                    {
+                        if (objToNewAccount != null && objToOrgAccount != null)
+                        {
+                            //Inside bank transfer
+                            if (tb_AccNum_modifyTrans.Text.Equals(lblAccount_ModifyTrans.Text))
+                            {
+                                //Account numbers are same. Involves 2 accounts only.
+                                if (tb_Amount_ModifyTrans.Text.Equals(lblAmount_ModifyTrans.Text))
+                                {
+                                    //No modification is possible.
+                                    lblStatus_ModifyStatus.Text = "The account number and amount are same. No Modification in transaction";
+                                    lblStatus_ModifyStatus.Visible = true;
+                                }
+                                else
+                                {
+                                    //Amount is different.
+                                    if (Convert.ToDouble(lblAmount_ModifyTrans.Text) > Convert.ToDouble(tb_Amount_ModifyTrans.Text))
+                                    {
+                                        //New amount entered is less than already transfered amount. Thereby returning money to FROMAccount.
+                                        double netAmount = Convert.ToDouble(lblAmount_ModifyTrans.Text) - Convert.ToDouble(tb_Amount_ModifyTrans.Text);
+                                        string desc = "From :" + objToNewAccount.accountNumber + " To :" + objFromAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
+                                                        + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
+                                        bool success = TransactionModel.MakeInternalTransfer(objToNewAccount.accountNumber, objFromAccount.accountNumber, netAmount, desc);
+                                        if (success)
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Successful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                            lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                                            grdTransaction.DataSource = lstTransaction;
+                                            grdTransaction.DataBind();
+                                        }
+                                        else
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //New Amount more than transaction amount. Debiting difference from FROMAccount.
+                                        double netAmount = Convert.ToDouble(tb_Amount_ModifyTrans.Text) - Convert.ToDouble(lblAmount_ModifyTrans.Text);
+                                        string desc = "From :" + objFromAccount.accountNumber + " To :" + objToNewAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
+                                                        + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
+                                        bool success = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber, netAmount, desc);
+                                        if (success)
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Successful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                            lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                                            grdTransaction.DataSource = lstTransaction;
+                                            grdTransaction.DataBind();
+                                        }
+                                        else
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //Account numbers are not same. Involves 3 different accounts
+                                if (tb_Amount_ModifyTrans.Text.Equals(lblAmount_ModifyTrans.Text))
+                                {
+                                    //Same amount. Then it involves only 2 accounts.
+                                    string desc = "From : " + objToOrgAccount.accountNumber + " To :" + objToNewAccount.accountNumber
+                                                    + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
+                                    bool success = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objToNewAccount.accountNumber,
+                                                                                                Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
+                                    if (success)
+                                    {
+                                        lblStatus_ModifyStatus.Text = "Modification Successful";
+                                        lblStatus_ModifyStatus.Visible = true;
+                                        lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                                        grdTransaction.DataSource = lstTransaction;
+                                        grdTransaction.DataBind();
+                                    }
+                                    else
+                                    {
+                                        lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                        lblStatus_ModifyStatus.Visible = true;
+                                    }
+                                }
+                                else
+                                {
+                                    //Different Amonunts involved, 3 accounts involved.
+                                    //Transfer the previous amount back to FromAccount.
+                                    string desc = "From : " + objToOrgAccount.accountNumber + " To :" + objFromAccount.accountNumber
+                                                    + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
+                                    bool firstSuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber
+                                                                                                        , Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
+                                    if (firstSuccess)
+                                    {
+                                        //Trasfer new amount to new account.
+                                        desc = string.Empty;
+                                        desc = "From : " + objFromAccount.accountNumber + " To :" + objToNewAccount.accountNumber
+                                                    + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
+                                        bool secondSuccess = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber,
+                                                                                                    Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
+                                        if (secondSuccess)
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Successful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                            lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                                            grdTransaction.DataSource = lstTransaction;
+                                            grdTransaction.DataBind();
+                                        }
+                                        else
+                                        {
+                                            lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                            lblStatus_ModifyStatus.Visible = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                        lblStatus_ModifyStatus.Visible = true;
+                                    }
+                                }
+                            }
+                        }
+                        else if (objToOrgAccount != null && objToNewAccount == null)
+                        {
+                            //Outside bank transfer
+                            //Original TOACcount is inside bank, but user wants to make the tranfer to an account outside the bank
+                            if (objField.validate_ZipAccCrdPhn(tb_RoutNum_modifyTrans.Text, 10))
+                            {
+                                //Transfer the previous amount back to FromAccount.
+                                string desc = "From : " + objToOrgAccount.accountNumber + " To :" + objFromAccount.accountNumber
+                                                + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
+                                bool firstsuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber,
+                                                                                            Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
+                                if (firstsuccess)
+                                {
+                                    desc = string.Empty;
+                                    desc = "From : " + objFromAccount.accountNumber + " To : " + tb_AccNum_modifyTrans.Text + " Amount : "
+                                                        + tb_Amount_ModifyTrans.Text + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
+                                    bool secondSuccess = TransactionModel.MakeExternalTransfer(objFromAccount.accountNumber, objFromAccount.routingNumber,
+                                                                                tb_AccNum_modifyTrans.Text, tb_RoutNum_modifyTrans.Text, Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
+                                    if (secondSuccess)
+                                    {
+                                        lblStatus_ModifyStatus.Text = "Modification Successful";
+                                        lblStatus_ModifyStatus.Visible = true;
+                                        lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                                        grdTransaction.DataSource = lstTransaction;
+                                        grdTransaction.DataBind();
+                                    }
+                                    else
+                                    {
+                                        lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                        lblStatus_ModifyStatus.Visible = true;
+                                    }
+                                }
+                                else
+                                {
+                                    lblStatus_ModifyStatus.Text = "Modification Unsuccessful";
+                                    lblStatus_ModifyStatus.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                lblStatus_ModifyStatus.Text = "Enter valid routing number";
+                                lblStatus_ModifyStatus.Visible = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        lblStatus_ModifyStatus.Text = "Cant modify this transaction";
+                        lblStatus_ModifyStatus.Visible = true;
+                    }                    
+                }
+                else
+                {
+                    lblStatus_ModifyStatus.Text = "Enter valid account number/amount";
+                    lblStatus_ModifyStatus.Visible = true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Excpetion here
+            }
+        }
+
+        protected void transferDD_ModifyTrans_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
+                if (lstTransaction != null)
+                {
+                    grdTransactions.DataSource = lstTransaction;
+                    grdTransactions.DataBind();
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void grdTransactions_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                grdTransactions.PageIndex = e.NewPageIndex;
+                grdTransactions.DataSource = lstTransaction;
+                grdTransactions.DataBind();
+            }
+            catch(Exception exp)
+            {
+                //Log exceptions here
+            }
+        }
+
+        protected void btn_deltrans_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

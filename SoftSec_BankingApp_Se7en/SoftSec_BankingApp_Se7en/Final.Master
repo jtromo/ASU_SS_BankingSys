@@ -39,7 +39,7 @@
         </div> 
     </div>      
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        <div style="height:400px";> </div>
+        <div style="height:auto";> </div>
         </asp:ContentPlaceHolder>
       
 <div id="footer_wrapper">

@@ -49,6 +49,75 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static Tables.Transaction GetTransactions(string strTransID)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", strTransID).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    return transactions.First();
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static List<Tables.Transaction> GetTransactionsForFromAccount(string accountNumber)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0", accountNumber).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return null;
+                    }                   
+
+                    return transactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static List<Tables.Transaction> GetTransactionsForFromToAccount(string accountNumber)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber =@p1",accountNumber, accountNumber).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    return transactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
         public static List<Tables.Transaction> GetTransactionsForUser(string username)
         {
             try

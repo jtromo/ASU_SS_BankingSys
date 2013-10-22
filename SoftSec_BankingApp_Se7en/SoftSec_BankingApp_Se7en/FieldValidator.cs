@@ -263,7 +263,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
-                if (TransactionId.Length <= 20)
+                if (TransactionId.Length <= 5)
                 {
                     Regex descriptionRegex = new Regex(@"^\d+$");
                     Match descriptionMatch = descriptionRegex.Match(TransactionId);

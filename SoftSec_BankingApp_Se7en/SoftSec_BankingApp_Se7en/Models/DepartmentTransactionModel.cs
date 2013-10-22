@@ -96,7 +96,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool MakeRoleEscalation(string usernameInitiated, string usernameEffected, int roleOld, int roleNew, string description, int? isCritical, string mustBeAuthorizedByUserName)
+        public static int MakeRoleEscalation(string usernameInitiated, string usernameEffected, int roleOld, int roleNew, string description, int? isCritical, string mustBeAuthorizedByUserName)
         {
             try
             {
@@ -121,18 +121,18 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.DepartmentTransactions.Add(deptTransaction);
                     db.SaveChanges();
 
-                    return true;
+                    return deptTransaction.id;
                 }
 
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
 
-        public static bool MakeDepartmentTransfer(int fromDepartmentId, int toDepartmentId, string usernameInitiated, string usernameEffected, string description, int? isCritical, string mustBeAuthorizedByUserName)
+        public static int MakeDepartmentTransfer(int fromDepartmentId, int toDepartmentId, string usernameInitiated, string usernameEffected, string description, int? isCritical, string mustBeAuthorizedByUserName)
         {
             try
             {
@@ -157,14 +157,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.DepartmentTransactions.Add(deptTransaction);
                     db.SaveChanges();
 
-                    return true;
+                    return deptTransaction.id;
                 }
 
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
 

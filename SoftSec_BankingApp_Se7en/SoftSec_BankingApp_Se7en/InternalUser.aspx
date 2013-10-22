@@ -6,7 +6,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" AutoPostBack="True">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -1152,7 +1152,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="2" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

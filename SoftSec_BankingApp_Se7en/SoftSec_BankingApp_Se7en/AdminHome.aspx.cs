@@ -12,8 +12,13 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+       static  List<DepartmentTransaction> currentDTransBeingDisplayed;
+       static  DepartmentTransaction currentSlectedTrans;
+        
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            hideRequestUI();
 
             if (!IsPostBack)
             {
@@ -34,11 +39,18 @@ namespace SoftSec_BankingApp_Se7en
             {
                 int newRoleID =Convert.ToInt32(DropDownList1.SelectedValue); 
                 string deptTransDesc= "Admin escalted"+checkforUSer.username+"from role"+checkforUSer.roleId.ToString()+"to role"+newRoleID.ToString();
-                bool roleEscalationReqPlaced = false;
-               roleEscalationReqPlaced= DepartmentTransactionModel.MakeRoleEscalation("Admin",checkforUSer.username,Convert.ToInt32( checkforUSer.roleId),newRoleID,deptTransDesc,0,"");
-               if (roleEscalationReqPlaced)
+                int roleEscalationReqPlacedasTransaction = -1;
+                roleEscalationReqPlacedasTransaction = DepartmentTransactionModel.MakeRoleEscalation("Admin", checkforUSer.username, Convert.ToInt32(checkforUSer.roleId), newRoleID, deptTransDesc, 0, "");
+                if (roleEscalationReqPlacedasTransaction != -1)
                {
-                   
+                 bool roleModified=  DepartmentTransactionModel.AcceptDepartmentTransaction(roleEscalationReqPlacedasTransaction);
+                 if (roleModified)
+                 {
+                     errorLbModify.Text = "User access level succesfully modified";
+                 }
+                 else {
+                     errorLbModify.Text = "Could not modify user level";
+                 }
 
                }
                else {
@@ -53,6 +65,7 @@ namespace SoftSec_BankingApp_Se7en
 
 
         }
+
 
         protected void detailsBT_Modify_Click(object sender, EventArgs e)
         {
@@ -527,11 +540,11 @@ namespace SoftSec_BankingApp_Se7en
             string deptID = deptIDlookupTB.Text.ToString();
             if (validateDeptField(deptID))
             {
-                List<DepartmentTransaction> transactionResults = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
-                if (transactionResults.Count > 0)
+               currentDTransBeingDisplayed = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
+               if (currentDTransBeingDisplayed.Count > 0)
                 {
 
-                    RequestsGridV.DataSource = transactionResults;
+                    RequestsGridV.DataSource = currentDTransBeingDisplayed;
                     RequestsGridV.DataBind();
 
                 }
@@ -550,11 +563,11 @@ namespace SoftSec_BankingApp_Se7en
             string username = userNameLookUpTb.Text.ToString();
             if (validateUserNameField(username))
             {
-                List<DepartmentTransaction> transactionResults = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
-                if (transactionResults.Count > 0)
+                currentDTransBeingDisplayed = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
+                if (currentDTransBeingDisplayed.Count > 0)
                 {
 
-                    RequestsGridV.DataSource = transactionResults;
+                    RequestsGridV.DataSource = currentDTransBeingDisplayed;
                     RequestsGridV.DataBind();
 
                 }
@@ -567,6 +580,128 @@ namespace SoftSec_BankingApp_Se7en
             else
             {
                 reqErrorLb.Text = "please check the User name you have entered";
+            }
+        }
+
+        protected void GridViewItemSelected(object sender, EventArgs e)
+        {   
+            int selectedIndex = RequestsGridV.SelectedIndex;
+            currentSlectedTrans = currentDTransBeingDisplayed.ElementAt(selectedIndex);
+            hideRequestUI();
+            if (currentSlectedTrans.type == 1) {
+                //Role escalation Req
+                effectedUserValueLb.Text = currentSlectedTrans.usernameEffected;
+                initiatorValueLb.Text = currentSlectedTrans.usernameInitiated;
+                fromRoleValueLb.Text = currentSlectedTrans.roleOld.ToString();
+                toRoleValueLb.Text = currentSlectedTrans.roleNew.ToString();
+                showRoleReqUI();
+
+            }
+            else if (currentSlectedTrans.type == 2) { 
+            //Dept change Req
+                effectedUserValueLb.Text = currentSlectedTrans.usernameEffected;
+                initiatorValueLb.Text = currentSlectedTrans.usernameInitiated;
+                fromDeptValueLB.Text = currentSlectedTrans.fromDepartmentId.ToString();
+                toDeptValueLb.Text = currentSlectedTrans.toDepartmentId.ToString();
+                showDeptChangeReqUI();
+            }
+
+        }
+
+        protected void hideRequestUI() { 
+        EffectedUserLb.Visible=false;
+        effectedUserValueLb.Visible = false;
+        InitiatorLb.Visible = false;
+        initiatorValueLb.Visible = false;
+        toDeptLb.Visible = false;
+        toDeptValueLb.Visible = false;
+        fromDeptLb.Visible = false;
+        fromDeptValueLB.Visible = false;
+        fromRoleLb.Visible = false;
+        fromRoleValueLb.Visible = false;
+        toRoleLb.Visible = false;
+        toRoleValueLb.Visible = false;
+        approveRequestBT.Visible = false;
+        rejectReqBT.Visible = false;
+
+
+        }
+
+        protected void showRoleReqUI() {
+            EffectedUserLb.Visible = true;
+            effectedUserValueLb.Visible = true;
+            InitiatorLb.Visible = true;
+            initiatorValueLb.Visible = true;
+            toDeptLb.Visible = false;
+            toDeptValueLb.Visible = false;
+            fromDeptLb.Visible = false;
+            fromDeptValueLB.Visible = false;
+            fromRoleLb.Visible = true;
+            fromDeptValueLB.Visible = true;
+            toRoleLb.Visible = true;
+            toRoleValueLb.Visible = true;
+            approveRequestBT.Visible = true;
+            rejectReqBT.Visible = true;
+        
+        }
+
+        protected void showDeptChangeReqUI()
+        {
+            EffectedUserLb.Visible = true;
+            effectedUserValueLb.Visible = true;
+            InitiatorLb.Visible = true;
+            initiatorValueLb.Visible = true;
+            toDeptLb.Visible = true;
+            toDeptValueLb.Visible = true;
+            fromDeptLb.Visible = true;
+            fromDeptValueLB.Visible = true;
+            fromRoleLb.Visible = false;
+            fromDeptValueLB.Visible = false;
+            toRoleLb.Visible = false;
+            toRoleValueLb.Visible = false;
+            approveRequestBT.Visible = true;
+            rejectReqBT.Visible = true;
+
+        }
+
+        protected void approveRequestBT_Click(object sender, EventArgs e)
+        {
+            int currentTransID = currentSlectedTrans.id;
+            if (currentSlectedTrans.status ==1 )
+            {
+                bool isapproved = DepartmentTransactionModel.AcceptDepartmentTransaction(currentTransID);
+                if (isapproved)
+                {   
+                    reqErrorLb.Text = "Request succesfully approved";
+                }
+                else
+                {
+                    reqErrorLb.Text = "Request could not be approved";
+                }
+            }
+            else {
+                reqErrorLb.Text = "Decision already made";
+            }
+        }
+
+        protected void rejectReqBT_Click(object sender, EventArgs e)
+        {
+            int currentTransID = currentSlectedTrans.id;
+            if (currentSlectedTrans.status == 1)
+            {
+                bool isrejected = DepartmentTransactionModel.RejectDepartmentTransaction(currentTransID);
+                if (isrejected)
+                {
+                    reqErrorLb.Text = "Request succesfully rejected";
+                }
+                else
+                {
+                    reqErrorLb.Text = "Request could not be rejected";
+                }
+            }
+            else
+            {
+                reqErrorLb.Text = "Decision already made";
             }
         }
     }

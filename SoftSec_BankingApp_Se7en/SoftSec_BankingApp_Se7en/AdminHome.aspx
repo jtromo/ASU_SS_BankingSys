@@ -257,8 +257,39 @@
 
                 &nbsp;&nbsp;
                 <asp:Button ID="UserNameLookUpBT" runat="server" Text="LookUp" OnClick="UserNameLookUpBT_Click" />
-                <asp:GridView ID="RequestsGridV" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" Height="145px" Width="840px">
+                <asp:GridView ID="RequestsGridV" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" Height="145px" Width="840px" OnSelectedIndexChanged="GridViewItemSelected">
                 </asp:GridView>
+
+                <br />
+                <asp:Label ID="EffectedUserLb" runat="server" Text="User Effected:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="effectedUserValueLb" runat="server"></asp:Label>
+                <br />
+                <asp:Label ID="InitiatorLb" runat="server" Text="Initiator:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="initiatorValueLb" runat="server"></asp:Label>
+                <br />
+                <asp:Label ID="fromDeptLb" runat="server" Text="From Department:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="fromDeptValueLB" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="toDeptLb" runat="server" Text="To Department:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="toDeptValueLb" runat="server"></asp:Label>
+                <br />
+                <asp:Label ID="fromRoleLb" runat="server" Text="From Role:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="fromRoleValueLb" runat="server"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="toRoleLb" runat="server" Text="To Role:"></asp:Label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="toRoleValueLb" runat="server"></asp:Label>
+                <br />
+                <br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="approveRequestBT" runat="server" OnClick="approveRequestBT_Click" Text="Approve" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="rejectReqBT" runat="server" OnClick="rejectReqBT_Click" Text="Reject" />
 
             </ContentTemplate>
 

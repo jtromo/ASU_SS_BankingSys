@@ -158,14 +158,14 @@ namespace SSBank
             else
                 Response.Write(" User jtromo1 failed to be removed");
 
-            bool departmentTransfer = DepartmentTransactionModel.MakeDepartmentTransfer(2, 3, "employee1", "employee1", "Test Department Change", 0, "admin");
-            if (departmentTransfer)
+            int departmentTransferId = DepartmentTransactionModel.MakeDepartmentTransfer(2, 3, "employee1", "employee1", "Test Department Change", 0, "admin");
+            if (departmentTransferId > -1)
                 Response.Write(" User employee1 has been requested to be transfered to department 3");
             else
                 Response.Write(" Department transfer failed");
 
-            bool roleEscalation = DepartmentTransactionModel.MakeRoleEscalation("employee1", "employee1", 3, 4, "Test Department Change", 0, "admin");
-            if (roleEscalation)
+            int roleEscalationId = DepartmentTransactionModel.MakeRoleEscalation("employee1", "employee1", 3, 4, "Test Department Change", 0, "admin");
+            if (roleEscalationId > -1)
                 Response.Write(" Employee1 has been requested to change role from 3 to 4");
             else
                 Response.Write(" Role escalation failed");

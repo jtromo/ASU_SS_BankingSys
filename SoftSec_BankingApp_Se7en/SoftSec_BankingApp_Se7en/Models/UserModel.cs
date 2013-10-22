@@ -259,7 +259,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool updateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
+        public static bool UpdateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try
             {
@@ -311,6 +311,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return false;
             }
         }
+
+        // Needs to be removed. (no one should be able to do this without access)
         public static bool TransferToDept(string username, int ToDepartmentId)
         {
             try

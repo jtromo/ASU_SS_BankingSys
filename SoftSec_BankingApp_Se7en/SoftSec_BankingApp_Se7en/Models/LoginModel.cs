@@ -62,16 +62,6 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     User user = users.First();
-                    //Address address = user.Address;
-                    //if (address == null)
-                    //{
-                    //    return -1;
-                    //}
-
-                    //if (address.zip != zip)
-                    //{
-                    //    return -1;
-                    //}
 
                     if (!user.VerifyPassword(password))
                     {

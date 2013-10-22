@@ -709,7 +709,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
-                    bool success = UserModel.updateUser(Session["ExistingCustName"].ToString(), tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(), tb_city_Edit.Text.ToString(),
+                    bool success = UserModel.UpdateUser(Session["ExistingCustName"].ToString(), tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(), tb_city_Edit.Text.ToString(),
                                                 StateDD_EditProfile.SelectedValue.ToString(), tb_zipCode_Edit.Text.ToString(), tb_contact_Edit.Text.ToString());
                     if (success)
                     {

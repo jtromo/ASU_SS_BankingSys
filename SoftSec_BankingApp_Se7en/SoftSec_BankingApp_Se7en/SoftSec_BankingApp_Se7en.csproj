@@ -183,6 +183,7 @@
     <Content Include="CSS\nivo-slider.css" />
     <Content Include="CSS\style.css" />
     <Content Include="CSS\svwp_style.css" />
+    <Content Include="ErrorPage.aspx" />
     <Content Include="ExternalHomePage.aspx" />
     <Content Include="externalLibs\AjaxControlToolkit.dll" />
     <Content Include="externalLibs\Recaptcha.dll" />
@@ -190,6 +191,7 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="Images\banklogo.jpg" />
+    <Content Include="Images\error.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
     <Content Include="Images\gallery\image_01_s.jpg" />
     <Content Include="Images\gallery\image_02_l.jpg" />
@@ -379,6 +381,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ExternalHomePage.aspx.cs">
       <DependentUpon>ExternalHomePage.aspx</DependentUpon>

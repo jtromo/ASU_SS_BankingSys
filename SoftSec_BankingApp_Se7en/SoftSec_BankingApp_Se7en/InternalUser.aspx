@@ -17,7 +17,7 @@
                     <br />
                     Customer Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSignOff" runat="server" OnClick="btnSignOff_Click" Text="Sign Off" />
                     <br />Card Number:&nbsp;
-                    <asp:TextBox ID="tbCardNumber_IU" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tbCardNumber_IU" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
                     <asp:DropDownList ID="MonthDD_ExistingCustomer_Verify" runat="server">
                         <asp:ListItem>MM</asp:ListItem>
@@ -68,7 +68,7 @@
                         <asp:ListItem>30</asp:ListItem>
                         <asp:ListItem>31</asp:ListItem>
                     </asp:DropDownList>
-                    &nbsp;<asp:TextBox ID="tbYear_IU" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                    &nbsp;<asp:TextBox ID="tbYear_IU" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnVerify0" runat="server" OnClick="btnVerify_Click" Text="Verify" />
                     <br />
@@ -82,17 +82,17 @@
                     <br>
                     <br></br>
                     Checking Account:
-                    <asp:TextBox ID="tb_checking" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_checking" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_checking" runat="server" OnClick="btn_checking_Click" Text="View Summary" />
                     <br />
                     Savings Account:&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_savings" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_savings" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_savings" runat="server" OnClick="btn_savings_Click" Text="View Summary" />
                     <br />
                     Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_credit" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_credit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_credit" runat="server" Text="View Summary" />
                     <br />
@@ -130,27 +130,27 @@
                                             </p>
                                             <p class="auto-style6">
                                                 Amount:&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 <strong>Recepient&#39;s Details:</strong></p>
                                             <p>
                                                 &nbsp;Account Number:&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_lastname_IU_Inside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_lastname_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_zip_IU_Inside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_zip_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 <strong>Your Details (Validation):</strong></p>
                                             <p>
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_card_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -187,7 +187,7 @@
                                             </p>
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -213,31 +213,31 @@
                                             </p>
                                             <p class="auto-style5">
                                                 Amount:&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_amountoutside" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:TextBox ID="tb_amountoutside" runat="server" Width="115px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 <strong>Recepient&#39;s Details:</strong></p>
                                             <p class="auto-style5">
                                                 Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_AccNumoutside_Intenal" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_AccNumoutside_Intenal" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style9">
                                                 Routing Number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_toRoutingNum_OutsideBank" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_toRoutingNum_OutsideBank" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                                <asp:TextBox ID="tb_lastnameoutside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_lastnameoutside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style9">
                                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_emailoutside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_emailoutside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style9">
                                                 <strong>Your Details (Validation):</strong></p>
                                             <p class="auto-style9">
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_usercardno" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 &nbsp;Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -274,7 +274,7 @@
                                             </p>
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_securitycodeoutside" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_securitycodeoutside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -306,7 +306,7 @@
                                             </p>
                                             <p class="auto-style5">
                                                 Amount:&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_amountbetween" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:TextBox ID="tb_amountbetween" runat="server" Width="115px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                                 <asp:Label ID="lblStatus_Between" runat="server" Visible="False"></asp:Label>
                                             </p>
                                             <p class="auto-style5">
@@ -323,7 +323,7 @@
                                             <br />
                                             <p>
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_card_DebitFunds" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_card_DebitFunds" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -360,7 +360,7 @@
                                             </p>
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_securitycode_DebitFunds" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_securitycode_DebitFunds" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -370,7 +370,7 @@
                                             </p>
                                             <p class="auto-style5">
                                                 Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_amountoutside_DebitFunds" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:TextBox ID="tb_amountoutside_DebitFunds" runat="server" Width="115px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -391,7 +391,7 @@
                                             <br />
                                             <p>
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_card_CreditFunds" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_card_CreditFunds" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -428,7 +428,7 @@
                                             </p>
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_securitycode_CreditFunds" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="tb_securitycode_CreditFunds" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="accTypeDD_TransferExistingCust_Credit" runat="server" CssClass="auto-style4" Width="124px">
@@ -437,7 +437,7 @@
                                             </p>
                                             <p class="auto-style5">
                                                 Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_amountoutside_CreditFunds" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:TextBox ID="tb_amountoutside_CreditFunds" runat="server" Width="115px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             </p>
                                             <p class="auto-style5">
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -458,18 +458,18 @@
                     <h6>Contact Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Settings</h6>
   
                      <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                         <asp:TextBox ID="tb_emailview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_emailview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password (last updated):
-                         <asp:TextBox ID="tb_pwdlastview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_pwdlastview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                     </p>
                      <p>Street&nbsp; Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-                         <asp:TextBox ID="tb_addrview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_addrview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_usernameview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_usernameview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                     </p>
                      <p>
                          City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_cityView" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_cityView" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp; State&nbsp;&nbsp;
                          <asp:DropDownList ID="StateDD_View" runat="server" Enabled="False">
                              <asp:ListItem Value="AL">Alabama</asp:ListItem>
@@ -525,12 +525,12 @@
                              <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                          </asp:DropDownList>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zip&nbsp;
-                         <asp:TextBox ID="tb_zipView" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_zipView" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                     </p>
                      <p>Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_contactview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_contactview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nickname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                         <asp:TextBox ID="tb_nicknameview" runat="server" ReadOnly="True"></asp:TextBox>
+                         <asp:TextBox ID="tb_nicknameview" runat="server" ReadOnly="True" oncopy="return false" onpaste="return false"></asp:TextBox>
                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </p>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_editprof" runat="server" Text="Edit Profile" OnClick="btn_editprof_Click" />
@@ -543,13 +543,13 @@
                                 <h6>Contact Information</h6>
                                 <p>
                                     Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : &nbsp;
-                                    <asp:TextBox ID="tb_email_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_email_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 </p>
                                 <p>
                                     Street Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
-                                    <asp:TextBox ID="tb_stAddr_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_stAddr_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                     &nbsp;&nbsp;&nbsp; City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                                    <asp:TextBox ID="tb_city_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_city_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                     &nbsp;
                                 </p>
                                 <p>
@@ -608,15 +608,15 @@
                                         <asp:ListItem Value="WY">Wyoming</asp:ListItem>
                                     </asp:DropDownList>
                                     &nbsp; ZipCode&nbsp; :
-                                    <asp:TextBox ID="tb_zipCode_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_zipCode_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 </p>
                                 <p>
                                     Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                                    <asp:TextBox ID="tb_contact_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_contact_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                     &nbsp;&nbsp;&nbsp;</p>
                                 <p>
                                     Nickname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
-                                    <asp:TextBox ID="tb_nickname_Edit" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="tb_nickname_Edit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <asp:Label ID="lblStatus_ChangeProf" runat="server" Visible="False"></asp:Label>
                                 </p>
@@ -636,17 +636,17 @@
                             <h6>&nbsp;</h6>
                             <h6>Security Questions</h6>
             <p>Old Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_oldpwd" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:TextBox ID="tb_oldpwd" runat="server" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
                 <asp:PasswordStrength ID="tb_oldpwd_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_oldpwd" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
                 </asp:PasswordStrength>
                 &nbsp;</p>
                             <p>
                                 New Password :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_newPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="tb_newPassword" runat="server" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <asp:PasswordStrength ID="tb_newPassword_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_newPassword" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
                                 </asp:PasswordStrength>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
-                                <asp:TextBox ID="tb_confrimPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="tb_confrimPassword" runat="server" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <asp:PasswordStrength ID="tb_confrimPassword_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" PreferredPasswordLength="12" TargetControlID="tb_confrimPassword" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
                                 </asp:PasswordStrength>
                             </p>
@@ -664,7 +664,7 @@
                     <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                 </asp:DropDownList>
             </p>
-            <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_secans1" runat="server"></asp:TextBox>
+            <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_secans1" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
             </p>
             <p>Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="Sec2DD_ExistingCust_EditProf" runat="server">
@@ -682,7 +682,7 @@
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_secans2" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_secans2" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
             </p>
             <p>Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="Sec3DD_ExistingCust_EditProf" runat="server">
@@ -700,7 +700,7 @@
                 </asp:DropDownList>
             </p>
             <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px"></asp:TextBox>
+                <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblStatus_ChangePswd" runat="server" Visible="False"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -737,7 +737,7 @@
                     <br />
                     <br />
                     Transaction ID:
-                    <asp:TextBox ID="tb_transID_ModifyTrans" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_transID_ModifyTrans" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btn_viewtransdetails" runat="server" OnClick="btn_viewtransdetails_Click" Text="View Details" />
                     <br />
@@ -745,12 +745,12 @@
                     <br />
                     Account Number:<asp:Label ID="lblAccount_ModifyTrans" runat="server" Visible="False"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Number
-                    <asp:TextBox ID="tb_AccNum_modifyTrans" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_AccNum_modifyTrans" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     <br />
                     Routing Number:
                     <asp:Label ID="lblRoutingNum_ModifyTrans" runat="server" Visible="False"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Routing Number&nbsp;
-                    <asp:TextBox ID="tb_RoutNum_modifyTrans" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="tb_RoutNum_modifyTrans" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     <br />
                     Amount:&nbsp;<asp:Label ID="lblAmount_ModifyTrans" runat="server" Visible="False"></asp:Label>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Amount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_Amount_ModifyTrans" runat="server"></asp:TextBox>
@@ -781,10 +781,10 @@
                                             </asp:DropDownList>
                                             <br />
                                             Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:TextBox ID="tb_cardnum" runat="server"></asp:TextBox>
+                                            <asp:TextBox ID="tb_cardnum" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
                                             Account Holder&#39;s Name:&nbsp;&nbsp;
-                                            <asp:TextBox ID="tb_customername" runat="server" Width="118px"></asp:TextBox>
+                                            <asp:TextBox ID="tb_customername" runat="server" Width="118px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
                                             (as printed on the card)<br />Expiry Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <asp:DropDownList ID="cardExpDD_CardPayment" runat="server">
@@ -818,7 +818,7 @@
                                                 <asp:ListItem>23</asp:ListItem>
                                             </asp:DropDownList>
                                             &nbsp;<br />Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                             <asp:TextBox ID="tb_amount_SubmitPayment" runat="server" Width="118px"></asp:TextBox>
+                                             <asp:TextBox ID="tb_amount_SubmitPayment" runat="server" Width="118px" oncopy="return false" onpaste="return false" ></asp:TextBox>
                                              <br />
                                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                              <asp:Label ID="lblSubmitPayment" runat="server" Visible="False"></asp:Label>
@@ -834,14 +834,14 @@
                                     <asp:TabPanel ID="tab_echeckpay" runat="server" HeaderText="ECheck Payment" Height="600px" Width="124px">
                                         <ContentTemplate>
                                             <br />
-                                            Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckaccno" runat="server"></asp:TextBox>
+                                            Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckaccno" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
-                                            Routing Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckroutingno" runat="server"></asp:TextBox>
+                                            Routing Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="tb_echeckroutingno" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
-                                            Account Holder&#39;s Name:&nbsp;&nbsp;<asp:TextBox ID="tb_echeckcustomername" runat="server" Width="118px"></asp:TextBox>
+                                            Account Holder&#39;s Name:&nbsp;&nbsp;<asp:TextBox ID="tb_echeckcustomername" runat="server" Width="118px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
                                             Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:TextBox ID="tbAmount_EcheckPayment" runat="server" Width="118px"></asp:TextBox>
+                                            <asp:TextBox ID="tbAmount_EcheckPayment" runat="server" Width="118px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                             <br />
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <asp:Label ID="lblEcheckPayment" runat="server" Visible="False"></asp:Label>
@@ -873,22 +873,22 @@
                             <ContentTemplate>
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FirstName_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_MiddleName_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MiddleName_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="tb_LastName_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Street Address:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_StreetAddr_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_StreetAddr_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_City_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_City_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="StateDD_Cust" runat="server">
@@ -946,10 +946,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Phone_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Zip_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Zip_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 Account Types:&nbsp;&nbsp;
@@ -975,13 +975,13 @@
                             <ContentTemplate>
                                 <br />
                                 Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Password_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Password_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_ConfPassword_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_ConfPassword_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec1DD_PersonalInformation" runat="server">
@@ -991,7 +991,7 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns1_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns1_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec2DD_PersonalInformation" runat="server">
@@ -1001,7 +1001,7 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns2_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns2_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec3DD_PersonalInformation" runat="server">
@@ -1011,10 +1011,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns3_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns3_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Social Security Number:&nbsp;
-                                <asp:TextBox ID="tb_SSN_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SSN_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 SiteKey:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1039,7 +1039,7 @@
                                 <asp:ImageButton ID="img_site18" runat="server" OnClick="img_site18_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site19" runat="server" OnClick="img_site19_Click" />&nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site20" runat="server" OnClick="img_site20_Click" />&nbsp;<br />Sitekey Hint:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_sitekeyhint_Cust" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_sitekeyhint_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="monthDD_PersonalInformation" runat="server">
@@ -1091,7 +1091,7 @@
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:TextBox ID="tb_BirthYear_Cust" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                <asp:TextBox ID="tb_BirthYear_Cust" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1117,19 +1117,19 @@
                                 <br />
                                 Employee Details: (You need to have the employee with you while adding him)<br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FirstName_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp; Middle Name:&nbsp;
-                                <asp:TextBox ID="tb_MidName_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MidName_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp; Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Street Address:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_StreetAddr_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_StreetAddr_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_City_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_City_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zip:
-                                <asp:TextBox ID="tb_Zip_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Zip_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="StateDD_Emp" runat="server">
@@ -1205,19 +1205,19 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Phone_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Password_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Password_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec1DD_PersonalInformation_AddEmp" runat="server">
@@ -1227,7 +1227,7 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns1_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns1_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec2DD_PersonalInformation_AddEmp" runat="server">
@@ -1237,7 +1237,7 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns2_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns2_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec3DD_PersonalInformation_AddEmp" runat="server">
@@ -1247,10 +1247,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_SecAns3_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SecAns3_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Social Security Number:&nbsp;
-                                <asp:TextBox ID="tb_SSN_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_SSN_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 SiteKey:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1294,7 +1294,7 @@
                                 &nbsp;&nbsp;
                                 <asp:ImageButton ID="img_site20_AE" runat="server" OnClick="img_site20_Click" />
                                 &nbsp;<br /> Sitekey Hint:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_sitekeyhint_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_sitekeyhint_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="monthDD_PersonalInformation_AddEmp" runat="server">
@@ -1346,7 +1346,7 @@
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
-                                <asp:TextBox ID="tb_BirthYear_AddEmp" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                <asp:TextBox ID="tb_BirthYear_AddEmp" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_AddEmp" runat="server" Text="Add Employee" OnClick="btn_AddEmp_Click" />
@@ -1361,7 +1361,7 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_DelEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btnViewEmpDetails_delEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_DelEmp_Click" />
                                 <br />
@@ -1369,13 +1369,13 @@
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FirstName_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_DelEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="tb_MidName_DelEMp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MidName_DelEMp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="tb_LastName_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_DelEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_DelEmp" runat="server">
@@ -1396,10 +1396,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_DelEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Phone_DelEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_DelEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1415,7 +1415,7 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_transEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_transEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_ViewDetails_TransEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_TransEmp_Click" />
                                 <br />
@@ -1423,13 +1423,13 @@
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FName_TransEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FName_TransEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="tb_MName_TransEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MName_TransEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="tb_LName_TransEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LName_TransEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="FROM_DeptDD_TransEmp" runat="server">
@@ -1450,10 +1450,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_TransEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_TransEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Contact_TransEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Contact_TransEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 Transfer To Details:<br />Department:&nbsp;&nbsp;&nbsp;
@@ -1480,7 +1480,7 @@
 
                                 <br />
                                 Employee ID:&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_userName_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_userName_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_ViewDetails_ViewEmp" runat="server" Text="View Details" OnClick="btn_ViewDetails_ViewEmp_Click" />
                                 <br />
@@ -1488,13 +1488,13 @@
                                 Employee Details:
                                 <br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FName_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FName_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Middle Name:&nbsp;
-                                <asp:TextBox ID="tb_MName_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MName_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Last Name:&nbsp;&nbsp;&nbsp; &nbsp;
-                                <asp:TextBox ID="tb_LName_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_LName_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_viewEmp" runat="server">
@@ -1515,10 +1515,10 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Phone_ViewEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_ViewEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1542,7 +1542,7 @@
                                 <br />
                                 <br />
                                 Transaction ID:
-                                <asp:TextBox ID="tbTransID_ViewDeptTrans" runat="server" Height="22px"></asp:TextBox>
+                                <asp:TextBox ID="tbTransID_ViewDeptTrans" runat="server" Height="22px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date :&nbsp;
                                 <asp:DropDownList ID="DropDownList27" runat="server">
                                     <asp:ListItem>MM</asp:ListItem>
@@ -1593,7 +1593,7 @@
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>31</asp:ListItem>
                                 </asp:DropDownList>
-                                &nbsp;<asp:TextBox ID="tb_Year_ViewDeptTrans" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
+                                &nbsp;<asp:TextBox ID="tb_Year_ViewDeptTrans" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails1" runat="server" Text="View Details" OnClick="btn_viewtransdetails1_Click" />
                                 <br />
                                 <br />

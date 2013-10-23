@@ -2201,6 +2201,28 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btnSignOff_Click(object sender, EventArgs e)
         {
+            /* Try this next time.
+             * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
+                where T : Control
+                {
+                    foreach (Control control in controlCollection)
+                    {
+                            if (control is T) 
+                            resultCollection.Add((T)control);
+
+                        if (control.HasControls())
+                            GetControlList(control.Controls, resultCollection);
+                    }
+                }
+
+             * Using it
+             * List<DropDownList> allControls = new List<DropDownList>();
+                GetControlList<DropDownList>(Page.Controls, allControls )
+                foreach (var childControl in allControls )
+                {
+                //     call for all controls of the page
+                }
+             */
             try
             {
                 //Hiding the Tab container 2 and re-setting the values of the controls present in it.

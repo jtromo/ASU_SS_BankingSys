@@ -89,13 +89,13 @@
         	<div class="col_allw300">
             	<h2>Log In</h2>
                 <div class="cleaner">&nbsp;&nbsp; Username:&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="TB_UserName" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TB_UserName" runat="server" oncopy="return false" onpaste="return false" MaxLength="20"></asp:TextBox>
         <asp:FilteredTextBoxExtender ID="TB_UserName_FilteredTextBoxExtender" runat="server" Enabled="True" InvalidChars=".&lt;&gt;/:+=;'&quot;?,@#$%^&amp;*()" TargetControlID="TB_UserName" FilterInterval="50" FilterMode="InvalidChars">
         </asp:FilteredTextBoxExtender>
         <br />
                     <br />
 &nbsp;&nbsp; Zip Code:&nbsp;&nbsp;&nbsp; &nbsp;
-                    <asp:TextBox ID="TB_ZipCode" runat="server" MaxLength="5"></asp:TextBox>&nbsp;
+                    <asp:TextBox ID="TB_ZipCode" runat="server" MaxLength="5" oncopy="return false" onpaste="return false"></asp:TextBox>&nbsp;
         <asp:FilteredTextBoxExtender ID="TB_ZipCode_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="TB_ZipCode">
         </asp:FilteredTextBoxExtender>
         

@@ -23,60 +23,112 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 if (!IsPostBack)
-                {
-                    TabContainer2.Visible = false;
-                    TabContainer1.ActiveTabIndex = 0;
-                    TabContainer2.ActiveTabIndex = 0;
-                    TabContainer3.ActiveTabIndex = 0;
-                    TabContainer4.ActiveTabIndex = 0;
-                    TabContainer5.ActiveTabIndex = 0;
-                    TabContainer6.ActiveTabIndex = 0;
-                    TabContainer7.ActiveTabIndex = 0;
-                    img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-                    img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-                    img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-                    img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-                    img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-                    img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-                    img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-                    img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-                    img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-                    img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-                    img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-                    img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-                    img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-                    img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-                    img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-                    img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-                    img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-                    img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-                    img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-                    img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
-                    img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-                    img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-                    img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-                    img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-                    img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-                    img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-                    img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-                    img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-                    img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-                    img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-                    img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-                    img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-                    img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-                    img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-                    img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-                    img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-                    img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-                    img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-                    img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-                    img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                {                    
+                    FieldValidator objField = new FieldValidator();
+                    if (objField.validate_UserName(Session["userName"].ToString()))
+                    {
+                        TabContainer2.Visible = false;
+                        TabContainer1.Visible = false;
+                        TabContainer1.ActiveTabIndex = 0;
+                        TabContainer2.ActiveTabIndex = 0;
+                        TabContainer3.ActiveTabIndex = 0;
+                        TabContainer4.ActiveTabIndex = 0;
+                        TabContainer5.ActiveTabIndex = 0;
+                        TabContainer6.ActiveTabIndex = 0;
+                        TabContainer7.ActiveTabIndex = 0;
+                        img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                        img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                        img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                        img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                        img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                        img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                        img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                        img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                        img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                        img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                        img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                        img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                        img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                        img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                        img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                        img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                        img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                        img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                        img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                        img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                        img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                        img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                        img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                        img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                        img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                        img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                        img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                        img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                        img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                        img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                        img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                        img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                        img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                        img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                        img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                        img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                        img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                        img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                        img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                        img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+
+                        int? userRole = UserModel.GetUser(Session["userName"].ToString()).roleId;
+                        if ( userRole == 4)
+                        {
+                            //Regular Employee
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[2].Visible = false;
+                            TabContainer1.Tabs[3].Visible = false;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = true;
+
+                        }
+                        else if ( userRole == 5)
+                        {
+                            //Department Manager
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = true;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = false;
+                        }
+                        else if (userRole == 6)
+                        {
+                            //Higher Management
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[0].Visible = false;
+                            TabContainer1.Tabs[1].Visible = false;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = true;
+                        }
+                        else
+                        {
+                            //Invalid Role ID
+                            //Log Out functionality here
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }                        
+                    }
+                    else
+                    {
+                        //Invalid Session Object
+                        //Log Out Functionality
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
+                //Invalid Session Object
+                Session["userName"] = "";
+                Response.Redirect("ExternalHomePage.aspx", false);
             }
         }
         protected void deselect_All_Images()
@@ -2197,6 +2249,180 @@ namespace SoftSec_BankingApp_Se7en
         protected void btn_deltrans_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnSignOff_Click(object sender, EventArgs e)
+        {
+            /* Try this next time.
+             * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
+                where T : Control
+                {
+                    foreach (Control control in controlCollection)
+                    {
+                            if (control is T) 
+                            resultCollection.Add((T)control);
+
+                        if (control.HasControls())
+                            GetControlList(control.Controls, resultCollection);
+                    }
+                }
+
+             * Using it
+             * List<DropDownList> allControls = new List<DropDownList>();
+                GetControlList<DropDownList>(Page.Controls, allControls )
+                foreach (var childControl in allControls )
+                {
+                //     call for all controls of the page
+                }
+             */
+            try
+            {
+                //Hiding the Tab container 2 and re-setting the values of the controls present in it.
+                TabContainer2.Visible = false;
+                tbCardNumber_IU.Text = "";
+                rb_PhotoID.SelectedValue = "No";
+                MonthDD_ExistingCustomer_Verify.SelectedValue = "MM";
+                DayDD_ExistingCustomer_Verify.SelectedValue = "DD";
+                tbYear_IU.Text = "YYYY";
+                tb_checking.Text = "";
+                tb_savings.Text = "";
+                tb_credit.Text = "";
+                grdTransaction.DataSource = null;
+                grdTransaction.DataBind();
+                fromAccTypeDD_TransferExistingCust_Inside.Items.Clear();
+                fromAccTypeDD_TransferExistingCust_Inside.Items.Add("Accounts");
+                tb_amount_IU_Inside.Text = "";
+                tb_recepient_IU_Inside.Text = "";
+                tb_lastname_IU_Inside.Text = "";
+                tb_zip_IU_Inside.Text = "";
+                tb_card_IU_Inside.Text = "";
+                monthDD_TransferExistingCust_Inside.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Inside.SelectedValue = "YYYY";
+                tb_securitycode_IU_Inside.Text = "";
+                accTypeDD_TransferExistingCust_Outside.Items.Clear();
+                accTypeDD_TransferExistingCust_Outside.Items.Add("Accounts");
+                tb_amountoutside.Text = "";
+                tb_AccNumoutside_Intenal.Text = "";
+                tb_toRoutingNum_OutsideBank.Text = "";
+                tb_lastnameoutside.Text = "";
+                tb_emailoutside.Text = "";
+                tb_usercardno.Text = "";                
+                monthDD_TransferExistingCust_Outside.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Outside.SelectedValue = "YYYY";
+                tb_securitycodeoutside.Text = "";
+                lblStatus_OutsideBank.Text = "";
+                fromAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                fromAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                toAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                toAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                tb_amountbetween.Text = "";
+                lblStatus_Between.Text = "";
+                tb_card_DebitFunds.Text = "";
+                monthDD_TransferExistingCust_Debit.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Debit.SelectedValue = "YYYY";
+                tb_securitycode_DebitFunds.Text = "";
+                accTypeDD_TransferExistingCust_Debit.Items.Clear();
+                accTypeDD_TransferExistingCust_Debit.Items.Add("Accounts");
+                tb_amountoutside_DebitFunds.Text = "";
+                lblStatus_DebitFunds.Text = "";
+                tb_card_CreditFunds.Text = "";
+                monthDD_TransferExistingCust_Credit.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Credit.SelectedValue = "YYYY";
+                tb_securitycode_CreditFunds.Text = "";
+                accTypeDD_TransferExistingCust_Credit.Items.Clear();
+                accTypeDD_TransferExistingCust_Credit.Items.Add("Accounts");
+                tb_amountoutside_CreditFunds.Text = "";
+                lblStatus_CreditFunds.Text = "";
+                tb_emailview.Text = "";
+                tb_addrview.Text = "";
+                tb_cityView.Text = "";
+                tb_contactview.Text = "";
+                StateDD_View.SelectedValue = "AL";
+                tb_usernameview.Text = "";
+                tb_zipView.Text = "";
+                tb_nicknameview.Text = "";
+                tb_email_Edit.Text = "";
+                tb_stAddr_Edit.Text = "";
+                tb_city_Edit.Text = "";
+                tb_zipCode_Edit.Text = "";
+                tb_contact_Edit.Text = "";
+                tb_nickname_Edit.Text = "";
+                lblStatus_ChangeProf.Text = "";
+                tb_oldpwd.Text = "";
+                tb_newPassword.Text = "";
+                tb_confrimPassword.Text = "";
+                tb_secans1.Text = "";
+                tb_secans2.Text = "";
+                tb_secans3.Text = "";
+                transferDD_ModifyTrans.Items.Clear();
+                transferDD_ModifyTrans.Items.Add("Accounts");
+                grdTransactions.DataSource = null;
+                grdTransactions.DataBind();
+                tb_transID_ModifyTrans.Text = "";
+                lblAccount_ModifyTrans.Text = "";
+                lblRoutingNum_ModifyTrans.Text = "";
+                lblAmount_ModifyTrans.Text = "";
+                lblStatus_ModifyStatus.Text = "";
+                tb_AccNum_modifyTrans.Text = "";
+                tb_RoutNum_modifyTrans.Text = "";
+                tb_Amount_ModifyTrans.Text = "";
+                tb_cardnum.Text = "";
+                tb_customername.Text = "";
+                cardExpDD_CardPayment.SelectedValue = "MM";
+                yearDD_CardPayment.SelectedValue = "YY";
+                tb_amount_SubmitPayment.Text = "";
+                lblSubmitPayment.Text = "";
+                tb_echeckaccno.Text = "";
+                tb_echeckroutingno.Text = "";
+                tb_echeckcustomername.Text = "";
+                tbAmount_EcheckPayment.Text = "";
+                lblEcheckPayment.Text = "";
+            }
+            catch(Exception exp)
+            {
+                //Log exception here
+            }
+        }
+
+        protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
+                {
+                    if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
+                    {
+                        TabContainer1.Visible = true;
+                    }
+                    else
+                    {
+                        //Call log out function here
+                        //Reset Session Variables
+                        Session["userName"] = "";                        
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+                else if (TabContainer1.ActiveTabIndex == 2 || TabContainer1.ActiveTabIndex == 3)
+                {
+                    if (objUsr != null && (objUsr.roleId == 5 || objUsr.roleId == 6))
+                    {
+                        TabContainer1.Visible = true;
+                    }
+                    else
+                    {
+                        //Call log out function here
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here.
+                Session["userName"] = "";
+                Response.Redirect("ExternalHomePage.aspx", false);
+            }
         }
     }
 }

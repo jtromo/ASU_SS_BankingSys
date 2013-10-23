@@ -22,63 +22,76 @@ namespace SoftSec_BankingApp_Se7en
                 if (!IsPostBack)
                 {                    
                     lblTranStatus.Visible = false;
-                    if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
+                    FieldValidator objField = new FieldValidator();
+                    if (objField.validate_UserName(Session["userName"].ToString()))
                     {
-                        TabContainer1.Visible = true;
-                        TabContainer1.Tabs[0].Visible = true;
-                        TabContainer1.Tabs[1].Visible = true;
-                        TabContainer1.Tabs[2].Visible = true;
-                        TabContainer1.Tabs[3].Visible = true;
+                        if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
+                        {
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = true;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = true;
+                        }
+                        else
+                        {
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = true;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = false;
+                        }
+                        TabContainer1.ActiveTabIndex = 0;
+                        //Fetch all the accounts of the user.
+                        ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
+                        if (objCol != null)
+                        {
+                            List<Models.Tables.Account> lstAcc = objCol.ToList();
+                            foreach (Models.Tables.Account acc in lstAcc)
+                            {
+                                if (acc.accountTypeId == 3)
+                                {
+                                    //Savings Account
+                                    tb_savings.Text = acc.accountNumber.ToString();
+                                    dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                    tb_savings.ReadOnly = true;
+                                }
+                                else if (acc.accountTypeId == 2)
+                                {
+                                    //checkings account
+                                    tb_checking.Text = acc.accountNumber.ToString();
+                                    dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                    dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                    tb_checking.ReadOnly = true;
+                                }
+                                else if (acc.accountTypeId == 3)
+                                {
+                                    //credit account
+                                    tb_credit.Text = acc.accountNumber.ToString();
+                                    tb_credit.ReadOnly = true;
+                                }
+                            }
+                        }
                     }
                     else
                     {
-                        TabContainer1.Visible = true;
-                        TabContainer1.Tabs[0].Visible = true;
-                        TabContainer1.Tabs[1].Visible = true;
-                        TabContainer1.Tabs[2].Visible = true;
-                        TabContainer1.Tabs[3].Visible = false;
-                    }
-                    TabContainer1.ActiveTabIndex = 0;
-                    //Fetch all the accounts of the user.
-                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
-                    if (objCol != null)
-                    {
-                        List<Models.Tables.Account> lstAcc = objCol.ToList();
-                        foreach (Models.Tables.Account acc in lstAcc)
-                        {
-                            if (acc.accountTypeId == 3)
-                            {
-                                //Savings Account
-                                tb_savings.Text = acc.accountNumber.ToString();
-                                dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                tb_savings.ReadOnly = true;                                
-                            }
-                            else if (acc.accountTypeId == 2)
-                            {
-                                //checkings account
-                                tb_checking.Text = acc.accountNumber.ToString();
-                                dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                tb_checking.ReadOnly = true;
-                            }
-                            else if (acc.accountTypeId == 3)
-                            {
-                                //credit account
-                                tb_credit.Text = acc.accountNumber.ToString();
-                                tb_credit.ReadOnly = true;
-                            }
-                        }                        
+                        //Invalid User name.
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
                     }
                 }
             }
             catch(Exception exp)
             {
                 //Log Exceptions here
+                //Invalid User name. Session object not set
+                Session["userName"] = "";
+                Response.Redirect("ExternalHomePage.aspx", false);
             }
         }
 
@@ -647,12 +660,12 @@ namespace SoftSec_BankingApp_Se7en
                 if (TabContainer1.ActiveTabIndex == 2)
                 {
                     Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                    if (objUsr != null)
+                    if (objUsr != null && (objUsr.roleId == 2 || objUsr.roleId == 3))
                     {
                         tb_usernameview.Text = Session["userName"].ToString();
                         Models.Tables.Address objUsrAddr = objUsr.Address;
                         tb_streetAddress.Text = objUsrAddr.street1;
-                        tb_city.Text = objUsrAddr.city;                        
+                        tb_city.Text = objUsrAddr.city;
                         StateDD_Profile.SelectedValue = objUsrAddr.state;
                         tb_ZipCode_Profile.Text = Convert.ToString(objUsrAddr.zip);
                         tb_contactview.Text = objUsr.phone;
@@ -661,11 +674,17 @@ namespace SoftSec_BankingApp_Se7en
                         //Do we require to show the user last password modified time ??
                         //tb_nicknameview.Text = objUsr.nickName;
                     }
+                    else
+                    {
+                        //Call Log out functionality
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
                 }
                 else if (TabContainer1.ActiveTabIndex == 3)
                 {
                     Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                    if (objUsr != null)
+                    if (objUsr != null && objUsr.roleId == 3)
                     {
                         List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
                         foreach (Models.Tables.Account acc in lstAcc)
@@ -680,6 +699,9 @@ namespace SoftSec_BankingApp_Se7en
                     else
                     {
                         //No such user exists
+                        //Call Log out Functionality
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
                     }
                 }
             }

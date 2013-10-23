@@ -181,6 +181,7 @@
     <Content Include="CSS\gallery_slider.css" />
     <Content Include="CSS\jquery.lightbox-0.5.css" />
     <Content Include="CSS\nivo-slider.css" />
+    <Content Include="CSS\PasswordStyle.css" />
     <Content Include="CSS\style.css" />
     <Content Include="CSS\svwp_style.css" />
     <Content Include="ErrorPage.aspx" />

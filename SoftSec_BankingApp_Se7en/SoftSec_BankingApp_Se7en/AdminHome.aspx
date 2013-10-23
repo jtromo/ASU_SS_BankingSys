@@ -13,11 +13,11 @@
                                 <br />
                                 Employee Details: (You need to have the employee with you while adding him)<br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_FirstName_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_FirstName_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp; Middle Name:&nbsp;
-                                <asp:TextBox ID="tb_MidName_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_MidName_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp; Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px"></asp:TextBox>
+                                <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
@@ -39,19 +39,19 @@
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Email_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Email_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Phone_Emp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Phone_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Password_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_Password_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_AddEmp" runat="server" Text="Add Employee" OnClick="btn_AddEmp_Click" />
@@ -64,7 +64,7 @@
             <ContentTemplate>
                 <br />
                 &nbsp;<asp:Label ID="userIdLb_Remove" runat="server" Text="User Name"></asp:Label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="userNameTb_Remove" runat="server" Height="15px" style="margin-top: 0px" TabIndex="1"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="userNameTb_Remove" runat="server" Height="15px" style="margin-top: 0px" TabIndex="1" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="detailsBT_Remove" runat="server" OnClick="detailsBT_Remove_Click" Text="View Details" TabIndex="2" />
                 &nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />&nbsp;<asp:Label ID="firstNameLB_Remove" runat="server" Text="First Name"></asp:Label>
                 <asp:Label ID="firstNameTextLb_Remove" runat="server" style="margin-left: 63px; margin-right: 0px;" Width="200px"></asp:Label>
@@ -89,7 +89,7 @@
             <ContentTemplate>
                 <br />
                 &nbsp;<asp:Label ID="userIdLabel_Modify" runat="server" Text="User ID"></asp:Label>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="userIdTb_Modify" runat="server" Height="15px" style="margin-top: 0px" TabIndex="1"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="userIdTb_Modify" runat="server" Height="15px" style="margin-top: 0px" TabIndex="1" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="detailsBT_Modify" runat="server" Text="View Details" OnClick="detailsBT_Modify_Click" style="height: 26px" TabIndex="2" />
                 &nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<br />&nbsp;<asp:Label ID="firstNameLB_Modify" runat="server" Text="First Name"></asp:Label>
                 <asp:Label ID="firstNameTextLb_Modify" runat="server" Width="200px" style="margin-left: 63px; margin-right: 0px;"></asp:Label>
@@ -172,7 +172,7 @@
                     <asp:ListItem Value="31">31</asp:ListItem>
                 </asp:DropDownList>
 &nbsp;
-                <asp:TextBox ID="startYearTb_SysLog" runat="server" Width="35px" TabIndex="2"></asp:TextBox>
+                <asp:TextBox ID="startYearTb_SysLog" runat="server" Width="35px" TabIndex="2" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp; End Date&nbsp;&nbsp;<asp:DropDownList ID="endMonth_DD" runat="server">
                     <asp:ListItem>MM</asp:ListItem>
                     <asp:ListItem Value="Jan01">01</asp:ListItem>
@@ -224,7 +224,7 @@
                     <asp:ListItem Value="31">31</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;&nbsp;
-                <asp:TextBox ID="endYearTb_SysLog" runat="server" Width="35px" TabIndex="5"></asp:TextBox>
+                <asp:TextBox ID="endYearTb_SysLog" runat="server" Width="35px" TabIndex="5" oncopy="return false" onpaste="return false"></asp:TextBox>
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br />
@@ -246,14 +246,14 @@
                 &nbsp;<br />
                 <asp:Label ID="Label2" runat="server" Text="deptID:"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="deptIDlookupTB" runat="server"></asp:TextBox>
+                <asp:TextBox ID="deptIDlookupTB" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="deptIDLookUpBT" runat="server" Text="LookUp" OnClick="deptIDLookUpBT_Click" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="reqErrorLb" runat="server" Width="300px"></asp:Label>
                 <br />
                 &nbsp;<asp:Label ID="Label3" runat="server" Text="UserName:"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="userNameLookUpTb" runat="server"></asp:TextBox>
+                <asp:TextBox ID="userNameLookUpTb" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
 
                 &nbsp;&nbsp;
                 <asp:Button ID="UserNameLookUpBT" runat="server" Text="LookUp" OnClick="UserNameLookUpBT_Click" />

@@ -55,7 +55,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     User updatedUser = users.First();
-                    updatedUser.SetHashandSaltForPassword(password);
+                    updatedUser.SetHashForPassword(password);
                     db.Users.Attach(updatedUser);
                     var entry = db.Entry(updatedUser);
                     entry.Property(e => e.hash).IsModified = true;

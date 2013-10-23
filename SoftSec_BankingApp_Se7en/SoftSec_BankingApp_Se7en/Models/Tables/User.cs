@@ -15,9 +15,19 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
             this.SecurityQuestions = new HashSet<SecurityQuestion>();
         }
 
-        public bool SetHashandSaltForPassword(string password) 
+        public bool SetHashandSaltForPII(string password, string socialSecurity, string birthdate) 
         {
             this.salt = HashController.CreateSalt();
+            this.hash = HashController.CreateHash(password, this.salt);
+            this.socialSecurityNumber = HashController.CreateHash(socialSecurity, this.salt);
+            this.dateOfBirth = HashController.CreateHash(birthdate, this.salt);
+
+            return true;
+        }
+
+        // Salt does not change
+        public bool SetHashForPassword(string password)
+        {
             this.hash = HashController.CreateHash(password, this.salt);
 
             return true;

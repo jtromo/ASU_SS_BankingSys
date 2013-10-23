@@ -11,13 +11,13 @@ namespace SoftSec_BankingApp_Se7en.Models
         public static bool InsertSampleUsers()
         {
             Address newAddress = new Address { firstName = "James", lastName = "Romo", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
-            User newUser = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, siteKeyString = "describe3", isActive = true, departmentId = null, Address = newAddress, dateOfBirth = "07/08/1991", socialSecurityNumber = "730-31-9999" };
+            User newUser = new User { roleId = 1, firstName = "James", middleName = "T", lastName = "Romo", username = "jtromo", email = "@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, siteKeyString = "describe3", isActive = true, departmentId = null, Address = newAddress };
             SecurityQuestion question1 = new SecurityQuestion { answer="Speedy", questionId=1 };
             SecurityQuestion question2 = new SecurityQuestion { answer="John", questionId=2 };
             SecurityQuestion question3 = new SecurityQuestion { answer="School", questionId=3 };
             List<SecurityQuestion> questions = new List<SecurityQuestion> { question1, question2, question3 };
             Card newCard = new Card { cardNumber = "1111111111", cvv = 1234, expirationDate = "09/15", firstName = "James", middleInitial = "T", lastName = "Romo" };
-            bool newUserCreated = UserModel.CreateUser(newUser, "password", "2222222222", "3333333333", "444444", newCard, newAddress, questions);
+            bool newUserCreated = UserModel.CreateUser(newUser, "password", "730-31-9999", "07/08/1991", "2222222222", "3333333333", "444444", newCard, newAddress, questions);
 
             return newUserCreated;
         }

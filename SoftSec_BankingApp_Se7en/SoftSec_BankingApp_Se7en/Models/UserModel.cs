@@ -8,7 +8,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
-        public static bool CreateUser(User newUser, string password, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateUser(User newUser, string password, string socialSecurity, string birthdate, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     newUser.Accounts = accounts;
 
                     // Hash generation
-                    if (newUser.SetHashandSaltForPassword(password))
+                    if (newUser.SetHashandSaltForPII(password, socialSecurity, birthdate))
                     {
                         //Response.Write("Valid");
                     }
@@ -58,7 +58,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool CreateEmployee(User newUser, string password, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateEmployee(User newUser, string password, string socialSecurity, string birthdate, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     newUser.SecurityQuestions = securityQuestions;
 
                     // Hash generation
-                    if (newUser.SetHashandSaltForPassword(password))
+                    if (newUser.SetHashandSaltForPII(password, socialSecurity, birthdate))
                     {
                         //Response.Write("Valid");
                     }

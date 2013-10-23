@@ -960,12 +960,11 @@ namespace SoftSec_BankingApp_Se7en
                             securityQuestionForUser3.questionId = Sec3DD_PersonalInformation.SelectedIndex;
                             securityQuestionForUser3.answer = tb_SecAns3_Cust.Text.ToString();
                             securityQuestionsForUser.Add(securityQuestionForUser3);
-                            userToCreate.socialSecurityNumber = tb_SSN_Cust.Text.ToString();
+                            string socialSecurityNumber = tb_SSN_Cust.Text.ToString();
                             userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
                             userToCreate.siteKeyString = tb_sitekeyhint_Cust.Text.ToString();
                             string userDOB = monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
-                            userToCreate.dateOfBirth = userDOB;
-                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, cardForUser, addressForUser, securityQuestionsForUser);
+                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, cardForUser, addressForUser, securityQuestionsForUser);
                             if (userCreated)
                             {
                                 ErrorLabelInNewCustPI.Visible = true;
@@ -1058,12 +1057,11 @@ namespace SoftSec_BankingApp_Se7en
                             securityQuestionForUser3.questionId = Sec3DD_PersonalInformation_AddEmp.SelectedIndex;
                             securityQuestionForUser3.answer = tb_SecAns3_AddEmp.Text.ToString();
                             securityQuestionsForUser.Add(securityQuestionForUser3);
-                            userToCreate.socialSecurityNumber = tb_SSN_AddEmp.Text.ToString();
+                            string socialSecurityNumber = tb_SSN_AddEmp.Text.ToString();
                             userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
                             userToCreate.siteKeyString = tb_sitekeyhint_AddEmp.Text.ToString();
                             string userDOB = monthDD_PersonalInformation_AddEmp.Text.ToString() + "/" + dayDD_PersonalInformation_AddEmp.Text.ToString() + "/" + tb_BirthYear_AddEmp.Text.ToString();
-                            userToCreate.dateOfBirth = userDOB;
-                            bool userCreated = UserModel.CreateEmployee(userToCreate, passwordForUser, addressForUser, securityQuestionsForUser);
+                            bool userCreated = UserModel.CreateEmployee(userToCreate, passwordForUser, socialSecurityNumber, userDOB, addressForUser, securityQuestionsForUser);
                             if (userCreated)
                             {
                                 Label1.Visible = true;

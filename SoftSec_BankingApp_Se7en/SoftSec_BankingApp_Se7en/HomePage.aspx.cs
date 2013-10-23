@@ -83,55 +83,53 @@ namespace SSBank
                 Response.Write(" Null. Please fix");
 
             Address newAddress = new Address { firstName = "John", lastName = "Smith", street1 = "Street", city = "City", state = "State", zip = 12345, country = "Country", isActive = true };
-            User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "johnn@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, siteKeyString = "describe3", isActive = true, departmentId = null, Address = newAddress, dateOfBirth = "07/08/1994", socialSecurityNumber = "412-31-9999" };
+            User newUser = new User { roleId = 1, firstName = "John", middleName = "T", lastName = "Smith", username = "john", email = "johnn@gmail.com", phone = "adsfadsf", organization = "adfs", siteKeyVal = 3, siteKeyString = "describe3", isActive = true, departmentId = null, Address = newAddress };
             SecurityQuestion question1 = new SecurityQuestion { answer = "Speedy", questionId = 1 };
             SecurityQuestion question2 = new SecurityQuestion { answer = "John", questionId = 2 };
             SecurityQuestion question3 = new SecurityQuestion { answer = "School", questionId = 3 };
             List<SecurityQuestion> newQuestions = new List<SecurityQuestion> { question1, question2, question3 };
             Card newCard = new Card { cardNumber = "12345678910", cvv=1234, expirationDate="09/15", firstName="John", middleInitial="T", lastName="Smith" };
-            bool newUserCreated = UserModel.CreateUser(newUser, "password", "12345678910", "10987654321", "123456", newCard, newAddress, newQuestions);
+            bool newUserCreated = UserModel.CreateUser(newUser, "password", "412-31-9999", "07/08/1994", "12345678910", "10987654321", "123456", newCard, newAddress, newQuestions);
             Response.Write(" New user was created: " + newUserCreated);
 
             //Sample Script
             Address newAddress1 = new Address { firstName = "uday", lastName = "mac", street1 = "Street 123", city = "Tempe", state = "AZ", zip = 85281, country = "US", isActive = true };
-            User newUser1 = new User { roleId = 1, firstName = "uday", middleName = "K", lastName = "Mac", username = "umac18", email = "uday@gmail.com", phone = "1234567890", organization = "ASU", siteKeyVal = 5, siteKeyString = "describe5", isActive = true, departmentId = null, Address = newAddress1, dateOfBirth = "05/03/1993", socialSecurityNumber = "634-31-9999" };
+            User newUser1 = new User { roleId = 1, firstName = "uday", middleName = "K", lastName = "Mac", username = "umac18", email = "uday@gmail.com", phone = "1234567890", organization = "ASU", siteKeyVal = 5, siteKeyString = "describe5", isActive = true, departmentId = null, Address = newAddress1 };
             SecurityQuestion newQuestion11 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
             SecurityQuestion newQuestion21 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion31 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions1 = new List<SecurityQuestion> { newQuestion11, newQuestion21, newQuestion31 };
             Card newCard1 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "uday", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated1 = UserModel.CreateUser(newUser1, "udayKum1", "12345678910", "10987654321", "123456", newCard1, newAddress1, newQuestions1);
+            bool newUserCreated1 = UserModel.CreateUser(newUser1, "udayKum1", "634-31-9999", "05/03/1993", "12345678910", "10987654321", "123456", newCard1, newAddress1, newQuestions1);
             Response.Write(" New user was created: " + newUserCreated1);
 
             Address newAddress2 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 87223, country = "US", isActive = true };
-            User newUser2 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "manu01", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, siteKeyString = "describe13", isActive = true, departmentId = null, Address = newAddress2, dateOfBirth = "02/08/1991", socialSecurityNumber = "243-31-9999" };
+            User newUser2 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "manu01", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, siteKeyString = "describe13", isActive = true, departmentId = null, Address = newAddress2 };
             SecurityQuestion newQuestion12 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
             SecurityQuestion newQuestion22 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion32 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions2 = new List<SecurityQuestion> { newQuestion12, newQuestion22, newQuestion32 };
             Card newCard2 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum2", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated2 = UserModel.CreateUser(newUser2, "udayKum2", "12345678910", "10987654321", "123456", newCard1, newAddress2, newQuestions2);
+            bool newUserCreated2 = UserModel.CreateUser(newUser2, "udayKum2", "243-31-9999", "02/08/1991", "12345678910", "10987654321", "123456", newCard1, newAddress2, newQuestions2);
             Response.Write(" New user was created: " + newUserCreated2);
 
             Address newAddress3 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
-            User newUser3 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "merchant1", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, siteKeyString = "describe13", isActive = true, departmentId = null, Address = newAddress3, dateOfBirth = "01/08/1991", socialSecurityNumber = "342-31-9999" };
+            User newUser3 = new User { roleId = 3, firstName = "manu", middleName = "C", lastName = "Kaur", username = "merchant1", email = "manu@gmail.com", phone = "9876543210", organization = "Infy", siteKeyVal = 13, siteKeyString = "describe13", isActive = true, departmentId = null, Address = newAddress3 };
             SecurityQuestion newQuestion13 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
             SecurityQuestion newQuestion23 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion33 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions3 = new List<SecurityQuestion> { newQuestion13, newQuestion23, newQuestion33 };
             Card newCard3 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum3#", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated3 = UserModel.CreateUser(newUser3, "udayKum3#", "12345678910", "10987654321", "123456", newCard1, newAddress3, newQuestions3);
+            bool newUserCreated3 = UserModel.CreateUser(newUser3, "udayKum3#", "342-31-9999", "01/08/1991", "12345678910", "10987654321", "123456", newCard1, newAddress3, newQuestions3);
             Response.Write(" New user was created: " + newUserCreated3);
 
-
             Address newAddress4 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
-            User newEmployee = new User { roleId = 4, firstName = "Emplyee", middleName = "The", lastName = "Man", username = "employee1", email = "employee@gmail.com", phone = "9876543210", organization = "employee", siteKeyVal = 13, siteKeyString="describe13", isActive = true, departmentId = 2, Address = newAddress2, dateOfBirth = "05/08/1991", socialSecurityNumber = "555-31-9999" };
+            User newEmployee = new User { roleId = 4, firstName = "Emplyee", middleName = "The", lastName = "Man", username = "employee1", email = "employee@gmail.com", phone = "9876543210", organization = "employee", siteKeyVal = 13, siteKeyString="describe13", isActive = true, departmentId = 2, Address = newAddress2 };
             SecurityQuestion newQuestion14 = new SecurityQuestion { answer = "Speedy1", questionId = 1 };
             SecurityQuestion newQuestion24 = new SecurityQuestion { answer = "John1", questionId = 2 };
             SecurityQuestion newQuestion34 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions4 = new List<SecurityQuestion> { newQuestion14, newQuestion24, newQuestion34 };
-
-            bool newEmployeeCreated1 = UserModel.CreateEmployee(newEmployee, "udayKum3#", newAddress4, newQuestions4);
+            bool newEmployeeCreated1 = UserModel.CreateEmployee(newEmployee, "udayKum3#", "555-31-9999", "05/08/1991", newAddress4, newQuestions4);
             Response.Write(" New employee was created: " + newEmployeeCreated1);
             
             User cardUser = CardModel.UserForCard("98999999");

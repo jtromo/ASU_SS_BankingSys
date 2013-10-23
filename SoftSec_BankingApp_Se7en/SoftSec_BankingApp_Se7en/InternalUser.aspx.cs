@@ -2198,5 +2198,116 @@ namespace SoftSec_BankingApp_Se7en
         {
 
         }
+
+        protected void btnSignOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Hiding the Tab container 2 and re-setting the values of the controls present in it.
+                TabContainer2.Visible = false;
+                tbCardNumber_IU.Text = "";
+                rb_PhotoID.SelectedValue = "No";
+                MonthDD_ExistingCustomer_Verify.SelectedValue = "MM";
+                DayDD_ExistingCustomer_Verify.SelectedValue = "DD";
+                tbYear_IU.Text = "YYYY";
+                tb_checking.Text = "";
+                tb_savings.Text = "";
+                tb_credit.Text = "";
+                grdTransaction.DataSource = null;
+                grdTransaction.DataBind();
+                fromAccTypeDD_TransferExistingCust_Inside.Items.Clear();
+                fromAccTypeDD_TransferExistingCust_Inside.Items.Add("Accounts");
+                tb_amount_IU_Inside.Text = "";
+                tb_recepient_IU_Inside.Text = "";
+                tb_lastname_IU_Inside.Text = "";
+                tb_zip_IU_Inside.Text = "";
+                tb_card_IU_Inside.Text = "";
+                monthDD_TransferExistingCust_Inside.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Inside.SelectedValue = "YYYY";
+                tb_securitycode_IU_Inside.Text = "";
+                accTypeDD_TransferExistingCust_Outside.Items.Clear();
+                accTypeDD_TransferExistingCust_Outside.Items.Add("Accounts");
+                tb_amountoutside.Text = "";
+                tb_AccNumoutside_Intenal.Text = "";
+                tb_toRoutingNum_OutsideBank.Text = "";
+                tb_lastnameoutside.Text = "";
+                tb_emailoutside.Text = "";
+                tb_usercardno.Text = "";                
+                monthDD_TransferExistingCust_Outside.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Outside.SelectedValue = "YYYY";
+                tb_securitycodeoutside.Text = "";
+                lblStatus_OutsideBank.Text = "";
+                fromAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                fromAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                toAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                toAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                tb_amountbetween.Text = "";
+                lblStatus_Between.Text = "";
+                tb_card_DebitFunds.Text = "";
+                monthDD_TransferExistingCust_Debit.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Debit.SelectedValue = "YYYY";
+                tb_securitycode_DebitFunds.Text = "";
+                accTypeDD_TransferExistingCust_Debit.Items.Clear();
+                accTypeDD_TransferExistingCust_Debit.Items.Add("Accounts");
+                tb_amountoutside_DebitFunds.Text = "";
+                lblStatus_DebitFunds.Text = "";
+                tb_card_CreditFunds.Text = "";
+                monthDD_TransferExistingCust_Credit.SelectedValue = "MM";
+                yearDD_TransferExistingCust_Credit.SelectedValue = "YYYY";
+                tb_securitycode_CreditFunds.Text = "";
+                accTypeDD_TransferExistingCust_Credit.Items.Clear();
+                accTypeDD_TransferExistingCust_Credit.Items.Add("Accounts");
+                tb_amountoutside_CreditFunds.Text = "";
+                lblStatus_CreditFunds.Text = "";
+                tb_emailview.Text = "";
+                tb_addrview.Text = "";
+                tb_cityView.Text = "";
+                tb_contactview.Text = "";
+                StateDD_View.SelectedValue = "AL";
+                tb_usernameview.Text = "";
+                tb_zipView.Text = "";
+                tb_nicknameview.Text = "";
+                tb_email_Edit.Text = "";
+                tb_stAddr_Edit.Text = "";
+                tb_city_Edit.Text = "";
+                tb_zipCode_Edit.Text = "";
+                tb_contact_Edit.Text = "";
+                tb_nickname_Edit.Text = "";
+                lblStatus_ChangeProf.Text = "";
+                tb_oldpwd.Text = "";
+                tb_newPassword.Text = "";
+                tb_confrimPassword.Text = "";
+                tb_secans1.Text = "";
+                tb_secans2.Text = "";
+                tb_secans3.Text = "";
+                transferDD_ModifyTrans.Items.Clear();
+                transferDD_ModifyTrans.Items.Add("Accounts");
+                grdTransactions.DataSource = null;
+                grdTransactions.DataBind();
+                tb_transID_ModifyTrans.Text = "";
+                lblAccount_ModifyTrans.Text = "";
+                lblRoutingNum_ModifyTrans.Text = "";
+                lblAmount_ModifyTrans.Text = "";
+                lblStatus_ModifyStatus.Text = "";
+                tb_AccNum_modifyTrans.Text = "";
+                tb_RoutNum_modifyTrans.Text = "";
+                tb_Amount_ModifyTrans.Text = "";
+                tb_cardnum.Text = "";
+                tb_customername.Text = "";
+                cardExpDD_CardPayment.SelectedValue = "MM";
+                yearDD_CardPayment.SelectedValue = "YY";
+                tb_amount_SubmitPayment.Text = "";
+                lblSubmitPayment.Text = "";
+                tb_echeckaccno.Text = "";
+                tb_echeckroutingno.Text = "";
+                tb_echeckcustomername.Text = "";
+                tbAmount_EcheckPayment.Text = "";
+                lblEcheckPayment.Text = "";
+            }
+            catch(Exception exp)
+            {
+                //Log exception here
+            }
+        }
     }
 }

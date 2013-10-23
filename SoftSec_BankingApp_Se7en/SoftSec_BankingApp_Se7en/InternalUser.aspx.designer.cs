@@ -40,6 +40,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_ExistingCust;
         
         /// <summary>
+        /// btnSignOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSignOff;
+        
+        /// <summary>
         /// tbCardNumber_IU control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tbYear_IU;
         
         /// <summary>
-        /// btnVerify control.
+        /// btnVerify0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerify;
+        protected global::System.Web.UI.WebControls.Button btnVerify0;
         
         /// <summary>
         /// rb_PhotoID control.
@@ -850,6 +859,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_oldpwd;
         
         /// <summary>
+        /// tb_oldpwd_PasswordStrength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.PasswordStrength tb_oldpwd_PasswordStrength;
+        
+        /// <summary>
         /// tb_newPassword control.
         /// </summary>
         /// <remarks>
@@ -859,6 +877,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_newPassword;
         
         /// <summary>
+        /// tb_newPassword_PasswordStrength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.PasswordStrength tb_newPassword_PasswordStrength;
+        
+        /// <summary>
         /// tb_confrimPassword control.
         /// </summary>
         /// <remarks>
@@ -866,6 +893,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_confrimPassword;
+        
+        /// <summary>
+        /// tb_confrimPassword_PasswordStrength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.PasswordStrength tb_confrimPassword_PasswordStrength;
         
         /// <summary>
         /// Sec1DD_ExistingCust_EditProf control.

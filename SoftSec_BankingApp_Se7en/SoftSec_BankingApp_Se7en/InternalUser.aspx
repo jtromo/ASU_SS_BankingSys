@@ -3,10 +3,11 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register assembly="Recaptcha" namespace="Recaptcha" tagprefix="recaptcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="CSS/PasswordStyle.css" rel="stylesheet" type="text/css" />
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" AutoPostBack="True">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -14,7 +15,8 @@
                 <ContentTemplate>
 
                     <br />
-                    Customer Details:<br />Card Number:&nbsp;
+                    Customer Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSignOff" runat="server" OnClick="btnSignOff_Click" Text="Sign Off" />
+                    <br />Card Number:&nbsp;
                     <asp:TextBox ID="tbCardNumber_IU" runat="server"></asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date of Birth:&nbsp;
                     <asp:DropDownList ID="MonthDD_ExistingCustomer_Verify" runat="server">
@@ -68,13 +70,13 @@
                     </asp:DropDownList>
                     &nbsp;<asp:TextBox ID="tbYear_IU" runat="server" Height="16px" Width="76px">YYYY</asp:TextBox>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="btnVerify" runat="server" OnClick="btnVerify_Click" Text="Verify" />
+                    <asp:Button ID="btnVerify0" runat="server" OnClick="btnVerify_Click" Text="Verify" />
                     <br />
                     Photo Identification Verification<asp:RadioButtonList ID="rb_PhotoID" runat="server" Width="55px">
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
                         <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
@@ -115,203 +117,208 @@
                         <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers" TabIndex="1">
                             <ContentTemplate>
                                 <br />
-                                Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                                Please select the transfer type.<br /> <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                                     <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                                         <ContentTemplate>
-                                            <p>&nbsp;</p>
+                                            <p>
+                                                &nbsp;</p>
                                             <p>
                                                 From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:DropDownList ID="fromAccTypeDD_TransferExistingCust_Inside" runat="server" CssClass="auto-style4" Width="124px">
-                                                    <asp:ListItem>Checking Account</asp:ListItem>
-                                                    <asp:ListItem>Savings Account</asp:ListItem>
+                                                    <asp:ListItem>Account</asp:ListItem>
                                                 </asp:DropDownList>
                                             </p>
-                                            <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px"></asp:TextBox>
-                        </p>
-                        <p><strong>Recepient&#39;s Details:</strong></p>
-                        <p>&nbsp;Account Number:&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_recepient_IU_Inside" runat="server"></asp:TextBox>
-                        </p>
-            
-                         <p>Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_lastname_IU_Inside" runat="server"></asp:TextBox>
-                        </p>
-                        <p>Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_zip_IU_Inside" runat="server"></asp:TextBox>
-                        </p>
-                        <p><strong>Your Details (Validation):</strong></p>
-                        <p>Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
-                        </p>
-                        <p>Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:DropDownList ID="monthDD_TransferExistingCust_Inside" runat="server">
-                                <asp:ListItem>MM</asp:ListItem>
-                                <asp:ListItem Value="01">Jan</asp:ListItem>
-                                <asp:ListItem Value="02">Feb</asp:ListItem>
-                                <asp:ListItem Value="03">Mar</asp:ListItem>
-                                <asp:ListItem Value="04">Apr</asp:ListItem>
-                                <asp:ListItem Value="05">May</asp:ListItem>
-                                <asp:ListItem Value="06">June</asp:ListItem>
-                                <asp:ListItem Value="07">Jul</asp:ListItem>
-                                <asp:ListItem Value="08">Aug</asp:ListItem>
-                                <asp:ListItem Value="09">Sep</asp:ListItem>
-                                <asp:ListItem Value="10">Oct</asp:ListItem>
-                                <asp:ListItem Value="11">Nov</asp:ListItem>
-                                <asp:ListItem Value="12">Dec</asp:ListItem>
-                            </asp:DropDownList>
-            &nbsp;
-                            <asp:DropDownList ID="yearDD_TransferExistingCust_Inside" runat="server">
-                                <asp:ListItem>YYYY</asp:ListItem>
-                                <asp:ListItem Value="13">2013</asp:ListItem>
-                                <asp:ListItem Value="14">2014</asp:ListItem>
-                                <asp:ListItem Value="15">2015</asp:ListItem>
-                                <asp:ListItem Value="16">2016</asp:ListItem>
-                                <asp:ListItem Value="17">2017</asp:ListItem>
-                                <asp:ListItem Value="18">2018</asp:ListItem>
-                                <asp:ListItem Value="19">2019</asp:ListItem>
-                                <asp:ListItem Value="20">2020</asp:ListItem>
-                                <asp:ListItem Value="21">2021</asp:ListItem>
-                                <asp:ListItem Value="22">2022</asp:ListItem>
-                                <asp:ListItem Value="23">2023</asp:ListItem>
-                            </asp:DropDownList>
-                        </p>
-                        <p>Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server"></asp:TextBox>
-                        </p>
+                                            <p class="auto-style6">
+                                                Amount:&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_amount_IU_Inside" runat="server" Width="115px"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                <strong>Recepient&#39;s Details:</strong></p>
+                                            <p>
+                                                &nbsp;Account Number:&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_lastname_IU_Inside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_zip_IU_Inside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                <strong>Your Details (Validation):</strong></p>
+                                            <p>
+                                                Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_card_IU_Inside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="monthDD_TransferExistingCust_Inside" runat="server">
+                                                    <asp:ListItem>MM</asp:ListItem>
+                                                    <asp:ListItem Value="01">Jan</asp:ListItem>
+                                                    <asp:ListItem Value="02">Feb</asp:ListItem>
+                                                    <asp:ListItem Value="03">Mar</asp:ListItem>
+                                                    <asp:ListItem Value="04">Apr</asp:ListItem>
+                                                    <asp:ListItem Value="05">May</asp:ListItem>
+                                                    <asp:ListItem Value="06">June</asp:ListItem>
+                                                    <asp:ListItem Value="07">Jul</asp:ListItem>
+                                                    <asp:ListItem Value="08">Aug</asp:ListItem>
+                                                    <asp:ListItem Value="09">Sep</asp:ListItem>
+                                                    <asp:ListItem Value="10">Oct</asp:ListItem>
+                                                    <asp:ListItem Value="11">Nov</asp:ListItem>
+                                                    <asp:ListItem Value="12">Dec</asp:ListItem>
+                                                </asp:DropDownList>
+                                                &nbsp;
+                                                <asp:DropDownList ID="yearDD_TransferExistingCust_Inside" runat="server">
+                                                    <asp:ListItem>YYYY</asp:ListItem>
+                                                    <asp:ListItem Value="13">2013</asp:ListItem>
+                                                    <asp:ListItem Value="14">2014</asp:ListItem>
+                                                    <asp:ListItem Value="15">2015</asp:ListItem>
+                                                    <asp:ListItem Value="16">2016</asp:ListItem>
+                                                    <asp:ListItem Value="17">2017</asp:ListItem>
+                                                    <asp:ListItem Value="18">2018</asp:ListItem>
+                                                    <asp:ListItem Value="19">2019</asp:ListItem>
+                                                    <asp:ListItem Value="20">2020</asp:ListItem>
+                                                    <asp:ListItem Value="21">2021</asp:ListItem>
+                                                    <asp:ListItem Value="22">2022</asp:ListItem>
+                                                    <asp:ListItem Value="23">2023</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </p>
+                                            <p>
+                                                Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server"></asp:TextBox>
+                                            </p>
                                             <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:Label ID="lblSuccess_IUInside" runat="server" Visible="False"></asp:Label>
                                             </p>
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
-                        </p>
-                        <p>&nbsp;</p>
-                    </ContentTemplate>
-                 </asp:TabPanel>
-                 <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">
-                      <ContentTemplate>
-                          <p class="auto-style5">&nbsp;</p>
-                        <p class="auto-style5">From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:DropDownList ID="accTypeDD_TransferExistingCust_Outside" runat="server" CssClass="auto-style4" Width="124px">
-                                <asp:ListItem>Checking Account</asp:ListItem>
-                                <asp:ListItem>Savings Account</asp:ListItem>
-                            </asp:DropDownList>
-                        </p>
-                        <p class="auto-style5">Amount:&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_amountoutside" runat="server" Width="115px"></asp:TextBox>
-                          </p>
-                        <p class="auto-style5"><strong>Recepient&#39;s Details:</strong></p>
-                          <p class="auto-style5">
-                              Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <asp:TextBox ID="tb_AccNumoutside_Intenal" runat="server"></asp:TextBox>
-                          </p>
-                          <p class="auto-style9">
-                              Routing Number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <asp:TextBox ID="tb_toRoutingNum_OutsideBank" runat="server"></asp:TextBox>
-                          </p>
-                          <p class="auto-style5">
-                              Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
-                              <asp:TextBox ID="tb_lastnameoutside" runat="server"></asp:TextBox>
-                          </p>
-                        <p class="auto-style9">Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_emailoutside" runat="server"></asp:TextBox>
-                          </p>
-                        <p class="auto-style9"><strong>Your Details (Validation):</strong></p>
-                          <p class="auto-style9">
-                              Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
-                          </p>
-                        <p>
-                            &nbsp;Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:DropDownList ID="monthDD_TransferExistingCust_Outside" runat="server">
-                                <asp:ListItem>MM</asp:ListItem>
-                                <asp:ListItem Value="01">Jan</asp:ListItem>
-                                <asp:ListItem Value="02">Feb</asp:ListItem>
-                                <asp:ListItem Value="03">Mar</asp:ListItem>
-                                <asp:ListItem Value="04">Apr</asp:ListItem>
-                                <asp:ListItem Value="05">May</asp:ListItem>
-                                <asp:ListItem Value="06">June</asp:ListItem>
-                                <asp:ListItem Value="07">Jul</asp:ListItem>
-                                <asp:ListItem Value="08">Aug</asp:ListItem>
-                                <asp:ListItem Value="09">Sep</asp:ListItem>
-                                <asp:ListItem Value="10">Oct</asp:ListItem>
-                                <asp:ListItem Value="11">Nov</asp:ListItem>
-                                <asp:ListItem Value="12">Dec</asp:ListItem>
-                            </asp:DropDownList>
-                            &nbsp;
-                            <asp:DropDownList ID="yearDD_TransferExistingCust_Outside" runat="server">
-                                <asp:ListItem>YYYY</asp:ListItem>
-                                <asp:ListItem Value="13">2013</asp:ListItem>
-                                <asp:ListItem Value="14">2014</asp:ListItem>
-                                <asp:ListItem Value="15">2015</asp:ListItem>
-                                <asp:ListItem Value="16">2016</asp:ListItem>
-                                <asp:ListItem Value="17">2017</asp:ListItem>
-                                <asp:ListItem Value="18">2018</asp:ListItem>
-                                <asp:ListItem Value="19">2019</asp:ListItem>
-                                <asp:ListItem Value="20">2020</asp:ListItem>
-                                <asp:ListItem Value="21">2021</asp:ListItem>
-                                <asp:ListItem Value="22">2022</asp:ListItem>
-                                <asp:ListItem Value="23">2023</asp:ListItem>
-                            </asp:DropDownList>
-                        </p>
-	
-
-                          <p>
-                              Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
-                              <asp:TextBox ID="tb_securitycodeoutside" runat="server"></asp:TextBox>
-                          </p>
-	
-
-                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:Label ID="lblStatus_OutsideBank" runat="server" Visible="False"></asp:Label>
-                        </p>
-                          <p>
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <asp:Button ID="btn_maketransferoutside" runat="server" Text="Make Transfer" OnClick="btn_maketransferoutside_Click" />
-                          </p>
-	
-
-                         <p>
-                             &nbsp;</p>
-                      </ContentTemplate>
-      
-                 </asp:TabPanel>
-                 <asp:TabPanel ID="tab_trans_between" runat="server" HeaderText="Between Your Accounts">
-                 <ContentTemplate>
-                        <p class="auto-style5">&nbsp;</p>
-                        <p class="auto-style5">
-                        From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <asp:DropDownList ID="fromAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
-                        <asp:ListItem>Checking Account</asp:ListItem>
-                        <asp:ListItem>Savings Account</asp:ListItem>
-                        </asp:DropDownList>
-                                             </p>
-                        <p class="auto-style5">To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <asp:DropDownList ID="toAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
-                                <asp:ListItem>Checking Account</asp:ListItem>
-                                <asp:ListItem>Savings Account</asp:ListItem>
-                                <asp:ListItem>Credit Account</asp:ListItem>
-                            </asp:DropDownList>
-                        </p>
-                        <p class="auto-style5">Amount:&nbsp;&nbsp;&nbsp;
-                            <asp:TextBox ID="tb_amountbetween" runat="server" Width="115px"></asp:TextBox>
-                            <asp:Label ID="lblStatus_Between" runat="server" Visible="False"></asp:Label>
-                        </p>
-	
-
-                         <p class="auto-style5">
-                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                             <asp:Button ID="btn_maketransbetween" runat="server" Text="Make Transfer" OnClick="btn_maketransbetween_Click" />
-                        </p>
-	
-
-                         <p>
-                             &nbsp;</p>
-
+                                            <p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="btn_maketransinside" runat="server" OnClick="btn_maketransinside_Click" Text="Make Transfer" />
+                                            </p>
+                                            <p>
+                                                &nbsp;</p>
                                         </ContentTemplate>
-                                        </asp:TabPanel>
+                                    </asp:TabPanel>
+                                    <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">
+                                        <ContentTemplate>
+                                            <p class="auto-style5">
+                                                &nbsp;</p>
+                                            <p class="auto-style5">
+                                                From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="accTypeDD_TransferExistingCust_Outside" runat="server" CssClass="auto-style4" Width="124px">
+                                                    <asp:ListItem>Account</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </p>
+                                            <p class="auto-style5">
+                                                Amount:&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_amountoutside" runat="server" Width="115px"></asp:TextBox>
+                                            </p>
+                                            <p class="auto-style5">
+                                                <strong>Recepient&#39;s Details:</strong></p>
+                                            <p class="auto-style5">
+                                                Account Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_AccNumoutside_Intenal" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p class="auto-style9">
+                                                Routing Number :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_toRoutingNum_OutsideBank" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p class="auto-style5">
+                                                Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;
+                                                <asp:TextBox ID="tb_lastnameoutside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p class="auto-style9">
+                                                Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_emailoutside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p class="auto-style9">
+                                                <strong>Your Details (Validation):</strong></p>
+                                            <p class="auto-style9">
+                                                Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_usercardno" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                &nbsp;Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="monthDD_TransferExistingCust_Outside" runat="server">
+                                                    <asp:ListItem>MM</asp:ListItem>
+                                                    <asp:ListItem Value="01">Jan</asp:ListItem>
+                                                    <asp:ListItem Value="02">Feb</asp:ListItem>
+                                                    <asp:ListItem Value="03">Mar</asp:ListItem>
+                                                    <asp:ListItem Value="04">Apr</asp:ListItem>
+                                                    <asp:ListItem Value="05">May</asp:ListItem>
+                                                    <asp:ListItem Value="06">June</asp:ListItem>
+                                                    <asp:ListItem Value="07">Jul</asp:ListItem>
+                                                    <asp:ListItem Value="08">Aug</asp:ListItem>
+                                                    <asp:ListItem Value="09">Sep</asp:ListItem>
+                                                    <asp:ListItem Value="10">Oct</asp:ListItem>
+                                                    <asp:ListItem Value="11">Nov</asp:ListItem>
+                                                    <asp:ListItem Value="12">Dec</asp:ListItem>
+                                                </asp:DropDownList>
+                                                &nbsp;
+                                                <asp:DropDownList ID="yearDD_TransferExistingCust_Outside" runat="server">
+                                                    <asp:ListItem>YYYY</asp:ListItem>
+                                                    <asp:ListItem Value="13">2013</asp:ListItem>
+                                                    <asp:ListItem Value="14">2014</asp:ListItem>
+                                                    <asp:ListItem Value="15">2015</asp:ListItem>
+                                                    <asp:ListItem Value="16">2016</asp:ListItem>
+                                                    <asp:ListItem Value="17">2017</asp:ListItem>
+                                                    <asp:ListItem Value="18">2018</asp:ListItem>
+                                                    <asp:ListItem Value="19">2019</asp:ListItem>
+                                                    <asp:ListItem Value="20">2020</asp:ListItem>
+                                                    <asp:ListItem Value="21">2021</asp:ListItem>
+                                                    <asp:ListItem Value="22">2022</asp:ListItem>
+                                                    <asp:ListItem Value="23">2023</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </p>
+                                            <p>
+                                                Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_securitycodeoutside" runat="server"></asp:TextBox>
+                                            </p>
+                                            <p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Label ID="lblStatus_OutsideBank" runat="server" Visible="False"></asp:Label>
+                                            </p>
+                                            <p>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="btn_maketransferoutside" runat="server" OnClick="btn_maketransferoutside_Click" Text="Make Transfer" />
+                                            </p>
+                                            <p>
+                                                &nbsp;</p>
+                                        </ContentTemplate>
+                                    </asp:TabPanel>
+                                    <asp:TabPanel ID="tab_trans_between" runat="server" HeaderText="Between Your Accounts">
+                                        <ContentTemplate>
+                                            <p class="auto-style5">
+                                                &nbsp;</p>
+                                            <p class="auto-style5">
+                                                From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="fromAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
+                                                    <asp:ListItem>Account</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </p>
+                                            <p class="auto-style5">
+                                                To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="toAccTypeDD_TransferExistingCust_Between" runat="server" CssClass="auto-style4" Width="124px">
+                                                    <asp:ListItem>Account</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </p>
+                                            <p class="auto-style5">
+                                                Amount:&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="tb_amountbetween" runat="server" Width="115px"></asp:TextBox>
+                                                <asp:Label ID="lblStatus_Between" runat="server" Visible="False"></asp:Label>
+                                            </p>
+                                            <p class="auto-style5">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="btn_maketransbetween" runat="server" OnClick="btn_maketransbetween_Click" Text="Make Transfer" />
+                                            </p>
+                                            <p>
+                                                &nbsp;</p>
+                                        </ContentTemplate>
+                                    </asp:TabPanel>
                                     <asp:TabPanel ID="tab_debitfunds" runat="server" HeaderText="Debit Funds">
                                         <ContentTemplate>
-
                                             <br />
                                             <br />
                                             <p>
@@ -358,8 +365,7 @@
                                             <p class="auto-style5">
                                                 From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:DropDownList ID="accTypeDD_TransferExistingCust_Debit" runat="server" CssClass="auto-style4" Width="124px">
-                                                    <asp:ListItem>Checking Account</asp:ListItem>
-                                                    <asp:ListItem>Savings Account</asp:ListItem>
+                                                    <asp:ListItem>Accounts</asp:ListItem>
                                                 </asp:DropDownList>
                                             </p>
                                             <p class="auto-style5">
@@ -371,19 +377,17 @@
                                                 <asp:Label ID="lblStatus_DebitFunds" runat="server" Visible="False"></asp:Label>
                                             </p>
                                             <p class="auto-style5">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketransDebitFunds" runat="server" Text="Debit Funds" OnClick="btn_maketransDebitFunds_Click" />
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketransDebitFunds" runat="server" OnClick="btn_maketransDebitFunds_Click" Text="Debit Funds" />
                                             </p>
                                             <p>
                                                 &nbsp;</p>
-
                                         </ContentTemplate>
                                     </asp:TabPanel>
-                                     <asp:TabPanel ID="TabPanel4" runat="server" HeaderText="Debit Funds">
-                                         <HeaderTemplate>
-                                             Credit Funds
-                                         </HeaderTemplate>
+                                    <asp:TabPanel ID="TabPanel4" runat="server" HeaderText="Debit Funds">
+                                        <HeaderTemplate>
+                                            Credit Funds
+                                        </HeaderTemplate>
                                         <ContentTemplate>
-
                                             <br />
                                             <p>
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -428,8 +432,7 @@
                                             </p>
                                             <p class="auto-style5">
                                                 To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:DropDownList ID="accTypeDD_TransferExistingCust_Credit" runat="server" CssClass="auto-style4" Width="124px">
-                                                    <asp:ListItem>Checking Account</asp:ListItem>
-                                                    <asp:ListItem>Savings Account</asp:ListItem>
+                                                    <asp:ListItem>Accounts</asp:ListItem>
                                                 </asp:DropDownList>
                                             </p>
                                             <p class="auto-style5">
@@ -441,11 +444,10 @@
                                                 <asp:Label ID="lblStatus_CreditFunds" runat="server" Visible="False"></asp:Label>
                                             </p>
                                             <p class="auto-style5">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketrans_CreditFunds" runat="server" Text="Credit Funds" OnClick="btn_maketrans_CreditFunds_Click" />
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_maketrans_CreditFunds" runat="server" OnClick="btn_maketrans_CreditFunds_Click" Text="Credit Funds" />
                                             </p>
-
-                                            </ContentTemplate>
-                                         </asp:TabPanel>
+                                        </ContentTemplate>
+                                    </asp:TabPanel>
                                 </asp:TabContainer>
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -634,13 +636,19 @@
                             <h6>&nbsp;</h6>
                             <h6>Security Questions</h6>
             <p>Old Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_oldpwd" runat="server"></asp:TextBox>
+                <asp:TextBox ID="tb_oldpwd" runat="server" TextMode="Password"></asp:TextBox>
+                <asp:PasswordStrength ID="tb_oldpwd_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_oldpwd" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
+                </asp:PasswordStrength>
                 &nbsp;</p>
                             <p>
                                 New Password :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_newPassword" runat="server"></asp:TextBox>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
-                                <asp:TextBox ID="tb_confrimPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="tb_newPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:PasswordStrength ID="tb_newPassword_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_newPassword" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
+                                </asp:PasswordStrength>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
+                                <asp:TextBox ID="tb_confrimPassword" runat="server" TextMode="Password"></asp:TextBox>
+                                <asp:PasswordStrength ID="tb_confrimPassword_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" PreferredPasswordLength="12" TargetControlID="tb_confrimPassword" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength4">
+                                </asp:PasswordStrength>
                             </p>
             <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="Sec1DD_ExistingCust_EditProf" runat="server">
                     <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>

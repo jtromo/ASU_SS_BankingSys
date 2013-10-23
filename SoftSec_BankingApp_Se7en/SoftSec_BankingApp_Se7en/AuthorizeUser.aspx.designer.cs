@@ -22,6 +22,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Image SiteKey;
         
         /// <summary>
+        /// RF_Password control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RF_Password;
+        
+        /// <summary>
         /// TB_Password control.
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox TB_Password;
         
         /// <summary>
+        /// TB_Password_PasswordStrength control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.PasswordStrength TB_Password_PasswordStrength;
+        
+        /// <summary>
         /// TB_Password_FilteredTextBoxExtender control.
         /// </summary>
         /// <remarks>
@@ -38,15 +56,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.FilteredTextBoxExtender TB_Password_FilteredTextBoxExtender;
-        
-        /// <summary>
-        /// RF_Password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RF_Password;
         
         /// <summary>
         /// lblErrorMessage_Authorize control.

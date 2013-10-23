@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <h6 __designer:mapid="2290">Security Questions</h6>
             <p __designer:mapid="2293">
-                Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp;
+                Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList runat="server" ID="dd_secque1"><asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
 <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
 <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -18,12 +18,12 @@
 
             </p>
             <p __designer:mapid="22a0">
-                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox runat="server" ID="tb_secans1"></asp:TextBox>
 
             </p>
             <p __designer:mapid="22a2">
-                Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;
+                Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList runat="server" ID="dd_secque2"><asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
 <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
 <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -39,12 +39,12 @@
 
             </p>
             <p __designer:mapid="22af">
-                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox runat="server" ID="tb_secans2"></asp:TextBox>
 
             </p>
             <p __designer:mapid="22b1">
-                Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;
+                Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList runat="server" ID="dd_secque3"><asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
 <asp:ListItem Value="Question1">What was your childhood nickname? </asp:ListItem>
 <asp:ListItem Value="Question2">In what city did you meet your spouse/significant other?</asp:ListItem>
@@ -60,10 +60,22 @@
 
             </p>
             <p __designer:mapid="22be">
-                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox runat="server" Height="16px" Width="128px" ID="tb_secans3" style="margin-top: 6px"></asp:TextBox>
 
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+            <p __designer:mapid="22be">
+                &nbsp;</p>
+            <p __designer:mapid="22be">
+                &nbsp;</p>
+            <p __designer:mapid="22be">
+                Enter New Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="tb_newpwd" runat="server"></asp:TextBox>
+            </p>
+            <p __designer:mapid="22be">
+                Re enter New Password:&nbsp;
+                <asp:TextBox ID="tb_newpwd2" runat="server"></asp:TextBox>
             </p>
             <p __designer:mapid="22c0">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

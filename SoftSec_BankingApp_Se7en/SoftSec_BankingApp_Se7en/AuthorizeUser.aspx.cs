@@ -57,17 +57,19 @@ namespace SoftSec_BankingApp_Se7en
                         else if (objuser.roleId == 5)
                         {
                             //Internal_DeptManager
+                            Response.Redirect("InternalUser.aspx", false);
                         }
                         else if (objuser.roleId == 6)
                         {
                             //Internal_HigherManager
+                            Response.Redirect("InternalUser.aspx", false);
                         }
                         else if (objuser.roleId == 7 || objuser.roleId == 8)
                         {
                             //Internal_Admin || Superuser
-                            if (objuser.roleId == 6)
+                            if (objuser.roleId == 7)
                                 Session["adminFlag"] = 1;
-                            else if (objuser.roleId == 7)
+                            else if (objuser.roleId == 8)
                                 Session["adminFlag"] = 0;
                             else
                                 Session["adminFlag"] = -1;

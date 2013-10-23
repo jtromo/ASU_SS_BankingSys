@@ -23,60 +23,112 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 if (!IsPostBack)
-                {
-                    TabContainer2.Visible = false;
-                    TabContainer1.ActiveTabIndex = 0;
-                    TabContainer2.ActiveTabIndex = 0;
-                    TabContainer3.ActiveTabIndex = 0;
-                    TabContainer4.ActiveTabIndex = 0;
-                    TabContainer5.ActiveTabIndex = 0;
-                    TabContainer6.ActiveTabIndex = 0;
-                    TabContainer7.ActiveTabIndex = 0;
-                    img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-                    img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-                    img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-                    img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-                    img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-                    img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-                    img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-                    img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-                    img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-                    img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-                    img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-                    img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-                    img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-                    img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-                    img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-                    img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-                    img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-                    img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-                    img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-                    img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
-                    img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
-                    img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
-                    img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
-                    img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
-                    img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
-                    img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
-                    img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
-                    img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
-                    img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
-                    img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
-                    img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
-                    img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
-                    img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
-                    img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
-                    img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
-                    img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
-                    img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
-                    img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
-                    img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
-                    img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                {                    
+                    FieldValidator objField = new FieldValidator();
+                    if (objField.validate_UserName(Session["userName"].ToString()))
+                    {
+                        TabContainer2.Visible = false;
+                        TabContainer1.Visible = false;
+                        TabContainer1.ActiveTabIndex = 0;
+                        TabContainer2.ActiveTabIndex = 0;
+                        TabContainer3.ActiveTabIndex = 0;
+                        TabContainer4.ActiveTabIndex = 0;
+                        TabContainer5.ActiveTabIndex = 0;
+                        TabContainer6.ActiveTabIndex = 0;
+                        TabContainer7.ActiveTabIndex = 0;
+                        img_site1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                        img_site2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                        img_site3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                        img_site4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                        img_site5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                        img_site6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                        img_site7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                        img_site8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                        img_site9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                        img_site10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                        img_site11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                        img_site12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                        img_site13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                        img_site14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                        img_site15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                        img_site16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                        img_site17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                        img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                        img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                        img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                        img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                        img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                        img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                        img_site4_AE.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                        img_site5_AE.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                        img_site6_AE.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                        img_site7_AE.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                        img_site8_AE.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                        img_site9_AE.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                        img_site10_AE.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                        img_site11_AE.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                        img_site12_AE.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                        img_site13_AE.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                        img_site14_AE.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                        img_site15_AE.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                        img_site16_AE.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                        img_site17_AE.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                        img_site18_AE.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                        img_site19_AE.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                        img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+
+                        int? userRole = UserModel.GetUser(Session["userName"].ToString()).roleId;
+                        if ( userRole == 4)
+                        {
+                            //Regular Employee
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[2].Visible = false;
+                            TabContainer1.Tabs[3].Visible = false;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = true;
+
+                        }
+                        else if ( userRole == 5)
+                        {
+                            //Department Manager
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = true;
+                            TabContainer1.Tabs[0].Visible = true;
+                            TabContainer1.Tabs[1].Visible = false;
+                        }
+                        else if (userRole == 6)
+                        {
+                            //Higher Management
+                            TabContainer1.Visible = true;
+                            TabContainer1.Tabs[0].Visible = false;
+                            TabContainer1.Tabs[1].Visible = false;
+                            TabContainer1.Tabs[2].Visible = true;
+                            TabContainer1.Tabs[3].Visible = true;
+                        }
+                        else
+                        {
+                            //Invalid Role ID
+                            //Log Out functionality here
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }                        
+                    }
+                    else
+                    {
+                        //Invalid Session Object
+                        //Log Out Functionality
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
+                //Invalid Session Object
+                Session["userName"] = "";
+                Response.Redirect("ExternalHomePage.aspx", false);
             }
         }
         protected void deselect_All_Images()
@@ -2329,6 +2381,47 @@ namespace SoftSec_BankingApp_Se7en
             catch(Exception exp)
             {
                 //Log exception here
+            }
+        }
+
+        protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
+                {
+                    if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
+                    {
+                        TabContainer1.Visible = true;
+                    }
+                    else
+                    {
+                        //Call log out function here
+                        //Reset Session Variables
+                        Session["userName"] = "";                        
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+                else if (TabContainer1.ActiveTabIndex == 2 || TabContainer1.ActiveTabIndex == 3)
+                {
+                    if (objUsr != null && (objUsr.roleId == 5 || objUsr.roleId == 6))
+                    {
+                        TabContainer1.Visible = true;
+                    }
+                    else
+                    {
+                        //Call log out function here
+                        Session["userName"] = "";
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here.
+                Session["userName"] = "";
+                Response.Redirect("ExternalHomePage.aspx", false);
             }
         }
     }

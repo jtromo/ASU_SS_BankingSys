@@ -184,7 +184,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool AssignAuthorizationRequestedTransactionToUser(string transactionId, string username, int role)
+        public static bool AssignAuthorizationRequestedTransactionToUser(int transactionId, string username, int role)
         {
             try
             {
@@ -221,7 +221,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool ApproveTransaction(string transactionId)
+        public static bool ApproveTransaction(int transactionId)
         {
             try
             {
@@ -282,7 +282,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool RejectTransaction(string transactionId)
+        public static bool RejectTransaction(int transactionId)
         {
             try
             {

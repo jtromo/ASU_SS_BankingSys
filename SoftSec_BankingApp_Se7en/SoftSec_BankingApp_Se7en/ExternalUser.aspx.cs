@@ -119,9 +119,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
                                                                        " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                bool success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_toAccNum_OutsideBank.Text.ToString(),
+                                int transactionId = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_toAccNum_OutsideBank.Text.ToString(),
                                                             tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
-                                if (success)
+                                if (transactionId > 0)
                                 {
                                     lblTranStatus.Text = "Transaction Successful";
                                     tb_toRoutingNumber.Text = "";
@@ -191,9 +191,9 @@ namespace SoftSec_BankingApp_Se7en
                                     {
                                         string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
                                                                            " Amount : " + tb_amount.Text.ToString();
-                                        bool success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
+                                        int transactionId = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
                                                                    Convert.ToDouble(tb_amount.Text.ToString()), desc);
-                                        if (success)
+                                        if (transactionId > 0)
                                         {
                                             lblTransStatus_IB.Text = "Transaction Successful";
                                             tb_toRoutingNumber.Text = "";
@@ -252,11 +252,11 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
                     string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
-                    bool success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                    int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
                                 "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
                                     "To : " + dd_acctypebetween_To.Text.ToString() +
                                         "- Amount : " + tb_amountbetween.Text.ToString());
-                    if (success)
+                    if (transactionId > 0)
                     {
                         lblTransStatus_Between.Text = "Transaction Successful";
                         lblTransStatus_Between.Visible = true;
@@ -337,9 +337,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = objCard.accountNumber;
-                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
+                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
-                                if (success)
+                                if (transactionId > 0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
                                     lblSubmitPayment.Visible = true;
@@ -750,9 +750,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = tb_echeckaccno.Text.ToString();
-                                bool success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
+                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
-                                if (success)
+                                if (transactionId > 0)
                                 {
                                     lblEcheckPayment.Text = "Transaction Successful";
                                     lblEcheckPayment.Visible = true;

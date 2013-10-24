@@ -58,11 +58,11 @@ namespace SSBank
             else
                 Response.Write(" Null. Please fix");
 
-            bool testTransferInternal = TransactionModel.MakeInternalTransfer("12345", "12334123", 0.11, "test internal transfer");
-            Response.Write(" Creating test transfer Internal between 12345 and 12334123: " + testTransferInternal);
+            int testTransferInternal = TransactionModel.MakeInternalTransfer("12345", "12334123", 0.11, "test internal transfer");
+            Response.Write(" Creating test transfer Internal between 12345 and 12334123: rowId " + testTransferInternal);
 
-            bool testTransferExternal = TransactionModel.MakeExternalTransfer("12345", "fromRoute", "12334123", "1231231", 0.11, "test transfer");
-            Response.Write(" Creating test transfer External between 12345 and 12334123: " + testTransferExternal);
+            int testTransferExternal = TransactionModel.MakeExternalTransfer("12345", "fromRoute", "12334123", "1231231", 0.11, "test transfer");
+            Response.Write(" Creating test transfer External between 12345 and 12334123: rowId " + testTransferExternal);
 
             Account foundAccount = AccountModel.GetAccount("12334123");
             if(foundAccount != null)

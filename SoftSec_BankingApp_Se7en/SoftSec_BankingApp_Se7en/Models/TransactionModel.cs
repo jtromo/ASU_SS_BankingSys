@@ -221,6 +221,101 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool AcceptTransaction(string transactionId)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                        if (transactions.Count() < 1)
+                        {
+                            return false;
+                        }
+                        // Process Transaction
+                        Tables.Transaction transaction = transactions.First();
+
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.status = TRANSFER_STATUS_APPROVED;
+                        transaction.processedTime = timestamp;
+
+                        db.Transactions.Attach(transaction);
+                        var vstatus = db.Entry(transaction);
+                        vstatus.Property(e => e.status).IsModified = true;
+                        var vprocessedTime = db.Entry(transaction);
+                        vprocessedTime.Property(e => e.processedTime).IsModified = true;
+
+                        // Perform Action
+                        switch (transaction.status)
+                        {
+                            case TRANSFER_TYPE_INTERNAL:
+                                // Internal Transfer Actions
+                                break;
+                            case TRANSFER_TYPE_EXTERNAL:
+                                // External Transfer Actions
+                                break;
+                            case TRANSFER_TYPE_WITHDRAW:
+                                // Withdraw Actions
+                                break;
+                            case TRANSFER_TYPE_DEPOSIT:
+                                // Deposits do not need authorization
+                                break;
+                            default:
+                                // Error
+                                break;
+                        }
+
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool DenyTransaction(string transactionId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    Tables.Transaction transaction = transactions.First();
+
+                    transaction.status = TRANSFER_STATUS_REJECTED;
+
+                    db.Transactions.Attach(transaction);
+
+                    var vstatus = db.Entry(transaction);
+                    vstatus.Property(e => e.status).IsModified = true;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
         public static bool MakeInternalTransfer(string fromAccountNumber, string toAccountNumber, double amount, string description)
         {
             try

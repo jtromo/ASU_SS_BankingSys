@@ -21,8 +21,9 @@
     &nbsp;</p>
 <p style="font-size: large; color: #003399; text-align: center">
     Here are some pages that might help you to get on your way!</p>
-<p style="font-size: large; color: #003399; text-align: center">
-    Home Page</p>
+    <p style="font-size: large; color: #003399; text-align: center">
+       <p style="font-size: large; color: #003399; text-align: center"><asp:HyperLink ID="homelink" NavigateUrl="~/ExternalHomePage.aspx" runat="server" style="font-size: large">Home Page</asp:HyperLink></p>
+    </p>
 <p style="font-size: large; color: #003399; text-align: center">
     &nbsp;</p>
 <p style="text-align: center">

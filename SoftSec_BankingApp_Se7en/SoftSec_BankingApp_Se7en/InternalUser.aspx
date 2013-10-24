@@ -7,7 +7,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -76,7 +76,7 @@
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
                         <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
@@ -137,6 +137,10 @@
                                             <p>
                                                 &nbsp;Account Number:&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_recepient_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="reqAuthDeptIDTB" runat="server"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:TextBox ID="reqAuthRoleIDTB" runat="server"></asp:TextBox>
                                             </p>
                                             <p>
                                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -151,6 +155,11 @@
                                             <p>
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_card_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Label ID="requetAuthLb" runat="server" Text="Pleae choose an authorizer" Width="100px"></asp:Label>
+                                                &nbsp;&nbsp;
+                                                <asp:DropDownList ID="authorizerDropDown" runat="server" Width="100px">
+                                                </asp:DropDownList>
                                             </p>
                                             <p>
                                                 Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -188,6 +197,8 @@
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_securitycode_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="placeReqBT" runat="server" OnClick="placeReqBT_Click" Text="PlaceRequest" />
                                             </p>
                                             <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1619,8 +1630,20 @@
             </asp:TabPanel>
             <asp:TabPanel ID="tab_tobeauthorized" runat="server" HeaderText="To Be Authorized" TabIndex="3">
                 <ContentTemplate>
+                    <asp:TextBox ID="lookUPUserNameTF" runat="server"></asp:TextBox>
+                    <asp:Button ID="reqLookUPBT" runat="server" OnClick="reqLookUPBT_Click" Text="Look Up" />
                     <br />
-                    //add to be authorized critical transactions
+                    <br />
+                    <asp:Label ID="reqResultLB" runat="server"></asp:Label>
+                    <br />
+                    &nbsp;<asp:GridView ID="reqGridV" runat="server" AllowPaging="True" AutoGenerateSelectButton="True" OnSelectedIndexChanged="reGridSelectedRowAtIndex" Width="878px">
+                    </asp:GridView>
+                    <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="approveReqBT" runat="server" OnClick="approveReqBT_Click" Text="Approve" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="rejectReqBT" runat="server" OnClick="rejectReqBT_Click" Text="Reject" />
+                    <br />
                 </ContentTemplate>
             </asp:TabPanel>
         </asp:TabContainer>

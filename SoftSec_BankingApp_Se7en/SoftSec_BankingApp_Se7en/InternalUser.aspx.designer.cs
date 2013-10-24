@@ -238,6 +238,24 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_recepient_IU_Inside;
         
         /// <summary>
+        /// reqAuthDeptIDTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox reqAuthDeptIDTB;
+        
+        /// <summary>
+        /// reqAuthRoleIDTB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox reqAuthRoleIDTB;
+        
+        /// <summary>
         /// tb_lastname_IU_Inside control.
         /// </summary>
         /// <remarks>
@@ -265,6 +283,24 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_card_IU_Inside;
         
         /// <summary>
+        /// requetAuthLb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label requetAuthLb;
+        
+        /// <summary>
+        /// authorizerDropDown control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList authorizerDropDown;
+        
+        /// <summary>
         /// monthDD_TransferExistingCust_Inside control.
         /// </summary>
         /// <remarks>
@@ -290,6 +326,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_securitycode_IU_Inside;
+        
+        /// <summary>
+        /// placeReqBT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button placeReqBT;
         
         /// <summary>
         /// lblSuccess_IUInside control.
@@ -2585,5 +2630,59 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tab_tobeauthorized;
+        
+        /// <summary>
+        /// lookUPUserNameTF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lookUPUserNameTF;
+        
+        /// <summary>
+        /// reqLookUPBT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button reqLookUPBT;
+        
+        /// <summary>
+        /// reqResultLB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label reqResultLB;
+        
+        /// <summary>
+        /// reqGridV control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView reqGridV;
+        
+        /// <summary>
+        /// approveReqBT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button approveReqBT;
+        
+        /// <summary>
+        /// rejectReqBT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button rejectReqBT;
     }
 }

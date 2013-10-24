@@ -1979,7 +1979,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     
-                    Models.Tables.Transaction objTrans = TransactionModel.GetTransactions(tb_transID_ModifyTrans.Text.ToString());
+                    Models.Tables.Transaction objTrans = TransactionModel.GetTransaction(tb_transID_ModifyTrans.Text.ToString());
                     if (transferDD_ModifyTrans.SelectedValue.ToString().Equals(objTrans.fromAccountNumber))
                     {
                         btn_modifytrans.Enabled = true;

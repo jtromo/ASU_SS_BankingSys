@@ -101,18 +101,6 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
-        protected void Btn_ForgotPassword_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Response.Redirect("ForgotPassword.aspx");
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
-            }
-        }
-
         /// <summary>
         /// Validate the form fields inputs.
         /// </summary>
@@ -144,7 +132,6 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
-
-
+        
     }
 }

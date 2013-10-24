@@ -14,6 +14,10 @@ namespace SoftSec_BankingApp_Se7en.Models
         public const int TRANSFER_TYPE_WITHDRAW = 3;
         public const int TRANSFER_TYPE_DEPOSIT = 4;
 
+        // Transfer limit before transfer requires approval
+        public const int TRANSFER_LIMIT = 1000;
+
+        // Transactions > than TRANSFER_LIMIT must be approved
         public const int TRANSFER_STATUS_PROCESSING = 1;
         public const int TRANSFER_STATUS_APPROVED = 2;
         public const int TRANSFER_STATUS_REJECTED = 3;
@@ -49,7 +53,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static Tables.Transaction GetTransactions(string strTransID)
+        public static Tables.Transaction GetTransaction(string strTransID)
         {
             try
             {
@@ -83,7 +87,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     if (transactions.Count() < 1)
                     {
                         return null;
-                    }                   
+                    }
 
                     return transactions;
                 }
@@ -101,7 +105,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber =@p1",accountNumber, accountNumber).ToList();
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber =@p1", accountNumber, accountNumber).ToList();
 
                     if (transactions.Count() < 1)
                     {
@@ -143,7 +147,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     foreach (Tables.Account account in accounts)
                     {
                         List<Tables.Transaction> accountTransactions = account.Transactions.ToList();
-                        if(accountTransactions.Count() > 0)
+                        if (accountTransactions.Count() > 0)
                             transactions.AddRange(accountTransactions);
                     }
 
@@ -154,6 +158,161 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 //Log exception here
                 return null;
+            }
+        }
+
+        public static List<Tables.Transaction> GetAuthorizationRequestedTransactionsForUser(string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE mustBeAuthorizedByUserName = @p0", username).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    return transactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static bool AssignAuthorizationRequestedTransactionToUser(int transactionId, string username, int roleId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    Tables.Transaction transaction = transactions.First();
+
+                    transaction.mustBeAuthorizedByUserName = username;
+                    transaction.authorizedUserRoleId = roleId;
+
+                    db.Transactions.Attach(transaction);
+
+                    var vmustBeAuthorizedByUserName = db.Entry(transaction);
+                    vmustBeAuthorizedByUserName.Property(e => e.mustBeAuthorizedByUserName).IsModified = true;
+                    var vauthorizedUserRole = db.Entry(transaction);
+                    vauthorizedUserRole.Property(e => e.authorizedUserRoleId).IsModified = true;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool ApproveTransaction(int transactionId)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                        if (transactions.Count() < 1)
+                        {
+                            return false;
+                        }
+                        // Process Transaction
+                        Tables.Transaction transaction = transactions.First();
+
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.status = TRANSFER_STATUS_APPROVED;
+                        transaction.processedTime = timestamp;
+
+                        db.Transactions.Attach(transaction);
+                        var vstatus = db.Entry(transaction);
+                        vstatus.Property(e => e.status).IsModified = true;
+                        var vprocessedTime = db.Entry(transaction);
+                        vprocessedTime.Property(e => e.processedTime).IsModified = true;
+
+                        // Perform Action
+                        switch (transaction.status)
+                        {
+                            case TRANSFER_TYPE_INTERNAL:
+                                // Internal Transfer Actions
+                                break;
+                            case TRANSFER_TYPE_EXTERNAL:
+                                // External Transfer Actions
+                                break;
+                            case TRANSFER_TYPE_WITHDRAW:
+                                // Withdraw Actions
+                                break;
+                            case TRANSFER_TYPE_DEPOSIT:
+                                // Deposits do not need authorization
+                                break;
+                            default:
+                                // Error
+                                break;
+                        }
+
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static bool RejectTransaction(int transactionId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    Tables.Transaction transaction = transactions.First();
+
+                    transaction.status = TRANSFER_STATUS_REJECTED;
+
+                    db.Transactions.Attach(transaction);
+
+                    var vstatus = db.Entry(transaction);
+                    vstatus.Property(e => e.status).IsModified = true;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
             }
         }
 
@@ -183,8 +342,6 @@ namespace SoftSec_BankingApp_Se7en.Models
                         {
                             return false;
                         }
-                        fromAccount.balance = fromAccount.balance - amount;
-                        toAccount.balance = toAccount.balance + amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = toAccountNumber;
@@ -192,10 +349,24 @@ namespace SoftSec_BankingApp_Se7en.Models
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_INTERNAL;
-                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                        transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;
+
+                        // Transfer is less within limit range. The transaction goes through
+                        if (amount <= TRANSFER_LIMIT)
+                        {
+                            fromAccount.balance = fromAccount.balance - amount;
+                            toAccount.balance = toAccount.balance + amount;
+
+                            transaction.status = TRANSFER_STATUS_APPROVED;
+                            transaction.processedTime = timestamp;
+                        }
+                        // Transfer exceeds the limit. Must be authorized for it to go through
+                        else
+                        {
+                            transaction.status = TRANSFER_STATUS_PROCESSING;
+                        }
+
                         db.Transactions.Add(transaction);
 
                         db.SaveChanges();
@@ -221,7 +392,6 @@ namespace SoftSec_BankingApp_Se7en.Models
                 {
                     using (var db = new SSBankDBContext())
                     {
-                        //List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0 AND routingNumber = @p1", fromAccountNumber, fromRoutingNumber).ToList();
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", fromAccountNumber).ToList();
                         if (fromAccounts.Count() < 1)
                         {
@@ -233,7 +403,6 @@ namespace SoftSec_BankingApp_Se7en.Models
                         {
                             return false;
                         }
-                        fromAccount.balance = fromAccount.balance - amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = toAccountNumber;
@@ -243,10 +412,23 @@ namespace SoftSec_BankingApp_Se7en.Models
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_EXTERNAL;
-                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                        transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;
+
+                        // Transfer is less within limit range. The transaction goes through
+                        if (amount <= TRANSFER_LIMIT)
+                        {
+                            fromAccount.balance = fromAccount.balance - amount;
+
+                            transaction.status = TRANSFER_STATUS_APPROVED;
+                            transaction.processedTime = timestamp;
+                        }
+                        // Transfer exceeds the limit. Must be authorized for it to go through
+                        else
+                        {
+                            transaction.status = TRANSFER_STATUS_PROCESSING;
+                        }
+
                         db.Transactions.Add(transaction);
 
                         db.SaveChanges();
@@ -281,8 +463,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         if ((account.balance - amount) < 0)
                         {
                             //Log Error. OVERDRAFT!
+                            return false;
                         }
-                        account.balance = account.balance - amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = null;
@@ -293,10 +475,23 @@ namespace SoftSec_BankingApp_Se7en.Models
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_WITHDRAW;
-                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                        transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;
+
+                        // Transfer is less within limit range. The transaction goes through
+                        if (amount <= TRANSFER_LIMIT)
+                        {
+                            account.balance = account.balance - amount;
+
+                            transaction.status = TRANSFER_STATUS_APPROVED;
+                            transaction.processedTime = timestamp;
+                        }
+                        // Transfer exceeds the limit. Must be authorized for it to go through
+                        else
+                        {
+                            transaction.status = TRANSFER_STATUS_PROCESSING;
+                        }
+
                         db.Transactions.Add(transaction);
 
                         db.SaveChanges();

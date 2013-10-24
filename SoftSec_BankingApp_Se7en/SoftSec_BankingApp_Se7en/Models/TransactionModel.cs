@@ -221,7 +221,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool AcceptTransaction(string transactionId)
+        public static bool ApproveTransaction(string transactionId)
         {
             try
             {
@@ -282,7 +282,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool DenyTransaction(string transactionId)
+        public static bool RejectTransaction(string transactionId)
         {
             try
             {

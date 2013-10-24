@@ -87,7 +87,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     if (transactions.Count() < 1)
                     {
                         return null;
-                    }                   
+                    }
 
                     return transactions;
                 }
@@ -105,7 +105,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber =@p1",accountNumber, accountNumber).ToList();
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE fromAccountNumber = @p0 OR toAccountNumber =@p1", accountNumber, accountNumber).ToList();
 
                     if (transactions.Count() < 1)
                     {
@@ -147,7 +147,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     foreach (Tables.Account account in accounts)
                     {
                         List<Tables.Transaction> accountTransactions = account.Transactions.ToList();
-                        if(accountTransactions.Count() > 0)
+                        if (accountTransactions.Count() > 0)
                             transactions.AddRange(accountTransactions);
                     }
 
@@ -181,6 +181,43 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 //Log exception here
                 return null;
+            }
+        }
+
+        public static bool AssignAuthorizationRequestedTransactionToUser(string transactionId, string username, int role)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                    if (transactions.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    Tables.Transaction transaction = transactions.First();
+
+                    transaction.mustBeAuthorizedByUserName = username;
+                    transaction.authorizedUserRole = role;
+
+                    db.Transactions.Attach(transaction);
+
+                    var vmustBeAuthorizedByUserName = db.Entry(transaction);
+                    vmustBeAuthorizedByUserName.Property(e => e.mustBeAuthorizedByUserName).IsModified = true;
+                    var vauthorizedUserRole = db.Entry(transaction);
+                    vauthorizedUserRole.Property(e => e.authorizedUserRole).IsModified = true;
+
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
             }
         }
 
@@ -234,7 +271,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                         {
                             transaction.status = TRANSFER_STATUS_PROCESSING;
                         }
-                        
+
                         db.Transactions.Add(transaction);
 
                         db.SaveChanges();

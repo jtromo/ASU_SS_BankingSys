@@ -808,7 +808,7 @@ namespace SoftSec_BankingApp_Se7en
                         if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
                                 && tb_secans3.Text.ToLower().Equals(strAns3))
                         {
-                            if (tb_newPassword.Text.Equals(tb_confrimPassword.Text))
+                            if (tb_newPassword.Text.Equals(tb_confrimPassword.Text) && !(tb_newPassword.Text.Equals(tb_oldpwd.Text)))
                             {
                                 bool success = PasswordModel.ChangePwd(Session["ExistingCustName"].ToString(), tb_newPassword.Text.ToString());
                                 if (success)
@@ -1979,7 +1979,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     //Proceed with business logic here
                     
-                    Models.Tables.Transaction objTrans = TransactionModel.GetTransactions(tb_transID_ModifyTrans.Text.ToString());
+                    Models.Tables.Transaction objTrans = TransactionModel.GetTransaction(tb_transID_ModifyTrans.Text.ToString());
                     if (transferDD_ModifyTrans.SelectedValue.ToString().Equals(objTrans.fromAccountNumber))
                     {
                         btn_modifytrans.Enabled = true;

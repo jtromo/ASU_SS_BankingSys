@@ -395,7 +395,7 @@ namespace SoftSec_BankingApp_Se7en
                         if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
                                 && tb_secans3.Text.ToLower().Equals(strAns3))
                         {
-                            if (tb_newPass.Text.Equals(tb_confrimPass.Text))
+                            if (tb_newPass.Text.Equals(tb_confrimPass.Text) && !(tb_newPass.Text.Equals(tb_oldpwd.Text.ToString())))
                             {
                                 bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
                                 if (success)

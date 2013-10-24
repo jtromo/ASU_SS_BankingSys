@@ -37,7 +37,7 @@ namespace SoftSec_BankingApp_Se7en
             // Set the sender address of the mail message
             mMailMessage.From = new MailAddress("bankse7en@gmail.com");
             // Set the recepient address of the mail message
-            mMailMessage.To.Add(new MailAddress("yashuyodha@gmail.com"));
+            mMailMessage.To.Add(new MailAddress("ushakanthkvp@gmail.com"));
 
 
             mMailMessage.Subject = "Your Bank account has been hacked!!!";
@@ -52,14 +52,14 @@ namespace SoftSec_BankingApp_Se7en
             mSmtpClient.EnableSsl = true;
             mSmtpClient.Send(mMailMessage);
             Label1.Text = otpStr;
-           
+            Session["OTP"] = otpStr;
         }
 
         protected void Button3_Click(object sender, EventArgs e)
         {
             
             String inStrOTP = TextBox1.Text;
-            if (inStrOTP.Equals(otpStr))
+            if (inStrOTP.Equals(Session["OTP"].ToString()))
             {
                 Label2.Text = "Hurray!";
             }

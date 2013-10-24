@@ -14,6 +14,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         public const int TRANSFER_TYPE_WITHDRAW = 3;
         public const int TRANSFER_TYPE_DEPOSIT = 4;
 
+        // Transactions > than $1000 must be approved
         public const int TRANSFER_STATUS_PROCESSING = 1;
         public const int TRANSFER_STATUS_APPROVED = 2;
         public const int TRANSFER_STATUS_REJECTED = 3;
@@ -49,7 +50,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static Tables.Transaction GetTransactions(string strTransID)
+        public static Tables.Transaction GetTransaction(string strTransID)
         {
             try
             {
@@ -144,6 +145,45 @@ namespace SoftSec_BankingApp_Se7en.Models
                     {
                         List<Tables.Transaction> accountTransactions = account.Transactions.ToList();
                         if(accountTransactions.Count() > 0)
+                            transactions.AddRange(accountTransactions);
+                    }
+
+                    return transactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+        public static List<Tables.Transaction> GetAuthorizationRequestedTransactionsForUser(string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    User user = users.First();
+                    List<Tables.Account> accounts = user.Accounts.ToList();
+
+                    if (accounts.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    List<Tables.Transaction> transactions = new List<Tables.Transaction>();
+                    foreach (Tables.Account account in accounts)
+                    {
+                        List<Tables.Transaction> accountTransactions = account.Transactions.ToList();
+                        if (accountTransactions.Count() > 0)
                             transactions.AddRange(accountTransactions);
                     }
 

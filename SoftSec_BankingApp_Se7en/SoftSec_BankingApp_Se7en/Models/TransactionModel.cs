@@ -252,20 +252,78 @@ namespace SoftSec_BankingApp_Se7en.Models
                         switch (transaction.status)
                         {
                             case TRANSFER_TYPE_INTERNAL:
-                                // Internal Transfer Actions
+                                {
+                                    // Internal Transfer Actions
+                                    List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", transaction.fromAccountNumber).ToList();
+                                    if (fromAccounts.Count() < 1)
+                                    {
+                                        return false;
+                                    }
+                                    Tables.Account fromAccount = fromAccounts.First();
+
+                                    List<Tables.Account> toAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", transaction.toAccountNumber).ToList();
+                                    if (toAccounts.Count() < 1)
+                                    {
+                                        return false;
+                                    }
+                                    Tables.Account toAccount = toAccounts.First();
+
+                                    if ((fromAccount.balance - transaction.amount) < 0)
+                                    {
+                                        return false;
+                                    }
+
+                                    fromAccount.balance = fromAccount.balance - transaction.amount;
+                                    toAccount.balance = toAccount.balance + transaction.amount;
+                                }
                                 break;
                             case TRANSFER_TYPE_EXTERNAL:
-                                // External Transfer Actions
+                                {
+                                    // External Transfer Actions
+                                    List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", transaction.fromAccountNumber).ToList();
+                                    if (fromAccounts.Count() < 1)
+                                    {
+                                        return false;
+                                    }
+                                    Tables.Account fromAccount = fromAccounts.First();
+
+                                    if ((fromAccount.balance - transaction.amount) < 0)
+                                    {
+                                        return false;
+                                    }
+
+                                    fromAccount.balance = fromAccount.balance - transaction.amount;
+                                }
                                 break;
                             case TRANSFER_TYPE_WITHDRAW:
-                                // Withdraw Actions
+                                {
+                                    // Withdraw Actions
+                                    List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", transaction.fromAccountNumber).ToList();
+                                    if (fromAccounts.Count() < 1)
+                                    {
+                                        return false;
+                                    }
+                                    Tables.Account account = fromAccounts.First();
+
+                                    if ((account.balance - transaction.amount) < 0)
+                                    {
+                                        //Log Error. OVERDRAFT!
+                                        return false;
+                                    }
+
+                                    account.balance = account.balance - transaction.amount;
+                                }
                                 break;
                             case TRANSFER_TYPE_DEPOSIT:
-                                // Deposits do not need authorization
-                                break;
+                                {
+                                    // Deposits do not need authorization
+                                    return false;
+                                }
                             default:
-                                // Error
-                                break;
+                                {
+                                    // Error
+                                    return false;
+                                }
                         }
 
                         db.SaveChanges();

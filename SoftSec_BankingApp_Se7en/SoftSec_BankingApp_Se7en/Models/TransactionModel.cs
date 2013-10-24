@@ -374,7 +374,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool MakeInternalTransfer(string fromAccountNumber, string toAccountNumber, double amount, string description)
+        public static int MakeInternalTransfer(string fromAccountNumber, string toAccountNumber, double amount, string description)
         {
             try
             {
@@ -385,20 +385,20 @@ namespace SoftSec_BankingApp_Se7en.Models
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", fromAccountNumber).ToList();
                         if (fromAccounts.Count() < 1)
                         {
-                            return false;
+                            return -1;
                         }
                         Tables.Account fromAccount = fromAccounts.First();
 
                         List<Tables.Account> toAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", toAccountNumber).ToList();
                         if (toAccounts.Count() < 1)
                         {
-                            return false;
+                            return -1;
                         }
                         Tables.Account toAccount = toAccounts.First();
 
                         if ((fromAccount.balance - amount) < 0)
                         {
-                            return false;
+                            return -1;
                         }
 
                         Tables.Transaction transaction = new Tables.Transaction();
@@ -430,19 +430,19 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
-                        return true;
+                        return transaction.id;
                     }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
 
         //Since its an outside bank account ! We need not worry about the balance of that account. We will not have the details of that account.
-        public static bool MakeExternalTransfer(string fromAccountNumber, string fromRoutingNumber, string toAccountNumber, string toRoutingNumber, double amount, string description)
+        public static int MakeExternalTransfer(string fromAccountNumber, string fromRoutingNumber, string toAccountNumber, string toRoutingNumber, double amount, string description)
         {
             try
             {
@@ -453,13 +453,13 @@ namespace SoftSec_BankingApp_Se7en.Models
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", fromAccountNumber).ToList();
                         if (fromAccounts.Count() < 1)
                         {
-                            return false;
+                            return -1;
                         }
                         Tables.Account fromAccount = fromAccounts.First();
 
                         if ((fromAccount.balance - amount) < 0)
                         {
-                            return false;
+                            return -1;
                         }
 
                         Tables.Transaction transaction = new Tables.Transaction();
@@ -492,18 +492,18 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
-                        return true;
+                        return transaction.id;
                     }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
 
-        public static bool WithdrawFundsFromAccoount(string accountNumber, double amount)
+        public static int WithdrawFundsFromAccoount(string accountNumber, double amount)
         {
             try
             {
@@ -514,14 +514,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
                         if (fromAccounts.Count() < 1)
                         {
-                            return false;
+                            return -1;
                         }
                         Tables.Account account = fromAccounts.First();
 
                         if ((account.balance - amount) < 0)
                         {
                             //Log Error. OVERDRAFT!
-                            return false;
+                            return -1;
                         }
 
                         Tables.Transaction transaction = new Tables.Transaction();
@@ -555,18 +555,18 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
-                        return true;
+                        return transaction.id;
                     }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
 
-        public static bool DepositFundsToAccoount(string accountNumber, double amount)
+        public static int DepositFundsToAccoount(string accountNumber, double amount)
         {
             try
             {
@@ -577,7 +577,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                         List<Tables.Account> fromAccounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", accountNumber).ToList();
                         if (fromAccounts.Count() < 1)
                         {
-                            return false;
+                            return -1;
                         }
                         Tables.Account account = fromAccounts.First();
 
@@ -601,14 +601,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
-                        return true;
+                        return transaction.id;
                     }
                 }
             }
             catch (Exception exp)
             {
                 //Log exception here
-                return false;
+                return -1;
             }
         }
     }

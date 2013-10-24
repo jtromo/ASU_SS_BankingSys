@@ -331,8 +331,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         if ((account.balance - amount) < 0)
                         {
                             //Log Error. OVERDRAFT!
+                            return false;
                         }
-                        account.balance = account.balance - amount;
 
                         Tables.Transaction transaction = new Tables.Transaction();
                         transaction.toAccountNumber = null;
@@ -343,10 +343,23 @@ namespace SoftSec_BankingApp_Se7en.Models
                         transaction.description = description;
                         transaction.amount = amount;
                         transaction.type = TRANSFER_TYPE_WITHDRAW;
-                        transaction.status = TRANSFER_STATUS_APPROVED;
                         DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                        transaction.processedTime = timestamp;
                         transaction.creationTime = timestamp;
+
+                        // Transfer is less within limit range. The transaction goes through
+                        if (amount <= TRANSFER_LIMIT)
+                        {
+                            account.balance = account.balance - amount;
+
+                            transaction.status = TRANSFER_STATUS_APPROVED;
+                            transaction.processedTime = timestamp;
+                        }
+                        // Transfer exceeds the limit. Must be authorized for it to go through
+                        else
+                        {
+                            transaction.status = TRANSFER_STATUS_PROCESSING;
+                        }
+
                         db.Transactions.Add(transaction);
 
                         db.SaveChanges();

@@ -184,7 +184,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool AssignAuthorizationRequestedTransactionToUser(int transactionId, string username, int role)
+        public static bool AssignAuthorizationRequestedTransactionToUser(int transactionId, string username, int roleId)
         {
             try
             {
@@ -200,14 +200,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                     Tables.Transaction transaction = transactions.First();
 
                     transaction.mustBeAuthorizedByUserName = username;
-                    transaction.authorizedUserRole = role;
+                    transaction.authorizedUserRoleId = roleId;
 
                     db.Transactions.Attach(transaction);
 
                     var vmustBeAuthorizedByUserName = db.Entry(transaction);
                     vmustBeAuthorizedByUserName.Property(e => e.mustBeAuthorizedByUserName).IsModified = true;
                     var vauthorizedUserRole = db.Entry(transaction);
-                    vauthorizedUserRole.Property(e => e.authorizedUserRole).IsModified = true;
+                    vauthorizedUserRole.Property(e => e.authorizedUserRoleId).IsModified = true;
 
                     db.SaveChanges();
 

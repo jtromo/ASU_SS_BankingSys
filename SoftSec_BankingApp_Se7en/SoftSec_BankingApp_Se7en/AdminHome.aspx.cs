@@ -28,12 +28,16 @@ namespace SoftSec_BankingApp_Se7en
 
                 if (!IsPostBack)
                 {
-                    if (Convert.ToInt16(Session["adminFlag"]) == 1)
+                    FieldValidator objField = new FieldValidator();
+                    if (objField.validate_UserName(Session["userName"].ToString()))
                     {
-                        //Set permission to view logs
-                        //normal admin - view only admin level logs
-                        //super user - view superuser + admin level logs in the grid view.
-                    }
+                        if (Convert.ToInt16(Session["adminFlag"]) == 1)
+                        {
+                            //Set permission to view logs
+                            //normal admin - view only admin level logs
+                            //super user - view superuser + admin level logs in the grid view.
+                        }
+                    }                    
                 }
             }
         }

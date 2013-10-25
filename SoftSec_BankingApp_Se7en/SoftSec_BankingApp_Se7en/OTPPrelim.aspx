@@ -22,9 +22,13 @@
     </div>
         <p>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Button" />
         </p>
         <p>
             &nbsp;</p>
+        <p>
+            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Height="153px" ReadOnly="True" TextMode="MultiLine" Width="872px"></asp:TextBox>
+        </p>
         <p>
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
             <asp:GridView ID="GridView2" runat="server" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">

@@ -1138,15 +1138,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btn_modifytrans;
         
         /// <summary>
-        /// btn_deltrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_deltrans;
-        
-        /// <summary>
         /// tab_billpayment control.
         /// </summary>
         /// <remarks>

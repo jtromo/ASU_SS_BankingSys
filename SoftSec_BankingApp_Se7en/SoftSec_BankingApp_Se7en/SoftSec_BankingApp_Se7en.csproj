@@ -276,6 +276,7 @@
     <Content Include="Images\thumb1.jpg" />
     <Content Include="Images\thumb2.jpg" />
     <Content Include="Images\thumb3.jpg" />
+    <Content Include="Images\timeout.jpg" />
     <Content Include="InternalUser.aspx" />
     <Content Include="OTPPrelim.aspx" />
     <Content Include="packages.config" />
@@ -298,6 +299,7 @@
     <Content Include="script\mootools-1.2-more.js" />
     <Content Include="script\mootools-1.2.1-core.js" />
     <Content Include="script\slideitmoo-1.1.js" />
+    <Content Include="SessionTimeOut.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -473,6 +475,13 @@
     </Compile>
     <Compile Include="PopulateDBInitial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionTimeOut.aspx.cs">
+      <DependentUpon>SessionTimeOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SessionTimeOut.aspx.designer.cs">
+      <DependentUpon>SessionTimeOut.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

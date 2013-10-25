@@ -16,124 +16,142 @@ namespace SoftSec_BankingApp_Se7en
         private string merchant_savingsAccNum = string.Empty;
         private static List<SecurityQuestion> lstQandA = null;
         protected void Page_Load(object sender, EventArgs e)
-        {            
-            try
+        {
+            if (Session["userName"] == null)
             {
-                if (!IsPostBack)
-                {                    
-                    lblTranStatus.Visible = false;
-                    FieldValidator objField = new FieldValidator();
-                    if (objField.validate_UserName(Session["userName"].ToString()))
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                try
+                {
+                    if (!IsPostBack)
                     {
-                        if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
+                        lblTranStatus.Visible = false;
+                        FieldValidator objField = new FieldValidator();
+                        if (objField.validate_UserName(Session["userName"].ToString()))
                         {
-                            TabContainer1.Visible = true;
-                            TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = true;
-                            TabContainer1.Tabs[2].Visible = true;
-                            TabContainer1.Tabs[3].Visible = true;
-                        }
-                        else
-                        {
-                            TabContainer1.Visible = true;
-                            TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = true;
-                            TabContainer1.Tabs[2].Visible = true;
-                            TabContainer1.Tabs[3].Visible = false;
-                        }
-                        TabContainer1.ActiveTabIndex = 0;
-                        //Fetch all the accounts of the user.
-                        ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
-                        if (objCol != null)
-                        {
-                            List<Models.Tables.Account> lstAcc = objCol.ToList();
-                            foreach (Models.Tables.Account acc in lstAcc)
+                            if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
                             {
-                                if (acc.accountTypeId == 3)
+                                TabContainer1.Visible = true;
+                                TabContainer1.Tabs[0].Visible = true;
+                                TabContainer1.Tabs[1].Visible = true;
+                                TabContainer1.Tabs[2].Visible = true;
+                                TabContainer1.Tabs[3].Visible = true;
+                            }
+                            else
+                            {
+                                TabContainer1.Visible = true;
+                                TabContainer1.Tabs[0].Visible = true;
+                                TabContainer1.Tabs[1].Visible = true;
+                                TabContainer1.Tabs[2].Visible = true;
+                                TabContainer1.Tabs[3].Visible = false;
+                            }
+                            TabContainer1.ActiveTabIndex = 0;
+                            //Fetch all the accounts of the user.
+                            ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
+                            if (objCol != null)
+                            {
+                                List<Models.Tables.Account> lstAcc = objCol.ToList();
+                                foreach (Models.Tables.Account acc in lstAcc)
                                 {
-                                    //Savings Account
-                                    tb_savings.Text = acc.accountNumber.ToString();
-                                    dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                    tb_savings.ReadOnly = true;
-                                }
-                                else if (acc.accountTypeId == 2)
-                                {
-                                    //checkings account
-                                    tb_checking.Text = acc.accountNumber.ToString();
-                                    dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                    dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                    tb_checking.ReadOnly = true;
-                                }
-                                else if (acc.accountTypeId == 3)
-                                {
-                                    //credit account
-                                    tb_credit.Text = acc.accountNumber.ToString();
-                                    tb_credit.ReadOnly = true;
+                                    if (acc.accountTypeId == 3)
+                                    {
+                                        //Savings Account
+                                        tb_savings.Text = acc.accountNumber.ToString();
+                                        dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                        tb_savings.ReadOnly = true;
+                                    }
+                                    else if (acc.accountTypeId == 2)
+                                    {
+                                        //checkings account
+                                        tb_checking.Text = acc.accountNumber.ToString();
+                                        dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                        dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                        tb_checking.ReadOnly = true;
+                                    }
+                                    else if (acc.accountTypeId == 3)
+                                    {
+                                        //credit account
+                                        tb_credit.Text = acc.accountNumber.ToString();
+                                        tb_credit.ReadOnly = true;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        //Invalid User name.
-                        Session["userName"] = "";
-                        Response.Redirect("ExternalHomePage.aspx", false);
+                        else
+                        {
+                            //Invalid User name.
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }
                     }
                 }
-            }
-            catch(Exception exp)
-            {
-                //Log Exceptions here
-                //Invalid User name. Session object not set
-                Session["userName"] = "";
-                Response.Redirect("ExternalHomePage.aspx", false);
+                catch (Exception exp)
+                {
+                    //Log Exceptions here
+                    //Invalid User name. Session object not set
+                    Session["userName"] = "";
+                    Response.Redirect("ExternalHomePage.aspx", false);
+                }
             }
         }
 
         protected void btn_maketransferoutside_Click(object sender, EventArgs e)
         {
-            //Transfer Money to Accounts in other the bank
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(), 
-                                            tb_emailoutside.Text.ToString(), tb_usercardno.Text.ToString(), 
-                                                tb_securitycodeoutside.Text.ToString(),tb_toAccNum_OutsideBank.Text.ToString(),tb_toRoutingNumber.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Transfer Money to Accounts in other the bank
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString(), dd_acctypeoutside.SelectedValue.ToString());
-                    if (objCard != null)
+                    serverSideValidation = validateFromFields(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(),
+                                                tb_emailoutside.Text.ToString(), tb_usercardno.Text.ToString(),
+                                                    tb_securitycodeoutside.Text.ToString(), tb_toAccNum_OutsideBank.Text.ToString(), tb_toRoutingNumber.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string sCardExp = string.Empty;
-                        sCardExp = dd_monthoutside.SelectedValue.ToString() + dd_yearoutside.SelectedValue.ToString();
-                        if (objCard.expirationDate.Equals(sCardExp))
+                        //Proceed with business logic here
+                        Models.Tables.Card objCard = new Models.Tables.Card();
+                        objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString(), dd_acctypeoutside.SelectedValue.ToString());
+                        if (objCard != null)
                         {
-                            if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
+                            string sCardExp = string.Empty;
+                            sCardExp = dd_monthoutside.SelectedValue.ToString() + dd_yearoutside.SelectedValue.ToString();
+                            if (objCard.expirationDate.Equals(sCardExp))
                             {
-                                string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
-                                                                       " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                int transactionId = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_toAccNum_OutsideBank.Text.ToString(),
-                                                            tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
-                                if (transactionId > 0)
+                                if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
                                 {
-                                    lblTranStatus.Text = "Transaction Successful";
-                                    tb_toRoutingNumber.Text = "";
-                                    tb_toAccNum_OutsideBank.Text = "";
-                                    lblTranStatus.Visible = true;
+                                    string desc = "From : " + dd_acctypeoutside.SelectedValue.ToString() + " To : " + tb_toAccNum_OutsideBank.Text.ToString() +
+                                                                           " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
+                                    int transactionId = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_toAccNum_OutsideBank.Text.ToString(),
+                                                                tb_toRoutingNumber.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                    if (transactionId > 0)
+                                    {
+                                        lblTranStatus.Text = "Transaction Successful";
+                                        tb_toRoutingNumber.Text = "";
+                                        tb_toAccNum_OutsideBank.Text = "";
+                                        lblTranStatus.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblTranStatus.Text = "Transaction Unsuccessful";
+                                        tb_toRoutingNumber.Text = "";
+                                        tb_toAccNum_OutsideBank.Text = "";
+                                        lblTranStatus.Visible = true;
+                                    }
                                 }
                                 else
                                 {
-                                    lblTranStatus.Text = "Transaction Unsuccessful";
-                                    tb_toRoutingNumber.Text = "";
-                                    tb_toAccNum_OutsideBank.Text = "";
-                                    lblTranStatus.Visible = true;
+                                    //Invalid Card Details
                                 }
                             }
                             else
@@ -144,74 +162,81 @@ namespace SoftSec_BankingApp_Se7en
                         else
                         {
                             //Invalid Card Details
-                        }                        
+                        }
                     }
                     else
                     {
-                        //Invalid Card Details
+                        //Update the UI with error message.
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
         protected void btn_maketransinside_Click(object sender, EventArgs e)
         {
-            //Transfer Money to Accounts within the bank
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(tb_amount.Text.ToString(), tb_recepient.Text.ToString(),
-                                            tb_lastname.Text.ToString(), tb_zip.Text.ToString(), tb_card.Text.ToString(), tb_securitycode.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Transfer Money to Accounts within the bank
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = AccountModel.GetCardDetails(tb_card.Text.ToString(), dd_acctype.SelectedValue.ToString());
-                    if (objCard != null)
+                    serverSideValidation = validateFromFields(tb_amount.Text.ToString(), tb_recepient.Text.ToString(),
+                                                tb_lastname.Text.ToString(), tb_zip.Text.ToString(), tb_card.Text.ToString(), tb_securitycode.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string sCardExp = string.Empty;
-                        sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
-
-                        if (objCard.expirationDate.Equals(sCardExp))
+                        //Proceed with business logic here
+                        Models.Tables.Card objCard = new Models.Tables.Card();
+                        objCard = AccountModel.GetCardDetails(tb_card.Text.ToString(), dd_acctype.SelectedValue.ToString());
+                        if (objCard != null)
                         {
-                            if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
+                            string sCardExp = string.Empty;
+                            sCardExp = dd_month.SelectedValue.ToString() + dd_year.SelectedValue.ToString();
+
+                            if (objCard.expirationDate.Equals(sCardExp))
                             {
-                                LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
-                                if (objLastZip != null)
+                                if (objCard.cvv == Convert.ToInt32(tb_securitycode.Text.ToString()))
                                 {
-                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname.Text.ToLower()) && objLastZip.zipcode.ToString().Equals(tb_zip.Text.ToString()))
+                                    LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient.Text.ToString());
+                                    if (objLastZip != null)
                                     {
-                                        string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
-                                                                           " Amount : " + tb_amount.Text.ToString();
-                                        int transactionId = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
-                                                                   Convert.ToDouble(tb_amount.Text.ToString()), desc);
-                                        if (transactionId > 0)
+                                        if (objLastZip.lastName.ToLower().Equals(tb_lastname.Text.ToLower()) && objLastZip.zipcode.ToString().Equals(tb_zip.Text.ToString()))
                                         {
-                                            lblTransStatus_IB.Text = "Transaction Successful";
-                                            tb_toRoutingNumber.Text = "";
-                                            tb_toAccNum_OutsideBank.Text = "";
-                                            lblTransStatus_IB.Visible = true;
+                                            string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
+                                                                               " Amount : " + tb_amount.Text.ToString();
+                                            int transactionId = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient.Text.ToString(),
+                                                                       Convert.ToDouble(tb_amount.Text.ToString()), desc);
+                                            if (transactionId > 0)
+                                            {
+                                                lblTransStatus_IB.Text = "Transaction Successful";
+                                                tb_toRoutingNumber.Text = "";
+                                                tb_toAccNum_OutsideBank.Text = "";
+                                                lblTransStatus_IB.Visible = true;
+                                            }
+                                            else
+                                            {
+                                                lblTransStatus_IB.Text = "Transaction Unsuccessful";
+                                                tb_toRoutingNumber.Text = "";
+                                                tb_toAccNum_OutsideBank.Text = "";
+                                                lblTransStatus_IB.Visible = true;
+                                            }
                                         }
-                                        else
-                                        {
-                                            lblTransStatus_IB.Text = "Transaction Unsuccessful";
-                                            tb_toRoutingNumber.Text = "";
-                                            tb_toAccNum_OutsideBank.Text = "";
-                                            lblTransStatus_IB.Visible = true;
-                                        }
+                                    }
+                                    else
+                                    {
+                                        //Invalid Zip and Last name combination
                                     }
                                 }
                                 else
                                 {
-                                    //Invalid Zip and Last name combination
+                                    //Invalid Card Details
                                 }
                             }
                             else
@@ -226,129 +251,150 @@ namespace SoftSec_BankingApp_Se7en
                     }
                     else
                     {
-                        //Invalid Card Details
+                        //Update the UI with error message.
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
         protected void btn_maketransbetween_Click(object sender, EventArgs e)
         {
-            //Transfer Money within accounts of the same user.
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(tb_amountbetween.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Transfer Money within accounts of the same user.
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
-                    string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
-                    int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
-                                "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
-                                    "To : " + dd_acctypebetween_To.Text.ToString() +
-                                        "- Amount : " + tb_amountbetween.Text.ToString());
-                    if (transactionId > 0)
+                    serverSideValidation = validateFromFields(tb_amountbetween.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        lblTransStatus_Between.Text = "Transaction Successful";
-                        lblTransStatus_Between.Visible = true;
+                        //Proceed with business logic here
+                        string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
+                        string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
+                        int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                                    "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
+                                        "To : " + dd_acctypebetween_To.Text.ToString() +
+                                            "- Amount : " + tb_amountbetween.Text.ToString());
+                        if (transactionId > 0)
+                        {
+                            lblTransStatus_Between.Text = "Transaction Successful";
+                            lblTransStatus_Between.Visible = true;
+                        }
+                        else
+                        {
+                            lblTransStatus_Between.Text = "Transaction Unsuccessful";
+                            lblTransStatus_Between.Visible = true;
+                        }
                     }
                     else
                     {
-                        lblTransStatus_Between.Text = "Transaction Unsuccessful";
-                        lblTransStatus_Between.Visible = true;
+                        //Update the UI with error message.
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
         protected void btn_changesettings_profile_Click(object sender, EventArgs e)
         {
-            //Edit the user profile information here.
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields_editProfile(tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(),
-                                        tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(), tb_nicknameedit.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Edit the user profile information here.
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    bool success = UserModel.UpdateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
-                    if (success)
+                    serverSideValidation = validateFromFields_editProfile(tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(),
+                                            tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(), tb_nicknameedit.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        lblChaneProfile.Text = "Update Successful";
-                        lblChaneProfile.Visible = false;
+                        //Proceed with business logic here
+                        bool success = UserModel.UpdateUser(Session["userName"].ToString(), tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(), tb_city_editProfile.Text.ToString(), StateDD_EditProfile.SelectedValue.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString());
+                        if (success)
+                        {
+                            lblChaneProfile.Text = "Update Successful";
+                            lblChaneProfile.Visible = false;
+                        }
+                        else
+                        {
+                            lblChaneProfile.Text = "Update Unsuccessful";
+                            lblChaneProfile.Visible = true;
+                        }
                     }
                     else
                     {
-                        lblChaneProfile.Text = "Update Unsuccessful";
-                        lblChaneProfile.Visible = true;
+                        //Update the UI with error message.
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
         protected void btn_cardsubmitpayment_Click(object sender, EventArgs e)
         {
-            //Make a payment on behalf of the customer
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Make a payment on behalf of the customer
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    //Similar to inside bank transfers
-
-                    Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
-                    if (objCard != null)
+                    serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
-                        string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
-                        if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
+                        //Proceed with business logic here
+                        //Similar to inside bank transfers
+
+                        Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
+                        if (objCard != null)
                         {
-                            string strExpDate = string.Empty;
-                            strExpDate = dd_cardexpm.SelectedValue.ToString() + dd_cardexpy.SelectedValue.ToString();
-                            if (objCard.expirationDate.Equals(strExpDate))
+                            string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
+                            string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
+                            if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
                             {
-                                string sToAcc = merchant_savingsAccNum;
-                                string sfromAcc = objCard.accountNumber;
-                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
-                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
-                                if (transactionId > 0)
+                                string strExpDate = string.Empty;
+                                strExpDate = dd_cardexpm.SelectedValue.ToString() + dd_cardexpy.SelectedValue.ToString();
+                                if (objCard.expirationDate.Equals(strExpDate))
                                 {
-                                    lblSubmitPayment.Text = "Transaction Successful";
-                                    lblSubmitPayment.Visible = true;
+                                    string sToAcc = merchant_savingsAccNum;
+                                    string sfromAcc = objCard.accountNumber;
+                                    int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
+                                                "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
+                                    if (transactionId > 0)
+                                    {
+                                        lblSubmitPayment.Text = "Transaction Successful";
+                                        lblSubmitPayment.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                        lblSubmitPayment.Visible = true;
+                                    }
                                 }
-                                else
-                                {
-                                    lblSubmitPayment.Text = "Transaction Unsuccessful";
-                                    lblSubmitPayment.Visible = true;
-                                }
+                            }
+                            else
+                            {
+                                //Update UI with error messages
                             }
                         }
                         else
@@ -358,80 +404,83 @@ namespace SoftSec_BankingApp_Se7en
                     }
                     else
                     {
-                        //Update UI with error messages
+                        //Update the UI with error message.
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
         protected void btn_changepwd_Click(object sender, EventArgs e)
         {
-            //Make a payment on behalf of the customer
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                Dictionary<int, string> dictAns = new Dictionary<int, string>();
-                dictAns.Add(1, tb_secans1.Text.ToString());
-                dictAns.Add(2, tb_secans2.Text.ToString());
-                dictAns.Add(3, tb_secans3.Text.ToString());
-                serverSideValidation = validateFromFields(tb_oldpwd.Text.ToString(), dictAns ,tb_newPass.Text.ToString(), tb_confrimPass.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Make a payment on behalf of the customer
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
+                    Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                    dictAns.Add(1, tb_secans1.Text.ToString());
+                    dictAns.Add(2, tb_secans2.Text.ToString());
+                    dictAns.Add(3, tb_secans3.Text.ToString());
+                    serverSideValidation = validateFromFields(tb_oldpwd.Text.ToString(), dictAns, tb_newPass.Text.ToString(), tb_confrimPass.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string strAns1 = (lstQandA.First().answer).ToLower();
-                        string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
-                        string strAns3 = (lstQandA.Last().answer).ToLower();
-
-                        if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
-                                && tb_secans3.Text.ToLower().Equals(strAns3))
+                        //Proceed with business logic here
+                        if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
                         {
-                            if (tb_newPass.Text.Equals(tb_confrimPass.Text) && !(tb_newPass.Text.Equals(tb_oldpwd.Text.ToString())))
+                            string strAns1 = (lstQandA.First().answer).ToLower();
+                            string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                            string strAns3 = (lstQandA.Last().answer).ToLower();
+
+                            if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
+                                    && tb_secans3.Text.ToLower().Equals(strAns3))
                             {
-                                bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
-                                if (success)
+                                if (tb_newPass.Text.Equals(tb_confrimPass.Text) && !(tb_newPass.Text.Equals(tb_oldpwd.Text.ToString())))
                                 {
-                                    lblStatus_ChgPwd.Text = "Password Changed Successfully";
-                                    lblStatus_ChgPwd.Visible = true;
+                                    bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
+                                    if (success)
+                                    {
+                                        lblStatus_ChgPwd.Text = "Password Changed Successfully";
+                                        lblStatus_ChgPwd.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
+                                        lblStatus_ChgPwd.Visible = true;
+                                    }
                                 }
                                 else
                                 {
-                                    lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
-                                    lblStatus_ChgPwd.Visible = true;
+                                    //New Passwords Dont match
                                 }
                             }
                             else
                             {
-                                //New Passwords Dont match
+                                //Invalid Answers
                             }
                         }
                         else
                         {
-                            //Invalid Answers
+                            //Old Password is not true
                         }
                     }
                     else
                     {
-                        //Old Password is not true
-                    }                    
+                        //Update the UI with error message.
+                    }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
@@ -656,52 +705,59 @@ namespace SoftSec_BankingApp_Se7en
         protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
         {
             try
-            {                
-                if (TabContainer1.ActiveTabIndex == 2)
+            {
+                if (Session["userName"] == null)
                 {
-                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                    if (objUsr != null && (objUsr.roleId == 2 || objUsr.roleId == 3))
-                    {
-                        tb_usernameview.Text = Session["userName"].ToString();
-                        Models.Tables.Address objUsrAddr = objUsr.Address;
-                        tb_streetAddress.Text = objUsrAddr.street1;
-                        tb_city.Text = objUsrAddr.city;
-                        StateDD_Profile.SelectedValue = objUsrAddr.state;
-                        tb_ZipCode_Profile.Text = Convert.ToString(objUsrAddr.zip);
-                        tb_contactview.Text = objUsr.phone;
-                        tb_emailview.Text = objUsr.email;
-                        //Add Nick Name to DB 
-                        //Do we require to show the user last password modified time ??
-                        //tb_nicknameview.Text = objUsr.nickName;
-                    }
-                    else
-                    {
-                        //Call Log out functionality
-                        Session["userName"] = "";
-                        Response.Redirect("ExternalHomePage.aspx", false);
-                    }
+                    Response.Redirect("SessionTimeOut.aspx");
                 }
-                else if (TabContainer1.ActiveTabIndex == 3)
+                else
                 {
-                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                    if (objUsr != null && objUsr.roleId == 3)
+                    if (TabContainer1.ActiveTabIndex == 2)
                     {
-                        List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
-                        foreach (Models.Tables.Account acc in lstAcc)
+                        Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                        if (objUsr != null && (objUsr.roleId == 2 || objUsr.roleId == 3))
                         {
-                            if (acc.accountTypeId == 3)
-                            {
-                                merchant_savingsAccNum = acc.accountNumber;
-                                break;
-                            }
+                            tb_usernameview.Text = Session["userName"].ToString();
+                            Models.Tables.Address objUsrAddr = objUsr.Address;
+                            tb_streetAddress.Text = objUsrAddr.street1;
+                            tb_city.Text = objUsrAddr.city;
+                            StateDD_Profile.SelectedValue = objUsrAddr.state;
+                            tb_ZipCode_Profile.Text = Convert.ToString(objUsrAddr.zip);
+                            tb_contactview.Text = objUsr.phone;
+                            tb_emailview.Text = objUsr.email;
+                            //Add Nick Name to DB 
+                            //Do we require to show the user last password modified time ??
+                            //tb_nicknameview.Text = objUsr.nickName;
+                        }
+                        else
+                        {
+                            //Call Log out functionality
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
                         }
                     }
-                    else
+                    else if (TabContainer1.ActiveTabIndex == 3)
                     {
-                        //No such user exists
-                        //Call Log out Functionality
-                        Session["userName"] = "";
-                        Response.Redirect("ExternalHomePage.aspx", false);
+                        Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                        if (objUsr != null && objUsr.roleId == 3)
+                        {
+                            List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                            foreach (Models.Tables.Account acc in lstAcc)
+                            {
+                                if (acc.accountTypeId == 3)
+                                {
+                                    merchant_savingsAccNum = acc.accountNumber;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //No such user exists
+                            //Call Log out Functionality
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }
                     }
                 }
             }
@@ -713,71 +769,85 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btnEditProfile_Click(object sender, EventArgs e)
         {
-            TabContainer3.Visible = true;
-            try
+            if (Session["userName"] == null)
             {
-                tb_emailedit.Text = tb_emailview.Text;
-                tb_addr_editprofile.Text = tb_streetAddress.Text;
-                tb_city_editProfile.Text = tb_city.Text;
-                tb_zip_editProfile.Text = tb_ZipCode_Profile.Text;
-                tb_contactedit.Text = tb_contactview.Text;
-                StateDD_EditProfile.SelectedValue = StateDD_Profile.SelectedValue;
+                Response.Redirect("SessionTimeOut.aspx");
             }
-            catch (Exception exp)
+            else
             {
-                //Log Exception here
+                TabContainer3.Visible = true;
+                try
+                {
+                    tb_emailedit.Text = tb_emailview.Text;
+                    tb_addr_editprofile.Text = tb_streetAddress.Text;
+                    tb_city_editProfile.Text = tb_city.Text;
+                    tb_zip_editProfile.Text = tb_ZipCode_Profile.Text;
+                    tb_contactedit.Text = tb_contactview.Text;
+                    StateDD_EditProfile.SelectedValue = StateDD_Profile.SelectedValue;
+                }
+                catch (Exception exp)
+                {
+                    //Log Exception here
+                }
             }
         }
 
         protected void btn_echecksubmitpayment_Click(object sender, EventArgs e)
         {
-            try
+            if (Session["userName"] == null)
             {
-                bool serverSideValidation = false;
-                serverSideValidation = validateFromFields_echeck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString(),
-                                        tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                try
                 {
-                    Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
-                    if (objAcc != null)
+                    bool serverSideValidation = false;
+                    serverSideValidation = validateFromFields_echeck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString(),
+                                            tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
+                        Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
+                        if (objAcc != null)
                         {
-                            Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
-                            string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
-                            string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
-                            if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
+                            if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
                             {
-                                string sToAcc = merchant_savingsAccNum;
-                                string sfromAcc = tb_echeckaccno.Text.ToString();
-                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
-                                            "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
-                                if (transactionId > 0)
+                                Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
+                                string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
+                                string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
+                                if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
                                 {
-                                    lblEcheckPayment.Text = "Transaction Successful";
-                                    lblEcheckPayment.Visible = true;
-                                }
-                                else
-                                {
-                                    lblEcheckPayment.Text = "Transaction Unsuccessful";
-                                    lblEcheckPayment.Visible = true;
+                                    string sToAcc = merchant_savingsAccNum;
+                                    string sfromAcc = tb_echeckaccno.Text.ToString();
+                                    int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
+                                                "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
+                                    if (transactionId > 0)
+                                    {
+                                        lblEcheckPayment.Text = "Transaction Successful";
+                                        lblEcheckPayment.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblEcheckPayment.Text = "Transaction Unsuccessful";
+                                        lblEcheckPayment.Visible = true;
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            //Update the UI with Error Message
                         }
                     }
                     else
                     {
-                        //Update the UI with Error Message
+                        //Update UI with error message
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update UI with error message
+                    //Log Exception here
                 }
-            }
-            catch (Exception exp)
-            {
-                //Log Exception here
             }
         }
 
@@ -810,60 +880,80 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
-                if (TabContainer3.ActiveTabIndex == 0)
+                if (Session["userName"] == null)
                 {
-                    //Reset the fields if required
+                    Response.Redirect("SessionTimeOut.aspx");
                 }
-                else if (TabContainer3.ActiveTabIndex == 1)
+                else
                 {
-                    lstQandA = PasswordModel.GetSecurityQandA(Session["userName"].ToString());
-                    dd_secque1.SelectedValue = Convert.ToString(lstQandA.First().questionId);
-                    dd_secque2.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
-                    dd_secque3.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
-                    dd_secque1.Enabled = false;
-                    dd_secque2.Enabled = false;
-                    dd_secque3.Enabled = false;
+                    if (TabContainer3.ActiveTabIndex == 0)
+                    {
+                        //Reset the fields if required
+                    }
+                    else if (TabContainer3.ActiveTabIndex == 1)
+                    {
+                        lstQandA = PasswordModel.GetSecurityQandA(Session["userName"].ToString());
+                        dd_secque1.SelectedValue = Convert.ToString(lstQandA.First().questionId);
+                        dd_secque2.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
+                        dd_secque3.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                        dd_secque1.Enabled = false;
+                        dd_secque2.Enabled = false;
+                        dd_secque3.Enabled = false;
+                    }
                 }
-            }
-            catch(Exception exp)
-            {
-                //Log Exception
-            }
+              }
+             catch(Exception exp)
+             {
+                    //Log Exception
+             }
         }
 
         protected void btn_checking_Click(object sender, EventArgs e)
         {
-            try
-            {   
-                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
-                if (lstTrans != null)
-                {                
-                    grdTransactions.DataSource = lstTrans;
-                    grdTransactions.DataBind();    
-                }
-            }
-            catch (Exception exp)
+            if (Session["userName"] == null)
             {
-                //Log Exceptions here
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                try
+                {
+                    List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                    if (lstTrans != null)
+                    {
+                        grdTransactions.DataSource = lstTrans;
+                        grdTransactions.DataBind();
+                    }
+                }
+                catch (Exception exp)
+                {
+                    //Log Exceptions here
+                }
             }
         }
 
         protected void btn_savings_Click(object sender, EventArgs e)
         {
-            try
+            if (Session["userName"] == null)
             {
-                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
-                if (lstTrans != null)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                try
                 {
-                    grdTransactions.DataSource = lstTrans;
-                    grdTransactions.DataBind();
+                    List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
+                    if (lstTrans != null)
+                    {
+                        grdTransactions.DataSource = lstTrans;
+                        grdTransactions.DataBind();
+                    }
+                }
+                catch (Exception exp)
+                {
+                    //Log Exceptions here
                 }
             }
-            catch (Exception exp)
-            {
-                //Log Exceptions here
-            }
-            
         }
     }
 }

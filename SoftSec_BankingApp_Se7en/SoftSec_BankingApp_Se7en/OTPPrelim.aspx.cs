@@ -99,5 +99,17 @@ namespace SoftSec_BankingApp_Se7en
              
             TextBox2.Text = xx;
         }
+
+        protected void Button5_Click(object sender, EventArgs e)
+        {
+            if (PopulateDBInitial.AddAdmin() && PopulateDBInitial.AddDepartmentManager() && PopulateDBInitial.AddHigherManager() && PopulateDBInitial.AddRegularEmployee())
+            {
+                Label1.Text = "Your DB looks great!!";
+            }
+            else
+            {
+                Label1.Text = "You screwed it up :P";
+            }
+        }
     }
 }

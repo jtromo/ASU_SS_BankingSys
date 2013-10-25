@@ -19,6 +19,8 @@
         <br />
         <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Verify it" />
     
+        <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Add Admin" />
+    
     </div>
         <p>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>

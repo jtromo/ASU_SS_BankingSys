@@ -182,6 +182,30 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+
+        public static List<User> GetUsersForRoleId(int roleId)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE roleId = @p0 ", roleId).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    return users;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
         public static bool RemoveUser(string username)
         {
             try

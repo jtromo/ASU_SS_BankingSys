@@ -25,70 +25,78 @@ namespace SoftSec_BankingApp_Se7en
             {
                 try
                 {
-                    if (!IsPostBack)
+
+                    if (UserModel.GetUser(Session["userName"].ToString()).roleId != 3)
                     {
-                        lblTranStatus.Visible = false;
-                        FieldValidator objField = new FieldValidator();
-                        if (objField.validate_UserName(Session["userName"].ToString()))
+                        Response.Redirect("InvalidUserRole.aspx",false);
+                    }
+                    else
+                    {
+                        if (!IsPostBack)
                         {
-                            if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
+                            lblTranStatus.Visible = false;
+                            FieldValidator objField = new FieldValidator();
+                            if (objField.validate_UserName(Session["userName"].ToString()))
                             {
-                                TabContainer1.Visible = true;
-                                TabContainer1.Tabs[0].Visible = true;
-                                TabContainer1.Tabs[1].Visible = true;
-                                TabContainer1.Tabs[2].Visible = true;
-                                TabContainer1.Tabs[3].Visible = true;
-                            }
-                            else
-                            {
-                                TabContainer1.Visible = true;
-                                TabContainer1.Tabs[0].Visible = true;
-                                TabContainer1.Tabs[1].Visible = true;
-                                TabContainer1.Tabs[2].Visible = true;
-                                TabContainer1.Tabs[3].Visible = false;
-                            }
-                            TabContainer1.ActiveTabIndex = 0;
-                            //Fetch all the accounts of the user.
-                            ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
-                            if (objCol != null)
-                            {
-                                List<Models.Tables.Account> lstAcc = objCol.ToList();
-                                foreach (Models.Tables.Account acc in lstAcc)
+                                if (UserModel.GetUser(Session["userName"].ToString()).roleId == 3)
                                 {
-                                    if (acc.accountTypeId == 3)
+                                    TabContainer1.Visible = true;
+                                    TabContainer1.Tabs[0].Visible = true;
+                                    TabContainer1.Tabs[1].Visible = true;
+                                    TabContainer1.Tabs[2].Visible = true;
+                                    TabContainer1.Tabs[3].Visible = true;
+                                }
+                                else
+                                {
+                                    TabContainer1.Visible = true;
+                                    TabContainer1.Tabs[0].Visible = true;
+                                    TabContainer1.Tabs[1].Visible = true;
+                                    TabContainer1.Tabs[2].Visible = true;
+                                    TabContainer1.Tabs[3].Visible = false;
+                                }
+                                TabContainer1.ActiveTabIndex = 0;
+                                //Fetch all the accounts of the user.
+                                ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
+                                if (objCol != null)
+                                {
+                                    List<Models.Tables.Account> lstAcc = objCol.ToList();
+                                    foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        //Savings Account
-                                        tb_savings.Text = acc.accountNumber.ToString();
-                                        dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                        tb_savings.ReadOnly = true;
-                                    }
-                                    else if (acc.accountTypeId == 2)
-                                    {
-                                        //checkings account
-                                        tb_checking.Text = acc.accountNumber.ToString();
-                                        dd_acctype.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
-                                        dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
-                                        tb_checking.ReadOnly = true;
-                                    }
-                                    else if (acc.accountTypeId == 3)
-                                    {
-                                        //credit account
-                                        tb_credit.Text = acc.accountNumber.ToString();
-                                        tb_credit.ReadOnly = true;
+                                        if (acc.accountTypeId == 3)
+                                        {
+                                            //Savings Account
+                                            tb_savings.Text = acc.accountNumber.ToString();
+                                            dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                            tb_savings.ReadOnly = true;
+                                        }
+                                        else if (acc.accountTypeId == 2)
+                                        {
+                                            //checkings account
+                                            tb_checking.Text = acc.accountNumber.ToString();
+                                            dd_acctype.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
+                                            dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                            tb_checking.ReadOnly = true;
+                                        }
+                                        else if (acc.accountTypeId == 3)
+                                        {
+                                            //credit account
+                                            tb_credit.Text = acc.accountNumber.ToString();
+                                            tb_credit.ReadOnly = true;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            //Invalid User name.
-                            Session["userName"] = "";
-                            Response.Redirect("ExternalHomePage.aspx", false);
+                            else
+                            {
+                                //Invalid User name.
+                                Session["userName"] = "";
+                                Response.Redirect("ExternalHomePage.aspx", false);
+                            }
                         }
                     }
                 }

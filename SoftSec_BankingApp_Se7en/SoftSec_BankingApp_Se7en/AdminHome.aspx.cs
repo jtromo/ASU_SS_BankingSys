@@ -18,272 +18,317 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            hideRequestUI();
-
-            if (!IsPostBack)
+            if (Session["userName"] == null)
             {
-                if (Convert.ToInt16(Session["adminFlag"]) == 1)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                hideRequestUI();
+
+                if (!IsPostBack)
                 {
-                    //Set permission to view logs
-                    //normal admin - view only admin level logs
-                    //super user - view superuser + admin level logs in the grid view.
+                    if (Convert.ToInt16(Session["adminFlag"]) == 1)
+                    {
+                        //Set permission to view logs
+                        //normal admin - view only admin level logs
+                        //super user - view superuser + admin level logs in the grid view.
+                    }
                 }
             }
         }
 
         protected void modifyBT_Modify_Click(object sender, EventArgs e)
         {
-            
-            User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
-            if (checkforUSer != null)
+            if (Session["userName"] == null)
             {
-                int newRoleID =Convert.ToInt32(DropDownList1.SelectedValue); 
-                string deptTransDesc= "Admin escalted"+checkforUSer.username+"from role"+checkforUSer.roleId.ToString()+"to role"+newRoleID.ToString();
-                int roleEscalationReqPlacedasTransaction = -1;
-                roleEscalationReqPlacedasTransaction = DepartmentTransactionModel.MakeRoleEscalation("Admin", checkforUSer.username, Convert.ToInt32(checkforUSer.roleId), newRoleID, deptTransDesc, 0, "");
-                if (roleEscalationReqPlacedasTransaction != -1)
-               {
-                 bool roleModified=  DepartmentTransactionModel.AcceptDepartmentTransaction(roleEscalationReqPlacedasTransaction);
-                 if (roleModified)
-                 {
-                     errorLbModify.Text = "User access level succesfully modified";
-                 }
-                 else {
-                     errorLbModify.Text = "Could not modify user level";
-                 }
-
-               }
-               else {
-
-                   errorLbModify.Text = "Could not place modify request";
-               }
+                Response.Redirect("SessionTimeOut.aspx");
             }
-            else {
-
-                errorLbModify.Text = "No user exists";
-            }
-
-
-        }
-
-
-        protected void detailsBT_Modify_Click(object sender, EventArgs e)
-        {
-            bool serverSideValidation = false;
-            try
+            else
             {
-                serverSideValidation = validateFromFields(userIdTb_Modify.Text.ToString());
-                if (serverSideValidation)
+                User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
+                if (checkforUSer != null)
                 {
-                    User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
-                    if (checkforUSer != null)
+                    int newRoleID = Convert.ToInt32(DropDownList1.SelectedValue);
+                    string deptTransDesc = "Admin escalted" + checkforUSer.username + "from role" + checkforUSer.roleId.ToString() + "to role" + newRoleID.ToString();
+                    int roleEscalationReqPlacedasTransaction = -1;
+                    roleEscalationReqPlacedasTransaction = DepartmentTransactionModel.MakeRoleEscalation("Admin", checkforUSer.username, Convert.ToInt32(checkforUSer.roleId), newRoleID, deptTransDesc, 0, "");
+                    if (roleEscalationReqPlacedasTransaction != -1)
                     {
-                        if (checkforUSer.roleId > 3)
+                        bool roleModified = DepartmentTransactionModel.AcceptDepartmentTransaction(roleEscalationReqPlacedasTransaction);
+                        if (roleModified)
                         {
-
-                            errorLbModify.Text = "has access";
-                            firstNameTextLb_Modify.Text=checkforUSer.firstName;
-                            lastNameTextLb_Modify.Text = checkforUSer.lastName;
-                            
-                            int userrole = Convert.ToInt32(checkforUSer.roleId);
-                            switch (userrole)
-                            {
-                                case 2: currentRoleTextLb_Modify.Text = "External Individual";
-                                    break;
-                                case 3: currentRoleTextLb_Modify.Text = "External Merchant";
-                                    break;
-                                case 4: currentRoleTextLb_Modify.Text = "Internal Regular";
-                                    break;
-                                case 5: currentRoleTextLb_Modify.Text = "Internal Dept Mgr";
-                                    break;
-                                case 6: currentRoleTextLb_Modify.Text = "Internal Higher Mgr";
-                                    break;
-                                case 7: currentRoleTextLb_Modify.Text = "Admin";
-                                    break;
-                                case 8: currentRoleTextLb_Modify.Text = "Super User";
-                                    break;
-                                default: currentRoleTextLb_Modify.Text = "Invalid Role";
-                                    break;
-
-
-                            }
+                            errorLbModify.Text = "User access level succesfully modified";
                         }
                         else
                         {
-                            errorLbModify.Text = "You do not have access for this user";
+                            errorLbModify.Text = "Could not modify user level";
                         }
 
                     }
                     else
                     {
 
-                        errorLbModify.Text = "User does not exist";
+                        errorLbModify.Text = "Could not place modify request";
                     }
                 }
                 else
                 {
-                    errorLbModify.Text = "Please check what you have entered";
+
+                    errorLbModify.Text = "No user exists";
                 }
             }
-            catch (Exception exp)
-            {
 
+        }
+
+
+        protected void detailsBT_Modify_Click(object sender, EventArgs e)
+        {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                bool serverSideValidation = false;
+                try
+                {
+                    serverSideValidation = validateFromFields(userIdTb_Modify.Text.ToString());
+                    if (serverSideValidation)
+                    {
+                        User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
+                        if (checkforUSer != null)
+                        {
+                            if (checkforUSer.roleId > 3)
+                            {
+
+                                errorLbModify.Text = "has access";
+                                firstNameTextLb_Modify.Text = checkforUSer.firstName;
+                                lastNameTextLb_Modify.Text = checkforUSer.lastName;
+
+                                int userrole = Convert.ToInt32(checkforUSer.roleId);
+                                switch (userrole)
+                                {
+                                    case 2: currentRoleTextLb_Modify.Text = "External Individual";
+                                        break;
+                                    case 3: currentRoleTextLb_Modify.Text = "External Merchant";
+                                        break;
+                                    case 4: currentRoleTextLb_Modify.Text = "Internal Regular";
+                                        break;
+                                    case 5: currentRoleTextLb_Modify.Text = "Internal Dept Mgr";
+                                        break;
+                                    case 6: currentRoleTextLb_Modify.Text = "Internal Higher Mgr";
+                                        break;
+                                    case 7: currentRoleTextLb_Modify.Text = "Admin";
+                                        break;
+                                    case 8: currentRoleTextLb_Modify.Text = "Super User";
+                                        break;
+                                    default: currentRoleTextLb_Modify.Text = "Invalid Role";
+                                        break;
+
+
+                                }
+                            }
+                            else
+                            {
+                                errorLbModify.Text = "You do not have access for this user";
+                            }
+
+                        }
+                        else
+                        {
+
+                            errorLbModify.Text = "User does not exist";
+                        }
+                    }
+                    else
+                    {
+                        errorLbModify.Text = "Please check what you have entered";
+                    }
+                }
+                catch (Exception exp)
+                {
+
+                }
             }
         }
 
         protected void detailsBT_Remove_Click(object sender, EventArgs e)
         {
-            bool serverSideValidation = false;
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(userNameTb_Remove.Text.ToString());
-                if (serverSideValidation)
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                bool serverSideValidation = false;
+                try
                 {
-                    
-                    User checkforUSer = UserModel.GetUser(userNameTb_Remove.Text.ToString());
-                    if (checkforUSer != null)
+                    serverSideValidation = validateFromFields(userNameTb_Remove.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        if (checkforUSer.roleId > 3)
+
+                        User checkforUSer = UserModel.GetUser(userNameTb_Remove.Text.ToString());
+                        if (checkforUSer != null)
+                        {
+                            if (checkforUSer.roleId > 3)
+                            {
+
+                                errorLabel.Text = "User Exists";
+                                firstNameTextLb_Remove.Text = checkforUSer.firstName;
+                                lastNameTextLb_Remove.Text = checkforUSer.lastName;
+                                int userrole = Convert.ToInt32(checkforUSer.roleId);
+                                switch (userrole)
+                                {
+                                    case 2: currentRoleTextLb_Remove.Text = "External Individual";
+                                        break;
+                                    case 3: currentRoleTextLb_Remove.Text = "External Merchant";
+                                        break;
+                                    case 4: currentRoleTextLb_Remove.Text = "Internal Regular";
+                                        break;
+                                    case 5: currentRoleTextLb_Remove.Text = "Internal Dept Mgr";
+                                        break;
+                                    case 6: currentRoleTextLb_Remove.Text = "Internal Higher Mgr";
+                                        break;
+                                    case 7: currentRoleTextLb_Remove.Text = "Admin";
+                                        break;
+                                    case 8: currentRoleTextLb_Remove.Text = "Super User";
+                                        break;
+                                    default: currentRoleTextLb_Remove.Text = "Invalid Role";
+                                        break;
+
+
+                                }
+                            }
+                            else
+                            {
+                                errorLabel.Text = "You do not have access for this user";
+                            }
+
+                        }
+                        else
                         {
 
-                            errorLabel.Text = "User Exists";
-                            firstNameTextLb_Remove.Text = checkforUSer.firstName;
-                            lastNameTextLb_Remove.Text = checkforUSer.lastName;
-                            int userrole = Convert.ToInt32(checkforUSer.roleId);
-                            switch (userrole)
-                            {
-                                case 2: currentRoleTextLb_Remove.Text = "External Individual";
-                                    break;
-                                case 3: currentRoleTextLb_Remove.Text = "External Merchant";
-                                    break;
-                                case 4: currentRoleTextLb_Remove.Text = "Internal Regular";
-                                    break;
-                                case 5: currentRoleTextLb_Remove.Text = "Internal Dept Mgr";
-                                    break;
-                                case 6: currentRoleTextLb_Remove.Text = "Internal Higher Mgr";
-                                    break;
-                                case 7: currentRoleTextLb_Remove.Text = "Admin";
-                                    break;
-                                case 8: currentRoleTextLb_Remove.Text = "Super User";
-                                    break;
-                                default: currentRoleTextLb_Remove.Text = "Invalid Role";
-                                    break;
-
-
-                            }
+                            errorLabel.Text = "User does not exist";
                         }
-                        else {
-                            errorLabel.Text = "You do not have access for this user";
-                        }
-
                     }
-                    else {
-
-                        errorLabel.Text = "User does not exist";
+                    else
+                    {
+                        //Update the UI with error message.
+                        errorLabel.Text = "Please verify the User ID you have entered";
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
-                    errorLabel.Text = "Please verify the User ID you have entered";
-                }
-            }
-            catch (Exception exp)
-            {
 
+                }
             }
         }
 
         protected void removeBt_Remove_Click(object sender, EventArgs e)
         {
-            bool userRemoved = false;
-            userRemoved = UserModel.RemoveUser(userNameTb_Remove.Text.ToString());
-            if (userRemoved == true)
+            if (Session["userName"] == null)
             {
-                errorLabel.Text = "User succesfully Removed";
+                Response.Redirect("SessionTimeOut.aspx");
             }
             else
             {
-                errorLabel.Text = "User could not be removed";
+                bool userRemoved = false;
+                userRemoved = UserModel.RemoveUser(userNameTb_Remove.Text.ToString());
+                if (userRemoved == true)
+                {
+                    errorLabel.Text = "User succesfully Removed";
+                }
+                else
+                {
+                    errorLabel.Text = "User could not be removed";
+                }
             }
         }
 
         protected void btn_AddEmp_Click(object sender, EventArgs e)
         {
-            //bool serverSideValidation1 = false;
-            //bool serverSideValidation2 = false;
-            //try
-            //{
-            //    serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
-            //        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text.ToString(), tb_City_Emp.Text.ToString(), tb_Phone_Emp.Text.ToString()
-            //        , tb_Zip_Emp.Text.ToString());
-            //    serverSideValidation2 = validateFromFields(tb_UserName_AddEmp.Text.ToString(), tb_Password_AddEmp.Text.ToString(), tb_ConfPassword_AddEmp.Text.ToString()
-            //        , tb_SecAns1_AddEmp.Text.ToString(), tb_SecAns2_AddEmp.Text.ToString(), tb_SecAns3_AddEmp.Text.ToString(), tb_SSN_AddEmp.Text.ToString()
-            //        , tb_sitekeyhint_AddEmp.Text.ToString(), tb_BirthYear_AddEmp.Text.ToString());
-            //    if (serverSideValidation1 && serverSideValidation2)
-            //    {
-            //        User userForName = new User();
-            //        userForName = UserModel.GetUser(tb_UserName_AddEmp.Text.ToString());
-            //        if (userForName != null)
-            //        {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //bool serverSideValidation1 = false;
+                //bool serverSideValidation2 = false;
+                //try
+                //{
+                //    serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
+                //        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text.ToString(), tb_City_Emp.Text.ToString(), tb_Phone_Emp.Text.ToString()
+                //        , tb_Zip_Emp.Text.ToString());
+                //    serverSideValidation2 = validateFromFields(tb_UserName_AddEmp.Text.ToString(), tb_Password_AddEmp.Text.ToString(), tb_ConfPassword_AddEmp.Text.ToString()
+                //        , tb_SecAns1_AddEmp.Text.ToString(), tb_SecAns2_AddEmp.Text.ToString(), tb_SecAns3_AddEmp.Text.ToString(), tb_SSN_AddEmp.Text.ToString()
+                //        , tb_sitekeyhint_AddEmp.Text.ToString(), tb_BirthYear_AddEmp.Text.ToString());
+                //    if (serverSideValidation1 && serverSideValidation2)
+                //    {
+                //        User userForName = new User();
+                //        userForName = UserModel.GetUser(tb_UserName_AddEmp.Text.ToString());
+                //        if (userForName != null)
+                //        {
 
-            //            Label1.Visible = true;
-            //            Label1.Text = "User name already Exists";
-            //        }
-            //        else
-            //        {
+                //            Label1.Visible = true;
+                //            Label1.Text = "User name already Exists";
+                //        }
+                //        else
+                //        {
 
-            //            string passwordForUser = tb_Password_AddEmp.Text.ToString();
-            //            string confirmPassword = tb_ConfPassword_AddEmp.Text.ToString();
-            //            if (passwordForUser.Equals(confirmPassword))
-            //            {
-            //                User userToCreate = new User();
-            //                userToCreate.firstName = tb_FirstName_Emp.Text.ToString();
-            //                userToCreate.middleName = tb_MidName_Emp.Text.ToString();
-            //                userToCreate.lastName = tb_LastName_Emp.Text.ToString();
-            //                userToCreate.email = tb_Email_Emp.Text.ToString();
-            //                userToCreate.departmentId = Convert.ToInt32(DeptDD_AddEmp.SelectedValue);
-            //                userToCreate.roleId = Convert.ToInt32(RoleDD_AddEmp.SelectedValue);
-            //                Address addressForUser = new Address();
-                            
-            //                addressForUser.country = "US";
-            //                userToCreate.phone = tb_Phone_Emp.Text.ToString();
-            //                userToCreate.username = tb_UserName_AddEmp.Text.ToString();
+                //            string passwordForUser = tb_Password_AddEmp.Text.ToString();
+                //            string confirmPassword = tb_ConfPassword_AddEmp.Text.ToString();
+                //            if (passwordForUser.Equals(confirmPassword))
+                //            {
+                //                User userToCreate = new User();
+                //                userToCreate.firstName = tb_FirstName_Emp.Text.ToString();
+                //                userToCreate.middleName = tb_MidName_Emp.Text.ToString();
+                //                userToCreate.lastName = tb_LastName_Emp.Text.ToString();
+                //                userToCreate.email = tb_Email_Emp.Text.ToString();
+                //                userToCreate.departmentId = Convert.ToInt32(DeptDD_AddEmp.SelectedValue);
+                //                userToCreate.roleId = Convert.ToInt32(RoleDD_AddEmp.SelectedValue);
+                //                Address addressForUser = new Address();
 
-
-                            
-            //                bool userCreated = UserModel.CreateEmployee(userToCreate, passwordForUser, addressForUser, null);
-            //                if (userCreated)
-            //                {
-            //                    Label1.Visible = true;
-            //                    Label1.Text = "User successfully created";
-            //                }
-            //                else
-            //                {
-            //                    Label1.Visible = true;
-            //                    Label1.Text = "User could Not be created";
-            //                }
-            //            }
-            //            else
-            //            {
-            //                Label1.Visible = true;
-            //                Label1.Text = "Passwords Do Not Match";
-
-            //            }
-
-            //        }
+                //                addressForUser.country = "US";
+                //                userToCreate.phone = tb_Phone_Emp.Text.ToString();
+                //                userToCreate.username = tb_UserName_AddEmp.Text.ToString();
 
 
-            //    }
-            //    else
-            //    {
-            //        //Update the UI with error message.
-            //    }
-            //}
-            //catch (Exception exp)
-            //{
-            //    //Log Exception here
-            //}
+
+                //                bool userCreated = UserModel.CreateEmployee(userToCreate, passwordForUser, addressForUser, null);
+                //                if (userCreated)
+                //                {
+                //                    Label1.Visible = true;
+                //                    Label1.Text = "User successfully created";
+                //                }
+                //                else
+                //                {
+                //                    Label1.Visible = true;
+                //                    Label1.Text = "User could Not be created";
+                //                }
+                //            }
+                //            else
+                //            {
+                //                Label1.Visible = true;
+                //                Label1.Text = "Passwords Do Not Match";
+
+                //            }
+
+                //        }
+
+
+                //    }
+                //    else
+                //    {
+                //        //Update the UI with error message.
+                //    }
+                //}
+                //catch (Exception exp)
+                //{
+                //    //Log Exception here
+                //}
+            }
         }
 
 
@@ -297,23 +342,30 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void FetchLogsBT_Click(object sender, EventArgs e)
         {
-            bool serverSideValidation = false;
-            //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
-            try
+            if (Session["userName"] == null)
             {
-                serverSideValidation = validateFromFields(startYearTb_SysLog.Text.ToString(),endYearTb_SysLog.Text.ToString());
-                if (serverSideValidation)
-                {
-                    //Proceed with business logic here
-                }
-                else
-                {
-                    //Update the UI with error message.
-                }
+                Response.Redirect("SessionTimeOut.aspx");
             }
-            catch (Exception exp)
+            else
             {
-                //Log Exception here
+                bool serverSideValidation = false;
+                //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
+                try
+                {
+                    serverSideValidation = validateFromFields(startYearTb_SysLog.Text.ToString(), endYearTb_SysLog.Text.ToString());
+                    if (serverSideValidation)
+                    {
+                        //Proceed with business logic here
+                    }
+                    else
+                    {
+                        //Update the UI with error message.
+                    }
+                }
+                catch (Exception exp)
+                {
+                    //Log Exception here
+                }
             }
 
         }
@@ -537,49 +589,65 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void deptIDLookUpBT_Click(object sender, EventArgs e)
         {
-            string deptID = deptIDlookupTB.Text.ToString();
-            if (validateDeptField(deptID))
+            if (Session["userName"] == null)
             {
-               currentDTransBeingDisplayed = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
-               if (currentDTransBeingDisplayed.Count > 0)
-                {
-
-                    RequestsGridV.DataSource = currentDTransBeingDisplayed;
-                    RequestsGridV.DataBind();
-
-                }
-                else {
-
-                    reqErrorLb.Text = "No transactions on this dept";
-                }
+                Response.Redirect("SessionTimeOut.aspx");
             }
-            else {
-                reqErrorLb.Text = "please check the dept ID you have entered";
+            else
+            {
+                string deptID = deptIDlookupTB.Text.ToString();
+                if (validateDeptField(deptID))
+                {
+                    currentDTransBeingDisplayed = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
+                    if (currentDTransBeingDisplayed.Count > 0)
+                    {
+
+                        RequestsGridV.DataSource = currentDTransBeingDisplayed;
+                        RequestsGridV.DataBind();
+
+                    }
+                    else
+                    {
+
+                        reqErrorLb.Text = "No transactions on this dept";
+                    }
+                }
+                else
+                {
+                    reqErrorLb.Text = "please check the dept ID you have entered";
+                }
             }
         }
 
         protected void UserNameLookUpBT_Click(object sender, EventArgs e)
         {
-            string username = userNameLookUpTb.Text.ToString();
-            if (validateUserNameField(username))
+            if (Session["userName"] == null)
             {
-                currentDTransBeingDisplayed = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
-                if (currentDTransBeingDisplayed.Count > 0)
-                {
-
-                    RequestsGridV.DataSource = currentDTransBeingDisplayed;
-                    RequestsGridV.DataBind();
-
-                }
-                else
-                {
-
-                    reqErrorLb.Text = "No transactions for this user";
-                }
+                Response.Redirect("SessionTimeOut.aspx");
             }
             else
             {
-                reqErrorLb.Text = "please check the User name you have entered";
+                string username = userNameLookUpTb.Text.ToString();
+                if (validateUserNameField(username))
+                {
+                    currentDTransBeingDisplayed = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
+                    if (currentDTransBeingDisplayed.Count > 0)
+                    {
+
+                        RequestsGridV.DataSource = currentDTransBeingDisplayed;
+                        RequestsGridV.DataBind();
+
+                    }
+                    else
+                    {
+
+                        reqErrorLb.Text = "No transactions for this user";
+                    }
+                }
+                else
+                {
+                    reqErrorLb.Text = "please check the User name you have entered";
+                }
             }
         }
 
@@ -666,42 +734,57 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void approveRequestBT_Click(object sender, EventArgs e)
         {
-            int currentTransID = currentSlectedTrans.id;
-            if (currentSlectedTrans.status ==1 )
+            if (Session["userName"] == null)
             {
-                bool isapproved = DepartmentTransactionModel.AcceptDepartmentTransaction(currentTransID);
-                if (isapproved)
-                {   
-                    reqErrorLb.Text = "Request succesfully approved";
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                int currentTransID = currentSlectedTrans.id;
+                if (currentSlectedTrans.status == 1)
+                {
+                    bool isapproved = DepartmentTransactionModel.AcceptDepartmentTransaction(currentTransID);
+                    if (isapproved)
+                    {
+                        reqErrorLb.Text = "Request succesfully approved";
+                    }
+                    else
+                    {
+                        reqErrorLb.Text = "Request could not be approved";
+                    }
                 }
                 else
                 {
-                    reqErrorLb.Text = "Request could not be approved";
+                    reqErrorLb.Text = "Decision already made";
                 }
-            }
-            else {
-                reqErrorLb.Text = "Decision already made";
             }
         }
 
         protected void rejectReqBT_Click(object sender, EventArgs e)
         {
-            int currentTransID = currentSlectedTrans.id;
-            if (currentSlectedTrans.status == 1)
+            if (Session["userName"] == null)
             {
-                bool isrejected = DepartmentTransactionModel.RejectDepartmentTransaction(currentTransID);
-                if (isrejected)
-                {
-                    reqErrorLb.Text = "Request succesfully rejected";
-                }
-                else
-                {
-                    reqErrorLb.Text = "Request could not be rejected";
-                }
+                Response.Redirect("SessionTimeOut.aspx");
             }
             else
             {
-                reqErrorLb.Text = "Decision already made";
+                int currentTransID = currentSlectedTrans.id;
+                if (currentSlectedTrans.status == 1)
+                {
+                    bool isrejected = DepartmentTransactionModel.RejectDepartmentTransaction(currentTransID);
+                    if (isrejected)
+                    {
+                        reqErrorLb.Text = "Request succesfully rejected";
+                    }
+                    else
+                    {
+                        reqErrorLb.Text = "Request could not be rejected";
+                    }
+                }
+                else
+                {
+                    reqErrorLb.Text = "Decision already made";
+                }
             }
         }
     }

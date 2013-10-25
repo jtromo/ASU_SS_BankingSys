@@ -44,6 +44,28 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
             return hashedPassword.Equals(hash);
         }
 
+        public bool VerifySocialSecurity(string socialSecurity)
+        {
+            if (hash == null)
+                return false;
+            if (socialSecurity == null)
+                return false;
+
+            string hashedSocialSecurity = HashController.CreateHash(socialSecurity, salt);
+            return socialSecurity.Equals(socialSecurityNumber);
+        }
+
+        public bool VerifyDoB(string dob)
+        {
+            if (hash == null)
+                return false;
+            if (dob == null)
+                return false;
+
+            string hashedDoB = HashController.CreateHash(dob, salt);
+            return hashedDoB.Equals(dateOfBirth);
+        }
+
         public int id { get; set; }
         public int? roleId { get; set; }
         public int? addressId { get; set; }

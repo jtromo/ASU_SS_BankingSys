@@ -103,6 +103,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.PasswordStrength tb_newpwd2_PasswordStrength;
         
         /// <summary>
+        /// lblStatus_ForgotPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStatus_ForgotPassword;
+        
+        /// <summary>
         /// btn_changepwd control.
         /// </summary>
         /// <remarks>
@@ -110,5 +119,14 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_changepwd;
+        
+        /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
     }
 }

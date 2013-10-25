@@ -7,7 +7,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -871,7 +871,7 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer" TabIndex="1">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
 
                             <HeaderTemplate>
@@ -958,7 +958,15 @@
                                 <br />
                                 Zip Code:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_Zip_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                
+                                 <br />
+                                Role:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="DD_Role_NewCustomer" runat="server">
+                                    <asp:ListItem Value="2">Individual</asp:ListItem>
+                                    <asp:ListItem Value="3">Merchant</asp:ListItem>
+                                </asp:DropDownList>
                                 <br />
+                               
                                 <br />
                                 Account Types:&nbsp;&nbsp;
                                 <asp:CheckBoxList ID="CheckBoxList1" runat="server">
@@ -969,7 +977,7 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_createcust" runat="server" Text="Create" OnClick="btn_createcust_Click" />
+                                <asp:Button ID="btn_createcust" runat="server" Text="Next" OnClick="btn_createcust_Click" />
                                 <br />
                                 <br />
                                 <asp:Label ID="fieldValidationErrorLabel" runat="server" Text="Label" Width="300px"></asp:Label>

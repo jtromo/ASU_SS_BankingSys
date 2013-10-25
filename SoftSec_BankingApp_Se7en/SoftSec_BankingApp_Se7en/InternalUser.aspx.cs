@@ -28,6 +28,13 @@ namespace SoftSec_BankingApp_Se7en
             authorizerDropDown.Visible = false;
             approveReqBT.Visible = false;
             rejectReqBT.Visible = false;
+            ErrorLabelInNewCustPI.Visible = false;
+            ErrorLabelInNewCustPI.Text = "this is where you get errors";
+
+            string username=Session["userName"].ToString();
+            User currentUser = UserModel.GetUser(username);
+            Session["roleID"] = currentUser.roleId;
+            Session["deptID"] = currentUser.departmentId;
 
              
             try
@@ -398,7 +405,7 @@ namespace SoftSec_BankingApp_Se7en
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
                                         double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
-                                        if (amount < 10000)
+                                        if (amount < 1000)
                                         {
 
                                             string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
@@ -418,15 +425,23 @@ namespace SoftSec_BankingApp_Se7en
                                         }
                                         else {
                                             lblSuccess_IUInside.Text = "This transcation needs approval,please choose an authorizer";
-                                            int DeptID =Convert.ToInt32( reqAuthDeptIDTB.Text);
-                                            int RoleID = Convert.ToInt32(reqAuthRoleIDTB.Text);
-                                            List<User> relevantAuthorizers=new List<User>();
-                                            relevantAuthorizers=UserModel.GetUsersForDepartmentIdRoleId(DeptID,RoleID);
-                                            authorizerDropDown.DataSource=relevantAuthorizers;;
-                                            authorizerDropDown.DataBind();
-                                            authorizerDropDown.Visible=true;
-                                            requetAuthLb.Visible=true;
-                                            placeReqBT.Visible=true;
+                                            lblSuccess_IUInside.Visible = true;
+                                            int DeptID =Convert.ToInt32( Session["deptID"]);
+                                            int RoleID = Convert.ToInt32(Session["roleID"]);
+                                            List<string> higherAuthorizers = getHigherAuthorizersfor(RoleID, DeptID);
+                                            if (higherAuthorizers.Count > 0)
+                                            {
+                                                authorizerDropDown.DataSource = higherAuthorizers;
+                                                authorizerDropDown.DataBind();
+                                                authorizerDropDown.Visible = true;
+                                                requetAuthLb.Visible = true;
+                                                placeReqBT.Visible = true;
+                                            }
+                                            else {
+                                                lblSuccess_IUInside.Text = "This transcation needs approval,could not find a authorizer";
+                                                lblSuccess_IUInside.Visible = true;
+                                            
+                                            }
                                         
                                         }
                                     }
@@ -1069,6 +1084,7 @@ namespace SoftSec_BankingApp_Se7en
                 else
                 {
                     //Update the UI with error message.
+                    ErrorLabelInNewCustPI.Text = "Please verify the data you have entered";
                 }
             }
             catch (Exception exp)
@@ -2482,18 +2498,30 @@ namespace SoftSec_BankingApp_Se7en
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
                                         double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
-                                        if (amount >= 10000)
+                                        if (amount >= 1000)
                                         {
 
                                             string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
                                                                                " Amount : " + tb_amount_IU_Inside.Text.ToString();
                                             int success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
                                                                        Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+
+                                            User selectedAuthorizer=UserModel.GetUser(authorizerDropDown.Text.ToString());
+                                           
                                            //
                                             if (success>0)
                                             {
-                                                lblSuccess_IUInside.Text = "Transaction Successful";
-                                                lblSuccess_IUInside.Visible = true;
+                                                bool success1 = TransactionModel.AssignAuthorizationRequestedTransactionToUser(success, selectedAuthorizer.username.ToString(),Convert.ToInt32( selectedAuthorizer.roleId));
+                                                if (success1)
+                                                {
+                                                    lblSuccess_IUInside.Text = "Request sucesfully escalated";
+                                                    lblSuccess_IUInside.Visible = true;
+                                                }
+                                                else {
+                                                    lblSuccess_IUInside.Text = "Request could not be escalated";
+                                                    lblSuccess_IUInside.Visible = true;
+                                                }
+                                                
                                             }
                                             else
                                             {
@@ -2503,6 +2531,7 @@ namespace SoftSec_BankingApp_Se7en
                                         }
                                         else {
                                             lblSuccess_IUInside.Text = "This transaction needs no approval,proceed with normal transfer";
+                                            lblSuccess_IUInside.Visible = true;
                                             requetAuthLb.Visible = false;
                                             authorizerDropDown.Visible = false;
                                             placeReqBT.Visible = false;
@@ -2551,7 +2580,7 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void reqLookUPBT_Click(object sender, EventArgs e)
         {
-            string username = lookUPUserNameTF.Text.ToString();
+            string username = "";
             currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
             reqGridV.DataSource = currentPendingTransReqs;
             reqGridV.DataBind();
@@ -2600,6 +2629,32 @@ namespace SoftSec_BankingApp_Se7en
             }
 
 
+        }
+
+        protected List<string> getHigherAuthorizersfor(int roleID, int deptID)
+        {
+            List<User> higherauthorizers = new List<User>();
+            List<string> higherUsernames= new List<string>();
+            if (roleID >= 4 && roleID <= 6) {
+                if (roleID == 4)
+                {
+
+                    higherauthorizers = UserModel.GetUsersForDepartmentIdRoleId(deptID, 5);
+
+                }
+                else if(roleID==5) {
+
+                    higherauthorizers = UserModel.GetUsersForRoleId(6);
+
+                }
+               
+            }
+
+            foreach(User curU in higherauthorizers){
+                higherUsernames.Add(curU.username);
+            }
+
+            return higherUsernames;
         }
 
     }

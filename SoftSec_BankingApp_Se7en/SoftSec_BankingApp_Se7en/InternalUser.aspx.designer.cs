@@ -238,24 +238,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_recepient_IU_Inside;
         
         /// <summary>
-        /// reqAuthDeptIDTB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox reqAuthDeptIDTB;
-        
-        /// <summary>
-        /// reqAuthRoleIDTB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox reqAuthRoleIDTB;
-        
-        /// <summary>
         /// tb_lastname_IU_Inside control.
         /// </summary>
         /// <remarks>
@@ -2630,15 +2612,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.TabPanel tab_tobeauthorized;
-        
-        /// <summary>
-        /// lookUPUserNameTF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lookUPUserNameTF;
         
         /// <summary>
         /// reqLookUPBT control.

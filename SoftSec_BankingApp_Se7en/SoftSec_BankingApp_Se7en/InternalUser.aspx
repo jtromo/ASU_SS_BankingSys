@@ -7,7 +7,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -137,10 +137,7 @@
                                             <p>
                                                 &nbsp;Account Number:&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_recepient_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="reqAuthDeptIDTB" runat="server"></asp:TextBox>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:TextBox ID="reqAuthRoleIDTB" runat="server"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </p>
                                             <p>
                                                 Last Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -156,7 +153,7 @@
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_card_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <asp:Label ID="requetAuthLb" runat="server" Text="Pleae choose an authorizer" Width="100px"></asp:Label>
+                                                <asp:Label ID="requetAuthLb" runat="server" Text="Please choose an authorizer" Width="100px"></asp:Label>
                                                 &nbsp;&nbsp;
                                                 <asp:DropDownList ID="authorizerDropDown" runat="server" Width="100px">
                                                 </asp:DropDownList>
@@ -1630,7 +1627,7 @@
             </asp:TabPanel>
             <asp:TabPanel ID="tab_tobeauthorized" runat="server" HeaderText="To Be Authorized" TabIndex="3">
                 <ContentTemplate>
-                    <asp:TextBox ID="lookUPUserNameTF" runat="server"></asp:TextBox>
+                    <br />
                     <asp:Button ID="reqLookUPBT" runat="server" OnClick="reqLookUPBT_Click" Text="Look Up" />
                     <br />
                     <br />

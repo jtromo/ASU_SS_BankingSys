@@ -767,7 +767,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btn_modifytrans" runat="server" OnClick="btn_modifytrans_Click" Text="Modify" />
                     &nbsp;&nbsp;
-                    <asp:Button ID="btn_deltrans" runat="server" OnClick="btn_deltrans_Click" Text="Delete" />
+                    
                     </br>
 
                     </Contenttemplate>

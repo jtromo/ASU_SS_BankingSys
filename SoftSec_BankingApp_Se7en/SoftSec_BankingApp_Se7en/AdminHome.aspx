@@ -5,7 +5,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </p>
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="4" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="3" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>

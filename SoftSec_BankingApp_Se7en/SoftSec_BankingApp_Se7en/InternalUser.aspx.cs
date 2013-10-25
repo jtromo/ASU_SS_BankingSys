@@ -35,7 +35,7 @@ namespace SoftSec_BankingApp_Se7en
             User currentUser = UserModel.GetUser(username);
             Session["roleID"] = currentUser.roleId;
             Session["deptID"] = currentUser.departmentId;
-
+             
              
             try
             {
@@ -377,6 +377,12 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_maketransinside_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             //Transfer Money to Accounts within the bank
             bool serverSideValidation = false;
             try
@@ -412,7 +418,7 @@ namespace SoftSec_BankingApp_Se7en
                                                                                " Amount : " + tb_amount_IU_Inside.Text.ToString();
                                             int insertedtransID = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
                                                                        Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
-                                            if (insertedtransID>0)
+                                                if (insertedtransID > 0)
                                             {
                                                 lblSuccess_IUInside.Text = "Transaction Successful";
                                                 lblSuccess_IUInside.Visible = true;
@@ -423,7 +429,8 @@ namespace SoftSec_BankingApp_Se7en
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
-                                        else {
+                                            else
+                                            {
                                             lblSuccess_IUInside.Text = "This transcation needs approval,please choose an authorizer";
                                             lblSuccess_IUInside.Visible = true;
                                             int DeptID =Convert.ToInt32( Session["deptID"]);
@@ -432,7 +439,7 @@ namespace SoftSec_BankingApp_Se7en
                                             if (higherAuthorizers.Count > 0)
                                             {
                                                 authorizerDropDown.DataSource = higherAuthorizers;
-                                                authorizerDropDown.DataBind();
+                                            authorizerDropDown.DataBind();
                                                 authorizerDropDown.Visible = true;
                                                 requetAuthLb.Visible = true;
                                                 placeReqBT.Visible = true;
@@ -476,9 +483,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }        
+        }        
 
         protected void btnVerify_Click(object sender, EventArgs e)
         {   
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -581,9 +595,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_maketransferoutside_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -606,7 +627,7 @@ namespace SoftSec_BankingApp_Se7en
                                                                        " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
                                 int success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
                                                             tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
-                                if (success>0)
+                                    if (success > 0)
                                 {
                                     lblStatus_OutsideBank.Text = "Transaction Successful";
 
@@ -644,9 +665,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_maketransbetween_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -660,7 +688,7 @@ namespace SoftSec_BankingApp_Se7en
                                 "From : " + fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString() +
                                     "To : " + toAccTypeDD_TransferExistingCust_Between.Text.ToString() +
                                         "- Amount : " + tb_amountbetween.Text.ToString());
-                    if (success>0)
+                        if (success > 0)
                     {
                         lblStatus_Between.Text = "Transaction Successful";
                         lblStatus_Between.Visible = true;
@@ -681,10 +709,17 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
 
         protected void btn_maketransDebitFunds_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -705,7 +740,7 @@ namespace SoftSec_BankingApp_Se7en
                             {                                
                                 int success = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
                                                              Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
-                                if (success>0)
+                                    if (success > 0)
                                 {
                                     lblStatus_DebitFunds.Text = "Transaction Successful";
                                     lblStatus_DebitFunds.Visible = true;
@@ -737,9 +772,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_maketrans_CreditFunds_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -760,7 +802,7 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
                                                              Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
-                                if (success>0)
+                                    if (success > 0)
                                 {
                                     lblStatus_CreditFunds.Text = "Transaction Successful";
                                     lblStatus_CreditFunds.Visible = true;
@@ -792,14 +834,21 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
 
         protected void btn_changesettings_profile_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields_editProfile(tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(),tb_city_Edit.Text.ToString(),
+                    serverSideValidation = validateFromFields_editProfile(tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(), tb_city_Edit.Text.ToString(),
                                         tb_zipCode_Edit.Text.ToString(), tb_contact_Edit.Text.ToString(), tb_nickname_Edit.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -827,9 +876,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_changepwd_Internal_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             //Make a payment on behalf of the customer
             bool serverSideValidation = false;
             try
@@ -890,13 +946,20 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_cardsubmitpayment_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(),tb_customername.Text.ToString(),tb_amount_SubmitPayment.Text.ToString());
+                    serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_SubmitPayment.Text.ToString());
                 if (serverSideValidation)
                 {
                     //Proceed with business logic here
@@ -916,7 +979,7 @@ namespace SoftSec_BankingApp_Se7en
                                 string sfromAcc = objCard.accountNumber;
                                 int success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_SubmitPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_SubmitPayment.Text.ToString());
-                                if (success>0)
+                                    if (success > 0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
                                     lblSubmitPayment.Visible = true;
@@ -948,9 +1011,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_createcust_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -974,11 +1044,17 @@ namespace SoftSec_BankingApp_Se7en
             {
                 //Log Exception here
             }
-
+            }
         }
 
         protected void btn_sumbitcust_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -1092,10 +1168,17 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
 
         protected void btn_AddEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation1 = false;
             bool serverSideValidation2 = false;
             try
@@ -1190,6 +1273,7 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         /// <summary>
         /// 
@@ -1215,6 +1299,12 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_ViewDetails_DelEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -1242,9 +1332,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_ViewDetails_TransEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -1273,9 +1370,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_ViewDetails_ViewEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -1303,9 +1407,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_viewtransdetails1_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -1324,9 +1435,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_echecksubmitpayment_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             //
             bool serverSideValidation = false;
             try
@@ -1350,7 +1468,7 @@ namespace SoftSec_BankingApp_Se7en
                                 string sfromAcc = tb_echeckaccno.Text.ToString();
                                 int success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tbAmount_EcheckPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tbAmount_EcheckPayment.Text.ToString());
-                                if (success>0)
+                                    if (success > 0)
                                 {
                                     lblEcheckPayment.Text = "Transaction Successful";
                                     lblEcheckPayment.Visible = true;
@@ -1377,6 +1495,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 //Log Exception here
             }
+        }
         }
         
         #region ValidateFormFields
@@ -1844,6 +1963,12 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_delEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool DeleteSuccess = false;
             DeleteSuccess = UserModel.RemoveUser(tb_UserName_DelEmp.Text.ToString());
             if (DeleteSuccess)
@@ -1855,9 +1980,16 @@ namespace SoftSec_BankingApp_Se7en
                 Label2.Text = "Deleted"; 
             }
         }
+        }
 
         protected void btn_TransEmp_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool TransferSuccess = false;
             TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
             if (TransferSuccess)
@@ -1869,9 +2001,16 @@ namespace SoftSec_BankingApp_Se7en
                 Label3.Text = "Transfer Phrooo :P ";
             }
         }
+        }
 
         protected void btn_checking_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             try
             {
                 List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
@@ -1886,9 +2025,16 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exceptions here
             }
         }
+        }
 
         protected void btn_savings_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             try
             {
                 List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
@@ -1903,11 +2049,19 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exceptions here
             }
         }
+        }
 
         protected void TabContainer2_ActiveTabChanged(object sender, EventArgs e)
         {
+
             try
             {
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx");
+                }
+                else
+                {
                 if (TabContainer2.ActiveTabIndex == 2)
                 {
                     TabContainer4.Visible = false;
@@ -1963,6 +2117,7 @@ namespace SoftSec_BankingApp_Se7en
                     }
                 }
             }
+            }
             catch (Exception exp)
             {
                 //Log exception here
@@ -1971,6 +2126,12 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_editprof_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             TabContainer4.Visible = true;
             try
             {
@@ -1986,11 +2147,18 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void TabContainer4_ActiveTabChanged(object sender, EventArgs e)
         {
             try
             {
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx");
+                }
+                else
+                {
                 if (TabContainer4.ActiveTabIndex == 0)
                 {
                     //Reset the fields if required
@@ -2006,14 +2174,22 @@ namespace SoftSec_BankingApp_Se7en
                     Sec3DD_ExistingCust_EditProf.Enabled = false;
                 }
             }
+            }
             catch (Exception exp)
             {
                 //Log Exception
             }
+
         }
 
         protected void btn_viewtransdetails_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             try
             {
                 bool serverSideValidation = false;
@@ -2059,15 +2235,22 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void btn_modifytrans_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             try
             {
                 bool serverSideValidation = false;
                 FieldValidator objField = new FieldValidator();
                 serverSideValidation = objField.validate_TransID(tb_transID_ModifyTrans.Text) 
-                            && objField.validate_Amount(tb_Amount_ModifyTrans.Text) && objField.validate_ZipAccCrdPhn(tb_AccNum_modifyTrans.Text,12);
+                                && objField.validate_Amount(tb_Amount_ModifyTrans.Text) && objField.validate_ZipAccCrdPhn(tb_AccNum_modifyTrans.Text, 12);
                 if (serverSideValidation)
                 {
                     Models.Tables.Account objToNewAccount = AccountModel.GetAccount(tb_AccNum_modifyTrans.Text);
@@ -2097,7 +2280,7 @@ namespace SoftSec_BankingApp_Se7en
                                         string desc = "From :" + objToNewAccount.accountNumber + " To :" + objFromAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
                                                         + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
                                         int success = TransactionModel.MakeInternalTransfer(objToNewAccount.accountNumber, objFromAccount.accountNumber, netAmount, desc);
-                                        if (success>0)
+                                            if (success > 0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2118,7 +2301,7 @@ namespace SoftSec_BankingApp_Se7en
                                         string desc = "From :" + objFromAccount.accountNumber + " To :" + objToNewAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
                                                         + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
                                         int success = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber, netAmount, desc);
-                                        if (success>0)
+                                            if (success > 0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2144,7 +2327,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                     int success = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objToNewAccount.accountNumber,
                                                                                                 Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                    if (success>0)
+                                        if (success > 0)
                                     {
                                         lblStatus_ModifyStatus.Text = "Modification Successful";
                                         lblStatus_ModifyStatus.Visible = true;
@@ -2166,7 +2349,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                     int firstSuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber
                                                                                                         , Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
-                                    if (firstSuccess>0)
+                                        if (firstSuccess > 0)
                                     {
                                         //Trasfer new amount to new account.
                                         desc = string.Empty;
@@ -2174,7 +2357,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                         int secondSuccess = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber,
                                                                                                     Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                        if (secondSuccess>0)
+                                            if (secondSuccess > 0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2207,14 +2390,14 @@ namespace SoftSec_BankingApp_Se7en
                                                 + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                 int firstsuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber,
                                                                                             Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
-                                if (firstsuccess>0)
+                                    if (firstsuccess > 0)
                                 {
                                     desc = string.Empty;
                                     desc = "From : " + objFromAccount.accountNumber + " To : " + tb_AccNum_modifyTrans.Text + " Amount : "
                                                         + tb_Amount_ModifyTrans.Text + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
                                     int secondSuccess = TransactionModel.MakeExternalTransfer(objFromAccount.accountNumber, objFromAccount.routingNumber,
                                                                                 tb_AccNum_modifyTrans.Text, tb_RoutNum_modifyTrans.Text, Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                    if (secondSuccess>0)
+                                        if (secondSuccess > 0)
                                     {
                                         lblStatus_ModifyStatus.Text = "Modification Successful";
                                         lblStatus_ModifyStatus.Visible = true;
@@ -2258,6 +2441,7 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Excpetion here
             }
         }
+        }
 
         protected void transferDD_ModifyTrans_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2290,12 +2474,13 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
-        protected void btn_deltrans_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnSignOff_Click(object sender, EventArgs e)
+        {
+            if (Session["userName"] == null)
+        {
+                Response.Redirect("SessionTimeOut.aspx");
+        }
+            else
         {
             /* Try this next time.
              * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
@@ -2422,16 +2607,23 @@ namespace SoftSec_BankingApp_Se7en
                 tbAmount_EcheckPayment.Text = "";
                 lblEcheckPayment.Text = "";
             }
-            catch(Exception exp)
+                catch (Exception exp)
             {
                 //Log exception here
             }
+        }
         }
 
         protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
         {
             try
             {
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx");
+                }
+                else
+                {
                 Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
                 if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
                 {
@@ -2461,6 +2653,7 @@ namespace SoftSec_BankingApp_Se7en
                     }
                 }
             }
+            }
             catch (Exception exp)
             {
                 //Log Exceptions here.
@@ -2471,6 +2664,12 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void placeReqBT_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             bool serverSideValidation = false;
             try
             {
@@ -2509,14 +2708,14 @@ namespace SoftSec_BankingApp_Se7en
                                             User selectedAuthorizer=UserModel.GetUser(authorizerDropDown.Text.ToString());
                                            
                                            //
-                                            if (success>0)
+                                                if (success > 0)
                                             {
                                                 bool success1 = TransactionModel.AssignAuthorizationRequestedTransactionToUser(success, selectedAuthorizer.username.ToString(),Convert.ToInt32( selectedAuthorizer.roleId));
                                                 if (success1)
                                                 {
                                                     lblSuccess_IUInside.Text = "Request sucesfully escalated";
-                                                    lblSuccess_IUInside.Visible = true;
-                                                }
+                                                lblSuccess_IUInside.Visible = true;
+                                            }
                                                 else {
                                                     lblSuccess_IUInside.Text = "Request could not be escalated";
                                                     lblSuccess_IUInside.Visible = true;
@@ -2529,7 +2728,8 @@ namespace SoftSec_BankingApp_Se7en
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
-                                        else {
+                                            else
+                                            {
                                             lblSuccess_IUInside.Text = "This transaction needs no approval,proceed with normal transfer";
                                             lblSuccess_IUInside.Visible = true;
                                             requetAuthLb.Visible = false;
@@ -2569,6 +2769,7 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception here
             }
         }
+        }
 
         protected void reGridSelectedRowAtIndex(object sender, EventArgs e)
         {
@@ -2580,16 +2781,29 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void reqLookUPBT_Click(object sender, EventArgs e)
         {
-            string username = "";
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                string username = Session["userName"].ToString();
             currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
             reqGridV.DataSource = currentPendingTransReqs;
             reqGridV.DataBind();
         }
+        }
 
         protected void approveReqBT_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
-            double amountInvolved =Convert.ToDouble( currentreqTrans.amount);
+                double amountInvolved = Convert.ToDouble(currentreqTrans.amount);
             //Check for limit based on role
 
             if (amountInvolved < 30000)
@@ -2608,14 +2822,21 @@ namespace SoftSec_BankingApp_Se7en
 
 
             }
-            else {
+                else
+                {
                 reqResultLB.Text = "Limit exceeded please escalate the request";
             }
-
+            }
         }
 
         protected void rejectReqBT_Click(object sender, EventArgs e)
         {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
             Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
             bool rejected = TransactionModel.RejectTransaction(currentreqTrans.id);
             if (rejected)
@@ -2626,6 +2847,7 @@ namespace SoftSec_BankingApp_Se7en
             else
             {
                 reqResultLB.Text = "Request could not be Rejected";
+            }
             }
 
 

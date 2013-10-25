@@ -7,6 +7,8 @@ using System.Web.UI.WebControls;
 using Core.Crypto;
 using System.Net.Mail;
 using SoftSec_BankingApp_Se7en.Models;
+using log4net;
+using System.IO;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -14,12 +16,17 @@ namespace SoftSec_BankingApp_Se7en
     {
         Core.Crypto.OTP otpF = new OTP();
         static String otpStr = "";
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
         protected void Page_Load(object sender, EventArgs e)
         {
-            var db = new SSBankDBContext();
-            List<SoftSec_BankingApp_Se7en.Models.Tables.Account> accounts = db.Accounts.SqlQuery("SELECT * FROM dbo.Accounts WHERE accountNumber = @p0", "2222222222").ToList();
-            GridView2.DataSource = accounts;
+            Elog.Error("ieieieie");
+            Tlog.Debug("kasjhdksadkasdkasdsakdjsakjdklasjdsklajd Info");
+            
+
+            //GridView2.DataSource = accounts;
             GridView2.DataBind();
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -71,6 +78,26 @@ namespace SoftSec_BankingApp_Se7en
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            String xx;
+            xx = "";
+             try
+            {
+                using (StreamReader sr = new StreamReader("C:/Users/uk/Documents/ss_bankingsys/SoftSec_BankingApp_Se7en/SoftSec_BankingApp_Se7en/Logs/Exception.log"))
+                {
+                    xx += sr.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(ex.Message);
+            }
+             
+            TextBox2.Text = xx;
         }
     }
 }

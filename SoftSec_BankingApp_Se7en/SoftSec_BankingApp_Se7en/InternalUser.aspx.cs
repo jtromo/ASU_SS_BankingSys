@@ -1068,7 +1068,7 @@ namespace SoftSec_BankingApp_Se7en
                                 userToCreate.middleName = tb_MiddleName_Cust.Text.ToString();
                                 userToCreate.lastName = tb_LastName_Cust.Text.ToString();
                                 userToCreate.email = tb_Email_Cust.Text.ToString();
-                                userToCreate.roleId = 1;
+                                userToCreate.roleId = Convert.ToInt32(DD_Role_NewCustomer.SelectedValue);
                                 Address addressForUser = new Address();
                                 addressForUser.street1 = tb_StreetAddr_Cust.Text.ToString();
                                 addressForUser.city = tb_City_Cust.Text.ToString();
@@ -1145,6 +1145,8 @@ namespace SoftSec_BankingApp_Se7en
                     else
                     {
                         //Update the UI with error message.
+                        ErrorLabelInNewCustPI.Visible = true;
+                        ErrorLabelInNewCustPI.Text = "Please check the information entered!";
                     }
                 }
                 catch (Exception exp)

@@ -67,7 +67,11 @@ namespace SoftSec_BankingApp_Se7en.Models
                     {
                         return -1;
                     }
-
+                    user.lockoutTime = null;
+                    db.Users.Attach(user);
+                    var locktime = db.Entry(user);
+                    locktime.Property(e => e.lockoutTime).IsModified = true;
+                    db.SaveChanges();
                     return user.id;
                 }
             }

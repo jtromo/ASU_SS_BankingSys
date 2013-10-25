@@ -10,6 +10,7 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class ExternalHomePage : System.Web.UI.Page
     {
+        private static Models.Tables.User objuser = new Models.Tables.User();
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -41,8 +42,28 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     if (LoginModel.UserExists(TB_UserName.Text.ToString(), Convert.ToInt32(TB_ZipCode.Text.ToString())))
                     {
-                        Session["userName"] = TB_UserName.Text.ToString();
-                        Response.Redirect("AuthorizeUser.aspx",false);
+                        objuser = UserModel.GetUser(TB_UserName.Text.ToString());
+                        if (objuser.lockoutTime != null)
+                        {
+                            if (DateTime.Now < objuser.lockoutTime)
+                            {
+                                TimeSpan? timestmp = objuser.lockoutTime - DateTime.Now;
+                                lblErrorMessage.Text = "User account is locked. Try after " + timestmp.Value.Minutes + " Min(s)";
+                                lblErrorMessage.Visible = true;
+                                TB_UserName.Text = "";
+                                TB_ZipCode.Text = "";
+                            }
+                            else if (DateTime.Now > objuser.lockoutTime)
+                            {
+                                Session["userName"] = TB_UserName.Text.ToString();
+                                Response.Redirect("AuthorizeUser.aspx", false);
+                            }
+                        }                        
+                        else 
+                        {
+                            Session["userName"] = TB_UserName.Text.ToString();
+                            Response.Redirect("AuthorizeUser.aspx", false);
+                        }                        
                     }
                     else
                     {

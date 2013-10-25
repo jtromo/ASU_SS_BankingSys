@@ -31,14 +31,15 @@ namespace SoftSec_BankingApp_Se7en
             ErrorLabelInNewCustPI.Visible = false;
             ErrorLabelInNewCustPI.Text = "this is where you get errors";
 
-            string username=Session["userName"].ToString();
-            User currentUser = UserModel.GetUser(username);
-            Session["roleID"] = currentUser.roleId;
-            Session["deptID"] = currentUser.departmentId;
-             
+          
              
             try
             {
+                string username = Session["userName"].ToString();
+                User currentUser = UserModel.GetUser(username);
+                Session["roleID"] = currentUser.roleId;
+                Session["deptID"] = currentUser.departmentId;
+             
                 if (!IsPostBack)
                 {                    
                     FieldValidator objField = new FieldValidator();
@@ -505,7 +506,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         string strDob = MonthDD_ExistingCustomer_Verify.SelectedValue.ToString() + '/' + DayDD_ExistingCustomer_Verify.SelectedValue.ToString()
                             + '/' + tbYear_IU.Text.ToString();
-                        if (objUser.dateOfBirth.Equals(strDob))
+                        if (objUser.VerifyDoB(strDob))
                         {
                             if (rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
                             {

@@ -8,6 +8,7 @@ using SoftSec_BankingApp_Se7en;
 using System.Data.Entity;
 using SoftSec_BankingApp_Se7en.Models;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -15,6 +16,8 @@ namespace SoftSec_BankingApp_Se7en
     {
         void Application_Start(object sender, EventArgs e)
         {
+            //For log4Net
+            log4net.Config.XmlConfigurator.Configure(); 
             // Code that runs on application startup
             //SqlConnection.ClearAllPools();
             //Database.SetInitializer(new DropCreateDatabaseAlways<SSBankDBContext>());

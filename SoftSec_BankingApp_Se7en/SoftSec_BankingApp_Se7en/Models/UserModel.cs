@@ -335,6 +335,35 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool UpdateUser(string strUserName)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", strUserName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User updatedUser = users.First();
+                    updatedUser.lockoutTime = DateTime.Now.AddHours(1);
+                    db.Users.Attach(updatedUser);
+                    var locktime = db.Entry(updatedUser);
+                    locktime.Property(e => e.lockoutTime).IsModified = true;
+                    db.SaveChanges();
+                    return true;
+                }                
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+                return false;
+            }
+        }
+
         // Needs to be removed. (no one should be able to do this without access)
         public static bool TransferToDept(string username, int ToDepartmentId)
         {

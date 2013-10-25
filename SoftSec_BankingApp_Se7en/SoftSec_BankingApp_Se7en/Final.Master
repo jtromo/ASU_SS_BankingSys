@@ -30,7 +30,7 @@
         </div>
         <div id="menu">
             <ul>
-                <li><a href="index.html" class="current">Home</a></li>
+                <li><a href="ExternalHomePage.apsx" class="current">Home</a></li>
                 <li><a href="banking.html">Banking</a></li>
                 <li><a href="locations.html">Locations</a></li>
                 <li><a href="about.html">About Us</a></li>

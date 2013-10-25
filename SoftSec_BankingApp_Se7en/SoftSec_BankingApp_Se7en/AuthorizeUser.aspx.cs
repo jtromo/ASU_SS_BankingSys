@@ -11,14 +11,26 @@ namespace SoftSec_BankingApp_Se7en
     public partial class AuthorizeUser : System.Web.UI.Page
     {
         private static Models.Tables.User objuser = new Models.Tables.User();
+        private static int noAttempts = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             
             if (!IsPostBack)
             {
                 objuser = UserModel.GetUser(Session["userName"].ToString());
-                SiteKey.ImageUrl = "./Images/SiteKeys/SiteKey" + objuser.siteKeyVal + ".jpg";
+                if (objuser.siteKeyVal == 0)
+                {
+                    lblSiteKeyText.Text = "Please set your site key";
+                    lblSiteKeyText.Visible = true;
+                }
+                else
+                {
+                    SiteKey.ImageUrl = "./Images/SiteKeys/SiteKey" + objuser.siteKeyVal + ".jpg";
+                    lblSiteKeyText.Text = objuser.siteKeyString;
+                    lblSiteKeyText.Visible = true;
+                }
                 lblErrorMessage_Authorize.Visible = false;
+                Session["NoAttempts"] = 0;
             }
         }
 
@@ -27,70 +39,112 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
-                serverSideValidation = validateFromFields(TB_Password.Text.ToString());
-                if (serverSideValidation)
+                if (TB_Password.Text.ToString().Length > 0)
                 {
-                    //Proceed with business logic here
-                    //Place the logic for comparing the salts with the password entered
-                    // From James: The salt/hash will not be accessable outside the database. Need to Use the login model
-                    //if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
-                    //{
-                        //Valid User
-                    if (LoginModel.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
+                    serverSideValidation = validateFromFields(TB_Password.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        if (objuser.roleId == 2)
-                        {
-                            //External Individual
+                        //Proceed with business logic here
+                        //Place the logic for comparing the salts with the password entered
+                        // From James: The salt/hash will not be accessable outside the database. Need to Use the login model
+                        //if (TB_Password.Text.ToString().Equals(objuser.salt.ToString()))
+                        //{
+                        //Valid User
+                        if (LoginModel.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
+                        {                            
+                            if (objuser.roleId == 2)
+                            {
+                                //External Individual
 
-                            Response.Redirect("ExternalUser.aspx", false);
+                                Response.Redirect("ExternalUser.aspx", false);
+                            }
+                            else if (objuser.roleId == 3)
+                            {
+                                //External Merchant
+                                Response.Redirect("ExternalUser.aspx", false);
+                            }
+                            else if (objuser.roleId == 4)
+                            {
+                                //Internal_Regular
+                                Response.Redirect("InternalUser.aspx", false);
+                            }
+                            else if (objuser.roleId == 5)
+                            {
+                                //Internal_DeptManager
+                                Response.Redirect("InternalUser.aspx", false);
+                            }
+                            else if (objuser.roleId == 6)
+                            {
+                                //Internal_HigherManager
+                                Response.Redirect("InternalUser.aspx", false);
+                            }
+                            else if (objuser.roleId == 7 || objuser.roleId == 8)
+                            {
+                                //Internal_Admin || Superuser
+                                if (objuser.roleId == 7)
+                                    Session["adminFlag"] = 1;
+                                else if (objuser.roleId == 8)
+                                    Session["adminFlag"] = 0;
+                                else
+                                    Session["adminFlag"] = -1;
+                                lblErrorMessage_Authorize.Visible = false;
+                                Response.Redirect("AdminHome.aspx", false);
+                            }
                         }
-                        else if (objuser.roleId == 3)
+                        else
                         {
-                            //External Merchant
-                            Response.Redirect("ExternalUser.aspx", false);
-                        }
-                        else if (objuser.roleId == 4)
-                        {
-                            //Internal_Regular
-                            Response.Redirect("InternalUser.aspx", false);
-                        }
-                        else if (objuser.roleId == 5)
-                        {
-                            //Internal_DeptManager
-                            Response.Redirect("InternalUser.aspx", false);
-                        }
-                        else if (objuser.roleId == 6)
-                        {
-                            //Internal_HigherManager
-                            Response.Redirect("InternalUser.aspx", false);
-                        }
-                        else if (objuser.roleId == 7 || objuser.roleId == 8)
-                        {
-                            //Internal_Admin || Superuser
-                            if (objuser.roleId == 7)
-                                Session["adminFlag"] = 1;
-                            else if (objuser.roleId == 8)
-                                Session["adminFlag"] = 0;
+                            //Check the number of attempts using the session object.
+                            if (Convert.ToInt32(Session["NoAttempts"].ToString()) >= 2)
+                            {
+                                //Lock User
+                                bool block = UserModel.UpdateUser(Session["userName"].ToString());
+                                if (block)
+                                {
+                                    lblErrorMessage_Authorize.Text = "The User Account has been locked. Kindly try after 1 hour";
+                                    TB_Password.Text = "";
+                                    lblErrorMessage_Authorize.Visible = true;                                    
+                                }
+                            }
                             else
-                                Session["adminFlag"] = -1;
-                            lblErrorMessage_Authorize.Visible = false;
-                            Response.Redirect("AdminHome.aspx", false);
+                            {
+                                lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
+                                TB_Password.Text = "";
+                                lblErrorMessage_Authorize.Visible = true;
+                                Session["NoAttempts"] = ++noAttempts;
+                            }
                         }
-                    }                    
+                    }
                     else
                     {
-                        lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
-                        TB_Password.Text = "";
-                        lblErrorMessage_Authorize.Visible = true;
+                        //Update the UI with error message.
+                        //Check the number of attempts using the session object.
+                        if (Convert.ToInt32(Session["NoAttempts"].ToString()) >= 2)
+                        {
+                            //Lock User
+                            bool block = UserModel.UpdateUser(Session["userName"].ToString());
+                            if (block)
+                            {
+                                lblErrorMessage_Authorize.Text = "The User Account has been locked. Kindly try after 1 hour";
+                                TB_Password.Text = "";
+                                lblErrorMessage_Authorize.Visible = true;                                
+                            }
+                        }
+                        else
+                        {
+                            lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
+                            TB_Password.Text = "";
+                            lblErrorMessage_Authorize.Visible = true;
+                            Session["NoAttempts"] = ++noAttempts;
+                        }
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
-                    lblErrorMessage_Authorize.Text = "Invalid Password. Please try again (Max 3 Attempts)";
+                    lblErrorMessage_Authorize.Text = "Please enter the password";
                     TB_Password.Text = "";
                     lblErrorMessage_Authorize.Visible = true;
                 }
+                
             }
             catch (Exception exp)
             {

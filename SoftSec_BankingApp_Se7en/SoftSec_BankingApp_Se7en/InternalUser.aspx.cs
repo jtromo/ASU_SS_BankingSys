@@ -18,8 +18,18 @@ namespace SoftSec_BankingApp_Se7en
         private static List<Models.Tables.Transaction> lstTransaction = null;
         private static string fromAccNum_ModTrans = string.Empty;
         private static string toAccNum_ModTrans = string.Empty;
+        private static List<Transaction> currentPendingTransReqs;
+        private static int currentSelectedReqIndex;
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            placeReqBT.Visible = false;
+            requetAuthLb.Visible = false;
+            authorizerDropDown.Visible = false;
+            approveReqBT.Visible = false;
+            rejectReqBT.Visible = false;
+
+             
             try
             {
                 if (!IsPostBack)
@@ -387,19 +397,37 @@ namespace SoftSec_BankingApp_Se7en
                                     if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
-                                        string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
-                                                                           " Amount : " + tb_amount_IU_Inside.Text.ToString();
-                                        int transactionId = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
-                                                                   Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
-                                        if (transactionId > 0)
+                                        double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
+                                        if (amount < 10000)
                                         {
-                                            lblSuccess_IUInside.Text = "Transaction Successful";
-                                            lblSuccess_IUInside.Visible = true;
+
+                                            string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
+                                                                               " Amount : " + tb_amount_IU_Inside.Text.ToString();
+                                            int insertedtransID = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                                                       Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+                                            if (insertedtransID>0)
+                                            {
+                                                lblSuccess_IUInside.Text = "Transaction Successful";
+                                                lblSuccess_IUInside.Visible = true;
+                                            }
+                                            else
+                                            {
+                                                lblSuccess_IUInside.Text = "Transaction Unsuccessful";
+                                                lblSuccess_IUInside.Visible = true;
+                                            }
                                         }
-                                        else
-                                        {
-                                            lblSuccess_IUInside.Text = "Transaction Unsuccessful";
-                                            lblSuccess_IUInside.Visible = true;
+                                        else {
+                                            lblSuccess_IUInside.Text = "This transcation needs approval,please choose an authorizer";
+                                            int DeptID =Convert.ToInt32( reqAuthDeptIDTB.Text);
+                                            int RoleID = Convert.ToInt32(reqAuthRoleIDTB.Text);
+                                            List<User> relevantAuthorizers=new List<User>();
+                                            relevantAuthorizers=UserModel.GetUsersForDepartmentIdRoleId(DeptID,RoleID);
+                                            authorizerDropDown.DataSource=relevantAuthorizers;;
+                                            authorizerDropDown.DataBind();
+                                            authorizerDropDown.Visible=true;
+                                            requetAuthLb.Visible=true;
+                                            placeReqBT.Visible=true;
+                                        
                                         }
                                     }
                                 }
@@ -561,9 +589,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string desc = "From : " + accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString() + " To : " + tb_AccNumoutside_Intenal.Text.ToString() +
                                                                        " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
-                                int transactionId = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
+                                int success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
                                                             tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
-                                if (transactionId > 0)
+                                if (success>0)
                                 {
                                     lblStatus_OutsideBank.Text = "Transaction Successful";
 
@@ -613,11 +641,11 @@ namespace SoftSec_BankingApp_Se7en
                     //Proceed with business logic here
                     string iToAcc = toAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
                     string ifromAcc = fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
-                    int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                    int success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
                                 "From : " + fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString() +
                                     "To : " + toAccTypeDD_TransferExistingCust_Between.Text.ToString() +
                                         "- Amount : " + tb_amountbetween.Text.ToString());
-                    if (transactionId > 0)
+                    if (success>0)
                     {
                         lblStatus_Between.Text = "Transaction Successful";
                         lblStatus_Between.Visible = true;
@@ -659,10 +687,10 @@ namespace SoftSec_BankingApp_Se7en
                         if (objCard.expirationDate.Equals(sCardExp))
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_DebitFunds.Text.ToString()))
-                            {
-                                int transactionId = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                            {                                
+                                int success = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
                                                              Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
-                                if (transactionId > 0)
+                                if (success>0)
                                 {
                                     lblStatus_DebitFunds.Text = "Transaction Successful";
                                     lblStatus_DebitFunds.Visible = true;
@@ -715,9 +743,9 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_CreditFunds.Text.ToString()))
                             {
-                                int transactionId = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                                int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
                                                              Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
-                                if (transactionId > 0)
+                                if (success>0)
                                 {
                                     lblStatus_CreditFunds.Text = "Transaction Successful";
                                     lblStatus_CreditFunds.Visible = true;
@@ -871,9 +899,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = objCard.accountNumber;
-                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_SubmitPayment.Text.ToString()),
+                                int success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_SubmitPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_SubmitPayment.Text.ToString());
-                                if (transactionId > 0)
+                                if (success>0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
                                     lblSubmitPayment.Visible = true;
@@ -1304,9 +1332,9 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 string sToAcc = merchant_savingsAccNum;
                                 string sfromAcc = tb_echeckaccno.Text.ToString();
-                                int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tbAmount_EcheckPayment.Text.ToString()),
+                                int success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tbAmount_EcheckPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tbAmount_EcheckPayment.Text.ToString());
-                                if (transactionId > 0)
+                                if (success>0)
                                 {
                                     lblEcheckPayment.Text = "Transaction Successful";
                                     lblEcheckPayment.Visible = true;
@@ -2052,8 +2080,8 @@ namespace SoftSec_BankingApp_Se7en
                                         double netAmount = Convert.ToDouble(lblAmount_ModifyTrans.Text) - Convert.ToDouble(tb_Amount_ModifyTrans.Text);
                                         string desc = "From :" + objToNewAccount.accountNumber + " To :" + objFromAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
                                                         + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
-                                        int transactionId = TransactionModel.MakeInternalTransfer(objToNewAccount.accountNumber, objFromAccount.accountNumber, netAmount, desc);
-                                        if (transactionId > 0)
+                                        int success = TransactionModel.MakeInternalTransfer(objToNewAccount.accountNumber, objFromAccount.accountNumber, netAmount, desc);
+                                        if (success>0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2073,8 +2101,8 @@ namespace SoftSec_BankingApp_Se7en
                                         double netAmount = Convert.ToDouble(tb_Amount_ModifyTrans.Text) - Convert.ToDouble(lblAmount_ModifyTrans.Text);
                                         string desc = "From :" + objFromAccount.accountNumber + " To :" + objToNewAccount.accountNumber + " Amount :" + tb_Amount_ModifyTrans.Text
                                                         + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
-                                        int transactionId = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber, netAmount, desc);
-                                        if (transactionId > 0)
+                                        int success = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber, netAmount, desc);
+                                        if (success>0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2098,9 +2126,9 @@ namespace SoftSec_BankingApp_Se7en
                                     //Same amount. Then it involves only 2 accounts.
                                     string desc = "From : " + objToOrgAccount.accountNumber + " To :" + objToNewAccount.accountNumber
                                                     + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
-                                    int transactionId = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objToNewAccount.accountNumber,
+                                    int success = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objToNewAccount.accountNumber,
                                                                                                 Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                    if (transactionId > 0)
+                                    if (success>0)
                                     {
                                         lblStatus_ModifyStatus.Text = "Modification Successful";
                                         lblStatus_ModifyStatus.Visible = true;
@@ -2122,7 +2150,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                     int firstSuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber
                                                                                                         , Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
-                                    if (firstSuccess > 0)
+                                    if (firstSuccess>0)
                                     {
                                         //Trasfer new amount to new account.
                                         desc = string.Empty;
@@ -2130,7 +2158,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     + " Amount :" + tb_Amount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                         int secondSuccess = TransactionModel.MakeInternalTransfer(objFromAccount.accountNumber, objToNewAccount.accountNumber,
                                                                                                     Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                        if (secondSuccess > 0)
+                                        if (secondSuccess>0)
                                         {
                                             lblStatus_ModifyStatus.Text = "Modification Successful";
                                             lblStatus_ModifyStatus.Visible = true;
@@ -2163,14 +2191,14 @@ namespace SoftSec_BankingApp_Se7en
                                                 + " Amount :" + lblAmount_ModifyTrans.Text + " Modify Transaction :" + tb_transID_ModifyTrans.Text;
                                 int firstsuccess = TransactionModel.MakeInternalTransfer(objToOrgAccount.accountNumber, objFromAccount.accountNumber,
                                                                                             Convert.ToDouble(lblAmount_ModifyTrans.Text), desc);
-                                if (firstsuccess > 0)
+                                if (firstsuccess>0)
                                 {
                                     desc = string.Empty;
                                     desc = "From : " + objFromAccount.accountNumber + " To : " + tb_AccNum_modifyTrans.Text + " Amount : "
                                                         + tb_Amount_ModifyTrans.Text + " Modify Transaction : " + tb_transID_ModifyTrans.Text;
                                     int secondSuccess = TransactionModel.MakeExternalTransfer(objFromAccount.accountNumber, objFromAccount.routingNumber,
                                                                                 tb_AccNum_modifyTrans.Text, tb_RoutNum_modifyTrans.Text, Convert.ToDouble(tb_Amount_ModifyTrans.Text), desc);
-                                    if (secondSuccess > 0)
+                                    if (secondSuccess>0)
                                     {
                                         lblStatus_ModifyStatus.Text = "Modification Successful";
                                         lblStatus_ModifyStatus.Visible = true;
@@ -2424,5 +2452,155 @@ namespace SoftSec_BankingApp_Se7en
                 Response.Redirect("ExternalHomePage.aspx", false);
             }
         }
+
+        protected void placeReqBT_Click(object sender, EventArgs e)
+        {
+            bool serverSideValidation = false;
+            try
+            {
+            serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
+                                            tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
+                                            tb_securitycode_IU_Inside.Text.ToString());
+                if (serverSideValidation)
+                {
+                    //Proceed with business logic here
+                    Models.Tables.Card objCard = new Models.Tables.Card();
+                    objCard = AccountModel.GetCardDetails(tb_card_IU_Inside.Text.ToString(), fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString());
+                    if (objCard != null)
+                    {
+                        string sCardExp = string.Empty;
+                        sCardExp = monthDD_TransferExistingCust_Inside.SelectedValue.ToString() + yearDD_TransferExistingCust_Inside.SelectedValue.ToString();
+
+                        if (objCard.expirationDate.Equals(sCardExp))
+                        {
+                            if (objCard.cvv == Convert.ToInt32(tb_securitycode_IU_Inside.Text.ToString()))
+                            {
+                                LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
+                                if (objLastZip != null)
+                                {
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
+                                            && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
+                                    {
+                                        double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
+                                        if (amount >= 10000)
+                                        {
+
+                                            string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
+                                                                               " Amount : " + tb_amount_IU_Inside.Text.ToString();
+                                            int success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                                                       Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+                                           //
+                                            if (success>0)
+                                            {
+                                                lblSuccess_IUInside.Text = "Transaction Successful";
+                                                lblSuccess_IUInside.Visible = true;
+                                            }
+                                            else
+                                            {
+                                                lblSuccess_IUInside.Text = "Transaction Unsuccessful";
+                                                lblSuccess_IUInside.Visible = true;
+                                            }
+                                        }
+                                        else {
+                                            lblSuccess_IUInside.Text = "This transaction needs no approval,proceed with normal transfer";
+                                            requetAuthLb.Visible = false;
+                                            authorizerDropDown.Visible = false;
+                                            placeReqBT.Visible = false;
+                                        }
+                                        
+                                    }
+                                }
+                                else
+                                {
+                                    //Invalid Zip and Last name combination
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
+                    else
+                    {
+                        //Invalid Card Details
+                    }
+                }
+                else
+                {
+                    //Update the UI with error message.
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+            }
+        }
+
+        protected void reGridSelectedRowAtIndex(object sender, EventArgs e)
+        {
+            currentSelectedReqIndex = reqGridV.SelectedIndex;
+            approveReqBT.Visible = true;
+            rejectReqBT.Visible = true;
+           
+        }
+
+        protected void reqLookUPBT_Click(object sender, EventArgs e)
+        {
+            string username = lookUPUserNameTF.Text.ToString();
+            currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
+            reqGridV.DataSource = currentPendingTransReqs;
+            reqGridV.DataBind();
+        }
+
+        protected void approveReqBT_Click(object sender, EventArgs e)
+        {
+            Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
+            double amountInvolved =Convert.ToDouble( currentreqTrans.amount);
+            //Check for limit based on role
+
+            if (amountInvolved < 30000)
+            {
+
+                bool approved = TransactionModel.ApproveTransaction(currentreqTrans.id);
+                if (approved)
+                {
+                    reqResultLB.Text = "Successfully approved";
+
+                }
+                else
+                {
+                    reqResultLB.Text = "Request could not be approved";
+                }
+
+
+            }
+            else {
+                reqResultLB.Text = "Limit exceeded please escalate the request";
+            }
+
+        }
+
+        protected void rejectReqBT_Click(object sender, EventArgs e)
+        {
+            Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
+            bool rejected = TransactionModel.RejectTransaction(currentreqTrans.id);
+            if (rejected)
+            {
+                reqResultLB.Text = "Successfully Rejected";
+
+            }
+            else
+            {
+                reqResultLB.Text = "Request could not be Rejected";
+            }
+
+
+        }
+
     }
 }

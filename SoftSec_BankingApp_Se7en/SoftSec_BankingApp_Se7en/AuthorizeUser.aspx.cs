@@ -18,7 +18,17 @@ namespace SoftSec_BankingApp_Se7en
             if (!IsPostBack)
             {
                 objuser = UserModel.GetUser(Session["userName"].ToString());
-                SiteKey.ImageUrl = "./Images/SiteKeys/SiteKey" + objuser.siteKeyVal + ".jpg";
+                if (objuser.siteKeyVal == 0)
+                {
+                    lblSiteKeyText.Text = "Please set your site key";
+                    lblSiteKeyText.Visible = true;
+                }
+                else
+                {
+                    SiteKey.ImageUrl = "./Images/SiteKeys/SiteKey" + objuser.siteKeyVal + ".jpg";
+                    lblSiteKeyText.Text = objuser.siteKeyString;
+                    lblSiteKeyText.Visible = true;
+                }
                 lblErrorMessage_Authorize.Visible = false;
                 Session["NoAttempts"] = 0;
             }

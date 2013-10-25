@@ -208,6 +208,7 @@
     <Content Include="Images\gallery\image_05_s.jpg" />
     <Content Include="Images\gallery\image_06_l.jpg" />
     <Content Include="Images\gallery\image_06_s.jpg" />
+    <Content Include="Images\invalidrole.jpg" />
     <Content Include="Images\lightbox-blank.gif" />
     <Content Include="Images\lightbox-btn-close.gif" />
     <Content Include="Images\lightbox-btn-next.gif" />
@@ -281,6 +282,7 @@
     <Content Include="Images\thumb3.jpg" />
     <Content Include="Images\timeout.jpg" />
     <Content Include="InternalUser.aspx" />
+    <Content Include="InvalidUserRole.aspx" />
     <Content Include="OTPPrelim.aspx" />
     <Content Include="packages.config" />
     <Content Include="Final.Master" />
@@ -447,6 +449,13 @@
     </Compile>
     <Compile Include="InternalUser.aspx.designer.cs">
       <DependentUpon>InternalUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InvalidUserRole.aspx.cs">
+      <DependentUpon>InvalidUserRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InvalidUserRole.aspx.designer.cs">
+      <DependentUpon>InvalidUserRole.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />

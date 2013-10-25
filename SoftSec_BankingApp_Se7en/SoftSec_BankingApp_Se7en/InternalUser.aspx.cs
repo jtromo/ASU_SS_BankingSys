@@ -1084,8 +1084,10 @@ namespace SoftSec_BankingApp_Se7en
                             userToCreate.middleName = tb_MiddleName_Cust.Text.ToString();
                             userToCreate.lastName = tb_LastName_Cust.Text.ToString();
                             userToCreate.email = tb_Email_Cust.Text.ToString();
-                            userToCreate.roleId = 1;
+                            userToCreate.roleId = Convert.ToInt32(DD_Role_NewCustomer.SelectedValue); ;
                             Address addressForUser = new Address();
+                            addressForUser.firstName = tb_FirstName_Cust.Text.ToString();
+                            addressForUser.lastName = tb_LastName_Cust.Text.ToString();
                             addressForUser.street1 = tb_StreetAddr_Cust.Text.ToString();
                             addressForUser.city = tb_City_Cust.Text.ToString();
                             addressForUser.state = StateDD_Cust.Text.ToString();
@@ -1115,21 +1117,21 @@ namespace SoftSec_BankingApp_Se7en
                             cardForUser.cardNumber = cardNumber;
                             cardForUser.accountNumber = checkingAccountNumber;
                             cardForUser.cvv = cvvNum;
-                            cardForUser.expirationDate = "11/2018";
+                            cardForUser.expirationDate = "1118";
                             cardForUser.firstName = userToCreate.firstName;
                             cardForUser.middleInitial = userToCreate.middleName;
                             cardForUser.lastName = userToCreate.lastName;
                             List<SecurityQuestion> securityQuestionsForUser = new List<SecurityQuestion>();
                             SecurityQuestion securityQuestionForUser1 = new SecurityQuestion();
-                            securityQuestionForUser1.questionId = Sec1DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser1.questionId = Convert.ToInt32(Sec1DD_PersonalInformation.SelectedValue);
                             securityQuestionForUser1.answer = tb_SecAns1_Cust.Text.ToString();
                             securityQuestionsForUser.Add(securityQuestionForUser1);
                             SecurityQuestion securityQuestionForUser2 = new SecurityQuestion();
-                            securityQuestionForUser2.questionId = Sec2DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser2.questionId = Convert.ToInt32(Sec2DD_PersonalInformation.SelectedValue);
                             securityQuestionForUser2.answer = tb_SecAns2_Cust.Text.ToString();
                             securityQuestionsForUser.Add(securityQuestionForUser2);
                             SecurityQuestion securityQuestionForUser3 = new SecurityQuestion();
-                            securityQuestionForUser3.questionId = Sec3DD_PersonalInformation.SelectedIndex;
+                            securityQuestionForUser3.questionId = Convert.ToInt32(Sec3DD_PersonalInformation.SelectedValue);
                             securityQuestionForUser3.answer = tb_SecAns3_Cust.Text.ToString();
                             securityQuestionsForUser.Add(securityQuestionForUser3);
                             string socialSecurityNumber = tb_SSN_Cust.Text.ToString();
@@ -1781,6 +1783,10 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
+                if (strMName.Length == 0)
+                {
+                    strMName = " ";
+                } 
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bFName = fieldValidator.validate_Names(strFName);
                 bool bMName = fieldValidator.validate_Names(strMName);

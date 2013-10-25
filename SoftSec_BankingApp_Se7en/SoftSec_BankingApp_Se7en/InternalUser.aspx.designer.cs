@@ -1390,6 +1390,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_Zip_Cust;
         
         /// <summary>
+        /// DD_Role_NewCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DD_Role_NewCustomer;
+        
+        /// <summary>
         /// CheckBoxList1 control.
         /// </summary>
         /// <remarks>

@@ -67,6 +67,42 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_LastName_Emp;
         
         /// <summary>
+        /// tb_StreetAddr_Emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_StreetAddr_Emp;
+        
+        /// <summary>
+        /// tb_City_Emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_City_Emp;
+        
+        /// <summary>
+        /// tb_Zip_Emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_Zip_Emp;
+        
+        /// <summary>
+        /// StateDD_Emp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList StateDD_Emp;
+        
+        /// <summary>
         /// DeptDD_AddEmp control.
         /// </summary>
         /// <remarks>
@@ -103,31 +139,31 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_Phone_Emp;
         
         /// <summary>
-        /// tb_UserName_AddEmp control.
+        /// monthDD_PersonalInformation_AddEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_UserName_AddEmp;
+        protected global::System.Web.UI.WebControls.DropDownList monthDD_PersonalInformation_AddEmp;
         
         /// <summary>
-        /// tb_Password_AddEmp control.
+        /// dayDD_PersonalInformation_AddEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Password_AddEmp;
+        protected global::System.Web.UI.WebControls.DropDownList dayDD_PersonalInformation_AddEmp;
         
         /// <summary>
-        /// tb_ConfPassword_AddEmp control.
+        /// tb_BirthYear_AddEmp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_ConfPassword_AddEmp;
+        protected global::System.Web.UI.WebControls.TextBox tb_BirthYear_AddEmp;
         
         /// <summary>
         /// btn_AddEmp control.

@@ -5,13 +5,12 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </p>
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="3" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="0" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>
-
-                                <br />
-                                Employee Details: (You need to have the employee with you while adding him)<br />
+                <br />
+                                Employee Details: (You need to have the employee details with you while adding him)<br />
                                 First Name:&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_FirstName_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 &nbsp;&nbsp;&nbsp;&nbsp; Middle Name:&nbsp;
@@ -19,6 +18,68 @@
                                 &nbsp;&nbsp;&nbsp;&nbsp; Last Name:&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_LastName_Emp" runat="server" Height="22px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
+                                Street Address:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_StreetAddr_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <br />
+                                City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_City_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zip:
+                                <asp:TextBox ID="tb_Zip_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <br />
+                                State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="StateDD_Emp" runat="server">
+                                    <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                    <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                    <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                    <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                    <asp:ListItem Value="CA">California</asp:ListItem>
+                                    <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                    <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                    <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                    <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                    <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                    <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                    <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                    <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                    <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                    <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                    <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                    <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                    <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                    <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                    <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                    <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                    <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                    <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                    <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                    <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                    <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                    <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                    <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                    <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                    <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                    <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                    <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                    <asp:ListItem Value="NY">New York</asp:ListItem>
+                                    <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                    <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                    <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                    <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                    <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                    <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                    <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                    <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                    <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                    <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                    <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                    <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                    <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                    <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                    <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                    <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                    <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                </asp:DropDownList>
                                 <br />
                                 Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="DeptDD_AddEmp" runat="server">
@@ -44,21 +105,65 @@
                                 Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_Phone_Emp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
-                                Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_UserName_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
-                                <br />
-                                Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Password_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
-                                <br />
-                                Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_ConfPassword_AddEmp" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                Date of Birth:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="monthDD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem>MM</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="dayDD_PersonalInformation_AddEmp" runat="server">
+                                    <asp:ListItem>DD</asp:ListItem>
+                                    <asp:ListItem>01</asp:ListItem>
+                                    <asp:ListItem>02</asp:ListItem>
+                                    <asp:ListItem>03</asp:ListItem>
+                                    <asp:ListItem>04</asp:ListItem>
+                                    <asp:ListItem>05</asp:ListItem>
+                                    <asp:ListItem>06</asp:ListItem>
+                                    <asp:ListItem>07</asp:ListItem>
+                                    <asp:ListItem>08</asp:ListItem>
+                                    <asp:ListItem>09</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>11</asp:ListItem>
+                                    <asp:ListItem>12</asp:ListItem>
+                                    <asp:ListItem>13</asp:ListItem>
+                                    <asp:ListItem>14</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>16</asp:ListItem>
+                                    <asp:ListItem>17</asp:ListItem>
+                                    <asp:ListItem>18</asp:ListItem>
+                                    <asp:ListItem>19</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>21</asp:ListItem>
+                                    <asp:ListItem>22</asp:ListItem>
+                                    <asp:ListItem>23</asp:ListItem>
+                                    <asp:ListItem>24</asp:ListItem>
+                                    <asp:ListItem>25</asp:ListItem>
+                                    <asp:ListItem>26</asp:ListItem>
+                                    <asp:ListItem>27</asp:ListItem>
+                                    <asp:ListItem>28</asp:ListItem>
+                                    <asp:ListItem>29</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>31</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:TextBox ID="tb_BirthYear_AddEmp" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_AddEmp" runat="server" Text="Add Employee" OnClick="btn_AddEmp_Click" />
                                 <br />
 
                                 <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                </ContentTemplate>
+
+            </ContentTemplate>
         </asp:TabPanel>
         <asp:TabPanel runat="server" HeaderText="Remove Employee" ID="removeEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>

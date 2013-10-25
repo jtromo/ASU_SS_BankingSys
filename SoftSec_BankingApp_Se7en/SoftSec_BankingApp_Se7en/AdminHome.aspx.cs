@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -258,83 +259,80 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-                //bool serverSideValidation1 = false;
-                //bool serverSideValidation2 = false;
-                //try
-                //{
-                //    serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
-                //        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text.ToString(), tb_City_Emp.Text.ToString(), tb_Phone_Emp.Text.ToString()
-                //        , tb_Zip_Emp.Text.ToString());
-                //    serverSideValidation2 = validateFromFields(tb_UserName_AddEmp.Text.ToString(), tb_Password_AddEmp.Text.ToString(), tb_ConfPassword_AddEmp.Text.ToString()
-                //        , tb_SecAns1_AddEmp.Text.ToString(), tb_SecAns2_AddEmp.Text.ToString(), tb_SecAns3_AddEmp.Text.ToString(), tb_SSN_AddEmp.Text.ToString()
-                //        , tb_sitekeyhint_AddEmp.Text.ToString(), tb_BirthYear_AddEmp.Text.ToString());
-                //    if (serverSideValidation1 && serverSideValidation2)
-                //    {
-                //        User userForName = new User();
-                //        userForName = UserModel.GetUser(tb_UserName_AddEmp.Text.ToString());
-                //        if (userForName != null)
-                //        {
-
-                //            Label1.Visible = true;
-                //            Label1.Text = "User name already Exists";
-                //        }
-                //        else
-                //        {
-
-                //            string passwordForUser = tb_Password_AddEmp.Text.ToString();
-                //            string confirmPassword = tb_ConfPassword_AddEmp.Text.ToString();
-                //            if (passwordForUser.Equals(confirmPassword))
-                //            {
-                //                User userToCreate = new User();
-                //                userToCreate.firstName = tb_FirstName_Emp.Text.ToString();
-                //                userToCreate.middleName = tb_MidName_Emp.Text.ToString();
-                //                userToCreate.lastName = tb_LastName_Emp.Text.ToString();
-                //                userToCreate.email = tb_Email_Emp.Text.ToString();
-                //                userToCreate.departmentId = Convert.ToInt32(DeptDD_AddEmp.SelectedValue);
-                //                userToCreate.roleId = Convert.ToInt32(RoleDD_AddEmp.SelectedValue);
-                //                Address addressForUser = new Address();
-
-                //                addressForUser.country = "US";
-                //                userToCreate.phone = tb_Phone_Emp.Text.ToString();
-                //                userToCreate.username = tb_UserName_AddEmp.Text.ToString();
-
-
-
-                //                bool userCreated = UserModel.CreateEmployee(userToCreate, passwordForUser, addressForUser, null);
-                //                if (userCreated)
-                //                {
-                //                    Label1.Visible = true;
-                //                    Label1.Text = "User successfully created";
-                //                }
-                //                else
-                //                {
-                //                    Label1.Visible = true;
-                //                    Label1.Text = "User could Not be created";
-                //                }
-                //            }
-                //            else
-                //            {
-                //                Label1.Visible = true;
-                //                Label1.Text = "Passwords Do Not Match";
-
-                //            }
-
-                //        }
-
-
-                //    }
-                //    else
-                //    {
-                //        //Update the UI with error message.
-                //    }
-                //}
-                //catch (Exception exp)
-                //{
-                //    //Log Exception here
-                //}
+                bool serverSideValidation1 = false;
+                bool serverSideValidation2 = false;
+                try
+                {
+                    serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
+                        , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString() , tb_Zip_Emp.Text.ToString());
+                    FieldValidator fieldValidator = new FieldValidator();
+                    serverSideValidation2 = fieldValidator.validate_ZipAccCrdPhn(tb_BirthYear_AddEmp.Text.ToString(), 4);
+                    if (serverSideValidation1 && serverSideValidation2)
+                    {
+                        //Generating Username
+                        string usernameGenerated = generateUsername(tb_FirstName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString());
+                        string passwordGenerated = generatePassword();
+                        User userForName = new User();
+                        userForName = UserModel.GetUser(usernameGenerated);
+                        while (userForName != null)
+                        {
+                            usernameGenerated = generateUsername(tb_FirstName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString());
+                            userForName = UserModel.GetUser(usernameGenerated);
+                        }
+                        User userToCreate = new User();
+                        userToCreate.firstName = tb_FirstName_Emp.Text.ToString();
+                        userToCreate.middleName = tb_MidName_Emp.Text.ToString();
+                        userToCreate.lastName = tb_LastName_Emp.Text.ToString();
+                        userToCreate.email = tb_Email_Emp.Text.ToString();
+                        userToCreate.departmentId = Convert.ToInt32(DeptDD_AddEmp.SelectedValue);
+                        userToCreate.roleId = Convert.ToInt32(RoleDD_AddEmp.SelectedValue);
+                        userToCreate.isActive = true;
+                        Address addressForUser = new Address();
+                        addressForUser.firstName = userToCreate.firstName;
+                        addressForUser.lastName = userToCreate.lastName;
+                        addressForUser.country = "US";
+                        userToCreate.phone = tb_Phone_Emp.Text.ToString();
+                        userToCreate.username = usernameGenerated;
+                        string userDOB = monthDD_PersonalInformation_AddEmp.Text.ToString() + "/" + dayDD_PersonalInformation_AddEmp.Text.ToString() + "/" + tb_BirthYear_AddEmp.Text.ToString();
+                        bool userCreated = UserModel.CreateEmployee(userToCreate, passwordGenerated, "", userDOB, addressForUser, null);
+                        if (userCreated)
+                        {
+                            //Mailing employee
+                            MailMessage mMailMessage = new MailMessage();
+                            mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                            mMailMessage.To.Add(new MailAddress(tb_Email_Emp.Text.ToString()));
+                            mMailMessage.Subject = "New Employee information";
+                            string bodyOfMail = "You have been added as a New Employee to Bank of Se7en. Following are";
+                            bodyOfMail += " your details: <br> Username: " + usernameGenerated + "<br> Password: " + passwordGenerated;
+                            bodyOfMail += "<br> Please login to the system and make sure you add security questions and a sitekey.<br>";
+                            bodyOfMail += "Regards, <br> BankofSe7en";                              
+                            mMailMessage.Body = bodyOfMail;
+                            mMailMessage.IsBodyHtml = true;
+                            mMailMessage.Priority = MailPriority.Normal;
+                            SmtpClient mSmtpClient = new SmtpClient();
+                            mSmtpClient.EnableSsl = true;
+                            mSmtpClient.Send(mMailMessage);
+                            Label1.Visible = true;
+                            Label1.Text = "Employee added successfully\nUsername and Password have been mailed to the Employee";                            
+                        }
+                        else
+                        {
+                            Label1.Visible = true;
+                            Label1.Text = "There was an unfortunate error in processing. Please try again";
+                        }
+                    }
+                    else
+                    {
+                        Label1.Visible = true;
+                        Label1.Text = "Please check the information you entered. It does not seem to be right.";
+                    }
+                }
+                catch (Exception exp)
+                {
+                    //Log Exception here
+                }
             }
         }
-
 
         protected void tabAdmin_ActiveTabChanged(object sender, EventArgs e)
         {
@@ -790,6 +788,29 @@ namespace SoftSec_BankingApp_Se7en
                     reqErrorLb.Text = "Decision already made";
                 }
             }
+        }
+
+        protected string generateUsername(string firstName,string lastName)
+        {
+            string username = "";
+            if ((firstName.Length < 2) || (lastName.Length < 5))
+            {
+                Random rand = new Random();
+                username = firstName + lastName + rand.Next(10000000); 
+            }
+            else 
+            {
+                Random rand = new Random();
+                username = firstName.Substring(0, 2) + lastName.Substring(0, 5) + rand.Next(1000);
+            }
+            return username;
+        }
+
+        protected string generatePassword()
+        {
+            Random rand = new Random();
+            string password = "Ss" + rand.Next(1000000) + "q" + "#";
+            return password;
         }
     }
 }

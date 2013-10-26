@@ -327,7 +327,7 @@ namespace SoftSec_BankingApp_Se7en
                 try
                 {
                     serverSideValidation = validateFromFields_editProfile(tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(),
-                                            tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(), tb_nicknameedit.Text.ToString());
+                                            tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(), "jaffa");
                     if (serverSideValidation)
                     {
                         //Proceed with business logic here

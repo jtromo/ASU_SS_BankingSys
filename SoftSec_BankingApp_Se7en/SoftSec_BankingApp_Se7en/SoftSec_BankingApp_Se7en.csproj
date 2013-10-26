@@ -195,6 +195,7 @@
     <Content Include="ForgotPassword.aspx" />
     <Content Include="HomePage.aspx" />
     <Content Include="Images\banklogo.jpg" />
+    <Content Include="Images\contact.jpg" />
     <Content Include="Images\error.jpg" />
     <Content Include="Images\gallery\image_01_l.jpg" />
     <Content Include="Images\gallery\image_01_s.jpg" />
@@ -222,6 +223,7 @@
     <Content Include="Images\onebit_17.png" />
     <Content Include="Images\onebit_18.png" />
     <Content Include="Images\onebit_19.png" />
+    <Content Include="Images\seven.JPG" />
     <Content Include="Images\SiteKeys\SiteKey1.jpg" />
     <Content Include="Images\SiteKeys\SiteKey10.jpg" />
     <Content Include="Images\SiteKeys\SiteKey11.jpg" />
@@ -283,6 +285,7 @@
     <Content Include="Images\timeout.jpg" />
     <Content Include="InternalUser.aspx" />
     <Content Include="InvalidUserRole.aspx" />
+    <Content Include="Locations.aspx" />
     <Content Include="OTPPrelim.aspx" />
     <Content Include="packages.config" />
     <Content Include="Final.Master" />
@@ -295,7 +298,6 @@
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="script\contentslider.js" />
@@ -313,6 +315,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminHome.aspx.cs">
       <DependentUpon>AdminHome.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -321,13 +330,6 @@
       <DependentUpon>AdminHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,13 +386,6 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -456,6 +451,13 @@
     </Compile>
     <Compile Include="InvalidUserRole.aspx.designer.cs">
       <DependentUpon>InvalidUserRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Locations.aspx.cs">
+      <DependentUpon>Locations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Locations.aspx.designer.cs">
+      <DependentUpon>Locations.aspx</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />

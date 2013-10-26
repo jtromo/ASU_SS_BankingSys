@@ -4,10 +4,17 @@
 <%@ Register assembly="Recaptcha" namespace="Recaptcha" tagprefix="recaptcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CSS/PasswordStyle.css" rel="stylesheet" type="text/css" />
+    
+    <script language="javascript" type="text/javascript">
+        function LoadAllowBlock() {
+            var tabcont = $get('<%=TabContainer1.ClientID%>');
+            __doPostBack(tabcont, '');
+        }
+</script>
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access

@@ -7,7 +7,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -871,7 +871,7 @@
             <asp:TabPanel ID="tab_newcustomer" runat="server" HeaderText="New Customer" TabIndex="1">
                 <ContentTemplate>
                     <br />
-                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="0" Width="918px">
+                                       <asp:TabContainer ID="TabContainer6" runat="server" ActiveTabIndex="1" Width="918px">
                         <asp:TabPanel ID="tab_employee" runat="server" HeaderText="Employee">
 
                             <HeaderTemplate>
@@ -994,16 +994,23 @@
                                 <asp:TextBox ID="tb_UserName_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
                                 Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_Password_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <asp:TextBox ID="tb_Password_Cust" runat="server" oncopy="return false" onpaste="return false" TextMode="Password"></asp:TextBox>
                                 <br />
                                 Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:TextBox ID="tb_ConfPassword_Cust" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <asp:TextBox ID="tb_ConfPassword_Cust" runat="server" oncopy="return false" onpaste="return false" TextMode="Password"></asp:TextBox>
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec1DD_PersonalInformation" runat="server">
-                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1011,9 +1018,16 @@
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec2DD_PersonalInformation" runat="server">
-                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1021,9 +1035,16 @@
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec3DD_PersonalInformation" runat="server">
-                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

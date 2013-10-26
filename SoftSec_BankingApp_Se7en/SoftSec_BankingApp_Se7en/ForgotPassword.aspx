@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Final.Master" AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" Inherits="SoftSec_BankingApp_Se7en.ForgotPassword" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+<%@ Register TagPrefix="recaptcha" Namespace="Recaptcha" Assembly="Recaptcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
             <h6 __designer:mapid="2290">Security Questions</h6>
             <p __designer:mapid="2293">
@@ -58,7 +59,6 @@
 <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
 <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
 </asp:DropDownList>
-
             </p>
             <p __designer:mapid="22be">
                 Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -70,6 +70,12 @@
                 &nbsp;</p>
             <p __designer:mapid="22be">
                 &nbsp;</p>
+    <recaptcha:RecaptchaControl
+    ID="recaptcha"
+    runat="server"
+    PublicKey="6LdqzOgSAAAAAPJVdYTT5sdiTvhy0jvglZWOmaX1"
+    PrivateKey="6LdqzOgSAAAAAKRePKZH_6jMLAJlr3uWxc0lOQIX"
+    />
             <p __designer:mapid="22be">
                 Enter New Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_newpwd" runat="server" oncopy="return false" onpaste="return false" TextMode="Password"></asp:TextBox>

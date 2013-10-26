@@ -61,6 +61,53 @@ namespace SoftSec_BankingApp_Se7en
             return userCreated;
         }
 
+        public static bool AddRegularUser()
+        {
+            User userToCreate = new User();
+            userToCreate.firstName = "jack";
+            userToCreate.middleName = "";
+            userToCreate.lastName = "Cech";
+            userToCreate.email = "jackcech@gmail.com";
+            userToCreate.roleId = 2;
+            Address addressForUser = new Address();
+            addressForUser.firstName = "jack";
+            addressForUser.lastName = "Cech";
+            addressForUser.street1 = "The Batcave";
+            addressForUser.city = "Gotham";
+            addressForUser.state = "NY";
+            addressForUser.country = "US";
+            addressForUser.zip = 70007;
+            userToCreate.phone = "4803268372";
+            userToCreate.username = "jackcech";
+            userToCreate.siteKeyVal = 15;
+            userToCreate.siteKeyString = "Save";
+            string userDOB = "01" + "/" + "22" + "/" + "1990";
+            bool userCreated1 = UserModel.CreateEmployee(userToCreate, "Catwoman143!", "875487544", userDOB, addressForUser, null);
+            
+
+            
+            userToCreate.firstName = "jill";
+            userToCreate.middleName = "";
+            userToCreate.lastName = "Cech";
+            userToCreate.email = "jillcech@gmail.com";
+            userToCreate.roleId = 2;
+           
+            addressForUser.firstName = "jill";
+            addressForUser.lastName = "Cech";
+            addressForUser.street1 = "The Batcave";
+            addressForUser.city = "Gotham";
+            addressForUser.state = "NY";
+            addressForUser.country = "US";
+            addressForUser.zip = 70007;
+            userToCreate.phone = "4803268372";
+            userToCreate.username = "jillcech";
+            userToCreate.siteKeyVal = 15;
+            userToCreate.siteKeyString = "Save";
+            string userDOB2 = "01" + "/" + "22" + "/" + "1990";
+            bool userCreated = UserModel.CreateEmployee(userToCreate, "Catwoman143!", "875487544", userDOB2, addressForUser, null);
+            return (userCreated&&userCreated1);
+        }
+
         public static bool AddDepartmentManager()
         {
             User userToCreate = new User();

@@ -111,5 +111,16 @@ namespace SoftSec_BankingApp_Se7en
                 Label1.Text = "You screwed it up :P";
             }
         }
+
+        protected void addRegUserBT_Click(object sender, EventArgs e)
+        {
+            if (PopulateDBInitial.AddRegularUser()) {
+                Label1.Text = "regular users added!!";
+            }
+            else
+            {
+                Label1.Text = "You screwed it up :P";
+            }
+        }
     }
 }

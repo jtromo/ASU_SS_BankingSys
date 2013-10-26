@@ -37,62 +37,69 @@ namespace SoftSec_BankingApp_Se7en
         protected void btn_changepwd_Click(object sender, EventArgs e)
         {
             //Check if the answers are valid inputs
-            bool serverSideValidation = false;
-            Dictionary<int, string> dictAns = new Dictionary<int, string>();
-            try
+            if (Page.IsValid)
             {
-                dictAns.Add(1, tb_secans1.Text.ToString());
-                dictAns.Add(2, tb_secans2.Text.ToString());
-                dictAns.Add(3, tb_secans3.Text.ToString());
-
-                serverSideValidation = validateFromFields_forgotPwd(dictAns, tb_newpwd.Text, tb_newpwd2.Text);
-                if (serverSideValidation)
+                bool serverSideValidation = false;
+                Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                try
                 {
-                    string strAns1 = (lstQandA.First().answer).ToLower();
-                    string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
-                    string strAns3 = (lstQandA.Last().answer).ToLower();
+                    dictAns.Add(1, tb_secans1.Text.ToString());
+                    dictAns.Add(2, tb_secans2.Text.ToString());
+                    dictAns.Add(3, tb_secans3.Text.ToString());
 
-                    if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
-                            && tb_secans3.Text.ToLower().Equals(strAns3))
+                    serverSideValidation = validateFromFields_forgotPwd(dictAns, tb_newpwd.Text, tb_newpwd2.Text);
+                    if (serverSideValidation)
                     {
-                        if (tb_newpwd.Text.Equals(tb_newpwd2.Text))
+                        string strAns1 = (lstQandA.First().answer).ToLower();
+                        string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                        string strAns3 = (lstQandA.Last().answer).ToLower();
+
+                        if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
+                                && tb_secans3.Text.ToLower().Equals(strAns3))
                         {
-                            bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newpwd.Text.ToString());
-                            if (success)
+                            if (tb_newpwd.Text.Equals(tb_newpwd2.Text))
                             {
-                                lblStatus_ForgotPassword.Text = "Password Changed Successfully";
-                                lblStatus_ForgotPassword.Visible = true;
+                                bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newpwd.Text.ToString());
+                                if (success)
+                                {
+                                    lblStatus_ForgotPassword.Text = "Password Changed Successfully";
+                                    lblStatus_ForgotPassword.Visible = true;
+                                }
+                                else
+                                {
+                                    lblStatus_ForgotPassword.Text = "Password Changed Failed, Please try again";
+                                    lblStatus_ForgotPassword.Visible = true;
+                                }
                             }
                             else
                             {
-                                lblStatus_ForgotPassword.Text = "Password Changed Failed, Please try again";
+                                //New Passwords Dont match
+                                lblStatus_ForgotPassword.Text = "Passwords don't match, Please try again";
                                 lblStatus_ForgotPassword.Visible = true;
                             }
                         }
                         else
                         {
-                            //New Passwords Dont match
-                            lblStatus_ForgotPassword.Text = "Passwords don't match, Please try again";
+                            //Invalid Answers
+                            lblStatus_ForgotPassword.Text = "Invalid answers, Please try again";
                             lblStatus_ForgotPassword.Visible = true;
                         }
                     }
                     else
                     {
-                        //Invalid Answers
-                        lblStatus_ForgotPassword.Text = "Invalid answers, Please try again";
+                        //Update the UI with error message.
+                        lblStatus_ForgotPassword.Text = "Invalid Entries, Please try again";
                         lblStatus_ForgotPassword.Visible = true;
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
-                    lblStatus_ForgotPassword.Text = "Invalid Entries, Please try again";
-                    lblStatus_ForgotPassword.Visible = true;
+                    //Log Exception here
                 }
             }
-            catch (Exception exp)
-            {
-                //Log Exception here
+            else {
+                lblStatus_ForgotPassword.Text = "check captcha";
+                lblStatus_ForgotPassword.Visible = true;
             }
         }
 

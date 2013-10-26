@@ -25,6 +25,7 @@
         <p>
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Button" />
+            <asp:Button ID="addRegUserBT" runat="server" OnClick="addRegUserBT_Click" Text="add regular user" />
         </p>
         <p>
             &nbsp;</p>

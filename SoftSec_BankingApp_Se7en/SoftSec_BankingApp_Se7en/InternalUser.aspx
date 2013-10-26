@@ -4,10 +4,17 @@
 <%@ Register assembly="Recaptcha" namespace="Recaptcha" tagprefix="recaptcha" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CSS/PasswordStyle.css" rel="stylesheet" type="text/css" />
+    
+    <script language="javascript" type="text/javascript">
+        function LoadAllowBlock() {
+            var tabcont = $get('<%=TabContainer1.ClientID%>');
+            __doPostBack(tabcont, '');
+        }
+</script>
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" AutoPostBack="True" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -1001,9 +1008,9 @@
                                 <br />
                                 Security Question 1:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec1DD_PersonalInformation" runat="server">
-                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                     <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
                     <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
                     <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
@@ -1018,9 +1025,9 @@
                                 <br />
                                 Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec2DD_PersonalInformation" runat="server">
-                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                     <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
                     <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
                     <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
@@ -1035,9 +1042,9 @@
                                 <br />
                                 Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="Sec3DD_PersonalInformation" runat="server">
-                                     <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
-                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
-                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
                     <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
                     <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
                     <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
@@ -1147,7 +1154,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="2" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

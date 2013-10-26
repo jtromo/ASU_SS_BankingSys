@@ -99,6 +99,7 @@ namespace SoftSec_BankingApp_Se7en
                         if ( userRole == 4)
                         {
                             //Regular Employee
+                            TabContainer1.ActiveTabIndex = 0;
                             TabContainer1.Visible = true;
                             TabContainer1.Tabs[2].Visible = false;
                             TabContainer1.Tabs[3].Visible = false;
@@ -109,15 +110,17 @@ namespace SoftSec_BankingApp_Se7en
                         else if ( userRole == 5)
                         {
                             //Department Manager
+                            TabContainer1.ActiveTabIndex = 0;
                             TabContainer1.Visible = true;
                             TabContainer1.Tabs[2].Visible = true;
                             TabContainer1.Tabs[3].Visible = true;
                             TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = false;
+                            TabContainer1.Tabs[1].Visible = false;                           
                         }
                         else if (userRole == 6)
                         {
                             //Higher Management
+                            TabContainer1.ActiveTabIndex = 2;
                             TabContainer1.Visible = true;
                             TabContainer1.Tabs[0].Visible = false;
                             TabContainer1.Tabs[1].Visible = false;
@@ -2634,35 +2637,35 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
-                {
-                    if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                    if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
                     {
-                        TabContainer1.Visible = true;
+                        if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
+                        {
+                            TabContainer1.Visible = true;
+                        }
+                        else
+                        {
+                            //Call log out function here
+                            //Reset Session Variables
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }
                     }
-                    else
+                    else if (TabContainer1.ActiveTabIndex == 2 || TabContainer1.ActiveTabIndex == 3)
                     {
-                        //Call log out function here
-                        //Reset Session Variables
-                        Session["userName"] = "";                        
-                        Response.Redirect("ExternalHomePage.aspx", false);
+                        if (objUsr != null && (objUsr.roleId == 5 || objUsr.roleId == 6))
+                        {
+                            TabContainer1.Visible = true;
+                        }
+                        else
+                        {
+                            //Call log out function here
+                            Session["userName"] = "";
+                            Response.Redirect("ExternalHomePage.aspx", false);
+                        }
                     }
                 }
-                else if (TabContainer1.ActiveTabIndex == 2 || TabContainer1.ActiveTabIndex == 3)
-                {
-                    if (objUsr != null && (objUsr.roleId == 5 || objUsr.roleId == 6))
-                    {
-                        TabContainer1.Visible = true;
-                    }
-                    else
-                    {
-                        //Call log out function here
-                        Session["userName"] = "";
-                        Response.Redirect("ExternalHomePage.aspx", false);
-                    }
-                }
-            }
             }
             catch (Exception exp)
             {

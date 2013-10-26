@@ -327,7 +327,7 @@ namespace SoftSec_BankingApp_Se7en
                 try
                 {
                     serverSideValidation = validateFromFields_editProfile(tb_emailedit.Text.ToString(), tb_addr_editprofile.Text.ToString(),
-                                            tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(),"doggy");
+                                            tb_city_editProfile.Text.ToString(), tb_zip_editProfile.Text.ToString(), tb_contactedit.Text.ToString(), "jaffa");
                     if (serverSideValidation)
                     {
                         //Proceed with business logic here
@@ -426,82 +426,82 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Page.IsValid)
             {
-                if (Session["userName"] == null)
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                //Make a payment on behalf of the customer
+                bool serverSideValidation = false;
+                try
                 {
-                    Response.Redirect("SessionTimeOut.aspx");
-                }
-                else
-                {
-                    //Make a payment on behalf of the customer
-                    bool serverSideValidation = false;
-                    try
+                    Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                    dictAns.Add(1, tb_secans1.Text.ToString());
+                    dictAns.Add(2, tb_secans2.Text.ToString());
+                    dictAns.Add(3, tb_secans3.Text.ToString());
+                    serverSideValidation = validateFromFields(tb_oldpwd.Text.ToString(), dictAns, tb_newPass.Text.ToString(), tb_confrimPass.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        Dictionary<int, string> dictAns = new Dictionary<int, string>();
-                        dictAns.Add(1, tb_secans1.Text.ToString());
-                        dictAns.Add(2, tb_secans2.Text.ToString());
-                        dictAns.Add(3, tb_secans3.Text.ToString());
-                        serverSideValidation = validateFromFields(tb_oldpwd.Text.ToString(), dictAns, tb_newPass.Text.ToString(), tb_confrimPass.Text.ToString());
-                        if (serverSideValidation)
+                        //Proceed with business logic here
+                        if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
                         {
-                            //Proceed with business logic here
-                            if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd.Text.ToString()) > 0)
-                            {
-                                string strAns1 = (lstQandA.First().answer).ToLower();
-                                string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
-                                string strAns3 = (lstQandA.Last().answer).ToLower();
+                            string strAns1 = (lstQandA.First().answer).ToLower();
+                            string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                            string strAns3 = (lstQandA.Last().answer).ToLower();
 
-                                if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
-                                        && tb_secans3.Text.ToLower().Equals(strAns3))
+                            if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
+                                    && tb_secans3.Text.ToLower().Equals(strAns3))
+                            {
+                                if (tb_newPass.Text.Equals(tb_confrimPass.Text) && !(tb_newPass.Text.Equals(tb_oldpwd.Text.ToString())))
                                 {
-                                    if (tb_newPass.Text.Equals(tb_confrimPass.Text) && !(tb_newPass.Text.Equals(tb_oldpwd.Text.ToString())))
+                                    bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
+                                    if (success)
                                     {
-                                        bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass.Text.ToString());
-                                        if (success)
-                                        {
-                                            lblStatus_ChgPwd.Text = "Password Changed Successfully";
-                                            lblStatus_ChgPwd.Visible = true;
-                                        }
-                                        else
-                                        {
-                                            lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
-                                            lblStatus_ChgPwd.Visible = true;
-                                        }
+                                        lblStatus_ChgPwd.Text = "Password Changed Successfully";
+                                        lblStatus_ChgPwd.Visible = true;
                                     }
                                     else
                                     {
-                                        lblStatus_ChgPwd.Text = "passwords dont match";
+                                        lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
                                         lblStatus_ChgPwd.Visible = true;
                                     }
                                 }
                                 else
                                 {
-                                    lblStatus_ChgPwd.Text = "Answers Dont match";
-                                    lblStatus_ChgPwd.Visible = true;
+                                        lblStatus_ChgPwd.Text = "passwords dont match";
+                                        lblStatus_ChgPwd.Visible = true;
                                 }
                             }
                             else
                             {
-                                lblStatus_ChgPwd.Text = "Old password Dont match";
-                                lblStatus_ChgPwd.Visible = true;
+                                    lblStatus_ChgPwd.Text = "Answers Dont match";
+                                    lblStatus_ChgPwd.Visible = true;
                             }
                         }
                         else
                         {
-                            //Update the UI with error message.
-                            lblStatus_ChgPwd.Text = "Failed to fetch pwd info";
-                            lblStatus_ChgPwd.Visible = true;
+                                lblStatus_ChgPwd.Text = "Old password Dont match";
+                                lblStatus_ChgPwd.Visible = true;
                         }
                     }
-                    catch (Exception exp)
+                    else
                     {
-                        //Log Exception here
+                        //Update the UI with error message.
+                            lblStatus_ChgPwd.Text = "Failed to fetch pwd info";
+                            lblStatus_ChgPwd.Visible = true;
                     }
                 }
+                catch (Exception exp)
+                {
+                    //Log Exception here
+                }
+            }
             }
             else {
                 lblStatus_ChgPwd.Text = "check captcha";
                 lblStatus_ChgPwd.Visible = true;
-            }
+        }
         }
 
         /// <summary>

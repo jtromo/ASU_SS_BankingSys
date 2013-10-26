@@ -69,6 +69,12 @@
             <p __designer:mapid="22be">
                 &nbsp;</p>
             <p __designer:mapid="22be">
+                //Include Captcha</p>
+            <p __designer:mapid="22be">
+                //Include OTP</p>
+            <p __designer:mapid="22be">
+                &nbsp;</p>
+            <p __designer:mapid="22be">
                 &nbsp;</p>
     <recaptcha:RecaptchaControl
     ID="recaptcha"

@@ -167,7 +167,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE mustBeAuthorizedByUserName = @p0", username).ToList();
+                    List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE mustBeAuthorizedByUserName = @p0 status=1", username).ToList();
 
                     if (transactions.Count() < 1)
                     {

@@ -411,7 +411,10 @@ namespace SoftSec_BankingApp_Se7en
                                     if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
+                                       
                                         double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
+                                       
+                                        
                                         if (amount < 1000)
                                         {
 
@@ -456,22 +459,22 @@ namespace SoftSec_BankingApp_Se7en
                                 }
                                 else
                                 {
-                                    //Invalid Zip and Last name combination
+                                    lblSuccess_IUInside.Text = "Please check your zip and lastname";
                                 }
                             }
                             else
                             {
-                                //Invalid Card Details
+                                lblSuccess_IUInside.Text = "Please check your card details";
                             }
                         }
                         else
                         {
-                            //Invalid Card Details
+                            lblSuccess_IUInside.Text = "Please check your card details";
                         }
                     }
                     else
                     {
-                        //Invalid Card Details
+                        lblSuccess_IUInside.Text = "Please check your card details";
                     }
                 }
                 else
@@ -2731,7 +2734,7 @@ namespace SoftSec_BankingApp_Se7en
                                             }
                                             else
                                             {
-                                                lblSuccess_IUInside.Text = "Transaction Unsuccessful";
+                                                lblSuccess_IUInside.Text = "Unsuccessful(check your balance and details)";
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
@@ -2867,8 +2870,8 @@ namespace SoftSec_BankingApp_Se7en
             if (roleID >= 4 && roleID <= 6) {
                 if (roleID == 4)
                 {
-
-                    higherauthorizers = UserModel.GetUsersForDepartmentIdRoleId(deptID, 5);
+                    //default taking transaction dept managers should change the db entries
+                    higherauthorizers = UserModel.GetUsersForRoleId(5);
 
                 }
                 else if(roleID==5) {

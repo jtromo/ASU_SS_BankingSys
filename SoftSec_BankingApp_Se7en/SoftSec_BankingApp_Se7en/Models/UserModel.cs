@@ -165,7 +165,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE departmentId = @p0 roleId = @p1", departmentId, roleId).ToList();
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE departmentId = @p0 AND roleId = @p1", departmentId, roleId).ToList();
 
                     if (users.Count() < 1)
                     {

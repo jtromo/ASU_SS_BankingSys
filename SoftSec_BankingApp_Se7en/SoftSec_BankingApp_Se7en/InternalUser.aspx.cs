@@ -2874,7 +2874,7 @@ namespace SoftSec_BankingApp_Se7en
                 if (roleID == 4)
                 {
                     //default taking transaction dept managers should change the db entries
-                    higherauthorizers = UserModel.GetUsersForRoleId(5);
+                    higherauthorizers = UserModel.GetUsersForDepartmentIdRoleId(4, 5);
 
                 }
                 else if(roleID==5) {

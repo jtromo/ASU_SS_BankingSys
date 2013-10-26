@@ -178,8 +178,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (checkforUSer.roleId > 3)
                             {
-
-                                errorLabel.Text = "User Exists";
+                                errorLabel.Text = "User Details:";
                                 firstNameTextLb_Remove.Text = checkforUSer.firstName;
                                 lastNameTextLb_Remove.Text = checkforUSer.lastName;
                                 int userrole = Convert.ToInt32(checkforUSer.roleId);
@@ -189,11 +188,11 @@ namespace SoftSec_BankingApp_Se7en
                                         break;
                                     case 3: currentRoleTextLb_Remove.Text = "External Merchant";
                                         break;
-                                    case 4: currentRoleTextLb_Remove.Text = "Internal Regular";
+                                    case 4: currentRoleTextLb_Remove.Text = "Internal Regular Employee";
                                         break;
-                                    case 5: currentRoleTextLb_Remove.Text = "Internal Dept Mgr";
+                                    case 5: currentRoleTextLb_Remove.Text = "Internal Department Manager";
                                         break;
-                                    case 6: currentRoleTextLb_Remove.Text = "Internal Higher Mgr";
+                                    case 6: currentRoleTextLb_Remove.Text = "Internal Higher Manager";
                                         break;
                                     case 7: currentRoleTextLb_Remove.Text = "Admin";
                                         break;
@@ -201,8 +200,6 @@ namespace SoftSec_BankingApp_Se7en
                                         break;
                                     default: currentRoleTextLb_Remove.Text = "Invalid Role";
                                         break;
-
-
                                 }
                             }
                             else
@@ -214,13 +211,13 @@ namespace SoftSec_BankingApp_Se7en
                         else
                         {
 
-                            errorLabel.Text = "User does not exist";
+                            errorLabel.Text = "Please check the username you typed in.";
                         }
                     }
                     else
                     {
                         //Update the UI with error message.
-                        errorLabel.Text = "Please verify the User ID you have entered";
+                        errorLabel.Text = "Please check the username you typed in.";
                     }
                 }
                 catch (Exception exp)
@@ -291,6 +288,10 @@ namespace SoftSec_BankingApp_Se7en
                         addressForUser.firstName = userToCreate.firstName;
                         addressForUser.lastName = userToCreate.lastName;
                         addressForUser.country = "US";
+                        addressForUser.street1 = tb_StreetAddr_Emp.Text.ToString();
+                        addressForUser.city = tb_City_Emp.Text.ToString();
+                        addressForUser.state = StateDD_Emp.Text.ToString();
+                        addressForUser.zip = Convert.ToInt32(tb_Zip_Emp.Text);                            
                         userToCreate.phone = tb_Phone_Emp.Text.ToString();
                         userToCreate.username = usernameGenerated;
                         string userDOB = monthDD_PersonalInformation_AddEmp.Text.ToString() + "/" + dayDD_PersonalInformation_AddEmp.Text.ToString() + "/" + tb_BirthYear_AddEmp.Text.ToString();

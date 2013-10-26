@@ -25,8 +25,8 @@ namespace SoftSec_BankingApp_Se7en
             {
                 try
                 {
-
-                    if (UserModel.GetUser(Session["userName"].ToString()).roleId != 3)
+                    int roleId = Convert.ToInt32(UserModel.GetUser(Session["userName"].ToString()).roleId);
+                    if (roleId != 2 && roleId!=3)
                     {
                         Response.Redirect("InvalidUserRole.aspx",false);
                     }
@@ -62,7 +62,7 @@ namespace SoftSec_BankingApp_Se7en
                                     List<Models.Tables.Account> lstAcc = objCol.ToList();
                                     foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        if (acc.accountTypeId == 3)
+                                        if (acc.accountTypeId == 2)
                                         {
                                             //Savings Account
                                             tb_savings.Text = acc.accountNumber.ToString();
@@ -72,7 +72,7 @@ namespace SoftSec_BankingApp_Se7en
                                             dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
                                             tb_savings.ReadOnly = true;
                                         }
-                                        else if (acc.accountTypeId == 2)
+                                        else if (acc.accountTypeId == 1)
                                         {
                                             //checkings account
                                             tb_checking.Text = acc.accountNumber.ToString();
@@ -962,6 +962,12 @@ namespace SoftSec_BankingApp_Se7en
                     //Log Exceptions here
                 }
             }
+        }
+
+        protected void bt_logout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("ExternalHomePage.aspx");
         }
     }
 }

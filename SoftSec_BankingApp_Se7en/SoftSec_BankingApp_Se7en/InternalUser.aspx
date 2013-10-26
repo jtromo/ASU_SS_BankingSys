@@ -14,12 +14,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:LinkButton ID="bt_logout" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Small" OnClick="bt_logout_Click">LOG OUT</asp:LinkButton>
-            <br />
-&nbsp;
-
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -88,12 +83,12 @@
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
                         <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
-                    <br></br>
-                    Checking Account:
+                    </br>
+                    <br>Checking Account:
                     <asp:TextBox ID="tb_checking" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_checking" runat="server" OnClick="btn_checking_Click" Text="View Summary" />
@@ -103,22 +98,30 @@
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_savings" runat="server" OnClick="btn_savings_Click" Text="View Summary" />
                     <br />
-                    Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_credit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btn_credit" runat="server" Text="View Summary" />
-                    <br />
                     <br />
                     <br>
                     <br>
                     <asp:GridView ID="grdTransaction" runat="server">
                     </asp:GridView>
+                    <br>
                     <br></br>
                     <br>
                     <br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
                     <br></br>
                     <br></br>
                     <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
                     </br>
                     </br>
                     </br>
@@ -977,16 +980,9 @@
                                     <asp:ListItem Value="2">Individual</asp:ListItem>
                                     <asp:ListItem Value="3">Merchant</asp:ListItem>
                                 </asp:DropDownList>
-                                <br />
                                
                                 <br />
-                                Account Types:&nbsp;&nbsp;
-                                <asp:CheckBoxList ID="CheckBoxList1" runat="server">
-                                    <asp:ListItem>Checking Account</asp:ListItem>
-                                    <asp:ListItem>Savings Account</asp:ListItem>
-                                    <asp:ListItem>Credit Account</asp:ListItem>
-                                </asp:CheckBoxList>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_createcust" runat="server" Text="Next" OnClick="btn_createcust_Click" />
@@ -1159,7 +1155,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="0" Width="917px">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="2" Width="917px">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                             <ContentTemplate>
 

@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
@@ -25,11 +25,7 @@
                     <asp:TextBox ID="tb_savings" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
                     &nbsp;&nbsp;
                     <asp:Button ID="btn_savings" runat="server"  Text="View Summary" OnClick="btn_savings_Click" />
-                    <br />
-                    Credit Account:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:TextBox ID="tb_credit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
-                    &nbsp;&nbsp;
-                    <asp:Button ID="btn_credit" runat="server"  Text="View Summary" />
+                    &nbsp;
                     <br />
                     <br />
                     <br /> <br>
@@ -39,32 +35,83 @@
                     <br>
                     <br>
                     <br>
+                    <br>
                     <br></br>
+                    <br>
                     <br></br>
                     <br>
                     <br>
                     <br>
                     <br>
+                    <br>
                     <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br>
                     <br></br>
                     <br>
                     <br>
                     <br></br>
+                    <br>
                     <br></br>
                     <br>
                     <br>
                     <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
+                    <br></br>
+                    <br>
                     <br></br>
                     <br>
                     <br></br>
                     <br></br>
-                    <br>
-                    <br></br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br></br>
-                    <br>
                     <br></br>
                     <br></br>
                     <br></br>
@@ -80,9 +127,38 @@
                     <br></br>
                     <br></br>
                     <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
+                    </br>
                     </br>
                     </br>
                     </br>

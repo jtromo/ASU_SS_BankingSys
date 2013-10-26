@@ -4,20 +4,15 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <title>Personal Accounts</title>
+        <title>Bank of Se7en</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" />
-
     
     <style type="text/css">
-        .auto-style1 {
-            text-align: left;
-        }
-        .auto-style2 {
-            text-align: left;
-            width: 287px;
-        }
         .auto-style3 {
             margin-left: 0px;
+        }
+        .auto-style7 {
+            width: 272px;
         }
     </style>
 </head>
@@ -30,11 +25,10 @@
         </div>
         <div id="menu">
             <ul>
-                <li><a href="ExternalHomePage.apsx" class="current">Home</a></li>
-                <li><a href="banking.html">Banking</a></li>
-                <li><a href="locations.html">Locations</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="ExternalHomePage.aspx">Home</a></li>
+                <li><a href="Locations.aspx">Locations</a></li>
+                <li><a href="About.aspx">About Us</a></li>
+                <li><a href="Contact.aspx">Contact</a></li>
             </ul>    	
         </div> 
     </div>      
@@ -48,37 +42,37 @@
     	<div class="col_allw300">
         	<h4>Our Pages</h4>
             <ul class="footer_list">
-            	<li><a href="index.html">Home</a></li>
+            	<li><a href="ExternalHomePage.aspx">Home</a></li>
             </ul>
             <ul class="footer_list">
             	<li>
             <ul class="footer_list">
-                <li><a href="banking.html">Banking</a></li>
-                <li><a href="locations.html">Locations</a></li>
-                <li><a href="about.html">About US</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="Locations.aspx">Locations</a></li>
+                <li><a href="About.aspx">About US</a></li>
+                <li><a href="Contact.aspx">Contact</a></li>
             </ul>
                 </li>
             </ul>
         </div>
     	<div class="col_allw300">
-        	<h4>Our Partners</h4>
+        	<h4>Banking</h4>
             <ul class="footer_list">
-                <li><a href="http://www.koflash.com/" target="_parent">Credit Funds</a></li>            
+                <li>Credit Funds</li>            
                 </ul>
             <ul class="footer_list">
                 <li>
             <ul class="footer_list">
-            	<li><a href="http://www.flashmo.com/" target="_parent">Debit Funds</a></li>
-                <li><a href="http://www.templatemo.com/" target="_parent">Transfer Funds</a></li>
-                <li><a href="http://www.flashmo.com/store" target="_parent">Payments</a></li>
+            	<li>Debit Funds</li>
+                <li>Transfer Funds</li>
+                <li>Payments</span></li>
                 </ul>
                 </li>
             </ul>
         </div>
     	<div class="col_allw300 col_last">
+            
         	<h4>About Us</h4>
-            <p class="auto-style2">Bank of Se7en is a <a href="http://www.templatemo.com/" target="_blank">Online secured bank system</a> brought to you by <a href="http://www.templatemo.com/" target="_blank">Software Security - Team 7</a>. </p>
+            <ul class="footer_list"><li class="auto-style7">Bank of Se7en is a Online secured bank system brought to you by Software Security - Team 7. </li></ul>
         </div>                
     
         <div class="cleaner"></div>

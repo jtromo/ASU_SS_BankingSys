@@ -7,11 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace SoftSec_BankingApp_Se7en
 {
-    public partial class About : Page
+    public partial class About : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            img_about.ImageUrl = "/Images/seven.jpg";
         }
     }
 }

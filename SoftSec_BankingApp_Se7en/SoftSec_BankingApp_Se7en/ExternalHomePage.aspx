@@ -18,18 +18,6 @@
 
     
 
-    <style type="text/css">
-        .auto-style1 {
-            text-align: justify;
-        }
-        .auto-style2 {
-            text-align: left;
-            width: 282px;
-        }
-    </style>
-
-    
-
     <div style="height:600px";>
         <div>
             <div id="middle">
@@ -78,7 +66,7 @@
         </div>
         <div id="mid_left">
             <div id="mid_title">A Secure Banking System</div>
-            <p>This website will facilitate the you to manage your bank accounts, transfers, direct deposits, etc online in a secured way.</p>
+            <p>This website will facilitate you to manage your bank accounts, transfers, direct deposits, etc., online in a secured way.</p>
             <div id="learn_more"><a href="#">Learn More</a></div>
 	  </div>
         <div class="cleaner"></div>

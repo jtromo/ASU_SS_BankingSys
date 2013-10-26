@@ -2892,5 +2892,11 @@ namespace SoftSec_BankingApp_Se7en
             return higherUsernames;
         }
 
+        protected void bt_logout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("ExternalHomePage.aspx");
+        }
+
     }
 }

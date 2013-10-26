@@ -813,5 +813,11 @@ namespace SoftSec_BankingApp_Se7en
             string password = "Ss" + rand.Next(1000000) + "q" + "#";
             return password;
         }
+
+        protected void bt_logout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("ExternalHomePage.aspx");
+        }
     }
 }

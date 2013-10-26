@@ -5,7 +5,7 @@
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
     </p>
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="0" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="5" Height="800px" Width="858px" OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>
@@ -395,10 +395,287 @@
                 <asp:Button ID="approveRequestBT" runat="server" OnClick="approveRequestBT_Click" Text="Approve" />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="rejectReqBT" runat="server" OnClick="rejectReqBT_Click" Text="Reject" />
-
             </ContentTemplate>
-
         </asp:TabPanel>
+        
+            <asp:TabPanel ID="tab_profile" runat="server" HeaderText="Profile">
+                <ContentTemplate>
+                    <br />
+                    <h6>Contact Information&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Settings</h6>
+  
+                     <p>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;
+                         <asp:TextBox ID="tb_emailview" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password (last updated):
+                         <asp:TextBox ID="tb_pwdlastview" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                    </p>
+                     <p>Street Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                         <asp:TextBox ID="tb_streetAddress" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <asp:TextBox ID="tb_usernameview" runat="server" Enabled="False" oncopy="return false" onpaste="return false" ></asp:TextBox>
+                    </p>
+                     <p>
+                         City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                         <asp:TextBox ID="tb_city" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                         &nbsp;</p>
+                     <p>
+                         State&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                         <asp:DropDownList ID="StateDD_Profile" runat="server" Enabled="False">
+                             <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                             <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                             <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                             <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                             <asp:ListItem Value="CA">California</asp:ListItem>
+                             <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                             <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                             <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                             <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                             <asp:ListItem Value="FL">Florida</asp:ListItem>
+                             <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                             <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                             <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                             <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                             <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                             <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                             <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                             <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                             <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                             <asp:ListItem Value="ME">Maine</asp:ListItem>
+                             <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                             <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                             <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                             <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                             <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                             <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                             <asp:ListItem Value="MT">Montana</asp:ListItem>
+                             <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                             <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                             <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                             <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                             <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                             <asp:ListItem Value="NY">New York</asp:ListItem>
+                             <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                             <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                             <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                             <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                             <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                             <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                             <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                             <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                             <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                             <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                             <asp:ListItem Value="TX">Texas</asp:ListItem>
+                             <asp:ListItem Value="UT">Utah</asp:ListItem>
+                             <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                             <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                             <asp:ListItem Value="WA">Washington</asp:ListItem>
+                             <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                             <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                             <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                         </asp:DropDownList>
+                    </p>
+                    <p>
+                        ZipCode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;
+                        <asp:TextBox ID="tb_ZipCode_Profile" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                    </p>
+                     <p>Contact:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
+                         <asp:TextBox ID="tb_contactview" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nickname:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <asp:TextBox ID="tb_nicknameview" runat="server" Enabled="False" oncopy="return false" onpaste="return false"></asp:TextBox>
+                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btnEditProfile" runat="server" Text="Edit Profile" OnClick="btnEditProfile_Click" />
+                    </p>
+                     <p>
+                    </p>
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="1" Height="362px" Width="837px" Visible="False" OnActiveTabChanged="TabContainer3_ActiveTabChanged" AutoPostBack="True">
+                        <asp:TabPanel ID="tabeditprofile" runat="server" HeaderText="Edit Profile" Height="600px" Width="124px">
+                            <ContentTemplate>
+
+                                <br />
+                                <h6>Contact Information</h6>
+                                <p>
+                                    Email Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
+                                    <asp:TextBox ID="tb_emailedit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                </p>
+                                <p>
+                                    Street Address&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
+                                    <asp:TextBox ID="tb_addr_editprofile" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                    &nbsp;&nbsp; City&nbsp; :
+                                    <asp:TextBox ID="tb_city_editProfile" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                    &nbsp;
+                                </p>
+                                <p>
+                                    &nbsp;State&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:DropDownList ID="StateDD_EditProfile" runat="server">
+                                        <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                        <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                        <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                        <asp:ListItem Value="AR">Arkansas</asp:ListItem>
+                                        <asp:ListItem Value="CA">California</asp:ListItem>
+                                        <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                        <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                        <asp:ListItem Value="DC">District of Columbia</asp:ListItem>
+                                        <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                        <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                        <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                        <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                        <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                        <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                        <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                        <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                        <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                        <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                        <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                        <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                        <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                        <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                        <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                        <asp:ListItem Value="MN">Minnesota</asp:ListItem>
+                                        <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                        <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                        <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                        <asp:ListItem Value="NE">Nebraska</asp:ListItem>
+                                        <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                        <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                        <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                        <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                        <asp:ListItem Value="NY">New York</asp:ListItem>
+                                        <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                        <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                        <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                        <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                        <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                        <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                        <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                        <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                        <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                        <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                        <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                        <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                        <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                        <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                        <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                        <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                        <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                    </asp:DropDownList>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zip&nbsp; :
+                                    <asp:TextBox ID="tb_zip_editProfile" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                </p>
+                                <p>
+                                    Contact&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;
+                                    <asp:TextBox ID="tb_contactedit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;</p>
+                                <p>
+                                    Nickname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;
+                                    <asp:TextBox ID="tb_nicknameedit" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblChaneProfile" runat="server" Visible="False"></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                                <p>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Button ID="btn_changesettings_profile" runat="server" OnClick="btn_changesettings_profile_Click" Text="Change Profile Settings" />
+                                </p>
+                                <p>
+                                    &nbsp;</p>
+
+                            </ContentTemplate>
+                        </asp:TabPanel>
+                        <asp:TabPanel ID="tabchangepwd" runat="server" HeaderText="Change Password" Height="680px" Width="124px" TabIndex="1">
+                            <HeaderTemplate>
+                                Change Password
+                            </HeaderTemplate>
+                        <ContentTemplate>
+                            <h6>&nbsp;</h6>
+                            <h6>Security Questions</h6>
+            <p>Old Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="tb_oldpwd" runat="server" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
+                <asp:PasswordStrength ID="tb_oldpwd_PasswordStrength" runat="server" CalculationWeightings="50;15;15;20" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_oldpwd" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5" Enabled="True" StrengthStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5">
+                </asp:PasswordStrength>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
+                            <p>
+                                New Password :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="tb_newPass" runat="server" Height="16px" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <asp:PasswordStrength ID="tb_newPass_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_newPass" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5" Enabled="True" StrengthStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5">
+                                </asp:PasswordStrength>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Confirm Password :
+                                <asp:TextBox ID="tb_confrimPass" runat="server" TextMode="Password" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                <asp:PasswordStrength ID="tb_confrimPass_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" TargetControlID="tb_confrimPass" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5" Enabled="True" StrengthStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5">
+                                </asp:PasswordStrength>
+                            </p>
+            <p>Sequrity Question 1:&nbsp;&nbsp;&nbsp;&nbsp; <asp:DropDownList ID="dd_secque1" runat="server" Enabled="False" EnableTheming="True">
+                    <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:TextBox ID="tb_secans1" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+            </p>
+            <p>Security Question 2:&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:DropDownList ID="dd_secque2" runat="server" Enabled="False">
+                    <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="tb_secans2" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+            </p>
+            <p>Security Question 3:&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:DropDownList ID="dd_secque3" runat="server" Enabled="False">
+                    <asp:ListItem Value="Default Question">Select Security Question</asp:ListItem>
+                    <asp:ListItem Value="1">What was your childhood nickname? </asp:ListItem>
+                    <asp:ListItem Value="2">In what city did you meet your spouse/significant other?</asp:ListItem>
+                    <asp:ListItem Value="3">What is the name of your favorite childhood friend? </asp:ListItem>
+                    <asp:ListItem Value="4">What is your oldest sibling&#39;s middle name?</asp:ListItem>
+                    <asp:ListItem Value="5">In what city does your nearest sibling live? </asp:ListItem>
+                    <asp:ListItem Value="6">In what city or town was your first job?</asp:ListItem>
+                    <asp:ListItem Value="7">What is your maternal grandmother&#39;s maiden name?</asp:ListItem>
+                    <asp:ListItem Value="8">What was your favorite place to visit as a child?</asp:ListItem>
+                    <asp:ListItem Value="9">What is the name of your favorite childhood teacher?</asp:ListItem>
+                    <asp:ListItem Value="10">What was the first concert you attended?</asp:ListItem>
+                </asp:DropDownList>
+            </p>
+            <p>Answer:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px" oncopy="return false" onpaste="return false"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Label ID="lblStatus_ChgPwd" runat="server" Visible="False"></asp:Label>
+            </p>
+                            <p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btn_changepwd" runat="server" CssClass="auto-style3" Text="Change Password" OnClick="btn_changepwd_Click" />
+                            </p>
+                            <p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</p>
+                        </ContentTemplate>
+                        </asp:TabPanel>
+                        </asp:TabContainer>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+
+                </ContentTemplate>
+            </asp:TabPanel>
     </asp:TabContainer>
     <p>
         <br /> 

@@ -2654,7 +2654,6 @@ namespace SoftSec_BankingApp_Se7en
                         if (objUsr != null && (objUsr.roleId == 5 || objUsr.roleId == 6))
                         {
                             TabContainer1.Visible = true;
-                            TabContainer1.ActiveTab.ID = Session["activeTab"].ToString();
                         }
                         else
                         {

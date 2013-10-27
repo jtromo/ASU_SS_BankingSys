@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     Checking Account:
@@ -638,13 +638,9 @@
                 <asp:TextBox ID="tb_secans3" runat="server" Height="16px" Width="128px" oncopy="return false" onpaste="return false"></asp:TextBox>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblStatus_ChgPwd" runat="server" Visible="False"></asp:Label>
-            </p><recaptcha:RecaptchaControl
-    ID="recaptcha"
-    runat="server"
-    PublicKey="6LdqzOgSAAAAAPJVdYTT5sdiTvhy0jvglZWOmaX1"
-    PrivateKey="6LdqzOgSAAAAAKRePKZH_6jMLAJlr3uWxc0lOQIX"
-    />
+            </p>
                             <p>
+                                <recaptcha:RecaptchaControl ID="recaptcha" runat="server" PrivateKey="6LdqzOgSAAAAAKRePKZH_6jMLAJlr3uWxc0lOQIX" PublicKey="6LdqzOgSAAAAAPJVdYTT5sdiTvhy0jvglZWOmaX1" />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_changepwd" runat="server" CssClass="auto-style3" Text="Change Password" OnClick="btn_changepwd_Click" />
                             </p>

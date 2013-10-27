@@ -306,6 +306,64 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+
+        public static bool UpdateUserSiteKeyAndQA(string userName, Dictionary<int,string> dictQandA, string strSSN, string strSiteKey,string siteKeyDesc)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", userName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+                    User updatedUser = users.First();
+                    List<SecurityQuestion> lstSecQA = new List<SecurityQuestion>();
+
+                    foreach (var dictVar in dictQandA)
+                    {
+                        SecurityQuestion objSec = new SecurityQuestion();
+                        objSec.userId = updatedUser.id;
+                        objSec.questionId = dictVar.Key;
+                        objSec.answer = dictVar.Value;
+                        lstSecQA.Add(objSec);
+                    }
+
+                    SecurityQuestion objSec1 = new SecurityQuestion();
+                    SecurityQuestion objSec2 = new SecurityQuestion();
+                    SecurityQuestion objSec3 = new SecurityQuestion();
+
+                    objSec1 = lstSecQA.First();
+                    objSec2 = lstSecQA.ElementAt(1);
+                    objSec3 = lstSecQA.Last();
+
+                    updatedUser.SecurityQuestions = lstSecQA;
+                    updatedUser.siteKeyVal = Convert.ToInt16(strSiteKey);
+                    updatedUser.siteKeyString = siteKeyDesc;
+                    updatedUser.SetHashForPassword(strSSN);
+
+                    db.Users.Attach(updatedUser);
+                    //User Model
+                    var vsiteKeyDesc = db.Entry(updatedUser);
+                    vsiteKeyDesc.Property(e => e.siteKeyString).IsModified = true;
+                    var vsiteKeyVal = db.Entry(updatedUser);
+                    vsiteKeyVal.Property(e => e.siteKeyVal).IsModified = true;
+                    var vSSN = db.Entry(updatedUser);
+                    vSSN.Property(e=>e.socialSecurityNumber).IsModified = true;
+                    db.SaveChanges();
+
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
         public static bool UpdateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try

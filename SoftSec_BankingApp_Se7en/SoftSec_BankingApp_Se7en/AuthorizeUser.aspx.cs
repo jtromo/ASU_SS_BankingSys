@@ -16,7 +16,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -44,7 +44,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {

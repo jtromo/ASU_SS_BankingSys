@@ -9,6 +9,7 @@ using System.Net.Mail;
 using SoftSec_BankingApp_Se7en.Models;
 using log4net;
 using System.IO;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -22,9 +23,11 @@ namespace SoftSec_BankingApp_Se7en
         {
             Elog.Error("ieieieie");
             Tlog.Debug("kasjhdksadkasdkasdsakdjsakjdklasjdsklajd Info");
-            
 
-            //GridView2.DataSource = accounts;
+            var db = new SSBankDBContext();
+            List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users").ToList();
+            
+            GridView2.DataSource = users;
             GridView2.DataBind();
 
         }

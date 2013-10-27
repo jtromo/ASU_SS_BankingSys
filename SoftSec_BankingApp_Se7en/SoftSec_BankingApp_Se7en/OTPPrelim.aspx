@@ -34,7 +34,10 @@
         </p>
         <p>
             <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            <asp:GridView ID="GridView2" runat="server" OnSelectedIndexChanged="GridView2_SelectedIndexChanged">
+            <asp:GridView ID="GridView2" runat="server" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateColumns="false">
+                <Columns>
+                    <asp:BoundField DataField="firstName" HeaderText="First Name" />
+                </Columns>
             </asp:GridView>
         </p>
         <p>

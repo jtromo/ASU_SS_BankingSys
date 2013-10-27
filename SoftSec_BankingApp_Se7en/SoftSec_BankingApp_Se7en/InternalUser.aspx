@@ -14,7 +14,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -83,7 +83,7 @@
                         <asp:ListItem>Yes</asp:ListItem>
                         <asp:ListItem Selected="True">No</asp:ListItem>
                     </asp:RadioButtonList>
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="1" Width="925px" AutoPostBack="True" Visible="False" OnActiveTabChanged="TabContainer2_ActiveTabChanged">
                         <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts">
                 <ContentTemplate>
                     <br>
@@ -132,7 +132,7 @@
                         <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers" TabIndex="1">
                             <ContentTemplate>
                                 <br />
-                                Please select the transfer type.<br /> <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                                Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                                     <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                                         <ContentTemplate>
                                             <p>
@@ -1666,6 +1666,11 @@
                 <ContentTemplate>
                     <br />
                     <asp:Button ID="reqLookUPBT" runat="server" OnClick="reqLookUPBT_Click" Text="Look Up" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Label ID="pickAuthlabelinReqTab" runat="server" Text="pick an authorizer"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:DropDownList ID="authorizersDDReqTab" runat="server">
+                    </asp:DropDownList>
                     <br />
                     <br />
                     <asp:Label ID="reqResultLB" runat="server"></asp:Label>
@@ -1677,6 +1682,10 @@
                     <asp:Button ID="approveReqBT" runat="server" OnClick="approveReqBT_Click" Text="Approve" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="rejectReqBT" runat="server" OnClick="rejectReqBT_Click" Text="Reject" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="escalateToPeerBT" runat="server" OnClick="escalateToPeerBT_Click" Text="escalateToPeer" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="escalateTohigherMangerBT" runat="server" OnClick="escalateTohigherMangerBT_Click" Text="Escalate to higher manager" />
                     <br />
                 </ContentTemplate>
             </asp:TabPanel>

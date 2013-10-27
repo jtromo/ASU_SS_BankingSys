@@ -20,6 +20,7 @@ namespace SoftSec_BankingApp_Se7en
         private static string toAccNum_ModTrans = string.Empty;
         private static List<Transaction> currentPendingTransReqs;
         private static int currentSelectedReqIndex;
+        private static Transaction currentSelectedTransReq; 
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -29,6 +30,10 @@ namespace SoftSec_BankingApp_Se7en
             approveReqBT.Visible = false;
             rejectReqBT.Visible = false;
             ErrorLabelInNewCustPI.Visible = false;
+            escalateTohigherMangerBT.Visible = false;
+            escalateToPeerBT.Visible = false;
+            pickAuthlabelinReqTab.Visible = false;
+            authorizersDDReqTab.Visible = false;
             ErrorLabelInNewCustPI.Text = "this is where you get errors";
 
           
@@ -436,25 +441,51 @@ namespace SoftSec_BankingApp_Se7en
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
+                                        else if (amount >= 1000 && amount < 30000)
+                                        {
+
+                                            string desc = "ctLevel1";
+                                            int success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                                                       Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+                                            if (success > 0)
+                                            {
+                                                bool criticaltranslevel1approved = TransactionModel.ApproveTransaction(success);
+                                                if (criticaltranslevel1approved)
+                                                {
+                                                    lblSuccess_IUInside.Text = "Critical Transaction level 1 successfully approved";
+                                                }
+                                                else
+                                                {
+                                                    lblSuccess_IUInside.Text = "Critical Transaction level 1 could not be approved";
+                                                }
+                                            }
                                             else
                                             {
-                                            lblSuccess_IUInside.Text = "This transcation needs approval,please choose an authorizer";
+                                                lblSuccess_IUInside.Text = "Unable to place and approve level 1 request";
+                                            }
+
+
+                                        }
+                                        else {
+
+                                            lblSuccess_IUInside.Text = "This is a level 2 critical transaction,please choose an authorizer to initiate processing";
                                             lblSuccess_IUInside.Visible = true;
-                                            int DeptID =Convert.ToInt32( Session["deptID"]);
+                                            int DeptID = Convert.ToInt32(Session["deptID"]);
                                             int RoleID = Convert.ToInt32(Session["roleID"]);
                                             List<string> higherAuthorizers = getHigherAuthorizersfor(RoleID, DeptID);
                                             if (higherAuthorizers.Count > 0)
                                             {
                                                 authorizerDropDown.DataSource = higherAuthorizers;
-                                            authorizerDropDown.DataBind();
+                                                authorizerDropDown.DataBind();
                                                 authorizerDropDown.Visible = true;
                                                 requetAuthLb.Visible = true;
                                                 placeReqBT.Visible = true;
                                             }
-                                            else {
+                                            else
+                                            {
                                                 lblSuccess_IUInside.Text = "This transcation needs approval,could not find a authorizer";
                                                 lblSuccess_IUInside.Visible = true;
-                                            
+
                                             }
                                         
                                         }
@@ -570,8 +601,8 @@ namespace SoftSec_BankingApp_Se7en
                                         else if (acc.accountTypeId == 3)
                                         {
                                             //credit account
-                                            tb_credit.Text = acc.accountNumber.ToString();
-                                            tb_credit.ReadOnly = true;
+                                            //tb_credit.Text = acc.accountNumber.ToString();
+                                            //tb_credit.ReadOnly = true;
                                         }
                                     }
                                 }
@@ -2528,7 +2559,7 @@ namespace SoftSec_BankingApp_Se7en
                 tbYear_IU.Text = "YYYY";
                 tb_checking.Text = "";
                 tb_savings.Text = "";
-                tb_credit.Text = "";
+              //  tb_credit.Text = "";
                 grdTransaction.DataSource = null;
                 grdTransaction.DataBind();
                 fromAccTypeDD_TransferExistingCust_Inside.Items.Clear();
@@ -2710,23 +2741,22 @@ namespace SoftSec_BankingApp_Se7en
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
                                         double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
-                                        if (amount >= 1000)
+                                        if (amount >= 30000)
                                         {
 
-                                            string desc = "From : " + fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString() + " To : " + tb_recepient_IU_Inside.Text.ToString() +
-                                                                               " Amount : " + tb_amount_IU_Inside.Text.ToString();
-                                            int success = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                            string desc = "crtLevel2ReqInitiated";
+                                            int level2ReqiD = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
                                                                        Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
 
                                             User selectedAuthorizer=UserModel.GetUser(authorizerDropDown.Text.ToString());
                                            
                                            //
-                                                if (success > 0)
+                                            if (level2ReqiD > 0)
                                             {
-                                                bool success1 = TransactionModel.AssignAuthorizationRequestedTransactionToUser(success, selectedAuthorizer.username.ToString(),Convert.ToInt32( selectedAuthorizer.roleId));
-                                                if (success1)
+                                                bool assignedlevel2Trans = TransactionModel.AssignAuthorizationRequestedTransactionToUser(level2ReqiD, selectedAuthorizer.username.ToString(), Convert.ToInt32(selectedAuthorizer.roleId));
+                                                if (assignedlevel2Trans)
                                                 {
-                                                    lblSuccess_IUInside.Text = "Request sucesfully escalated";
+                                                    lblSuccess_IUInside.Text = "Request sucesfully escalated to manager";
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                                 else {
@@ -2737,7 +2767,7 @@ namespace SoftSec_BankingApp_Se7en
                                             }
                                             else
                                             {
-                                                lblSuccess_IUInside.Text = "Unsuccessful(check your balance and details)";
+                                                lblSuccess_IUInside.Text = "Unsuccessful(check balance and details)";
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
@@ -2787,8 +2817,83 @@ namespace SoftSec_BankingApp_Se7en
         protected void reGridSelectedRowAtIndex(object sender, EventArgs e)
         {
             currentSelectedReqIndex = reqGridV.SelectedIndex;
-            approveReqBT.Visible = true;
-            rejectReqBT.Visible = true;
+            currentSelectedTransReq = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
+            string description = currentSelectedTransReq.description;
+            if (description.Equals("crtLevel2ReqInitiated"))
+            { 
+            //New request, requires peer approval
+                reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
+                List<string> peers=new List<string>();
+                peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                if (peers.Count > 0)
+                {
+                    authorizersDDReqTab.DataSource = peers;
+                    authorizersDDReqTab.DataBind();
+                    authorizersDDReqTab.Visible = true;
+                    pickAuthlabelinReqTab.Visible = true;
+                    escalateToPeerBT.Visible = true;
+                    rejectReqBT.Visible = true;
+                }
+                else {
+                    reqResultLB.Text = "This transaction requires peer approval, could not fetch any peers";
+                }
+                escalateToPeerBT.Visible = true;
+            }
+            else if (description.Equals("peerManagerReq"))
+            {
+                //Peer manager Request, Must approve and escalate to higher manager
+                reqResultLB.Text = "This transaction requires higher approval, please authorize and escalate it";
+                List<string> highers = new List<string>();
+                highers = getHigherAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                if (highers.Count > 0)
+                {
+                    authorizersDDReqTab.DataSource = highers;
+                    authorizersDDReqTab.DataBind();
+                    authorizersDDReqTab.Visible = true;
+                    pickAuthlabelinReqTab.Visible = true;
+                    escalateTohigherMangerBT.Visible = true;
+                    rejectReqBT.Visible = true;
+                }
+                else
+                {
+
+                    reqResultLB.Text = "This transaction requires higher approval, could not fetch any higher authorizers";
+                }
+
+            }
+            else if (description.Equals("HigherManagerReq"))
+            { //Higer level manager req, should escalate to higher level peer
+                reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
+                List<string> peers = new List<string>();
+                peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                if (peers.Count > 0)
+                {
+                    authorizersDDReqTab.DataSource = peers;
+                    authorizersDDReqTab.DataBind();
+                    authorizersDDReqTab.Visible = true;
+                    pickAuthlabelinReqTab.Visible = true;
+                    escalateToPeerBT.Visible = true;
+                    rejectReqBT.Visible = true;
+                }
+                else
+                {
+
+                    reqResultLB.Text = "This transaction requires peer approval, could not fetch any peer authorizers";
+                }
+
+            }
+            else if (description.Equals("peerHigherReq"))
+            {//Got all low level authorizations have to be approved
+                approveReqBT.Visible = true;
+                rejectReqBT.Visible = true;
+            
+            }
+            else
+            {
+                reqResultLB.Text = "Unknown transaction type";
+            }
+            reqResultLB.Visible = true;
+            
            
         }
 
@@ -2800,10 +2905,23 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-                string username = Session["userName"].ToString();
+            string username = Session["userName"].ToString();
             currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
-            reqGridV.DataSource = currentPendingTransReqs;
-            reqGridV.DataBind();
+            if (currentPendingTransReqs != null)
+            {
+                if (currentPendingTransReqs.Count > 0)
+                {
+                    reqGridV.DataSource = currentPendingTransReqs;
+                    reqGridV.DataBind();
+                }
+                else
+                {
+                    reqResultLB.Text = "No pending requests";
+                }
+            }
+            else {
+                reqResultLB.Text = "No pending requests";
+            }
         }
         }
 
@@ -2815,14 +2933,8 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-            Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
-                double amountInvolved = Convert.ToDouble(currentreqTrans.amount);
-            //Check for limit based on role
-
-            if (amountInvolved < 30000)
-            {
-
-                bool approved = TransactionModel.ApproveTransaction(currentreqTrans.id);
+            
+                bool approved = TransactionModel.ApproveTransaction(currentSelectedTransReq.id);
                 if (approved)
                 {
                     reqResultLB.Text = "Successfully approved";
@@ -2835,12 +2947,10 @@ namespace SoftSec_BankingApp_Se7en
 
 
             }
-                else
-                {
-                reqResultLB.Text = "Limit exceeded please escalate the request";
-            }
-            }
+            refreshReqUI();
+       
         }
+        
 
         protected void rejectReqBT_Click(object sender, EventArgs e)
         {
@@ -2850,8 +2960,8 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-            Transaction currentreqTrans = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
-            bool rejected = TransactionModel.RejectTransaction(currentreqTrans.id);
+
+                bool rejected = TransactionModel.RejectTransaction(currentSelectedTransReq.id);
             if (rejected)
             {
                 reqResultLB.Text = "Successfully Rejected";
@@ -2862,9 +2972,10 @@ namespace SoftSec_BankingApp_Se7en
                 reqResultLB.Text = "Request could not be Rejected";
             }
             }
-
+            refreshReqUI();
 
         }
+
 
         protected List<string> getHigherAuthorizersfor(int roleID, int deptID)
         {
@@ -2878,7 +2989,7 @@ namespace SoftSec_BankingApp_Se7en
 
                 }
                 else if(roleID==5) {
-
+                    //get all higher level managers
                     higherauthorizers = UserModel.GetUsersForRoleId(6);
 
                 }
@@ -2896,6 +3007,159 @@ namespace SoftSec_BankingApp_Se7en
         {
             Session.Abandon();
             Response.Redirect("ExternalHomePage.aspx");
+        }
+
+        protected List<string> getPeerAuthorizersfor(int roleID, int deptID)
+        {
+            List<User> peerauthorizers = new List<User>();
+            List<string> peerUsernames = new List<string>();
+            string currentUserName = Session["userName"].ToString();
+            if (roleID == 5)
+            {
+                peerauthorizers = UserModel.GetUsersForDepartmentIdRoleId(deptID, roleID);
+            }
+            else if (roleID == 6)
+            {
+                peerauthorizers = UserModel.GetUsersForRoleId(6);
+            }
+
+
+            foreach (User curU in peerauthorizers)
+            {
+                if (currentUserName != curU.username)
+                {
+                    peerUsernames.Add(curU.username);
+                }
+            }
+
+            return peerUsernames;
+        }
+
+        protected void escalateToPeerBT_Click(object sender, EventArgs e)
+        {
+
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                string selectedpeername = authorizersDDReqTab.Text.ToString();
+                if (selectedpeername == null || selectedpeername.Equals(""))
+                {
+                    reqResultLB.Text = "Please choose an authorizer to escalate";
+                }
+                else
+                {
+                    if (currentSelectedTransReq != null)
+                    {
+                        string desc = "";
+                        if (Convert.ToInt32(Session["roleID"]) == 5) {
+                            desc = "peerManagerReq";
+                        }
+                        else if (Convert.ToInt32(Session["roleID"]) == 6)
+                        {
+                            desc = "peerHigherReq";
+                        }
+                        else { 
+                        desc="Unknown case";
+                        }
+                        bool requestEscalated = TransactionModel.escalateTransaction(currentSelectedTransReq.id, desc, selectedpeername);
+                        if(requestEscalated){
+                            reqResultLB.Text = "Request succesfully escalated";
+                        }else{
+                        reqResultLB.Text = "Request could not be made, please verify all the details and try again";
+                        
+                        }
+                    }
+                    else {
+                        reqResultLB.Text = "Please choose a transcation";
+                    }
+                }
+            }
+            refreshReqUI();
+        }
+
+        protected void refreshReqUI() { 
+        
+        approveReqBT.Visible = false;
+        escalateToPeerBT.Visible = false;
+        escalateTohigherMangerBT.Visible=false;
+        rejectReqBT.Visible = false;
+        authorizersDDReqTab.Visible = false;
+        pickAuthlabelinReqTab.Visible = false;
+
+        string username = Session["userName"].ToString();
+        currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
+        if (currentPendingTransReqs != null)
+        {
+            if (currentPendingTransReqs.Count > 0)
+            {
+                reqGridV.DataSource = currentPendingTransReqs;
+                reqGridV.DataBind();
+            }
+            else
+            {
+                reqResultLB.Text = "No pending requests";
+            }
+        }
+        else {
+            reqResultLB.Text = "No pending requests";
+        }
+
+        }
+
+        protected void escalateTohigherMangerBT_Click(object sender, EventArgs e)
+        {
+
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx");
+            }
+            else
+            {
+                string selectedHighername = authorizersDDReqTab.Text.ToString();
+                if (selectedHighername == null || selectedHighername.Equals(""))
+                {
+                    reqResultLB.Text = "Please choose an authorizer to escalate";
+                }
+                else
+                {
+                    if (currentSelectedTransReq != null)
+                    {
+                        string desc = "";
+                        if (Convert.ToInt32(Session["roleID"]) == 5)
+                        {
+                            desc = "HigherManagerReq";
+                        }
+                        else if (Convert.ToInt32(Session["roleID"]) == 6)
+                        {
+                            desc = "should not happen";
+                        }
+                        else
+                        {
+                            desc = "Unknown case";
+                        }
+                        bool requestEscalated = TransactionModel.escalateTransaction(currentSelectedTransReq.id, desc, selectedHighername);
+                        if (requestEscalated)
+                        {
+                            reqResultLB.Text = "Request succesfully escalated";
+                        }
+                        else
+                        {
+                            reqResultLB.Text = "Request could not be made, please verify all the details and try again";
+
+                        }
+                    }
+                    else
+                    {
+                        reqResultLB.Text = "Please choose a transcation";
+                    }
+                }
+            }
+            refreshReqUI();
+
+
         }
 
     }

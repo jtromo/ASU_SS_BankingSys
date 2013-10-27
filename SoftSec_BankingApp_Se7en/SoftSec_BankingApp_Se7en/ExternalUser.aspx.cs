@@ -85,8 +85,8 @@ namespace SoftSec_BankingApp_Se7en
                                         else if (acc.accountTypeId == 3)
                                         {
                                             //credit account
-                                            tb_credit.Text = acc.accountNumber.ToString();
-                                            tb_credit.ReadOnly = true;
+                                            //tb_credit.Text = acc.accountNumber.ToString();
+                                            //tb_credit.ReadOnly = true;
                                         }
                                     }
                                 }

@@ -340,6 +340,52 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool escalateTransaction(int transactionId,string newDescription,string toUSerName)
+        {
+            try
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    using (var db = new SSBankDBContext())
+                    {
+                        List<Tables.Transaction> transactions = db.Transactions.SqlQuery("SELECT * FROM dbo.Transactions WHERE id = @p0", transactionId).ToList();
+
+                        if (transactions.Count() < 1)
+                        {
+                            return false;
+                        }
+
+                        // Process Transaction
+                        Tables.Transaction transaction = transactions.First();
+
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.status = TRANSFER_STATUS_PROCESSING;
+                        transaction.description = newDescription;
+                        transaction.mustBeAuthorizedByUserName = toUSerName;
+                        transaction.processedTime = timestamp;
+                        db.Transactions.Attach(transaction);
+                        var vstatus = db.Entry(transaction);
+                        vstatus.Property(e => e.status).IsModified = true;
+                        var vprocessedTime = db.Entry(transaction);
+                        vprocessedTime.Property(e => e.processedTime).IsModified = true;
+                        var vdescription = db.Entry(transaction);
+                        vdescription.Property(e => e.description).IsModified = true;
+                        var vmustBeAuthorizedByUserName = db.Entry(transaction);
+                        vmustBeAuthorizedByUserName.Property(e => e.mustBeAuthorizedByUserName).IsModified = true;
+                        db.SaveChanges();
+                        scope.Complete();
+
+                        return true;
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
         public static bool RejectTransaction(int transactionId)
         {
             try

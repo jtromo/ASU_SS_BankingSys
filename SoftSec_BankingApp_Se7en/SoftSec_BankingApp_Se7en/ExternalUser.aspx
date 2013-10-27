@@ -181,7 +181,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -664,7 +664,7 @@
                 <ContentTemplate>
                     <br />
                     <br />
-                    <asp:TabContainer ID="TabContainer4" runat="server" ActiveTabIndex="1" Height="556px" Width="835px" style="margin-right: 709px">
+                    <asp:TabContainer ID="TabContainer4" runat="server" ActiveTabIndex="0" Height="556px" Width="835px" style="margin-right: 709px">
                         <asp:TabPanel ID="tab_cardpay" runat="server" HeaderText="Card Payment" Height="600px" Width="124px">
                             <ContentTemplate>
                                  <br />

@@ -49,15 +49,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox TB_Password;
         
         /// <summary>
-        /// TB_Password_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength TB_Password_PasswordStrength;
-        
-        /// <summary>
         /// TB_Password_FilteredTextBoxExtender control.
         /// </summary>
         /// <remarks>

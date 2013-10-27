@@ -1383,7 +1383,7 @@ namespace SoftSec_BankingApp_Se7en
 
                             //Posting a Department transaction
                             string deptTransStr = "New employee: " + usernameGenerated + " has been added";
-                            DepartmentTransactionModel.MakeDepartmentTransfer(0, Convert.ToInt32(userToCreate.departmentId), Session["username"].ToString(), usernameGenerated, deptTransStr, 0, "");
+                            DepartmentTransactionModel.MakeDepartmentTransfer(0, Convert.ToInt32(userToCreate.departmentId), Session["userName"].ToString(), usernameGenerated, deptTransStr, 0, "");
                         }
                         else
                         {
@@ -3481,13 +3481,32 @@ namespace SoftSec_BankingApp_Se7en
         
         protected void btn_ViewDeptTrans_Click(object sender, EventArgs e)
         {
-            var db = new SSBankDBContext();
-            List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions").ToList();
-            gv_DeptTrans.DataSource = deptTransactions;
-            gv_DeptTrans.DataBind();
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx", false);
+            }
+            else
+            {
+                var db = new SSBankDBContext();
+                List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE (fromDepartmentId = @p0 OR toDepartmentId = @p1)",Session["deptId"],Session["deptId"]).ToList();
+                gv_DeptTrans.DataSource = deptTransactions;
+                gv_DeptTrans.DataBind();
+            }
         }
 
-        
-
+        protected void btn_viewtransdetails2_Click(object sender, EventArgs e)
+        {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx", false);
+            }
+            else
+            {
+                var db = new SSBankDBContext();
+                List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions").ToList();
+                gv_AllDepTrans.DataSource = deptTransactions;
+                gv_AllDepTrans.DataBind();
+            }
+        }
     }
 }

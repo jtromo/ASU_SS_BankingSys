@@ -1494,76 +1494,17 @@
                             <ContentTemplate>
 
                                 <br />
-                                Show transfers for:
-                                <asp:DropDownList ID="DeptTransfersDD_ViewTrans" runat="server">
-                                    <asp:ListItem>Last 30 days and Future Scheduled Transfers</asp:ListItem>
-                                    <asp:ListItem>Prior 2 months</asp:ListItem>
-                                    <asp:ListItem>Prior 3 months</asp:ListItem>
-                                    <asp:ListItem>Prior 6 months</asp:ListItem>
-                                </asp:DropDownList>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <asp:Button ID="btn_ViewDeptTrans" runat="server" Text="View Department Transactions" OnClick="btn_ViewDeptTrans_Click" />
+                                &nbsp;<asp:Button ID="btn_ViewDeptTrans" runat="server" Text="View Department Transactions" OnClick="btn_ViewDeptTrans_Click" />
                                 <br />
                                 <br />
                                 <br />
-                                <asp:GridView ID="gv_DeptTrans" runat="server">
+                                <asp:GridView ID="gv_DeptTrans" runat="server" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:BoundField DataField="creationTime" HeaderText="Creation time" />
+                                        <asp:BoundField DataField="description" HeaderText="Description" />
+                                        <asp:BoundField DataField="usernameInitiated" HeaderText="Transaction by:" />
+                                    </Columns>
                                 </asp:GridView>
-                                <br />
-                                <br />
-                                Transaction ID:
-                                <asp:TextBox ID="tbTransID_ViewDeptTrans" runat="server" Height="22px" oncopy="return false" onpaste="return false"></asp:TextBox>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date :&nbsp;
-                                <asp:DropDownList ID="DropDownList27" runat="server">
-                                    <asp:ListItem>MM</asp:ListItem>
-                                    <asp:ListItem>01</asp:ListItem>
-                                    <asp:ListItem>02</asp:ListItem>
-                                    <asp:ListItem>03</asp:ListItem>
-                                    <asp:ListItem>04</asp:ListItem>
-                                    <asp:ListItem>05</asp:ListItem>
-                                    <asp:ListItem>06</asp:ListItem>
-                                    <asp:ListItem>07</asp:ListItem>
-                                    <asp:ListItem>08</asp:ListItem>
-                                    <asp:ListItem>09</asp:ListItem>
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem>11</asp:ListItem>
-                                    <asp:ListItem>12</asp:ListItem>
-                                </asp:DropDownList>
-                                &nbsp;<asp:DropDownList ID="DropDownList28" runat="server">
-                                    <asp:ListItem>DD</asp:ListItem>
-                                    <asp:ListItem>01</asp:ListItem>
-                                    <asp:ListItem>02</asp:ListItem>
-                                    <asp:ListItem>03</asp:ListItem>
-                                    <asp:ListItem>04</asp:ListItem>
-                                    <asp:ListItem>05</asp:ListItem>
-                                    <asp:ListItem>06</asp:ListItem>
-                                    <asp:ListItem>07</asp:ListItem>
-                                    <asp:ListItem>08</asp:ListItem>
-                                    <asp:ListItem>09</asp:ListItem>
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem>11</asp:ListItem>
-                                    <asp:ListItem>12</asp:ListItem>
-                                    <asp:ListItem>13</asp:ListItem>
-                                    <asp:ListItem>14</asp:ListItem>
-                                    <asp:ListItem>15</asp:ListItem>
-                                    <asp:ListItem>16</asp:ListItem>
-                                    <asp:ListItem>17</asp:ListItem>
-                                    <asp:ListItem>18</asp:ListItem>
-                                    <asp:ListItem>19</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>21</asp:ListItem>
-                                    <asp:ListItem>22</asp:ListItem>
-                                    <asp:ListItem>23</asp:ListItem>
-                                    <asp:ListItem>24</asp:ListItem>
-                                    <asp:ListItem>25</asp:ListItem>
-                                    <asp:ListItem>26</asp:ListItem>
-                                    <asp:ListItem>27</asp:ListItem>
-                                    <asp:ListItem>28</asp:ListItem>
-                                    <asp:ListItem>29</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
-                                    <asp:ListItem>31</asp:ListItem>
-                                </asp:DropDownList>
-                                &nbsp;<asp:TextBox ID="tb_Year_ViewDeptTrans" runat="server" Height="16px" Width="76px" oncopy="return false" onpaste="return false">YYYY</asp:TextBox>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails1" runat="server" Text="View Details" OnClick="btn_viewtransdetails1_Click" />
                                 <br />
                                 <br />
                                 <br />
@@ -1578,8 +1519,16 @@
                             <ContentTemplate>
 
                                 <br />
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails2" runat="server" Text="View All Details" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btn_viewtransdetails2" runat="server" Text="View All Department Transaction Details" OnClick="btn_viewtransdetails2_Click" />
                                 <br />
+
+                                <asp:GridView ID="gv_AllDepTrans" runat="server" AutoGenerateColumns="false">
+                                    <Columns>
+                                        <asp:BoundField DataField="creationTime" HeaderText="Creation time" />
+                                        <asp:BoundField DataField="description" HeaderText="Description" />
+                                        <asp:BoundField DataField="usernameInitiated" HeaderText="Transaction by:" />
+                                    </Columns>
+                                </asp:GridView>
 
                             </ContentTemplate>
                         </asp:TabPanel>

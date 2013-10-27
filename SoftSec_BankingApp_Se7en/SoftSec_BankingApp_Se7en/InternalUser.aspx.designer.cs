@@ -2254,15 +2254,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_viewdepttrans;
         
         /// <summary>
-        /// DeptTransfersDD_ViewTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DeptTransfersDD_ViewTrans;
-        
-        /// <summary>
         /// btn_ViewDeptTrans control.
         /// </summary>
         /// <remarks>
@@ -2281,51 +2272,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.GridView gv_DeptTrans;
         
         /// <summary>
-        /// tbTransID_ViewDeptTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbTransID_ViewDeptTrans;
-        
-        /// <summary>
-        /// DropDownList27 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList27;
-        
-        /// <summary>
-        /// DropDownList28 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList28;
-        
-        /// <summary>
-        /// tb_Year_ViewDeptTrans control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_Year_ViewDeptTrans;
-        
-        /// <summary>
-        /// btn_viewtransdetails1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_viewtransdetails1;
-        
-        /// <summary>
         /// tab_viewalldepttrans control.
         /// </summary>
         /// <remarks>
@@ -2342,6 +2288,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_viewtransdetails2;
+        
+        /// <summary>
+        /// gv_AllDepTrans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_AllDepTrans;
         
         /// <summary>
         /// tab_tobeauthorized control.

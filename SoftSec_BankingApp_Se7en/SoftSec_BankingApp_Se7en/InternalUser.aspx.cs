@@ -3100,11 +3100,12 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-                reqResultLB.Text = "No pending requests";
+               // reqResultLB.Text = "No pending requests";
             }
         }
         else {
-            reqResultLB.Text = "No pending requests";
+            //reqResultLB.Text = "No pending requests";
+            reqGridV.Visible = false;
         }
 
         }

@@ -1680,12 +1680,12 @@
                     <br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="approveReqBT" runat="server" OnClick="approveReqBT_Click" Text="Approve" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="rejectReqBT" runat="server" OnClick="rejectReqBT_Click" Text="Reject" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="escalateToPeerBT" runat="server" OnClick="escalateToPeerBT_Click" Text="escalateToPeer" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="escalateTohigherMangerBT" runat="server" OnClick="escalateTohigherMangerBT_Click" Text="Escalate to higher manager" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="escalateToPeerBT" runat="server" OnClick="escalateToPeerBT_Click" Text="Authorize and escalate to Peer" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="escalateTohigherMangerBT" runat="server" OnClick="escalateTohigherMangerBT_Click" Text="Authorize and Escalate to higher manager" />
                     <br />
                 </ContentTemplate>
             </asp:TabPanel>

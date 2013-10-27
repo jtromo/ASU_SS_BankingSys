@@ -409,6 +409,24 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.DropDownList yearDD_TransferExistingCust_Outside;
         
         /// <summary>
+        /// pleaseChooinOutside control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label pleaseChooinOutside;
+        
+        /// <summary>
+        /// authorizerDDinOutside control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList authorizerDDinOutside;
+        
+        /// <summary>
         /// tb_securitycodeoutside control.
         /// </summary>
         /// <remarks>
@@ -416,6 +434,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_securitycodeoutside;
+        
+        /// <summary>
+        /// placeReqBTinOutside control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button placeReqBTinOutside;
         
         /// <summary>
         /// lblStatus_OutsideBank control.

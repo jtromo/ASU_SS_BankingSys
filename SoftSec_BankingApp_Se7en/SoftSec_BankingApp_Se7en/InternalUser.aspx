@@ -14,7 +14,7 @@
     <div style="height:800px";>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="949px" OnClientActiveTabChanged="LoadAllowBlock" OnActiveTabChanged="TabContainer1_ActiveTabChanged">
             <asp:TabPanel runat="server" HeaderText="Customer Account Access" ID="tab_ExistingCust" TabIndex="0">
                 <HeaderTemplate>
                     Existing Customer Account Access
@@ -132,7 +132,7 @@
                         <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers" TabIndex="1">
                             <ContentTemplate>
                                 <br />
-                                Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                                Please select the transfer type.<br /><asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="1" Height="515px" Width="850px">
                                     <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                                         <ContentTemplate>
                                             <p>
@@ -151,7 +151,7 @@
                                                 <strong>Recepient&#39;s Details:</strong></p>
                                             <p>
                                                 &nbsp;Account Number:&nbsp;&nbsp;
-                                                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                <asp:TextBox ID="tb_recepient_IU_Inside" runat="server" oncopy="return false" onpaste="return false" Height="22px"></asp:TextBox>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </p>
                                             <p>
@@ -225,6 +225,9 @@
                                         </ContentTemplate>
                                     </asp:TabPanel>
                                     <asp:TabPanel ID="tab_trans_outside" runat="server" HeaderText="Outside Bank">
+                                        <HeaderTemplate>
+                                            Outside Bank
+                                        </HeaderTemplate>
                                         <ContentTemplate>
                                             <p class="auto-style5">
                                                 &nbsp;</p>
@@ -261,6 +264,7 @@
                                             <p class="auto-style9">
                                                 Card Number:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_usercardno" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             </p>
                                             <p>
                                                 &nbsp;Expiry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -294,10 +298,17 @@
                                                     <asp:ListItem Value="22">2022</asp:ListItem>
                                                     <asp:ListItem Value="23">2023</asp:ListItem>
                                                 </asp:DropDownList>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Label ID="pleaseChooinOutside" runat="server" Text="Please choose an authorizer"></asp:Label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:DropDownList ID="authorizerDDinOutside" runat="server">
+                                                </asp:DropDownList>
                                             </p>
                                             <p>
                                                 Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
                                                 <asp:TextBox ID="tb_securitycodeoutside" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <asp:Button ID="placeReqBTinOutside" runat="server" OnClick="placeReqBTinOutside_Click" Text="Place Request" />
                                             </p>
                                             <p>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

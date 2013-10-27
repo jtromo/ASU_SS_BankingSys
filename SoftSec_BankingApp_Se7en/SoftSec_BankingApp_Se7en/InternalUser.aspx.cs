@@ -34,6 +34,9 @@ namespace SoftSec_BankingApp_Se7en
             escalateToPeerBT.Visible = false;
             pickAuthlabelinReqTab.Visible = false;
             authorizersDDReqTab.Visible = false;
+            placeReqBTinOutside.Visible = false;
+            pleaseChooinOutside.Visible = false;
+            authorizerDDinOutside.Visible = false;
             ErrorLabelInNewCustPI.Text = "this is where you get errors";
 
           
@@ -388,7 +391,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -527,7 +530,7 @@ namespace SoftSec_BankingApp_Se7en
         {   
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -639,7 +642,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -661,6 +664,13 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
                             {
+
+
+                                double amount = Convert.ToDouble(tb_amountoutside.Text);
+
+
+                                if (amount < 1000)
+                                {
                                 string desc = "From : " + accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString() + " To : " + tb_AccNumoutside_Intenal.Text.ToString() +
                                                                        " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
                                 int success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
@@ -677,20 +687,77 @@ namespace SoftSec_BankingApp_Se7en
 
                                     lblStatus_OutsideBank.Visible = true;
                                 }
+                                }
+                                else if (amount >= 1000 && amount < 30000)
+                                {
+
+                                    string desc = "ctLevel1";
+                                    int success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
+                                                            tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                    if (success > 0)
+                                    {
+                                        bool criticaltranslevel1approved = TransactionModel.ApproveTransaction(success);
+                                        if (criticaltranslevel1approved)
+                                        {
+                                            lblStatus_OutsideBank.Text = "Critical Transaction level 1 successfully approved";
+                                            lblStatus_OutsideBank.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblStatus_OutsideBank.Text = "Critical Transaction level 1 could not be approved";
+                                            lblStatus_OutsideBank.Visible = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        lblStatus_OutsideBank.Text = "Unable to place and approve level 1 request";
+                                        lblStatus_OutsideBank.Visible = true;
+                                    }
+
+
+                                }
+                                else
+                                {
+
+                                    lblStatus_OutsideBank.Text = "This is a level 2 critical transaction,please choose an authorizer to initiate processing";
+                                    lblStatus_OutsideBank.Visible = true;
+                                    int DeptID = Convert.ToInt32(Session["deptID"]);
+                                    int RoleID = Convert.ToInt32(Session["roleID"]);
+                                    List<string> higherAuthorizers = getHigherAuthorizersfor(RoleID, DeptID);
+                                    if (higherAuthorizers.Count > 0)
+                                    {
+                                        authorizerDDinOutside.DataSource = higherAuthorizers;
+                                        authorizerDDinOutside.DataBind();
+                                        authorizerDDinOutside.Visible = true;
+                                        pleaseChooinOutside.Visible = true;
+                                        placeReqBTinOutside.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblSuccess_IUInside.Text = "This transcation needs approval,could not find a authorizer";
+                                        lblSuccess_IUInside.Visible = true;
+
+                                    }
+
+                                }
+                            
                             }
                             else
                             {
-                                //Invalid Card Details
+                                lblStatus_OutsideBank.Text = "Invalid card details";
+                                lblStatus_OutsideBank.Visible = true;
                             }
                         }
                         else
                         {
-                            //Invalid Card Details
+                            lblStatus_OutsideBank.Text = "Invalid card details";
+                            lblStatus_OutsideBank.Visible = true;
                         }
                     }
                     else
                     {
-                        //Invalid Card Details
+                        lblStatus_OutsideBank.Text = "Invalid card details";
+                        lblStatus_OutsideBank.Visible = true;
                     }
                 }
                 else
@@ -709,7 +776,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -719,27 +786,36 @@ namespace SoftSec_BankingApp_Se7en
                 serverSideValidation = validateFromFields(tb_amountbetween.Text.ToString());
                 if (serverSideValidation)
                 {
-                    //Proceed with business logic here
-                    string iToAcc = toAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
-                    string ifromAcc = fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
-                    int success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
-                                "From : " + fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString() +
-                                    "To : " + toAccTypeDD_TransferExistingCust_Between.Text.ToString() +
-                                        "- Amount : " + tb_amountbetween.Text.ToString());
+                    double amount=Convert.ToDouble(tb_amountbetween.Text.ToString());
+                    if (amount <= 1000)
+                    {
+                        //Proceed with business logic here
+                        string iToAcc = toAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
+                        string ifromAcc = fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString();
+                        int success = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                                    "From : " + fromAccTypeDD_TransferExistingCust_Between.SelectedValue.ToString() +
+                                        "To : " + toAccTypeDD_TransferExistingCust_Between.Text.ToString() +
+                                            "- Amount : " + tb_amountbetween.Text.ToString());
                         if (success > 0)
-                    {
-                        lblStatus_Between.Text = "Transaction Successful";
-                        lblStatus_Between.Visible = true;
+                        {
+                            lblStatus_Between.Text = "Transaction Successful";
+                            lblStatus_Between.Visible = true;
+                        }
+                        else
+                        {
+                            lblStatus_Between.Text = "Transaction Unsuccessful";
+                            lblStatus_Between.Visible = true;
+                        }
                     }
-                    else
-                    {
-                        lblStatus_Between.Text = "Transaction Unsuccessful";
+                    else {
+                        lblStatus_Between.Text = "Cannot transfer more than 1000$ in this mode";
                         lblStatus_Between.Visible = true;
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_Between.Text = "Please check your inputs";
+                    lblStatus_Between.Visible = true;
                 }
             }
             catch (Exception exp)
@@ -754,7 +830,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -775,28 +851,42 @@ namespace SoftSec_BankingApp_Se7en
                         if (objCard.expirationDate.Equals(sCardExp))
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_DebitFunds.Text.ToString()))
-                            {                                
-                                int success = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
-                                                             Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                            {
+                                double amount = Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString());
+                                if (amount <= 1000)
+                                {
+
+                                    int success = TransactionModel.WithdrawFundsFromAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                                                                 Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+
                                     if (success > 0)
-                                {
-                                    lblStatus_DebitFunds.Text = "Transaction Successful";
-                                    lblStatus_DebitFunds.Visible = true;
+                                    {
+                                        lblStatus_DebitFunds.Text = "Transaction Successful";
+                                        lblStatus_DebitFunds.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblStatus_DebitFunds.Text = "Transaction Unsuccessful";
+                                        lblStatus_DebitFunds.Visible = true;
+                                    }
+
                                 }
-                                else
-                                {
-                                    lblStatus_DebitFunds.Text = "Transaction Unsuccessful";
+                                else {
+
+                                    lblStatus_DebitFunds.Text = "You cannot debit more han 1000$ in this mode";
                                     lblStatus_DebitFunds.Visible = true;
                                 }
                             }
                             else
                             {
-                                //Invalid Card Details
+                                lblStatus_DebitFunds.Text = "Invalid card details";
+                                lblStatus_DebitFunds.Visible = true;
                             }
                         }
                         else
                         {
-                            //Invalid Card Details
+                            lblStatus_DebitFunds.Text = "Invalid card details";
+                            lblStatus_DebitFunds.Visible = true;
                         }
                     }
                 }
@@ -816,7 +906,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -838,27 +928,38 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_CreditFunds.Text.ToString()))
                             {
-                                int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
-                                                             Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                                double amount = Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString());
+                                if (amount <= 1000)
+                                {
+                                    int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
+                                                                 Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
                                     if (success > 0)
-                                {
-                                    lblStatus_CreditFunds.Text = "Transaction Successful";
-                                    lblStatus_CreditFunds.Visible = true;
+                                    {
+                                        lblStatus_CreditFunds.Text = "Transaction Successful";
+                                        lblStatus_CreditFunds.Visible = true;
+                                    }
+                                    else
+                                    {
+                                        lblStatus_CreditFunds.Text = "Transaction Unsuccessful";
+                                        lblStatus_CreditFunds.Visible = true;
+                                    }
                                 }
-                                else
-                                {
-                                    lblStatus_CreditFunds.Text = "Transaction Unsuccessful";
+                                else {
+
+                                    lblStatus_CreditFunds.Text = "You cannot credit more than 1000$ through this method";
                                     lblStatus_CreditFunds.Visible = true;
                                 }
                             }
                             else
                             {
-                                //Invalid Card Details
+                                lblStatus_CreditFunds.Text = "Invalid card details";
+                                lblStatus_CreditFunds.Visible = true;
                             }
                         }
                         else
                         {
-                            //Invalid Card Details
+                            lblStatus_CreditFunds.Text = "Invalid card details";
+                            lblStatus_CreditFunds.Visible = true;
                         }
                     }
                 }
@@ -879,7 +980,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -896,7 +997,7 @@ namespace SoftSec_BankingApp_Se7en
                     if (success)
                     {
                         lblStatus_ChangeProf.Text = "Update Successful";
-                        lblStatus_ChangeProf.Visible = false;
+                        lblStatus_ChangeProf.Visible = true;
                     }
                     else
                     {
@@ -920,7 +1021,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -990,7 +1091,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1055,7 +1156,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1089,7 +1190,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1215,7 +1316,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1341,7 +1442,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1378,7 +1479,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1416,7 +1517,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1453,7 +1554,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -1481,7 +1582,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -2009,7 +2110,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -2030,7 +2131,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -2051,7 +2152,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx",false);
             }
             else
             {
@@ -2075,7 +2176,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2102,7 +2203,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (Session["userName"] == null)
                 {
-                    Response.Redirect("SessionTimeOut.aspx");
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
@@ -2172,7 +2273,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2199,7 +2300,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (Session["userName"] == null)
                 {
-                    Response.Redirect("SessionTimeOut.aspx");
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
@@ -2230,7 +2331,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2285,7 +2386,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2522,7 +2623,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
         {
-                Response.Redirect("SessionTimeOut.aspx");
+            Response.Redirect("SessionTimeOut.aspx", false);
         }
             else
         {
@@ -2664,7 +2765,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (Session["userName"] == null)
                 {
-                    Response.Redirect("SessionTimeOut.aspx");
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
@@ -2901,7 +3002,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2929,7 +3030,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -2956,7 +3057,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -3006,7 +3107,7 @@ namespace SoftSec_BankingApp_Se7en
         protected void bt_logout_Click(object sender, EventArgs e)
         {
             Session.Abandon();
-            Response.Redirect("ExternalHomePage.aspx");
+            Response.Redirect("ExternalHomePage.aspx", false);
         }
 
         protected List<string> getPeerAuthorizersfor(int roleID, int deptID)
@@ -3040,7 +3141,7 @@ namespace SoftSec_BankingApp_Se7en
 
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -3115,7 +3216,7 @@ namespace SoftSec_BankingApp_Se7en
 
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx");
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
@@ -3161,6 +3262,125 @@ namespace SoftSec_BankingApp_Se7en
             refreshReqUI();
 
 
+        }
+
+        protected void placeReqBTinOutside_Click(object sender, EventArgs e)
+        {
+            if (Session["userName"] == null)
+            {
+                Response.Redirect("SessionTimeOut.aspx", false);
+            }
+            else
+            {
+                bool serverSideValidation = false;
+                try
+                {
+                    serverSideValidation = validateFromFields_InternalTransfer(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(), tb_emailoutside.Text.ToString(),
+                                            tb_usercardno.Text.ToString(), tb_securitycodeoutside.Text.ToString(), tb_AccNumoutside_Intenal.Text.ToString(), tb_toRoutingNum_OutsideBank.Text.ToString());
+                    if (serverSideValidation)
+                    {
+                        //Proceed with business logic here
+                        Models.Tables.Card objCard = new Models.Tables.Card();
+                        objCard = AccountModel.GetCardDetails(tb_usercardno.Text.ToString(), accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString());
+                        if (objCard != null)
+                        {
+                            string sCardExp = string.Empty;
+                            sCardExp = monthDD_TransferExistingCust_Outside.SelectedValue.ToString() + yearDD_TransferExistingCust_Outside.SelectedValue.ToString();
+                            if (objCard.expirationDate.Equals(sCardExp))
+                            {
+                                if (objCard.cvv == Convert.ToInt32(tb_securitycodeoutside.Text.ToString()))
+                                {
+
+
+                                    double amount = Convert.ToDouble(tb_amountoutside.Text);
+
+
+                                    if (amount < 30000)
+                                    {
+                                        lblStatus_OutsideBank.Text = "This trasaction does not require authorization,proceeding with normal transaction";
+                                        string desc = "From : " + accTypeDD_TransferExistingCust_Outside.SelectedValue.ToString() + " To : " + tb_AccNumoutside_Intenal.Text.ToString() +
+                                                                               " Amount : " + tb_amountoutside.Text.ToString() + " EMAIL : " + tb_emailoutside.Text.ToString();
+                                        int success = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
+                                                                    tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+                                        if (success > 0)
+                                        {
+                                            lblStatus_OutsideBank.Text = "Transaction Successful";
+
+                                            lblStatus_OutsideBank.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblStatus_OutsideBank.Text = "Transaction Unsuccessful";
+
+                                            lblStatus_OutsideBank.Visible = true;
+                                        }
+                                        pleaseChooinOutside.Visible = false;
+                                        authorizerDDinOutside.Visible = false;
+                                        placeReqBTinOutside.Visible = false;
+                                    }
+                                    else if (amount >= 30000)
+                                    {
+
+                                        string desc = "crtLevel2ReqInitiated";
+                                        int level2ReqiD = TransactionModel.MakeExternalTransfer(objCard.accountNumber, objCard.Account.routingNumber, tb_AccNumoutside_Intenal.Text.ToString(),
+                                                                    tb_toRoutingNum_OutsideBank.Text.ToString(), Convert.ToDouble(tb_amountoutside.Text.ToString()), desc);
+
+                                        User selectedAuthorizer = UserModel.GetUser(authorizerDDinOutside.Text.ToString() );
+
+                                        //
+                                        if (level2ReqiD > 0)
+                                        {
+                                            bool assignedlevel2Trans = TransactionModel.AssignAuthorizationRequestedTransactionToUser(level2ReqiD, selectedAuthorizer.username.ToString(), Convert.ToInt32(selectedAuthorizer.roleId));
+                                            if (assignedlevel2Trans)
+                                            {
+                                                lblStatus_OutsideBank.Text = "Request sucesfully escalated to manager";
+                                                lblStatus_OutsideBank.Visible = true;
+                                            }
+                                            else
+                                            {
+                                                lblStatus_OutsideBank.Text = "Request could not be escalated";
+                                                lblStatus_OutsideBank.Visible = true;
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            lblStatus_OutsideBank.Text = "Unsuccessful(check balance and details)";
+                                            lblStatus_OutsideBank.Visible = true;
+                                        }
+
+                                    }
+                                    
+
+                                }
+                                else
+                                {
+                                    //Invalid Card Details
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Card Details
+                            }
+                        }
+                        else
+                        {
+                            //Invalid Card Details
+                        }
+                    }
+                    else
+                    {
+                        //Update the UI with error message.
+                    }
+                    pleaseChooinOutside.Visible = false;
+                    authorizerDDinOutside.Visible = false;
+                    placeReqBTinOutside.Visible = false;
+                }
+                catch (Exception exp)
+                {
+                    //Log Exception here
+                }
+            }
         }
 
     }

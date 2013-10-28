@@ -1348,7 +1348,6 @@ namespace SoftSec_BankingApp_Se7en
                         userToCreate.email = tb_Email_Emp.Text.ToString();
                         userToCreate.departmentId = Convert.ToInt32(DeptDD_AddEmp.SelectedValue);
                         userToCreate.roleId = Convert.ToInt32(RoleDD_AddEmp.SelectedValue);
-                        userToCreate.isActive = true;
                         Address addressForUser = new Address();
                         addressForUser.firstName = userToCreate.firstName;
                         addressForUser.lastName = userToCreate.lastName;
@@ -2171,36 +2170,93 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-                bool TransferSuccess = false;
-                User userToTrans = new User();
-                userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
-                int deptid = Convert.ToInt32(userToTrans.departmentId);
-                if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
+                if (RoleDD_TransEmp.SelectedValue == TO_RoleDD_TransEmp.SelectedValue)
                 {
-                    if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
+                    if (FROM_DeptDD_TransEmp.SelectedValue == TO_DeptDD_TransDept.SelectedValue)
                     {
-                        TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
-                        if (TransferSuccess)
-                        {
-                            lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
-                            //Posting a Department transaction
-                            string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " has been transferred";
-                            DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
-                        }
-                        else
-                        {
-                            lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
-                        }
+                        lbl_TransferEmpl.Text = "The department and role are unchanged for the user";
                     }
                     else
                     {
-                        lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                        bool TransferSuccess = false;
+                        User userToTrans = new User();
+                        userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
+                        int deptid = Convert.ToInt32(userToTrans.departmentId);
+                        if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
+                        {
+                            if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
+                            {
+                                TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
+                                if (TransferSuccess)
+                                {
+                                    lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
+                                    //Posting a Department transaction
+                                    string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " has been transferred";
+                                    DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
+                                }
+                                else
+                                {
+                                    lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
+                                }
+                            }
+                            else
+                            {
+                                lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                            }
+                        }
+                        else
+                        {
+                            lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
+                        }
                     }
                 }
                 else
                 {
-                    lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
-                }
+                    if ((Convert.ToInt32(Session["roleId"])) == 6)
+                    {
+                        bool TransferSuccess = false;
+                        User userToTrans = new User();
+                        userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
+                        int deptid = Convert.ToInt32(userToTrans.departmentId);
+                        if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
+                        {
+                            if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
+                            {
+                                if (FROM_DeptDD_TransEmp.SelectedValue != TO_DeptDD_TransDept.SelectedValue)
+                                {
+                                    TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
+                                    if (TransferSuccess)
+                                    {
+                                        lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
+                                        //Posting a Department transaction
+                                        string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " to be transferred to " + TO_DeptDD_TransDept.SelectedItem.Text;
+                                        DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
+                                    }
+                                    else
+                                    {
+                                        lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
+                                    }
+                                }
+                                //Initiate a role change
+                                string roleTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " role to be changed to " + TO_RoleDD_TransEmp.SelectedItem.Text;
+                                DepartmentTransactionModel.MakeRoleEscalation(Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), Convert.ToInt32(userToTrans.roleId), Convert.ToInt32(TO_RoleDD_TransEmp.SelectedValue), roleTransStr, 1, "admin");
+                                lbl_TransferEmpl.Text += "  Role change for" + tb_UserName_transEmp.Text.ToString() + " has been initiated";   
+                            }
+                            else
+                            {
+                                lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                            }
+                        }
+                        else
+                        {
+                            lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
+                        }
+                    }
+                    else
+                    {
+                        lbl_TransferEmpl.Text = "You do not have permissions to change roles";
+                    }
+                }                
             }
         }
 
@@ -3351,12 +3407,16 @@ namespace SoftSec_BankingApp_Se7en
                 DeptDD_AddEmp.SelectedValue = Session["deptID"].ToString();
                 DeptDD_AddEmp.Enabled = false;
                 RoleDD_AddEmp.SelectedValue = "4";
-                RoleDD_AddEmp.Enabled = false;                
+                RoleDD_AddEmp.Enabled = false;
+                TO_RoleDD_TransEmp.Visible = false;
+                Label2.Visible = false;
             }
             if (Convert.ToInt32(Session["roleID"]) == 6)
             {
                 DeptDD_AddEmp.SelectedValue = Session["deptID"].ToString();
                 DeptDD_AddEmp.Enabled = false;
+                TO_RoleDD_TransEmp.Visible = true;
+                Label2.Visible = true;
             }
         }
 

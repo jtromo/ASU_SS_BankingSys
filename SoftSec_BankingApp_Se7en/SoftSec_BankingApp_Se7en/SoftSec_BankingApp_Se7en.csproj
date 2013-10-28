@@ -466,6 +466,7 @@
     <Compile Include="Models\DepartmentTransactionModel.cs" />
     <Compile Include="Models\HashController.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\OTPLogModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
     <Compile Include="Models\Tables\AccountType.cs" />

@@ -667,39 +667,7 @@ namespace SoftSec_BankingApp_Se7en
                 return false;
             }
         }
-
-        protected void deptIDLookUpBT_Click(object sender, EventArgs e)
-        {
-            if (Session["userName"] == null)
-            {
-                Response.Redirect("SessionTimeOut.aspx",false);
-            }
-            else
-            {
-                string deptID = deptIDlookupTB.Text.ToString();
-                if (validateDeptField(deptID))
-                {
-                    currentDTransBeingDisplayed = DepartmentTransactionModel.GetTransactionsForDepartment(Convert.ToInt32(deptID));
-                    if (currentDTransBeingDisplayed.Count > 0)
-                    {
-
-                        RequestsGridV.DataSource = currentDTransBeingDisplayed;
-                        RequestsGridV.DataBind();
-
-                    }
-                    else
-                    {
-
-                        reqErrorLb.Text = "No transactions on this dept";
-                    }
-                }
-                else
-                {
-                    reqErrorLb.Text = "please check the dept ID you have entered";
-                }
-            }
-        }
-
+        
         protected void UserNameLookUpBT_Click(object sender, EventArgs e)
         {
             if (Session["userName"] == null)
@@ -727,7 +695,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    reqErrorLb.Text = "please check the User name you have entered";
+                    reqErrorLb.Text = "Please check the User name you have entered";
                 }
             }
         }
@@ -741,10 +709,19 @@ namespace SoftSec_BankingApp_Se7en
                 //Role escalation Req
                 effectedUserValueLb.Text = currentSlectedTrans.usernameEffected;
                 initiatorValueLb.Text = currentSlectedTrans.usernameInitiated;
-                fromRoleValueLb.Text = currentSlectedTrans.roleOld.ToString();
-                toRoleValueLb.Text = currentSlectedTrans.roleNew.ToString();
+                if(currentSlectedTrans.roleOld == 4)
+                    fromRoleValueLb.Text = "Regular Employee";
+                if (currentSlectedTrans.roleOld == 5)
+                    fromRoleValueLb.Text = "Department Manager";
+                if (currentSlectedTrans.roleOld == 6)
+                    fromRoleValueLb.Text = "Company Official";
+                if (currentSlectedTrans.roleNew == 4)
+                    toRoleValueLb.Text = "Regular Employee";
+                if (currentSlectedTrans.roleNew == 5)
+                    toRoleValueLb.Text = "Department Manager";
+                if (currentSlectedTrans.roleNew == 6)
+                    toRoleValueLb.Text = "Company Official";
                 showRoleReqUI();
-
             }
             else if (currentSlectedTrans.type == 2) { 
             //Dept change Req
@@ -1520,6 +1497,13 @@ namespace SoftSec_BankingApp_Se7en
                 //Log Exception Here
                 return false;
             }
+        }
+
+        protected void btn_ReqAll_Click(object sender, EventArgs e)
+        {
+            currentDTransBeingDisplayed = DepartmentTransactionModel.AllRequests();
+            RequestsGridV.DataSource = currentDTransBeingDisplayed;
+            RequestsGridV.DataBind();
         }
         
     }

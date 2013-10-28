@@ -1166,7 +1166,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <br />
-                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="4" Width="917px" OnInit="deptTabInitialize" OnLoad="deptTabInitialize">
+                    <asp:TabContainer ID="TabContainer7" runat="server" ActiveTabIndex="2" Width="917px" OnInit="deptTabInitialize" OnLoad="deptTabInitialize">
                         <asp:TabPanel ID="tab_addemp" runat="server" HeaderText="Add Employee">
                              <ContentTemplate>
                                 <br />
@@ -1373,7 +1373,7 @@
                                 <asp:Button ID="btn_delEmp" runat="server" Text="Delete Employee" OnClick="btn_delEmp_Click" />
 
                                 <br />
-                                <asp:Label ID="lbl_DelEmployee" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lbl_DelEmployee" runat="server"></asp:Label>
 
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -1413,7 +1413,6 @@
                                     <asp:ListItem Value="4">Regular Employee</asp:ListItem>
                                      <asp:ListItem Value="5">Department Manager</asp:ListItem>
                                      <asp:ListItem Value="6">Company Official</asp:ListItem>
-                                     <asp:ListItem Value="7">Admin</asp:ListItem>
                                 </asp:DropDownList>
                                 <br />
                                 Email ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -1423,7 +1422,9 @@
                                 <asp:TextBox ID="tb_Contact_TransEmp" runat="server" oncopy="return false" onpaste="return false" Enabled="False"></asp:TextBox>
                                 <br />
                                 <br />
-                                Transfer To Details:<br />Department:&nbsp;&nbsp;&nbsp;
+                                Transfer To Details: <br />
+                                <br />
+                                Department:&nbsp;&nbsp;&nbsp;
                                 <asp:DropDownList ID="TO_DeptDD_TransDept" runat="server">
                                      <asp:ListItem Value="2">Sales</asp:ListItem>
                                      <asp:ListItem Value="3">IT Tech Support</asp:ListItem>
@@ -1432,11 +1433,20 @@
                                 </asp:DropDownList>
                                 <br />
                                 <br />
+                                <asp:Label ID="Label2" runat="server" Text="Role :"></asp:Label>
+                                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:DropDownList ID="TO_RoleDD_TransEmp" runat="server">
+                                    <asp:ListItem Value="4">Regular Employee</asp:ListItem>
+                                    <asp:ListItem Value="5">Department Manager</asp:ListItem>
+                                    <asp:ListItem Value="6">Company Official</asp:ListItem>
+                                </asp:DropDownList>
+                                <br />
+                                <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_TransEmp" runat="server" Text="Transfer Employee" OnClick="btn_TransEmp_Click" />
 
                                 <br />
-                                <asp:Label ID="lbl_TransferEmpl" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lbl_TransferEmpl" runat="server"></asp:Label>
 
                             </ContentTemplate>
                         </asp:TabPanel>

@@ -21,14 +21,16 @@ namespace SoftSec_BankingApp_Se7en
             {
                 Response.Redirect("SessionTimeOut.aspx",false);
             }
+           
             else
             {
                 try
                 {
+                    checkSession();
                     int roleId = Convert.ToInt32(UserModel.GetUser(Session["userName"].ToString()).roleId);
-                    if (roleId != 2 && roleId!=3)
+                    if (roleId != 2 && roleId != 3)
                     {
-                        Response.Redirect("InvalidUserRole.aspx",false);
+                        Response.Redirect("InvalidUserRole.aspx", false);
                     }
                     else
                     {
@@ -118,6 +120,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 //Transfer Money to Accounts in other the bank
                 bool serverSideValidation = false;
                 try
@@ -277,6 +280,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 //Transfer Money within accounts of the same user.
                 bool serverSideValidation = false;
                 try
@@ -322,6 +326,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 //Edit the user profile information here.
                 bool serverSideValidation = false;
                 try
@@ -363,6 +368,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 //Make a payment on behalf of the customer
                 bool serverSideValidation = false;
                 try
@@ -432,6 +438,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Reset the password.
                     bool serverSideValidation = false;
                     try
@@ -733,6 +740,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     if (TabContainer1.ActiveTabIndex == 2)
                     {
                         Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
@@ -796,6 +804,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 TabContainer3.Visible = true;
                 try
                 {
@@ -828,6 +837,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 try
                 {
                     bool serverSideValidation = false;
@@ -914,6 +924,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     if (TabContainer3.ActiveTabIndex == 0)
                     {
                         //Reset the fields if required
@@ -938,6 +949,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 try
                 {
                     List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
@@ -962,6 +974,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 try
                 {
                     List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
@@ -982,6 +995,16 @@ namespace SoftSec_BankingApp_Se7en
         {
             Session.Abandon();
             Response.Redirect("ExternalHomePage.aspx");
+        }
+        protected void checkSession()
+        {
+            string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+            if (session != Session.SessionID)
+            {
+                Session.Abandon();
+                Response.Redirect("ExternalHomePage.aspx");
+            }
+           
         }
     }
 }

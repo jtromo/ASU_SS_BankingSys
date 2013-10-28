@@ -83,6 +83,28 @@ namespace SoftSec_BankingApp_Se7en
                         img_site18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
                         img_site19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
                         img_site20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+                        //Edit Profile Panel Images
+                        img_site_int1.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
+                        img_site_int2.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
+                        img_site_int3.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
+                        img_site_int4.ImageUrl = "./Images/SiteKeys/SiteKey4.jpg";
+                        img_site_int5.ImageUrl = "./Images/SiteKeys/SiteKey5.jpg";
+                        img_site_int6.ImageUrl = "./Images/SiteKeys/SiteKey6.jpg";
+                        img_site_int7.ImageUrl = "./Images/SiteKeys/SiteKey7.jpg";
+                        img_site_int8.ImageUrl = "./Images/SiteKeys/SiteKey8.jpg";
+                        img_site_int9.ImageUrl = "./Images/SiteKeys/SiteKey9.jpg";
+                        img_site_int10.ImageUrl = "./Images/SiteKeys/SiteKey10.jpg";
+                        img_site_int11.ImageUrl = "./Images/SiteKeys/SiteKey11.jpg";
+                        img_site_int12.ImageUrl = "./Images/SiteKeys/SiteKey12.jpg";
+                        img_site_int13.ImageUrl = "./Images/SiteKeys/SiteKey13.jpg";
+                        img_site_int14.ImageUrl = "./Images/SiteKeys/SiteKey14.jpg";
+                        img_site_int15.ImageUrl = "./Images/SiteKeys/SiteKey15.jpg";
+                        img_site_int16.ImageUrl = "./Images/SiteKeys/SiteKey16.jpg";
+                        img_site_int17.ImageUrl = "./Images/SiteKeys/SiteKey17.jpg";
+                        img_site_int18.ImageUrl = "./Images/SiteKeys/SiteKey18.jpg";
+                        img_site_int19.ImageUrl = "./Images/SiteKeys/SiteKey19.jpg";
+                        img_site_int20.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
+
                         //img_site1_AE.ImageUrl = "./Images/SiteKeys/SiteKey1.jpg";
                         //img_site2_AE.ImageUrl = "./Images/SiteKeys/SiteKey2.jpg";
                         //img_site3_AE.ImageUrl = "./Images/SiteKeys/SiteKey3.jpg";
@@ -114,6 +136,7 @@ namespace SoftSec_BankingApp_Se7en
                             TabContainer1.Tabs[3].Visible = false;
                             TabContainer1.Tabs[0].Visible = true;
                             TabContainer1.Tabs[1].Visible = true;
+                            TabContainer1.Tabs[4].Visible = true;
 
                         }
                         else if ( userRole == 5)
@@ -124,7 +147,8 @@ namespace SoftSec_BankingApp_Se7en
                             TabContainer1.Tabs[2].Visible = true;
                             TabContainer1.Tabs[3].Visible = true;
                             TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = false;                           
+                            TabContainer1.Tabs[1].Visible = false;
+                            TabContainer1.Tabs[4].Visible = true;
                         }
                         else if (userRole == 6)
                         {
@@ -135,6 +159,7 @@ namespace SoftSec_BankingApp_Se7en
                             TabContainer1.Tabs[1].Visible = false;
                             TabContainer1.Tabs[2].Visible = true;
                             TabContainer1.Tabs[3].Visible = true;
+                            TabContainer1.Tabs[4].Visible = true;
                         }
                         else
                         {
@@ -184,6 +209,28 @@ namespace SoftSec_BankingApp_Se7en
             img_site18.BorderStyle = BorderStyle.None;
             img_site19.BorderStyle = BorderStyle.None;
             img_site20.BorderStyle = BorderStyle.None;
+
+            //Edit Tab Images
+            img_site_int1.BorderStyle = BorderStyle.None;
+            img_site_int2.BorderStyle = BorderStyle.None;
+            img_site_int3.BorderStyle = BorderStyle.None;
+            img_site_int4.BorderStyle = BorderStyle.None;
+            img_site_int5.BorderStyle = BorderStyle.None;
+            img_site_int6.BorderStyle = BorderStyle.None;
+            img_site_int7.BorderStyle = BorderStyle.None;
+            img_site_int8.BorderStyle = BorderStyle.None;
+            img_site_int9.BorderStyle = BorderStyle.None;
+            img_site_int10.BorderStyle = BorderStyle.None;
+            img_site_int11.BorderStyle = BorderStyle.None;
+            img_site_int12.BorderStyle = BorderStyle.None;
+            img_site_int13.BorderStyle = BorderStyle.None;
+            img_site_int14.BorderStyle = BorderStyle.None;
+            img_site_int15.BorderStyle = BorderStyle.None;
+            img_site_int16.BorderStyle = BorderStyle.None;
+            img_site_int17.BorderStyle = BorderStyle.None;
+            img_site_int18.BorderStyle = BorderStyle.None;
+            img_site_int19.BorderStyle = BorderStyle.None;
+            img_site_int20.BorderStyle = BorderStyle.None;
             //img_site1_AE.BorderStyle = BorderStyle.None;
             //img_site2_AE.BorderStyle = BorderStyle.None;
             //img_site3_AE.BorderStyle = BorderStyle.None;
@@ -1703,7 +1750,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool bPhn = fieldValidator.validate_ZipAccCrdPhn(strPhone, 10);
                 bool bNick = fieldValidator.validate_Names(strName);
 
-                if (bEmail && bStAdd && bPhn && bNick)
+                if (bEmail && bStAdd && bCity && bZip && bPhn && bNick)
                     return true;
                 else
                     return false;
@@ -2881,7 +2928,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                    Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());                    
                     if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
                     {
                         if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
@@ -2907,6 +2954,21 @@ namespace SoftSec_BankingApp_Se7en
                             //Call log out function here
                             Session["userName"] = "";
                             Response.Redirect("ExternalHomePage.aspx", false);
+                        }
+                    }
+                    else if (TabContainer1.ActiveTabIndex == 4)
+                    {
+                        
+                        if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5 || objUsr.roleId == 6))
+                        {
+                            TabContainer1.Visible = true;
+                            tb_emailview_int.Text = objUsr.email;
+                            tb_streetAddress_int.Text = objUsr.Address.street1;
+                            tb_usernameview_int.Text = objUsr.username;
+                            tb_city_int.Text = objUsr.Address.city;
+                            StateDD_Profile_int.SelectedValue = objUsr.Address.state;
+                            tb_ZipCode_Profile_int.Text = Convert.ToString(objUsr.Address.zip);
+                            tb_contactview_int.Text = objUsr.phone;
                         }
                     }
                 }
@@ -3568,5 +3630,512 @@ namespace SoftSec_BankingApp_Se7en
                 gv_AllDepTrans.DataBind();
             }
         }
+
+
+        #region EditProfile
+        protected void btnEditProfile_int_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tab_EditProfile.Visible = true;
+                tab_EditProfile.ActiveTabIndex = 0;
+                tb_emailedit_int.Text = tb_emailview_int.Text;
+                tb_addr_editprofile_int.Text = tb_streetAddress_int.Text;
+                tb_city_editProfile_int.Text = tb_city_int.Text;
+                StateDD_EditProfile_int.SelectedValue = StateDD_Profile_int.SelectedValue;
+                tb_zip_editProfile_int.Text = tb_ZipCode_Profile_int.Text;
+                tb_contactedit_int.Text = tb_contactview_int.Text;
+
+                //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
+                Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
+                if (objUser.siteKeyVal > 0 && (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6))
+                {
+                    tab_EditProfile.ActiveTabIndex = 0;
+                    tab_EditProfile.Tabs[2].Visible = false;
+                    tab_EditProfile.Tabs[1].Visible = true;
+                    lstQandA = PasswordModel.GetSecurityQandA(Session["userName"].ToString());
+                    dd_secque1_int.SelectedValue = Convert.ToString(lstQandA.First().questionId);
+                    dd_secque2_int.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
+                    dd_secque3_int.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                    dd_secque1_int.Enabled = false;
+                    dd_secque2_int.Enabled = false;
+                    dd_secque3_int.Enabled = false;
+                }
+                else
+                {
+                    tab_EditProfile.ActiveTabIndex = 2;
+                    tab_EditProfile.Tabs[1].Visible = false;
+                    tab_EditProfile.Tabs[2].Visible = true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void img_site_int3_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "3";
+            img_site_int3.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int3.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int1_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "1";
+            img_site_int1.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int1.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int2_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "2";
+            img_site_int2.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int2.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int4_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "4";
+            img_site_int4.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int4.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int5_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "5";
+            img_site_int5.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int5.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int6_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "6";
+            img_site_int6.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int6.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int7_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "7";
+            img_site_int7.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int7.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int8_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "8";
+            img_site_int8.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int8.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int9_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "9";
+            img_site_int9.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int9.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int10_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "10";
+            img_site_int10.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int10.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int11_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "11";
+            img_site_int11.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int11.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int12_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "12";
+            img_site_int12.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int12.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int13_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "13";
+            img_site_int13.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int13.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int14_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "14";
+            img_site_int14.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int14.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int15_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "15";
+            img_site_int15.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int15.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int16_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "16";
+            img_site_int16.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int16.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int17_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "17";
+            img_site_int17.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int17.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int18_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "18";
+            img_site_int18.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int18.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int19_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "19";
+            img_site_int19.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int19.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void img_site_int20_Click(object sender, ImageClickEventArgs e)
+        {
+            deselect_All_Images();
+            siteKeySelected = "20";
+            img_site_int20.BorderColor = System.Drawing.Color.DarkBlue;
+            img_site_int20.BorderStyle = BorderStyle.Solid;
+        }
+
+        protected void btnSetSiteKey_int_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serversideValidation = false;
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
+                    Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
+                    if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
+                    {
+                        //Check if all the security questions are different.
+                        List<Int32> lstSelectedQ = new List<Int32>();
+                        lstSelectedQ.Add(Convert.ToInt32(Sec1DD_PersonalInformation_int.SelectedValue));
+                        lstSelectedQ.Add(Convert.ToInt32(Sec2DD_PersonalInformation_int.SelectedValue));
+                        lstSelectedQ.Add(Convert.ToInt32(Sec3DD_PersonalInformation_int.SelectedValue));
+                        if (lstSelectedQ.Distinct().Count() == 3)
+                        {
+                            Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                            dictAns.Add(1, tb_SecAns1_Cust_int.Text.ToString());
+                            dictAns.Add(2, tb_SecAns2_Cust_int.Text.ToString());
+                            dictAns.Add(3, tb_SecAns3_Cust_int.Text.ToString());
+                            serversideValidation = validateFromFields(dictAns, tb_SSN_Cust_int.Text.ToString(), tb_sitekeyhint_Cust_int.Text.ToString());
+                            if (serversideValidation)
+                            {
+                                bool success = UserModel.UpdateUserSiteKeyAndQA(Session["userName"].ToString(), dictAns, tb_SSN_Cust_int.Text.ToString(), siteKeySelected, tb_sitekeyhint_Cust_int.Text.ToString());
+                                if (success)
+                                {
+                                    lblStatus_SiteKey_int.Text = "Values Updated Successfully";
+                                    btnSetSiteKey_int.Enabled = false;
+                                    lblStatus_SiteKey_int.Visible = true;
+                                }
+                                else
+                                {
+                                    //Update Failure
+                                    lblStatus_SiteKey_int.Text = "Update Failed. Try Again";
+                                    lblStatus_SiteKey_int.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //Invalid Entries.
+                                lblStatus_SiteKey_int.Text = "Invalid Entries";
+                                lblStatus_SiteKey_int.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            //Please select different questions.
+                            lblStatus_SiteKey_int.Text = "Please select different questions";
+                            lblStatus_SiteKey_int.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        //Invalid USer.
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        /// <summary>
+        /// Validate the fields in the form while submiting
+        /// </summary>
+        /// <param name="strOldPassword">Old Password of the user</param>
+        /// <param name="dictAns">Dictonary of user questions and answers</param>
+        /// <param name="strNewPassword">New Password of the user</param>
+        /// <param name="strConfrimPassword">Re-Confirm the new password</param>
+        /// <returns></returns>
+        private bool validateFromFields(Dictionary<int, string> dictAns, string strSSN, string strSiteKey)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+
+                int iCtr = 0;
+                List<int> iKeys = new List<int>(dictAns.Keys);
+                foreach (int i in iKeys)
+                {
+                    bool bAns = fieldValidator.validate_UserName(dictAns[i]);
+                    if (bAns)
+                        iCtr++;
+                }
+                bool bssn = fieldValidator.validate_ZipAccCrdPhn(strSSN, 9);
+                bool bstrSiteKey = fieldValidator.validate_UserName(strSiteKey);
+                if (iCtr == 3 && bssn && bstrSiteKey)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception Here
+                return false;
+            }
+        }
+
+        protected void btn_changepwd_int_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serverSideValidation = false;
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
+                    Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
+                    if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
+                    {
+                        Dictionary<int, string> dictAns = new Dictionary<int, string>();
+                        dictAns.Add(1, tb_secans_int1.Text.ToString());
+                        dictAns.Add(2, tb_secans_int2.Text.ToString());
+                        dictAns.Add(3, tb_secans_int3.Text.ToString());
+                        serverSideValidation = validateFromFields(tb_oldpwd_int.Text.ToString(), dictAns, tb_newPass_int.Text.ToString(), tb_confrimPass_int.Text.ToString());
+                        if (serverSideValidation)
+                        {
+                            //Proceed with business logic here
+                            if (LoginModel.LoginUser(Session["userName"].ToString(), tb_oldpwd_int.Text.ToString()) > 0)
+                            {
+                                string strAns1 = (lstQandA.First().answer).ToLower();
+                                string strAns2 = (lstQandA.ElementAt(1).answer).ToLower();
+                                string strAns3 = (lstQandA.Last().answer).ToLower();
+
+                                if (tb_secans_int1.Text.ToLower().Equals(strAns1) && tb_secans_int2.Text.ToLower().Equals(strAns2)
+                                        && tb_secans_int3.Text.ToLower().Equals(strAns3))
+                                {
+                                    if (tb_newPass_int.Text.Equals(tb_confrimPass_int.Text) && !(tb_newPass_int.Text.Equals(tb_oldpwd_int.Text.ToString())))
+                                    {
+                                        bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newPass_int.Text.ToString());
+                                        if (success)
+                                        {
+                                            lblStatus_ChgPwd_int.Text = "Password Changed Successfully";
+                                            lblStatus_ChgPwd_int.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblStatus_ChgPwd_int.Text = "Password Changed Failed, Please try again";
+                                            lblStatus_ChgPwd_int.Visible = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        lblStatus_ChgPwd_int.Text = "passwords dont match";
+                                        lblStatus_ChgPwd_int.Visible = true;
+                                    }
+                                }
+                                else
+                                {
+                                    lblStatus_ChgPwd_int.Text = "Answers Dont match";
+                                    lblStatus_ChgPwd_int.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                lblStatus_ChgPwd_int.Text = "Old password Dont match";
+                                lblStatus_ChgPwd_int.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            //Update the UI with error message.
+                            lblStatus_ChgPwd_int.Text = "Failed to fetch pwd info";
+                            lblStatus_ChgPwd_int.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        //Invalid user
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void btn_changesettings_profile_int_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                bool serverSideValidation = false;
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
+                    if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
+                    {
+                        serverSideValidation = validateFromFields_editProfile(tb_emailedit_int.Text.ToString(), tb_addr_editprofile_int.Text.ToString(),
+                                            tb_city_editProfile_int.Text.ToString(), tb_zip_editProfile_int.Text.ToString(), tb_contactedit_int.Text.ToString(), "jaffa");
+                        if (serverSideValidation)
+                        {
+                            //Proceed with business logic here
+                            bool success = UserModel.UpdateUser(Session["userName"].ToString(), tb_emailedit_int.Text.ToString(), tb_addr_editprofile_int.Text.ToString(),
+                                    tb_city_editProfile_int.Text.ToString(), StateDD_EditProfile_int.SelectedValue.ToString(), tb_zip_editProfile_int.Text.ToString(),
+                                        tb_contactedit_int.Text.ToString());
+                            if (success)
+                            {
+                                lblChaneProfile_int.Text = "Update Successful";
+                                lblChaneProfile_int.Visible = true;
+                            }
+                            else
+                            {
+                                lblChaneProfile_int.Text = "Update Unsuccessful";
+                                lblChaneProfile_int.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            //Update the UI with error message.
+                            lblChaneProfile_int.Text = "Invalid Entries";
+                            lblChaneProfile_int.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        //Invalid User 
+                        Response.Redirect("ExternalHomePage.apsx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+            }
+        }
+
+        protected void tab_EditProfile_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
+                    Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
+                    if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
+                    {
+                        if (tab_EditProfile.ActiveTabIndex == 2)
+                        {
+                            if (objUser.siteKeyVal > 0)
+                            {
+                                Sec1DD_PersonalInformation_int.Enabled = false;
+                                tb_SecAns1_Cust_int.Enabled = false;
+                                Sec2DD_PersonalInformation_int.Enabled = false;
+                                tb_SecAns2_Cust_int.Enabled = false;
+                                Sec3DD_PersonalInformation_int.Enabled = false;
+                                tb_SecAns3_Cust_int.Enabled = false;
+                                tb_SSN_Cust_int.Enabled = false;
+                                tb_sitekeyhint_Cust_int.Enabled = false;
+                                btnSetSiteKey_int.Enabled = false;
+                            }
+                            else
+                            {
+                                Sec1DD_PersonalInformation_int.Enabled = true;
+                                tb_SecAns1_Cust_int.Enabled = true;
+                                Sec2DD_PersonalInformation_int.Enabled = true;
+                                tb_SecAns2_Cust_int.Enabled = true;
+                                Sec3DD_PersonalInformation_int.Enabled = true;
+                                tb_SecAns3_Cust_int.Enabled = true;
+                                tb_SSN_Cust_int.Enabled = true;
+                                tb_sitekeyhint_Cust_int.Enabled = true;
+                                btnSetSiteKey_int.Enabled = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //Invalid User
+                        Response.Redirect("ExternalHomePage.aspx", false);
+                    }
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exceptions here
+
+            }
+        }
+        #endregion
     }
 }

@@ -64,6 +64,23 @@ namespace SoftSec_BankingApp_Se7en
                             //Valid User
                             if (LoginModel.LoginUser(Session["userName"].ToString(), TB_Password.Text.ToString()) > 0)
                             {
+                                bool status = UserModel.GetUserStatus(Session["userName"].ToString());
+                                string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+
+                                if (!status || String.IsNullOrEmpty(session))
+                                {
+                                    UserModel.UpdateUserActiveStatus(Session["userName"].ToString(), true);
+                                    UserModel.UpdateUserSessionID(Session["userName"].ToString(), Session.SessionID.ToString());
+                                    
+                                }
+                                else
+                                {
+                                    if (session != Session.SessionID)
+                                    {
+                                        UserModel.UpdateUserSessionID(Session["userName"].ToString(), Session.SessionID.ToString());
+                                    }
+                                }
+                                
                                 if (objuser.roleId == 2)
                                 {
                                     //External Individual

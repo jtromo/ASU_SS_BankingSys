@@ -206,6 +206,61 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool GetUserStatus(string iuserName)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", iuserName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+
+                    return user.isActive;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return false;
+            }
+        }
+
+        public static string GetUserSessionID(string iuserName)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", iuserName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return null;
+                    }
+
+                    User user = users.First();
+                    Address address = user.Address;
+                    ICollection<SecurityQuestion> securityQandA = user.SecurityQuestions;
+
+                    return user.sessionId;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log exception here
+                return null;
+            }
+        }
+
+
         public static bool RemoveUser(string username)
         {
             try
@@ -464,6 +519,35 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.Users.Attach(updatedUser);
                     var isActiveVar = db.Entry(updatedUser);
                     isActiveVar.Property(e => e.isActive).IsModified = true;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+                return false;
+            }
+        }
+
+        public static bool UpdateUserSessionID(string strUserName, string sessionid)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", strUserName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User updatedUser = users.First();
+                    updatedUser.sessionId = sessionid;
+                    db.Users.Attach(updatedUser);
+                    var sessionIdVar = db.Entry(updatedUser);
+                    sessionIdVar.Property(e => e.sessionId).IsModified = true;
                     db.SaveChanges();
                     return true;
                 }

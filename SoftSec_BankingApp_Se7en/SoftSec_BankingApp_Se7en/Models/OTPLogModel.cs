@@ -14,20 +14,31 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    if (username == null)
-                        return false;
-                    if (otp == null)
-                        return false;
+                    List<OTPLog> otpLogs = db.OTPLogs.SqlQuery("SELECT * FROM dbo.OTPLogs WHERE username = @p0", username).ToList();
 
-                    DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                    OTPLog otpLog = new OTPLog();
-                    otpLog.username = username;
-                    otpLog.otp = otp;
-                    otpLog.timestamp = timestamp;
+                    if (otpLogs.Count() < 1)
+                    {
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        OTPLog otpLog = new OTPLog();
+                        otpLog.username = username;
+                        otpLog.otp = otp;
+                        otpLog.timestamp = timestamp;
 
-                    db.OTPLogs.Add(otpLog);
-                    db.SaveChanges();
-
+                        db.OTPLogs.Add(otpLog);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        OTPLog otplogging = otpLogs.First();
+                        otplogging.otp = otp;
+                        otplogging.timestamp = new DateTimeOffset(DateTime.Now);
+                        db.OTPLogs.Attach(otplogging);
+                        var otpVar = db.Entry(otplogging);
+                        otpVar.Property(e => e.otp).IsModified = true;
+                        var timeVar = db.Entry(otplogging);
+                        timeVar.Property(e => e.timestamp).IsModified = true;
+                        db.SaveChanges();                    
+                    }
                     return true;
                 }
             }

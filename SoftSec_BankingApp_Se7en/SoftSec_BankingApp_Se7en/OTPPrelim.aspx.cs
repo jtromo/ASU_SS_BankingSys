@@ -30,6 +30,7 @@ namespace SoftSec_BankingApp_Se7en
         {
             
             OTP.SpitOTP("darkknight","ushakanthkvp@gmail.com");
+            OTP.SpitOTP("usha", "ushakanthkvp@gmail.com");
             //MailMessage mMailMessage = new MailMessage();
 
             //// Set the sender address of the mail message

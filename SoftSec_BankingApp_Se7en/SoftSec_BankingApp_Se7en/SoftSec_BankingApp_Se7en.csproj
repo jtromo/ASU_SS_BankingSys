@@ -469,7 +469,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Account\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

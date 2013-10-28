@@ -446,6 +446,37 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
+        public static bool UpdateUserActiveStatus(string strUserName,bool active)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", strUserName).ToList();
+
+                    if (users.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    User updatedUser = users.First();
+                    updatedUser.isActive = active;
+                    db.Users.Attach(updatedUser);
+                    var isActiveVar = db.Entry(updatedUser);
+                    isActiveVar.Property(e => e.isActive).IsModified = true;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                //Log Exception here
+                return false;
+            }
+        }
+
+
+
         // Needs to be removed. (no one should be able to do this without access)
         public static bool TransferToDept(string username, int ToDepartmentId)
         {

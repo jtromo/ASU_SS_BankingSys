@@ -471,6 +471,7 @@
     <Compile Include="Models\Tables\AccountType.cs" />
     <Compile Include="Models\Tables\Address.cs" />
     <Compile Include="Models\Tables\Card.cs" />
+    <Compile Include="Models\Tables\OTPLog.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\DepartmentTransaction.cs" />
     <Compile Include="Models\Tables\Question.cs" />

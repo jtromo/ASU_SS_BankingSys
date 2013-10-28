@@ -75,6 +75,7 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public string lastName { get; set; }
         public string username { get; set; }
         public string email { get; set; }
+        public string sessionId { get; set; }
         public string salt { get; set; }
         public string hash { get; set; }
         public string phone { get; set; }

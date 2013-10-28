@@ -79,7 +79,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<DepartmentTransaction> departmentTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE usernameInitiated = @p0 OR usernameEffected = @p0", username).ToList();
+                    List<DepartmentTransaction> departmentTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE ((usernameInitiated = @p0 OR usernameEffected = @p0) AND (status = @p1 AND isCritical = @p1))", username,1).ToList();
 
                     if (departmentTransactions.Count() < 1)
                     {
@@ -301,6 +301,23 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 //Log exception here
                 return false;
+            }
+        }
+
+        public static List<DepartmentTransaction> AllRequests()
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE (isCritical = @p0 AND status = @p1)", 1,1).ToList();
+
+                    return deptTransactions;
+                }
+            }
+            catch (Exception exp)
+            {
+                return null;
             }
         }
     }

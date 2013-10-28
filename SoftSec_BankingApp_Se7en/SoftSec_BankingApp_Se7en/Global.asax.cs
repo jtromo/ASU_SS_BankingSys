@@ -9,6 +9,7 @@ using System.Data.Entity;
 using SoftSec_BankingApp_Se7en.Models;
 using System.Data.SqlClient;
 using System.IO;
+using Core.Crypto;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -21,8 +22,9 @@ namespace SoftSec_BankingApp_Se7en
             // Code that runs on application startup
             //SqlConnection.ClearAllPools();
             //Database.SetInitializer(new DropCreateDatabaseAlways<SSBankDBContext>());
-            AuthConfig.RegisterOpenAuth();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //AuthConfig.RegisterOpenAuth();
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
+            OTP.InitOTP();
         }
 
         void Application_End(object sender, EventArgs e)

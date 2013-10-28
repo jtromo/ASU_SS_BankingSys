@@ -15,8 +15,7 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class OTPPrelim : System.Web.UI.Page
     {
-        Core.Crypto.OTP otpF = new OTP();
-        static String otpStr = "";
+        
         private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
         private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
         protected void Page_Load(object sender, EventArgs e)
@@ -24,45 +23,34 @@ namespace SoftSec_BankingApp_Se7en
             Elog.Error("ieieieie");
             Tlog.Debug("kasjhdksadkasdkasdsakdjsakjdklasjdsklajd Info");
 
-            var db = new SSBankDBContext();
-            List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users").ToList();
-            
-            GridView2.DataSource = users;
-            GridView2.DataBind();
-
+           
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            
+            OTP.SpitOTP("darkknight","ushakanthkvp@gmail.com");
+            //MailMessage mMailMessage = new MailMessage();
 
-            Random RandomNumber = new Random();
-            otpF.GetCurrentOTP();
-            for (int i = 0; i < Convert.ToInt32(RandomNumber.Next(100)); i++)
-            {
-                otpF.GetNextOTP();
-            }
-            otpStr = otpF.GetCurrentOTP();
-            MailMessage mMailMessage = new MailMessage();
-
-            // Set the sender address of the mail message
-            mMailMessage.From = new MailAddress("bankse7en@gmail.com");
-            // Set the recepient address of the mail message
-            mMailMessage.To.Add(new MailAddress("ushakanthkvp@gmail.com"));
+            //// Set the sender address of the mail message
+            //mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+            //// Set the recepient address of the mail message
+            //mMailMessage.To.Add(new MailAddress("ushakanthkvp@gmail.com"));
 
 
-            mMailMessage.Subject = "Your Bank account has been hacked!!!";
-            // Set the body of the mail message
-            mMailMessage.Body = ":P Your OTP is :" + otpStr;
+            //mMailMessage.Subject = "Your Bank account has been hacked!!!";
+            //// Set the body of the mail message
+            //mMailMessage.Body = ":P Your OTP is :" + otpStr;
 
-            // Set the format of the mail message body as HTML
-            mMailMessage.IsBodyHtml = true;
-            // Set the priority of the mail message to normal
-            mMailMessage.Priority = MailPriority.Normal;
-            SmtpClient mSmtpClient = new SmtpClient();
-            mSmtpClient.EnableSsl = true;
-            mSmtpClient.Send(mMailMessage);
-            Label1.Text = otpStr;
-            Session["OTP"] = otpStr;
+            //// Set the format of the mail message body as HTML
+            //mMailMessage.IsBodyHtml = true;
+            //// Set the priority of the mail message to normal
+            //mMailMessage.Priority = MailPriority.Normal;
+            //SmtpClient mSmtpClient = new SmtpClient();
+            //mSmtpClient.EnableSsl = true;
+            //mSmtpClient.Send(mMailMessage);
+            //Label1.Text = otpStr;
+            //Session["OTP"] = otpStr;
         }
 
         protected void Button3_Click(object sender, EventArgs e)

@@ -22,6 +22,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
                     OTPLog otpLog = new OTPLog();
                     otpLog.username = username;
+                    otpLog.otp = otp;
                     otpLog.timestamp = timestamp;
 
                     db.OTPLogs.Add(otpLog);

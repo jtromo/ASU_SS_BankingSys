@@ -4,9 +4,11 @@
  * @license CPL, CodeProject license 
  */
 
+using SoftSec_BankingApp_Se7en.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 
 namespace Core.Crypto
@@ -16,6 +18,7 @@ namespace Core.Crypto
     /// </summary>
     public class OTP
     {
+        static OTP otpf = new OTP();
         public const int
             MIN_PINLENGTH = 4,
             SECRET_LENGTH = 20;
@@ -162,6 +165,35 @@ namespace Core.Crypto
 
 			return GetCurrentOTP();
 		}
+
+        public static void InitOTP()
+        {            
+            otpf.GetCurrentOTP();
+            Random RandomNumber = new Random();
+            for (int i = 0; i < Convert.ToInt32(RandomNumber.Next(100)); i++)
+            {
+                otpf.GetNextOTP();
+            }
+        }
+
+        public static void SpitOTP(string username,string emailId)
+        {
+            otpf.GetNextOTP();
+            string otpToBeSent = otpf.GetCurrentOTP();
+            OTPLogModel.CreateOTPLog(username, otpToBeSent);            
+            MailMessage mMailMessage = new MailMessage();
+            mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+            mMailMessage.To.Add(new MailAddress(emailId));
+            mMailMessage.Subject = "Bank of Se7en One-Time Password";
+            string bodyMail = "You have requested a One Time Password for your transaction on BankofSe7en website. Your OTP:" + otpToBeSent;
+            bodyMail += "<br>This expires in the next ten minutes. If you aren't authenticated into the system before that, you will have to redo your transaction.";
+            mMailMessage.Body = bodyMail;
+            mMailMessage.IsBodyHtml = true;
+            mMailMessage.Priority = MailPriority.Normal;
+            SmtpClient mSmtpClient = new SmtpClient();
+            mSmtpClient.EnableSsl = true;
+            mSmtpClient.Send(mMailMessage);            
+        }
 
 
         /// <summary>

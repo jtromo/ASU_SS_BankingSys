@@ -28,6 +28,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     hideRequestUI();
 
                     if (!IsPostBack)
@@ -88,6 +89,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     User checkforUSer = UserModel.GetUser(userIdTb_Modify.Text.ToString());
                     if (checkforUSer != null)
                     {
@@ -137,6 +139,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool serverSideValidation = false;
                 try
                 {
@@ -208,6 +211,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool serverSideValidation = false;
                 try
                 {
@@ -277,6 +281,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool userRemoved = false;
                 userRemoved = UserModel.RemoveUser(userNameTb_Remove.Text.ToString());
                 if (userRemoved == true)
@@ -302,6 +307,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation2 = false;
                 try
                 {
+                    checkSession();
                     serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
                         , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString() , tb_Zip_Emp.Text.ToString());
                     FieldValidator fieldValidator = new FieldValidator();
@@ -387,6 +393,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     if (tabAdmin.ActiveTabIndex == 3)
                     {
                         sysLog_GridView.ShowHeader = true;
@@ -429,6 +436,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool serverSideValidation = false;
                 //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
                 try
@@ -676,6 +684,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 string username = userNameLookUpTb.Text.ToString();
                 if (validateUserNameField(username))
                 {
@@ -798,6 +807,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 int currentTransID = currentSlectedTrans.id;
                 if (currentSlectedTrans.status == 1)
                 {
@@ -826,6 +836,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 int currentTransID = currentSlectedTrans.id;
                 if (currentSlectedTrans.status == 1)
                 {
@@ -927,6 +938,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 7 || objUser.roleId == 8)
                     {
@@ -1014,6 +1026,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 7 || objUser.roleId == 8)
@@ -1156,6 +1169,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 7 || objUser.roleId == 8)
@@ -1400,6 +1414,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 7 || objUser.roleId == 8)
@@ -1504,6 +1519,16 @@ namespace SoftSec_BankingApp_Se7en
             currentDTransBeingDisplayed = DepartmentTransactionModel.AllRequests();
             RequestsGridV.DataSource = currentDTransBeingDisplayed;
             RequestsGridV.DataBind();
+        }
+        protected void checkSession()
+        {
+            string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+            if (session != Session.SessionID)
+            {
+                Session.Abandon();
+                Response.Redirect("ExternalHomePage.aspx");
+            }
+
         }
         
     }

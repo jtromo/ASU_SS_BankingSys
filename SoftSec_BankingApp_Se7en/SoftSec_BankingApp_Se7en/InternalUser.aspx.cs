@@ -447,6 +447,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
                                             tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
                                             tb_securitycode_IU_Inside.Text.ToString());
@@ -585,6 +586,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tbCardNumber_IU.Text.ToString(), tbYear_IU.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -697,6 +699,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields_InternalTransfer(tb_amountoutside.Text.ToString(), tb_lastnameoutside.Text.ToString(), tb_emailoutside.Text.ToString(),
                                         tb_usercardno.Text.ToString(), tb_securitycodeoutside.Text.ToString(), tb_AccNumoutside_Intenal.Text.ToString(), tb_toRoutingNum_OutsideBank.Text.ToString());
                 if (serverSideValidation)
@@ -831,6 +834,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_amountbetween.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -885,6 +889,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_card_DebitFunds.Text.ToString(), tb_securitycode_DebitFunds.Text.ToString(),
                                         tb_amountoutside_DebitFunds.Text.ToString());
                 if (serverSideValidation)
@@ -961,6 +966,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_card_CreditFunds.Text.ToString(), tb_securitycode_CreditFunds.Text.ToString(),
                                         tb_amountoutside_CreditFunds.Text.ToString());
                 if (serverSideValidation)
@@ -1035,6 +1041,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                     serverSideValidation = validateFromFields_editProfile(tb_email_Edit.Text.ToString(), tb_stAddr_Edit.Text.ToString(), tb_city_Edit.Text.ToString(),
                                         tb_zipCode_Edit.Text.ToString(), tb_contact_Edit.Text.ToString(), tb_nickname_Edit.Text.ToString());
                 if (serverSideValidation)
@@ -1077,6 +1084,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 Dictionary<int, string> dictAns = new Dictionary<int, string>();
                 dictAns.Add(1, tb_secans1.Text.ToString());
                 dictAns.Add(2, tb_secans2.Text.ToString());
@@ -1146,6 +1154,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                     serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_SubmitPayment.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -1211,6 +1220,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_FirstName_Cust.Text.ToString(), tb_MiddleName_Cust.Text.ToString(), tb_LastName_Cust.Text.ToString()
                     , tb_Email_Cust.Text.ToString(), tb_StreetAddr_Cust.Text.ToString(), tb_City_Cust.Text.ToString(), tb_Phone_Cust.Text.ToString()
                     , tb_Zip_Cust.Text.ToString());
@@ -1245,6 +1255,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields(tb_UserName_Cust.Text.ToString(), tb_Password_Cust.Text.ToString(), tb_ConfPassword_Cust.Text.ToString()
                        , tb_SecAns1_Cust.Text.ToString(), tb_SecAns2_Cust.Text.ToString(), tb_SecAns3_Cust.Text.ToString(), tb_SSN_Cust.Text.ToString()
                        , tb_sitekeyhint_Cust.Text.ToString(), tb_BirthYear_Cust.Text.ToString());
@@ -1372,6 +1383,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation2 = false;
                 try
                 {
+                    checkSession();
                     serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
                         , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
                     FieldValidator fieldValidator = new FieldValidator();
@@ -1483,6 +1495,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation = false;
                 try
                 {
+                    checkSession();
                     serverSideValidation = validateFromFields_Emp(tb_UserName_DelEmp.Text.ToString());
                     if (serverSideValidation)
                     {
@@ -1534,6 +1547,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation = false;
                 try
                 {
+                    checkSession();
                     serverSideValidation = validateFromFields_Emp(tb_UserName_transEmp.Text.ToString());
                     if (serverSideValidation)
                     {
@@ -1585,6 +1599,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation = false;
                 try
                 {
+                    checkSession();
                     serverSideValidation = validateFromFields_Emp(tb_userName_ViewEmp.Text.ToString());
                     if (serverSideValidation)
                     {
@@ -1622,6 +1637,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields_Emp(tb_userName_ViewEmp.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -1651,6 +1667,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
                 serverSideValidation = validateFromFields_ECheck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString()
                                             , tb_echeckcustomername.Text.ToString(), tbAmount_EcheckPayment.Text.ToString());
                 if (serverSideValidation)
@@ -2175,6 +2192,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool DeleteSuccess = false;
                 User userToDel = new User();
                 userToDel = UserModel.GetUser(tb_UserName_DelEmp.Text.ToString());
@@ -2217,6 +2235,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 if (RoleDD_TransEmp.SelectedValue == TO_RoleDD_TransEmp.SelectedValue)
                 {
                     if (FROM_DeptDD_TransEmp.SelectedValue == TO_DeptDD_TransDept.SelectedValue)
@@ -2317,6 +2336,7 @@ namespace SoftSec_BankingApp_Se7en
             {
             try
             {
+                checkSession();
                 List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
                 if (lstTrans != null)
                 {
@@ -2341,6 +2361,7 @@ namespace SoftSec_BankingApp_Se7en
             {
             try
             {
+                checkSession();
                 List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
                 if (lstTrans != null)
                 {
@@ -2366,6 +2387,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                 if (TabContainer2.ActiveTabIndex == 2)
                 {
                     TabContainer4.Visible = false;
@@ -2436,6 +2458,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
             TabContainer4.Visible = true;
             try
             {
@@ -2463,6 +2486,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                 if (TabContainer4.ActiveTabIndex == 0)
                 {
                     //Reset the fields if required
@@ -2496,6 +2520,7 @@ namespace SoftSec_BankingApp_Se7en
             {
             try
             {
+                checkSession();
                 bool serverSideValidation = false;
                 FieldValidator objField = new FieldValidator();
                 serverSideValidation = objField.validate_TransID(tb_transID_ModifyTrans.Text.ToString());
@@ -2551,6 +2576,7 @@ namespace SoftSec_BankingApp_Se7en
             {
             try
             {
+                checkSession();
                 bool serverSideValidation = false;
                 FieldValidator objField = new FieldValidator();
                 serverSideValidation = objField.validate_TransID(tb_transID_ModifyTrans.Text) 
@@ -2786,6 +2812,7 @@ namespace SoftSec_BankingApp_Se7en
         }
             else
         {
+            checkSession();
             /* Try this next time.
              * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
                 where T : Control
@@ -2992,6 +3019,7 @@ namespace SoftSec_BankingApp_Se7en
             bool serverSideValidation = false;
             try
             {
+                checkSession();
             serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
                                             tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
                                             tb_securitycode_IU_Inside.Text.ToString());
@@ -3180,6 +3208,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
             string username = Session["userName"].ToString();
             currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
             if (currentPendingTransReqs != null)
@@ -3208,7 +3237,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
-            
+                checkSession();
                 bool approved = TransactionModel.ApproveTransaction(currentSelectedTransReq.id);
                 if (approved)
                 {
@@ -3235,6 +3264,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
 
                 bool rejected = TransactionModel.RejectTransaction(currentSelectedTransReq.id);
             if (rejected)
@@ -3319,6 +3349,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 string selectedpeername = authorizersDDReqTab.Text.ToString();
                 if (selectedpeername == null || selectedpeername.Equals(""))
                 {
@@ -3394,6 +3425,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 string selectedHighername = authorizersDDReqTab.Text.ToString();
                 if (selectedHighername == null || selectedHighername.Equals(""))
                 {
@@ -3490,6 +3522,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 bool serverSideValidation = false;
                 try
                 {
@@ -3609,6 +3642,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 var db = new SSBankDBContext();
                 List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE (fromDepartmentId = @p0 OR toDepartmentId = @p1)",Session["deptId"],Session["deptId"]).ToList();
                 gv_DeptTrans.DataSource = deptTransactions;
@@ -3624,6 +3658,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             else
             {
+                checkSession();
                 var db = new SSBankDBContext();
                 List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions").ToList();
                 gv_AllDepTrans.DataSource = deptTransactions;
@@ -3845,6 +3880,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
@@ -3955,6 +3991,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
@@ -4039,6 +4076,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
                     {
@@ -4091,6 +4129,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
+                    checkSession();
                     //Check if the user has set the site key value. IF yes, then dont show the site key tab panel.
                     Models.Tables.User objUser = UserModel.GetUser(Session["userName"].ToString());
                     if (objUser.roleId == 4 || objUser.roleId == 5 || objUser.roleId == 6)
@@ -4137,5 +4176,16 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
         #endregion
+        protected void checkSession()
+        {
+            string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+            if (session != Session.SessionID)
+            {
+                Session.Abandon();
+                Response.Redirect("ExternalHomePage.aspx");
+            }
+
+        }
     }
+
 }

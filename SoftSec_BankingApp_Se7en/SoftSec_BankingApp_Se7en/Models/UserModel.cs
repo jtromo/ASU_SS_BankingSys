@@ -1,4 +1,5 @@
-﻿using SoftSec_BankingApp_Se7en.Models.Tables;
+﻿using log4net;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class UserModel
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
+
         public static bool CreateUser(User newUser, string password, string socialSecurity, string birthdate, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
@@ -47,13 +51,15 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.Users.Add(newUser);
                     db.SaveChanges();
 
+                    Tlog.Debug("New user " + newUser.username + " successfully added");
+
                     return true;
                 }
             }
             catch (Exception exp)
             {
-                Console.WriteLine("Exception occurred: " + exp.Message);
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
+
                 return false;
             }
         }

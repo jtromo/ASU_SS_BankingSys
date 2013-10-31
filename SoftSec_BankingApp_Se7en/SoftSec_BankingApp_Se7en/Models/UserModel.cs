@@ -485,7 +485,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool UpdateUser(string strUserName)
+        public static bool UpdateUser(string strUserName, bool isLockNeeded)
         {
             try
             {
@@ -499,7 +499,14 @@ namespace SoftSec_BankingApp_Se7en.Models
                     }
 
                     User updatedUser = users.First();
-                    updatedUser.lockoutTime = DateTime.Now.AddHours(1);
+                    if (isLockNeeded)
+                    {
+                        updatedUser.lockoutTime = DateTime.Now.AddHours(1);
+                    }
+                    else
+                    {
+                        updatedUser.lockoutTime = null;
+                    }
                     db.Users.Attach(updatedUser);
                     var locktime = db.Entry(updatedUser);
                     locktime.Property(e => e.lockoutTime).IsModified = true;

@@ -61,7 +61,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             //Proceed with business logic here
                             objuser = UserModel.GetUser(Session["userName"].ToString());
-                            if (objuser.lockoutTime.Value != null)
+                            if (objuser.lockoutTime != null)
                             {
                                 lblErrorMessage_Authorize.Text = "The User Account has been locked. Kindly try after 1 hour";
                                 TB_Password.Text = "";
@@ -134,7 +134,7 @@ namespace SoftSec_BankingApp_Se7en
                                     if (Convert.ToInt32(Session["NoAttempts"].ToString()) >= 2)
                                     {
                                         //Lock User
-                                        bool block = UserModel.UpdateUser(Session["userName"].ToString());
+                                        bool block = UserModel.UpdateUser(Session["userName"].ToString(),true);
                                         if (block)
                                         {
                                             lblErrorMessage_Authorize.Text = "The User Account has been locked. Kindly try after 1 hour";
@@ -159,7 +159,7 @@ namespace SoftSec_BankingApp_Se7en
                             if (Convert.ToInt32(Session["NoAttempts"].ToString()) >= 2)
                             {
                                 //Lock User
-                                bool block = UserModel.UpdateUser(Session["userName"].ToString());
+                                bool block = UserModel.UpdateUser(Session["userName"].ToString(),true);
                                 if (block)
                                 {
                                     lblErrorMessage_Authorize.Text = "The User Account has been locked. Kindly try after 1 hour";

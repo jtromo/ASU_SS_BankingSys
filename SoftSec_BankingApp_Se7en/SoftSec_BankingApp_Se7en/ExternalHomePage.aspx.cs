@@ -59,6 +59,7 @@ namespace SoftSec_BankingApp_Se7en
                             else if (DateTime.Now > objuser.lockoutTime)
                             {
                                 Session["userName"] = TB_UserName.Text.ToString();
+                                UserModel.UpdateUser(TB_UserName.Text.ToString(),false); 
                                 Response.Redirect("AuthorizeUser.aspx", false);
                             }
                         }                        

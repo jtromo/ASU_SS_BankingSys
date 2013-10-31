@@ -66,6 +66,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     entry.Property(e => e.salt).IsModified = true;
                     db.SaveChanges();
 
+                    Tlog.Debug("Password for user: " + username + " changed successfully");
+
                     return true;
                 }
             }

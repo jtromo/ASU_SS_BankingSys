@@ -215,6 +215,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                     db.SaveChanges();
 
+                    Tlog.Debug("Authorization request for user: " + username + " added successfully");
+
                     return true;
                 }
             }
@@ -334,6 +336,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
+                        Tlog.Debug("Transaction: " + transactionId + " approved successfully");
+
                         return true;
                     }
                 }
@@ -380,6 +384,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
+                        Tlog.Debug("Transaction: " + transactionId + " escalated successfully");
+
                         return true;
                     }
                 }
@@ -414,6 +420,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     vstatus.Property(e => e.status).IsModified = true;
 
                     db.SaveChanges();
+
+                    Tlog.Debug("Transaction: " + transactionId + " rejected successfully");
 
                     return true;
                 }
@@ -481,6 +489,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
+                        Tlog.Debug("Internal transfer from account: " + fromAccountNumber + " made successfully");
+
                         return transaction.id;
                     }
                 }
@@ -542,6 +552,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                         db.SaveChanges();
                         scope.Complete();
+
+                        Tlog.Debug("External transfer from account: " + fromAccountNumber + " made successfully");
 
                         return transaction.id;
                     }
@@ -607,6 +619,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
+                        Tlog.Debug("Withdraw from account: " + accountNumber + " made successfully");
+
                         return transaction.id;
                     }
                 }
@@ -652,6 +666,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                         db.SaveChanges();
                         scope.Complete();
+
+                        Tlog.Debug("Deposit to account: " + accountNumber + " made successfully");
 
                         return transaction.id;
                     }

@@ -287,6 +287,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.Users.Remove(user);
                     db.SaveChanges();
 
+                    Tlog.Debug("User: " + username + " successfully removed");
+
                     return true;
                 }
             }
@@ -369,13 +371,13 @@ namespace SoftSec_BankingApp_Se7en.Models
         }
 
 
-        public static bool UpdateUserSiteKeyAndQA(string userName, Dictionary<int,string> dictQandA, string strSSN, string strSiteKey,string siteKeyDesc)
+        public static bool UpdateUserSiteKeyAndQA(string username, Dictionary<int,string> dictQandA, string strSSN, string strSiteKey,string siteKeyDesc)
         {
             try
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", userName).ToList();
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
                     if (users.Count() < 1)
                     {
@@ -416,6 +418,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     vSSN.Property(e=>e.socialSecurityNumber).IsModified = true;
                     db.SaveChanges();
 
+                    Tlog.Debug("User: " + username + " successfully updated QandA and SiteKey");
+
                     return true;
                 }
             }
@@ -426,13 +430,13 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static bool UpdateUser(string userName, string email, string staddress, string city, string state, string zipCode, string phoneNo)
+        public static bool UpdateUser(string username, string email, string staddress, string city, string state, string zipCode, string phoneNo)
         {
             try
             {
                 using (var db = new SSBankDBContext())
                 {
-                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", userName).ToList();
+                    List<User> users = db.Users.SqlQuery("SELECT * FROM dbo.Users WHERE username = @p0", username).ToList();
 
                     if (users.Count() < 1)
                     {
@@ -469,6 +473,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     vaddr_state.Property(e => e.state).IsModified = true;
                     db.SaveChanges();
 
+                    Tlog.Debug("User: " + username + " successfully updated");
+
                     return true;
                 }
             }
@@ -498,6 +504,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                     var locktime = db.Entry(updatedUser);
                     locktime.Property(e => e.lockoutTime).IsModified = true;
                     db.SaveChanges();
+
+                    Tlog.Debug("User: " + strUserName + " lockout time successfully updated");
+
                     return true;
                 }                
             }
@@ -527,6 +536,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                     var isActiveVar = db.Entry(updatedUser);
                     isActiveVar.Property(e => e.isActive).IsModified = true;
                     db.SaveChanges();
+
+                    Tlog.Debug("User: " + strUserName + " active status updated");
+
                     return true;
                 }
             }
@@ -556,6 +568,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                     var sessionIdVar = db.Entry(updatedUser);
                     sessionIdVar.Property(e => e.sessionId).IsModified = true;
                     db.SaveChanges();
+
+                    Tlog.Debug("User: " + strUserName + " session id updated");
+
                     return true;
                 }
             }
@@ -589,6 +604,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     vdeptId.Property(e => e.departmentId).IsModified = true;
                     
                     db.SaveChanges();
+
+                    Tlog.Debug("User: " + username + " transfered departments successfully");
 
                     return true;
                    

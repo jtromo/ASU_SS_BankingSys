@@ -43,6 +43,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                         timeVar.Property(e => e.timestamp).IsModified = true;
                         db.SaveChanges();                    
                     }
+
+                    Tlog.Debug("OTP for user: " + username + " created successfully");
+
                     return true;
                 }
             }

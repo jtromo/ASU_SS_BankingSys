@@ -125,6 +125,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.DepartmentTransactions.Add(deptTransaction);
                     db.SaveChanges();
 
+                    Tlog.Debug("User: " + usernameEffected + " role escalated successfully");
+
                     return deptTransaction.id;
                 }
 
@@ -161,9 +163,10 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.DepartmentTransactions.Add(deptTransaction);
                     db.SaveChanges();
 
+                    Tlog.Debug("User: " + usernameEffected + " department transferred successfully");
+
                     return deptTransaction.id;
                 }
-
             }
             catch (Exception exp)
             {
@@ -259,6 +262,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                         db.SaveChanges();
                         scope.Complete();
 
+                        Tlog.Debug("Department Transfer: " + deptTransactionId + " accepted successfully");
+
                         return true;
                     }
                 }
@@ -297,6 +302,8 @@ namespace SoftSec_BankingApp_Se7en.Models
                     vdeptTransaction.Property(e => e.status).IsModified = true;
 
                     db.SaveChanges();
+
+                    Tlog.Debug("Department Transfer: " + deptTransactionId + " rejected successfully");
 
                     return true;
                 }

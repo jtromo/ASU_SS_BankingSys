@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,6 +9,8 @@ namespace SoftSec_BankingApp_Se7en
 {
     public class FieldValidator
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+
         /// <summary>
         /// Validates the email field (Max Length - 40)
         /// </summary>
@@ -40,7 +43,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log the exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -74,7 +77,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -109,7 +112,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return "0_ FALSE";
             }
         }
@@ -138,7 +141,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -166,7 +169,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -194,7 +197,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -221,7 +224,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -249,7 +252,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -281,7 +284,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception exp
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

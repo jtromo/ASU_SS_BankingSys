@@ -1,4 +1,5 @@
-﻿using SoftSec_BankingApp_Se7en.Models.Tables;
+﻿using log4net;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,9 @@ namespace SoftSec_BankingApp_Se7en.Models
 {
     public class PasswordModel
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
+
         public static List<SecurityQuestion> GetSecurityQandA(string username)
         {
             try
@@ -36,7 +40,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -67,7 +71,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

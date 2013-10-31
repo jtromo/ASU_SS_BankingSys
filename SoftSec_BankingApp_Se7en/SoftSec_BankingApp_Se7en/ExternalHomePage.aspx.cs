@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
+using log4net;
 
 namespace SoftSec_BankingApp_Se7en
 {
     public partial class ExternalHomePage : System.Web.UI.Page
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+
         private static Models.Tables.User objuser = new Models.Tables.User();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,7 +27,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception here
+                Elog.Error("Exception occurred: " + exp.Message);
             }
         }
 
@@ -83,9 +86,9 @@ namespace SoftSec_BankingApp_Se7en
                     lblErrorMessage.Visible = true;     
                 }
             }
-            catch (Exception Exp)
+            catch (Exception exp)
             {
-                //Log Exception here
+                Elog.Error("Exception occurred: " + exp.Message);
             }
         }
 
@@ -110,7 +113,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
             }
             catch(Exception exp){
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

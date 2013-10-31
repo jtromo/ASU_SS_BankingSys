@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Transactions;
 using SoftSec_BankingApp_Se7en.Models.Tables;
+using log4net;
 
 namespace SoftSec_BankingApp_Se7en.Models
 {
@@ -21,6 +22,9 @@ namespace SoftSec_BankingApp_Se7en.Models
         public const int TRANSFER_STATUS_PROCESSING = 1;
         public const int TRANSFER_STATUS_APPROVED = 2;
         public const int TRANSFER_STATUS_REJECTED = 3;
+
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
 
         public static List<Tables.Transaction> GetTransactionsForAccount(string accountNumber)
         {
@@ -48,7 +52,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -71,7 +75,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -94,7 +98,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -117,7 +121,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -156,7 +160,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -179,7 +183,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -216,7 +220,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -307,7 +311,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                                     if ((account.balance - transaction.amount) < 0)
                                     {
-                                        //Log Error. OVERDRAFT!
+                                        // OVERDRAFT!
+                                        Tlog.Error("Overdraft occured on account: " + account.accountNumber);
                                         return false;
                                     }
 
@@ -335,7 +340,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -381,7 +386,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -415,7 +420,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -482,7 +487,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }
@@ -544,7 +549,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }
@@ -566,7 +571,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                         if ((account.balance - amount) < 0)
                         {
-                            //Log Error. OVERDRAFT!
+                            // OVERDRAFT!
+                            Tlog.Error("Overdraft occured on account: " + account.accountNumber);
                             return -1;
                         }
 
@@ -607,7 +613,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }
@@ -653,7 +659,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }

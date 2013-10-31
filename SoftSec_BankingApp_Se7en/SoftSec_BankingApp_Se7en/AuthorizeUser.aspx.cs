@@ -5,11 +5,14 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
+using log4net;
 
 namespace SoftSec_BankingApp_Se7en
 {
     public partial class AuthorizeUser : System.Web.UI.Page
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+
         private static Models.Tables.User objuser = new Models.Tables.User();
         private static int noAttempts = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -183,7 +186,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                     lblErrorMessage_Authorize.Text = "An unknown exception occured, please try again.";
                     TB_Password.Text = "";
                     lblErrorMessage_Authorize.Visible = true;
@@ -218,7 +221,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

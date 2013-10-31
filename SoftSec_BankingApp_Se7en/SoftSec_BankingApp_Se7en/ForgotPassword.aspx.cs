@@ -6,11 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
 using SoftSec_BankingApp_Se7en.Models.Tables;
+using log4net;
 
 namespace SoftSec_BankingApp_Se7en
 {
     public partial class ForgotPassword : System.Web.UI.Page
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+
         private static List<SecurityQuestion> lstQandA = null;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +33,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exceptions here
+                Elog.Error("Exception occurred: " + exp.Message);
             }
         }
 
@@ -94,7 +97,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
             else {
@@ -142,7 +145,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exceptions here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -175,7 +178,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

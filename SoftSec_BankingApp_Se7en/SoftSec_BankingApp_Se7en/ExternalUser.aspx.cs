@@ -7,11 +7,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
 using SoftSec_BankingApp_Se7en.Models.Tables;
+using log4net;
 
 namespace SoftSec_BankingApp_Se7en
 {
     public partial class ExternalUser : System.Web.UI.Page
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
         private string merchant_savingsAccNum = string.Empty;
         private static List<SecurityQuestion> lstQandA = null;
@@ -104,7 +107,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exceptions here
+                    Elog.Error("Exception occurred: " + exp.Message);
                     //Invalid User name. Session object not set
                     Session["userName"] = "";
                     Response.Redirect("ExternalHomePage.aspx", false);
@@ -182,7 +185,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -267,7 +270,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -313,7 +316,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -355,7 +358,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -423,7 +426,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -501,7 +504,7 @@ namespace SoftSec_BankingApp_Se7en
                     }
                     catch (Exception exp)
                     {
-                        //Log Exception here
+                        Elog.Error("Exception occurred: " + exp.Message);
                     }
                 }
             }
@@ -565,7 +568,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -599,7 +602,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -632,7 +635,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -656,7 +659,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -690,7 +693,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -720,7 +723,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log Exception Here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -792,7 +795,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
             }
         }
 
@@ -884,7 +887,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exception here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -909,7 +912,7 @@ namespace SoftSec_BankingApp_Se7en
             }
             catch (Exception exp)
             {
-                //Log exceptions here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -937,7 +940,7 @@ namespace SoftSec_BankingApp_Se7en
               }
              catch(Exception exp)
              {
-                    //Log Exception
+                 Elog.Error("Exception occurred: " + exp.Message);
              }
         }
 
@@ -961,7 +964,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exceptions here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }
@@ -986,7 +989,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 catch (Exception exp)
                 {
-                    //Log Exceptions here
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
         }

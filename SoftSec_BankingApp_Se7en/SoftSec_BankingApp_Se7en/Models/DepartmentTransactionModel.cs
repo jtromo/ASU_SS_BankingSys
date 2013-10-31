@@ -1,4 +1,5 @@
-﻿using SoftSec_BankingApp_Se7en.Models.Tables;
+﻿using log4net;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace SoftSec_BankingApp_Se7en.Models
         public const int DEPARTMENT_TRANSFER_STATUS_PROCESSING = 1;
         public const int DEPARTMENT_TRANSFER_STATUS_APPROVED = 2;
         public const int DEPARTMENT_TRANSFER_STATUS_REJECTED = 3;
+
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
 
         public static DepartmentTransaction GetDepartmentTransaction(int deptTransactionId)
         {
@@ -42,7 +46,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -68,7 +72,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -91,7 +95,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -127,7 +131,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }
@@ -163,7 +167,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }
@@ -261,7 +265,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -299,7 +303,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

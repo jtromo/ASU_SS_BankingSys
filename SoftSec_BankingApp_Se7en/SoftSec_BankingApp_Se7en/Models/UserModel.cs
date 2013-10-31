@@ -51,7 +51,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                     db.Users.Add(newUser);
                     db.SaveChanges();
 
-                    Tlog.Debug("New user " + newUser.username + " successfully added");
+                    Tlog.Debug("New user: " + newUser.username + " successfully added");
 
                     return true;
                 }
@@ -93,6 +93,8 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                     db.Users.Add(newUser);
 
+                    Tlog.Debug("New employee: " + newUser.username + " successfully added");
+
                     db.SaveChanges();
 
                     return true;
@@ -100,8 +102,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                Console.WriteLine("Exception occurred: " + exp.Message);
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -128,7 +129,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -160,7 +161,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -183,7 +184,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -207,7 +208,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -234,7 +235,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -261,7 +262,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return null;
             }
         }
@@ -291,7 +292,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -327,7 +328,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -362,7 +363,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -420,7 +421,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -473,7 +474,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -502,7 +503,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log Exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -531,7 +532,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log Exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -560,7 +561,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log Exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -595,7 +596,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }

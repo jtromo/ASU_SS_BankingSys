@@ -1,4 +1,5 @@
-﻿using SoftSec_BankingApp_Se7en.Models.Tables;
+﻿using log4net;
+using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace SoftSec_BankingApp_Se7en.Models
 
     public class LoginModel
     {
+        private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
+        private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
+
         // Returns: True false if the user information exists
         public static bool UserExists(string username, int zip)
         {
@@ -40,7 +44,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return false;
             }
         }
@@ -77,7 +81,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
             catch (Exception exp)
             {
-                //Log exception here
+                Elog.Error("Exception occurred: " + exp.Message);
                 return -1;
             }
         }

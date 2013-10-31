@@ -624,5 +624,37 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return false;
             }
         }
+
+        public static object getUserCount()
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    object objCount = db.Users.SqlQuery("select id,sum(case when roleId = 4 and departmentId = 2 then 1 else 0 end) RegSales," +
+                                                           "sum(case when roleId = 4 and departmentId = 3 then 1 else 0 end) RegIT," +
+                                                            "sum(case when roleId = 4 and departmentId = 5 then 1 else 0 end) RegHR," +
+                                                            "sum(case when roleId = 5 and departmentId = 2 then 1 else 0 end) MgrSales," +
+                                                            "sum(case when roleId = 5 and departmentId = 3 then 1 else 0 end) MgrIT," +
+                                                            "sum(case when roleId = 5 and departmentId = 5 then 1 else 0 end) DeptHR," +
+                                                            "sum(case when roleId = 6 and departmentId = 2 then 1 else 0 end) HgrSales," +
+                                                            "sum(case when roleId = 6 and departmentId = 3 then 1 else 0 end) HgrIT," +
+                                                            "sum(case when roleId = 6 and departmentId = 5 then 1 else 0 end) HgrHR from dbo.Users;");
+                    if (objCount != null)
+                    {
+                        return objCount;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch( Exception exp)
+            {
+                Elog.Error("Exception : " + exp.Message);
+                return null;
+            }
+        }
     }
 }

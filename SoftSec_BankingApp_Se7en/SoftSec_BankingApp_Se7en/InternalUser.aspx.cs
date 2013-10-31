@@ -131,39 +131,71 @@ namespace SoftSec_BankingApp_Se7en
                         //img_site20_AE.ImageUrl = "./Images/SiteKeys/SiteKey20.jpg";
 
                         int? userRole = UserModel.GetUser(Session["userName"].ToString()).roleId;
-                        if ( userRole == 4)
+                        int? userDept = UserModel.GetUser(Session["userName"].ToString()).departmentId;
+                        if (userRole != null)
                         {
-                            //Regular Employee
-                            TabContainer1.ActiveTabIndex = 0;
-                            TabContainer1.Visible = true;
-                            TabContainer1.Tabs[2].Visible = false;
-                            TabContainer1.Tabs[3].Visible = false;
-                            TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = true;
-                            TabContainer1.Tabs[4].Visible = true;
-
-                        }
-                        else if ( userRole == 5)
-                        {
-                            //Department Manager
-                            TabContainer1.ActiveTabIndex = 0;
-                            TabContainer1.Visible = true;
-                            TabContainer1.Tabs[2].Visible = true;
-                            TabContainer1.Tabs[3].Visible = true;
-                            TabContainer1.Tabs[0].Visible = true;
-                            TabContainer1.Tabs[1].Visible = false;
-                            TabContainer1.Tabs[4].Visible = true;
-                        }
-                        else if (userRole == 6)
-                        {
-                            //Higher Management
-                            TabContainer1.ActiveTabIndex = 2;
-                            TabContainer1.Visible = true;
-                            TabContainer1.Tabs[0].Visible = false;
-                            TabContainer1.Tabs[1].Visible = false;
-                            TabContainer1.Tabs[2].Visible = true;
-                            TabContainer1.Tabs[3].Visible = true;
-                            TabContainer1.Tabs[4].Visible = true;
+                            if (userRole == 4)
+                            {
+                                //Regular Employee
+                                TabContainer1.ActiveTabIndex = 0;
+                                TabContainer1.Visible = true;
+                                TabContainer1.Tabs[2].Visible = false;
+                                TabContainer1.Tabs[3].Visible = false;
+                                TabContainer1.Tabs[0].Visible = true;
+                                TabContainer1.Tabs[1].Visible = true;
+                                TabContainer1.Tabs[4].Visible = true;
+                                if (userDept == 5)
+                                {
+                                    //HR Regular Employee
+                                    TabContainer1.Tabs[0].Visible = false;
+                                    TabContainer1.Tabs[1].Visible = false;
+                                    TabContainer1.Tabs[2].Visible = false;
+                                    TabContainer1.Tabs[3].Visible = false;
+                                    TabContainer1.Tabs[4].Visible = true;
+                                    TabContainer1.Tabs[5].Visible = true;
+                                    TabContainer1.ActiveTabIndex = 5;
+                                }
+                            }
+                            else if (userRole == 5)
+                            {
+                                //Department Manager
+                                TabContainer1.ActiveTabIndex = 0;
+                                TabContainer1.Visible = true;
+                                TabContainer1.Tabs[2].Visible = true;
+                                TabContainer1.Tabs[3].Visible = true;
+                                TabContainer1.Tabs[0].Visible = true;
+                                TabContainer1.Tabs[1].Visible = false;
+                                TabContainer1.Tabs[4].Visible = true;
+                                if (userDept == 5)
+                                {
+                                    //HR Department Manager
+                                    TabContainer1.Tabs[0].Visible = false;
+                                    TabContainer1.Tabs[1].Visible = false;
+                                    TabContainer1.Tabs[2].Visible = true;
+                                    TabContainer1.Tabs[3].Visible = true;
+                                    TabContainer1.Tabs[4].Visible = true;
+                                    TabContainer1.Tabs[5].Visible = true;
+                                    TabContainer1.ActiveTabIndex = 5;
+                                }
+                            }
+                            else if (userRole == 6)
+                            {
+                                //Higher Management
+                                TabContainer1.ActiveTabIndex = 2;
+                                TabContainer1.Visible = true;
+                                TabContainer1.Tabs[0].Visible = false;
+                                TabContainer1.Tabs[1].Visible = false;
+                                TabContainer1.Tabs[2].Visible = true;
+                                TabContainer1.Tabs[3].Visible = true;
+                                TabContainer1.Tabs[4].Visible = true;
+                            }
+                            else
+                            {
+                                //Invalid Role ID
+                                //Log Out functionality here
+                                Session["userName"] = "";
+                                Response.Redirect("ExternalHomePage.aspx", false);
+                            }
                         }
                         else
                         {
@@ -171,7 +203,7 @@ namespace SoftSec_BankingApp_Se7en
                             //Log Out functionality here
                             Session["userName"] = "";
                             Response.Redirect("ExternalHomePage.aspx", false);
-                        }                        
+                        }
                     }
                     else
                     {
@@ -3640,33 +3672,47 @@ namespace SoftSec_BankingApp_Se7en
         
         protected void btn_ViewDeptTrans_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
+                    var db = new SSBankDBContext();
+                    List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE (fromDepartmentId = @p0 OR toDepartmentId = @p1)", Session["deptId"], Session["deptId"]).ToList();
+                    gv_DeptTrans.DataSource = deptTransactions;
+                    gv_DeptTrans.DataBind();
+                }
             }
-            else
+            catch (Exception exp)
             {
-                checkSession();
-                var db = new SSBankDBContext();
-                List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions WHERE (fromDepartmentId = @p0 OR toDepartmentId = @p1)",Session["deptId"],Session["deptId"]).ToList();
-                gv_DeptTrans.DataSource = deptTransactions;
-                gv_DeptTrans.DataBind();
+                 Elog.Error("Exception : " + exp.Message);
             }
         }
 
         protected void btn_viewtransdetails2_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
+                    var db = new SSBankDBContext();
+                    List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions").ToList();
+                    gv_AllDepTrans.DataSource = deptTransactions;
+                    gv_AllDepTrans.DataBind();
+                }
             }
-            else
+            catch (Exception exp)
             {
-                checkSession();
-                var db = new SSBankDBContext();
-                List<DepartmentTransaction> deptTransactions = db.DepartmentTransactions.SqlQuery("SELECT * FROM dbo.DepartmentTransactions").ToList();
-                gv_AllDepTrans.DataSource = deptTransactions;
-                gv_AllDepTrans.DataBind();
+                Elog.Error("Exception : " + exp.Message);
             }
         }
 
@@ -4182,13 +4228,65 @@ namespace SoftSec_BankingApp_Se7en
         #endregion
         protected void checkSession()
         {
-            string session = UserModel.GetUserSessionID(Session["userName"].ToString());
-            if (session != Session.SessionID)
+            try
             {
-                Session.Abandon();
-                Response.Redirect("ExternalHomePage.aspx");
+                string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+                if (session != Session.SessionID)
+                {
+                    Session.Abandon();
+                    Response.Redirect("ExternalHomePage.aspx",false);
+                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception :" + exp.Message);
             }
 
+        }
+
+        protected void btnFetchDetailsSummary_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Session["userName"] == null)
+                {
+                    //Redirect to Session Time Out Page
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
+                    //getCount(roleid, departmentid);
+                    Object objCount= UserModel.getUserCount();
+                    if (objCount != null)
+                    {
+                        //Dataset objDataset = new Dataset();
+
+                    }
+                    else
+                    {
+                        //Some exception occured. PLease try later.
+                    }
+                }
+            }
+            catch(Exception exp)
+            {
+                Elog.Error("Exception :" + exp.Message);
+            }
+        }
+
+        private int getCount(string roleId,string deptId)
+        {
+            try
+            {
+
+                return -1;
+            }
+            catch(Exception exp)
+            {
+                Elog.Error("Excetpion : " + exp.Message);
+                return -1;
+            }
         }
     }
 

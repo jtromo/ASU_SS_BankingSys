@@ -631,7 +631,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             {
                 using (var db = new SSBankDBContext())
                 {
-                    object objCount = db.Users.SqlQuery("select id,sum(case when roleId = 4 and departmentId = 2 then 1 else 0 end) RegSales," +
+                    object objCount = db.Users.SqlQuery("select sum(case when roleId = 4 and departmentId = 2 then 1 else 0 end) RegSales," +
                                                            "sum(case when roleId = 4 and departmentId = 3 then 1 else 0 end) RegIT," +
                                                             "sum(case when roleId = 4 and departmentId = 5 then 1 else 0 end) RegHR," +
                                                             "sum(case when roleId = 5 and departmentId = 2 then 1 else 0 end) MgrSales," +

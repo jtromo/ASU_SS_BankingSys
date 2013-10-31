@@ -4257,8 +4257,8 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     //getCount(roleid, departmentid);
-                    Object objCount= UserModel.getUserCount();
-                    if (objCount != null)
+                    int objCount= UserModel.GetUserCount();
+                    if (objCount > -1)
                     {
                         //Dataset objDataset = new Dataset();
 

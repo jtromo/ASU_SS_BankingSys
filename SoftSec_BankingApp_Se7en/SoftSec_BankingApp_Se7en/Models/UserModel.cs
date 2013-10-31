@@ -625,13 +625,13 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static object getUserCount()
+        public static int GetUserCount()
         {
             try
             {
                 using (var db = new SSBankDBContext())
                 {
-                    object objCount = db.Users.SqlQuery("select sum(case when roleId = 4 and departmentId = 2 then 1 else 0 end) RegSales," +
+                    IEnumerable<int> objCounts = db.Database.SqlQuery<int>("select sum(case when roleId = 4 and departmentId = 2 then 1 else 0 end) RegSales," +
                                                            "sum(case when roleId = 4 and departmentId = 3 then 1 else 0 end) RegIT," +
                                                             "sum(case when roleId = 4 and departmentId = 5 then 1 else 0 end) RegHR," +
                                                             "sum(case when roleId = 5 and departmentId = 2 then 1 else 0 end) MgrSales," +
@@ -640,20 +640,16 @@ namespace SoftSec_BankingApp_Se7en.Models
                                                             "sum(case when roleId = 6 and departmentId = 2 then 1 else 0 end) HgrSales," +
                                                             "sum(case when roleId = 6 and departmentId = 3 then 1 else 0 end) HgrIT," +
                                                             "sum(case when roleId = 6 and departmentId = 5 then 1 else 0 end) HgrHR from dbo.Users;");
-                    if (objCount != null)
-                    {
-                        return objCount;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+
+                    int objCount = objCounts.FirstOrDefault();
+
+                    return objCount;
                 }
             }
             catch( Exception exp)
             {
                 Elog.Error("Exception : " + exp.Message);
-                return null;
+                return -1;
             }
         }
     }

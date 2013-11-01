@@ -663,7 +663,7 @@ namespace SoftSec_BankingApp_Se7en
                                     List<Models.Tables.Account> lstAcc = objCol.ToList();
                                     foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        if (acc.accountTypeId == 3)
+                                        if (acc.accountTypeId == 1)
                                         {
                                             //Savings Account
                                             tb_savings.Text = acc.accountNumber.ToString();
@@ -1328,24 +1328,11 @@ namespace SoftSec_BankingApp_Se7en
                             addressForUser.zip = Convert.ToInt32(tb_Zip_Cust.Text);
                             userToCreate.phone = tb_Phone_Cust.Text.ToString();
                             userToCreate.username = tb_UserName_Cust.Text.ToString();
-                            string checkingAccountNumber;
-                            string savingsAccountNumber;
-                            string cardNumber;
-                            string routingAccountNumber = "1234056789";
-                            string randomNum;
-                            int cvvNum;
-                            while (true)
-                            {
-                                if ((randomNum = randomAccountNumberGenerator()) != null)
-                                {
-                                    checkingAccountNumber = randomNum + randomNum + randomNum;
-                                    int ran = Convert.ToInt16(randomNum);
-                                    savingsAccountNumber = randomNum + randomNum + (ran + 1).ToString();
-                                    cardNumber = randomNum + randomNum + randomNum + (ran + 2).ToString();
-                                    cvvNum = ran / 10;
-                                    break;
-                                }
-                            }
+                            string checkingAccountNumber = randomAccountNumberGenerator();
+                            string savingsAccountNumber = randomAccountNumberGenerator();
+                            string cardNumber = randomCardNumberGenerator();
+                            string routingAccountNumber = randomAccountNumberGenerator();
+                            int cvvNum =Convert.ToInt32( CVVNumberGenerator());
                             Card cardForUser = new Card();
                             cardForUser.cardNumber = cardNumber;
                             cardForUser.accountNumber = checkingAccountNumber;
@@ -1374,8 +1361,30 @@ namespace SoftSec_BankingApp_Se7en
                             bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, cardForUser, addressForUser, securityQuestionsForUser);
                             if (userCreated)
                             {
+                                string emailstring = "Hi " + tb_FirstName_Cust.Text.ToString() + " your account has been succesfully created" + "<br>" + "Checking acc num :" + checkingAccountNumber + "<br>" + "Savings acc num:" + savingsAccountNumber + "<br>"+"Routing number:"+routingAccountNumber+"<br>" + "Card num:" + cardNumber + "<br>" + "cvv:" + cvvNum +"<br>"+ "Expiry date: Nov 2018" + "<br>" + "Date of birth" + monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
+                                MailMessage mMailMessage = new MailMessage();
+
+                                // Set the sender address of the mail message
+                                mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                                // Set the recepient address of the mail message
+                                mMailMessage.To.Add(new MailAddress(tb_Email_Cust.Text.ToString()));
+
+
+                                mMailMessage.Subject = "Greetings from bankse7en";
+                                // Set the body of the mail message
+                                mMailMessage.Body = emailstring;
+
+                                // Set the format of the mail message body as HTML
+                                mMailMessage.IsBodyHtml = true;
+                                // Set the priority of the mail message to normal
+                                mMailMessage.Priority = MailPriority.Normal;
+                                SmtpClient mSmtpClient = new SmtpClient();
+                                mSmtpClient.EnableSsl = true;
+                                mSmtpClient.Send(mMailMessage);
+                     
                                 ErrorLabelInNewCustPI.Visible = true;
                                 ErrorLabelInNewCustPI.Text = "User successfully created";
+
                             }
                             else
                             {
@@ -1504,19 +1513,69 @@ namespace SoftSec_BankingApp_Se7en
         /// <returns>Account Number generation</returns>
         protected string randomAccountNumberGenerator()
         {
+            int myRandomNumber1 = 0;
+            int myRandomNumber2 = 0;
+            int myRandomNumber3 = 0;
+            string randocAccNum = null;
+            while (randocAccNum == null)
+            {
+                Random myRandomNUmberGenerator = new Random();
+                myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
+                myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
+                myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
+                randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString();
+                SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
+                if (checkingforAccount == null)
+                {
+                    break;
+                }
+                else
+                {
+                    randocAccNum = null;
+                }
+            }
+            return randocAccNum;
+
+        }
+
+
+        protected string randomCardNumberGenerator()
+        {
+            int myRandomNumber1 = 0;
+            int myRandomNumber2 = 0;
+            int myRandomNumber3 = 0;
+            int myRandomNumber4 = 0;
+            string randocAccNum = null;
+            while (randocAccNum == null)
+            {
+                Random myRandomNUmberGenerator = new Random();
+                myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
+                myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
+                myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
+                myRandomNumber4 = myRandomNUmberGenerator.Next(1001, 9996);
+                randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString()+myRandomNumber4.ToString();
+                SoftSec_BankingApp_Se7en.Models.Tables.User checkingforAccount = CardModel.UserForCard(randocAccNum);
+                if (checkingforAccount == null)
+                {
+                    break;
+                }
+                else
+                {
+                    randocAccNum = null;
+                }
+            }
+            return randocAccNum;
+
+        }
+
+
+        protected string CVVNumberGenerator()
+        {
             int myRandomNumber = 0;
             Random myRandomNUmberGenerator = new Random();
-            myRandomNumber = myRandomNUmberGenerator.Next(1001, 9996);
-            string randocAccNum = myRandomNumber.ToString() + myRandomNumber.ToString() + myRandomNumber.ToString();
-            SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
-            if (checkingforAccount == null)
-            {
-                return myRandomNumber.ToString();
-            }
-            else
-            {
-                return null;
-            }
+            myRandomNumber = myRandomNUmberGenerator.Next(100, 999);
+            string randoCVVNum = myRandomNumber.ToString();
+            return randoCVVNum;
 
         }
 

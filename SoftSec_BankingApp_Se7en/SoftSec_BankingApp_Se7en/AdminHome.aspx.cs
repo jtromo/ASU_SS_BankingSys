@@ -399,7 +399,7 @@ namespace SoftSec_BankingApp_Se7en
                     checkSession();
                     if (tabAdmin.ActiveTabIndex == 3)
                     {
-                        sysLog_GridView.ShowHeader = true;
+                       
                     }
                     else if (tabAdmin.ActiveTabIndex == 5)
                     {
@@ -444,10 +444,23 @@ namespace SoftSec_BankingApp_Se7en
                 //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
                 try
                 {
-                    serverSideValidation = validateFromFields(startYearTb_SysLog.Text.ToString(), endYearTb_SysLog.Text.ToString());
+                    serverSideValidation = true;
                     if (serverSideValidation)
                     {
                         //Proceed with business logic here
+                        MailMessage mMailMessage = new MailMessage();
+                        mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                        mMailMessage.To.Add(new MailAddress("ushakanthkvp@gmail.com"));
+                        mMailMessage.Subject = "System Logs" + DateTime.Now;
+                        mMailMessage.Body = "PFA the System Logs you have requested.";
+                        //Attachment at = new Attachment(Server.MapPath("~/Uploaded/txt.doc"));
+                        Attachment at = new Attachment(Server.MapPath("~/Logs/Transactions.log"));
+                        mMailMessage.Attachments.Add(at);
+                        mMailMessage.IsBodyHtml = true;
+                        mMailMessage.Priority = MailPriority.High;
+                        SmtpClient mSmtpClient = new SmtpClient();
+                        mSmtpClient.EnableSsl = true;
+                        mSmtpClient.Send(mMailMessage);                        
                     }
                     else
                     {

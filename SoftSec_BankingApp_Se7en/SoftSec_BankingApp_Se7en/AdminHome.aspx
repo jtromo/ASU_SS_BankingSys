@@ -15,7 +15,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:LinkButton ID="bt_logout" runat="server" Font-Bold="True" Font-Italic="False" Font-Size="Small" OnClick="bt_logout_Click">LOG OUT</asp:LinkButton>
             <br />
-    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="0" Height="1250px" Width="958px"  OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE" AutoPostBack="True">
+    <asp:TabContainer ID="tabAdmin" runat="server" ActiveTabIndex="3" Height="1250px" Width="958px"  OnActiveTabChanged="tabAdmin_ActiveTabChanged" BackColor="#BFC5CE" AutoPostBack="True">
 
         <asp:TabPanel runat="server" HeaderText="Add Employee" ID="addEmpTabPanel" Height="600px" Width="850px">
             <ContentTemplate>
@@ -235,125 +235,12 @@
         <asp:TabPanel ID="LogAccessTabPanel" runat="server" HeaderText="System Log">
             <ContentTemplate>
                 <br />
-                <asp:Label ID="startDateLB" runat="server" Text="Start Date"></asp:Label>
-                &nbsp;&nbsp;
-                <asp:DropDownList ID="startMonth_DD" runat="server">
-                    <asp:ListItem>MM</asp:ListItem>
-                    <asp:ListItem Value="Jan01">01</asp:ListItem>
-                    <asp:ListItem Value="Feb02">02</asp:ListItem>
-                    <asp:ListItem Value="Mar03">03</asp:ListItem>
-                    <asp:ListItem Value="Apr04">04</asp:ListItem>
-                    <asp:ListItem Value="May05">05</asp:ListItem>
-                    <asp:ListItem Value="Jun06">06</asp:ListItem>
-                    <asp:ListItem Value="Jul07">07</asp:ListItem>
-                    <asp:ListItem Value="Aug08">08</asp:ListItem>
-                    <asp:ListItem Value="Sep09">09</asp:ListItem>
-                    <asp:ListItem Value="Oct10">10</asp:ListItem>
-                    <asp:ListItem Value="Nov11">11</asp:ListItem>
-                    <asp:ListItem Value="Dec12">12</asp:ListItem>
-                </asp:DropDownList>
-&nbsp;&nbsp;<asp:DropDownList ID="startDay_DD" runat="server">
-                    <asp:ListItem>DD</asp:ListItem>
-                    <asp:ListItem Value="01">01</asp:ListItem>
-                    <asp:ListItem Value="02">02</asp:ListItem>
-                    <asp:ListItem Value="03">03</asp:ListItem>
-                    <asp:ListItem Value="04">04</asp:ListItem>
-                    <asp:ListItem Value="05">05</asp:ListItem>
-                    <asp:ListItem Value="06">06</asp:ListItem>
-                    <asp:ListItem Value="07">07</asp:ListItem>
-                    <asp:ListItem Value="08">08</asp:ListItem>
-                    <asp:ListItem Value="09">09</asp:ListItem>
-                    <asp:ListItem Value="10">10</asp:ListItem>
-                    <asp:ListItem Value="11">11</asp:ListItem>
-                    <asp:ListItem Value="12">12</asp:ListItem>
-                    <asp:ListItem Value="13">13</asp:ListItem>
-                    <asp:ListItem Value="14">14</asp:ListItem>
-                    <asp:ListItem Value="15">15</asp:ListItem>
-                    <asp:ListItem Value="16">16</asp:ListItem>
-                    <asp:ListItem Value="17">17</asp:ListItem>
-                    <asp:ListItem Value="18">18</asp:ListItem>
-                    <asp:ListItem Value="19">19</asp:ListItem>
-                    <asp:ListItem Value="20">20</asp:ListItem>                
-                    <asp:ListItem Value="21">21</asp:ListItem>
-                    <asp:ListItem Value="22">22</asp:ListItem>
-                    <asp:ListItem Value="23">23</asp:ListItem>
-                    <asp:ListItem Value="24">24</asp:ListItem>
-                    <asp:ListItem Value="25">25</asp:ListItem>
-                    <asp:ListItem Value="26">26</asp:ListItem>
-                    <asp:ListItem Value="27">27</asp:ListItem>
-                    <asp:ListItem Value="28">28</asp:ListItem>
-                    <asp:ListItem Value="29">29</asp:ListItem>
-                    <asp:ListItem Value="30">30</asp:ListItem>
-                    <asp:ListItem Value="31">31</asp:ListItem>
-                </asp:DropDownList>
-&nbsp;
-                <asp:TextBox ID="startYearTb_SysLog" runat="server" Width="35px" TabIndex="2" oncopy="return false" onpaste="return false"></asp:TextBox>
-                &nbsp;&nbsp;&nbsp;&nbsp; End Date&nbsp;&nbsp;<asp:DropDownList ID="endMonth_DD" runat="server">
-                    <asp:ListItem>MM</asp:ListItem>
-                    <asp:ListItem Value="Jan01">01</asp:ListItem>
-                    <asp:ListItem Value="Feb02">02</asp:ListItem>
-                    <asp:ListItem Value="Mar03">03</asp:ListItem>
-                    <asp:ListItem Value="Apr04">04</asp:ListItem>
-                    <asp:ListItem Value="May05">05</asp:ListItem>
-                    <asp:ListItem Value="Jun06">06</asp:ListItem>
-                    <asp:ListItem Value="Jul07">07</asp:ListItem>
-                    <asp:ListItem Value="Aug08">08</asp:ListItem>
-                    <asp:ListItem Value="Sep09">09</asp:ListItem>
-                    <asp:ListItem Value="Oct10">10</asp:ListItem>
-                    <asp:ListItem Value="Nov11">11</asp:ListItem>
-                    <asp:ListItem Value="Dec12">12</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;
-                <asp:DropDownList ID="endDay_DD" runat="server" >
-                    <asp:ListItem>DD</asp:ListItem>
-                    <asp:ListItem Value="01">01</asp:ListItem>
-                    <asp:ListItem Value="02">02</asp:ListItem>
-                    <asp:ListItem Value="03">03</asp:ListItem>
-                    <asp:ListItem Value="04">04</asp:ListItem>
-                    <asp:ListItem Value="05">05</asp:ListItem>
-                    <asp:ListItem Value="06">06</asp:ListItem>
-                    <asp:ListItem Value="07">07</asp:ListItem>
-                    <asp:ListItem Value="08">08</asp:ListItem>
-                    <asp:ListItem Value="09">09</asp:ListItem>
-                    <asp:ListItem Value="10">10</asp:ListItem>
-                    <asp:ListItem Value="11">11</asp:ListItem>
-                    <asp:ListItem Value="12">12</asp:ListItem>
-                    <asp:ListItem Value="13">13</asp:ListItem>
-                    <asp:ListItem Value="14">14</asp:ListItem>
-                    <asp:ListItem Value="15">15</asp:ListItem>
-                    <asp:ListItem Value="16">16</asp:ListItem>
-                    <asp:ListItem Value="17">17</asp:ListItem>
-                    <asp:ListItem Value="18">18</asp:ListItem>
-                    <asp:ListItem Value="19">19</asp:ListItem>
-                    <asp:ListItem Value="20">20</asp:ListItem>                
-                    <asp:ListItem Value="21">21</asp:ListItem>
-                    <asp:ListItem Value="22">22</asp:ListItem>
-                    <asp:ListItem Value="23">23</asp:ListItem>
-                    <asp:ListItem Value="24">24</asp:ListItem>
-                    <asp:ListItem Value="25">25</asp:ListItem>
-                    <asp:ListItem Value="26">26</asp:ListItem>
-                    <asp:ListItem Value="27">27</asp:ListItem>
-                    <asp:ListItem Value="28">28</asp:ListItem>
-                    <asp:ListItem Value="29">29</asp:ListItem>
-                    <asp:ListItem Value="30">30</asp:ListItem>
-                    <asp:ListItem Value="31">31</asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;
-                <asp:TextBox ID="endYearTb_SysLog" runat="server" Width="35px" TabIndex="5" oncopy="return false" onpaste="return false"></asp:TextBox>
-                <br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="FetchLogsBT" runat="server" OnClick="FetchLogsBT_Click" Text="Fetch Logs" />
                 <br />
                 <br />
-                <asp:GridView ID="sysLog_GridView" runat="server" Width="636px" AutoGenerateColumns="False" BorderStyle="Solid" ShowHeaderWhenEmpty="True" TabIndex="6" >
-                    <AlternatingRowStyle BorderStyle="Solid" />
-                    <Columns>
-                        <asp:DynamicField HeaderText="TimeStamp" NullDisplayText="Empty" />
-                        <asp:DynamicField HeaderText="Description" NullDisplayText="Empty" />
-                    </Columns>
-                </asp:GridView>
             </ContentTemplate>
         </asp:TabPanel>
         <asp:TabPanel ID="RequestTabPanel" runat="server" HeaderText="Requests">

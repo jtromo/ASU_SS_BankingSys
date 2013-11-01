@@ -151,36 +151,69 @@ namespace SoftSec_BankingApp_Se7en
                                     if (transactionId > 0)
                                     {
                                         lblTranStatus.Text = "Transaction Successful";
-                                        tb_toRoutingNumber.Text = "";
+                                        tb_amountoutside.Text = "";
+                                        tb_lastnameoutside.Text = "";
                                         tb_toAccNum_OutsideBank.Text = "";
+                                        tb_toRoutingNumber.Text = "";
+                                        tb_emailoutside.Text = "";
+                                        tb_usercardno.Text = "";
+                                        tb_securitycodeoutside.Text = ""; dd_monthoutside.SelectedIndex = 1;
+                                        dd_yearoutside.SelectedIndex = 1;
                                         lblTranStatus.Visible = true;
                                     }
                                     else
                                     {
                                         lblTranStatus.Text = "Transaction Unsuccessful";
-                                        tb_toRoutingNumber.Text = "";
+                                        tb_amountoutside.Text = "";
+                                        tb_lastnameoutside.Text = "";
                                         tb_toAccNum_OutsideBank.Text = "";
+                                        tb_toRoutingNumber.Text = "";
+                                        tb_emailoutside.Text = "";
+                                        tb_usercardno.Text = "";
+                                        tb_securitycodeoutside.Text = ""; dd_monthoutside.SelectedIndex = 1;
+                                        dd_yearoutside.SelectedIndex = 1;
                                         lblTranStatus.Visible = true;
                                     }
                                 }
                                 else
                                 {
-                                    //Invalid Card Details
+                                    //Invalid Securiy Code details Details
+                                    lblTranStatus.Text = "Transaction Unsuccessful - Invalid Code";
+                                    tb_securitycodeoutside.Text = "";
+                                    lblTranStatus.Visible = true;
                                 }
                             }
                             else
                             {
-                                //Invalid Card Details
+                                //Invalid Securiy Code details Details
+                                lblTranStatus.Text = "Transaction Unsuccessful - Invalid Exp Date";
+                                dd_yearoutside.SelectedIndex = 1;
+                                dd_monthoutside.SelectedIndex = 1;
+                                lblTranStatus.Visible = true;
                             }
                         }
                         else
                         {
-                            //Invalid Card Details
+                            lblTranStatus.Text = "Transaction Unsuccessful - Invalid Card Details";
+                            tb_usercardno.Text = "";
+                            tb_securitycodeoutside.Text = "";
+                            dd_yearoutside.SelectedIndex = 1;
+                            dd_monthoutside.SelectedIndex = 1;
+                            lblTranStatus.Visible = true;
                         }
                     }
                     else
                     {
-                        //Update the UI with error message.
+                        lblTranStatus.Text = "Invalid Entries. PLease Enter Again";
+                        tb_amountoutside.Text = "";
+                        tb_lastnameoutside.Text = "";
+                        tb_toAccNum_OutsideBank.Text = "";
+                        tb_toRoutingNumber.Text = "";
+                        tb_emailoutside.Text = "";
+                        tb_usercardno.Text = "";
+                        tb_securitycodeoutside.Text = ""; dd_monthoutside.SelectedIndex = 1;
+                        dd_yearoutside.SelectedIndex = 1;
+                        lblTranStatus.Visible = true;
                     }
                 }
                 catch (Exception exp)
@@ -230,15 +263,27 @@ namespace SoftSec_BankingApp_Se7en
                                             if (transactionId > 0)
                                             {
                                                 lblTransStatus_IB.Text = "Transaction Successful";
-                                                tb_toRoutingNumber.Text = "";
-                                                tb_toAccNum_OutsideBank.Text = "";
                                                 lblTransStatus_IB.Visible = true;
+                                                tb_amount.Text = "";
+                                                tb_recepient.Text = "";
+                                                tb_lastname.Text = "";
+                                                tb_zip.Text = "";
+                                                tb_card.Text = "";
+                                                dd_month.SelectedIndex = 1;
+                                                dd_year.SelectedIndex = 1;
+                                                tb_securitycode.Text = "";
                                             }
                                             else
                                             {
                                                 lblTransStatus_IB.Text = "Transaction Unsuccessful";
-                                                tb_toRoutingNumber.Text = "";
-                                                tb_toAccNum_OutsideBank.Text = "";
+                                                tb_amount.Text = "";
+                                                tb_recepient.Text = "";
+                                                tb_lastname.Text = "";
+                                                tb_zip.Text = "";
+                                                tb_card.Text = "";
+                                                dd_month.SelectedIndex = 1;
+                                                dd_year.SelectedIndex = 1;
+                                                tb_securitycode.Text = "";
                                                 lblTransStatus_IB.Visible = true;
                                             }
                                         }
@@ -246,26 +291,55 @@ namespace SoftSec_BankingApp_Se7en
                                     else
                                     {
                                         //Invalid Zip and Last name combination
+                                        lblTransStatus_IB.Text = "Transaction Unsuccessful - Re-Enter Zip and Last Name";
+                                        tb_zip.Text = "";
+                                        tb_lastname.Text = "";
+                                        lblTransStatus_IB.Visible = true;
                                     }
                                 }
                                 else
                                 {
                                     //Invalid Card Details
+                                    lblTransStatus_IB.Text = "Transaction Unsuccessful - Invalid Security Code Details";
+                                    tb_securitycode.Text = "";
+                                    lblTransStatus_IB.Visible = true;
                                 }
                             }
                             else
                             {
                                 //Invalid Card Details
+                                lblTransStatus_IB.Text = "Transaction Unsuccessful - Invalid Exp Date";
+                                dd_year.SelectedIndex = 1;
+                                dd_month.SelectedIndex = 1;
+
+                                lblTransStatus_IB.Visible = true;
                             }
                         }
                         else
                         {
                             //Invalid Card Details
+                            lblTransStatus_IB.Text = "Transaction Unsuccessful - Invalid Card Details";
+                            dd_month.SelectedIndex = 1;
+                            dd_year.SelectedIndex = 1;
+                            tb_card.Text = "";
+                            tb_securitycode.Text = "";
+
+                            lblTransStatus_IB.Visible = true;
                         }
                     }
                     else
                     {
                         //Update the UI with error message.
+                        lblTransStatus_IB.Text = "Transaction Successful - Invalid Entries. Please fill again.";
+                        tb_amount.Text = "";
+                        tb_recepient.Text = "";
+                        tb_lastname.Text = "";
+                        tb_zip.Text = "";
+                        tb_card.Text = "";
+                        dd_month.SelectedIndex = 1;
+                        dd_year.SelectedIndex = 1;
+                        tb_securitycode.Text = "";
+                        lblTransStatus_IB.Visible = true;
                     }
                 }
                 catch (Exception exp)
@@ -301,17 +375,22 @@ namespace SoftSec_BankingApp_Se7en
                         if (transactionId > 0)
                         {
                             lblTransStatus_Between.Text = "Transaction Successful";
+                            tb_amountbetween.Text = "";
                             lblTransStatus_Between.Visible = true;
                         }
                         else
                         {
                             lblTransStatus_Between.Text = "Transaction Unsuccessful";
+                            tb_amountbetween.Text = "";
                             lblTransStatus_Between.Visible = true;
                         }
                     }
                     else
                     {
                         //Update the UI with error message.
+                        lblTransStatus_Between.Text = "Invalid Entries";
+                        tb_amountbetween.Text = "";
+                        lblTransStatus_Between.Visible = true;
                     }
                 }
                 catch (Exception exp)
@@ -343,17 +422,37 @@ namespace SoftSec_BankingApp_Se7en
                         if (success)
                         {
                             lblChaneProfile.Text = "Update Successful";
+                            tb_emailedit.Text = "";
+                            tb_addr_editprofile.Text = "";
+                            tb_city_editProfile.Text = "";
+                            StateDD_EditProfile.SelectedIndex = 1;
+                            tb_zip_editProfile.Text = "";
+                            tb_contactedit.Text = "";
                             lblChaneProfile.Visible = true;
                         }
                         else
                         {
                             lblChaneProfile.Text = "Update Unsuccessful";
+                            tb_emailedit.Text = "";
+                            tb_addr_editprofile.Text = "";
+                            tb_city_editProfile.Text = "";
+                            StateDD_EditProfile.SelectedIndex = 1;
+                            tb_zip_editProfile.Text = "";
+                            tb_contactedit.Text = "";
                             lblChaneProfile.Visible = true;
                         }
                     }
                     else
                     {
                         //Update the UI with error message.
+                        lblChaneProfile.Text = "Invalid Entries. Try Again";
+                        tb_emailedit.Text = "";
+                        tb_addr_editprofile.Text = "";
+                        tb_city_editProfile.Text = "";
+                        StateDD_EditProfile.SelectedIndex = 1;
+                        tb_zip_editProfile.Text = "";
+                        tb_contactedit.Text = "";
+                        lblChaneProfile.Visible = true;
                     }
                 }
                 catch (Exception exp)
@@ -400,11 +499,22 @@ namespace SoftSec_BankingApp_Se7en
                                     if (transactionId > 0)
                                     {
                                         lblSubmitPayment.Text = "Transaction Successful";
+                                        tb_cardnum.Text = "";
+                                        tb_customername.Text = "";
+                                        tb_amount_CardPayment.Text = "";
+                                        dd_cardexpm.SelectedIndex = 1;
+                                        dd_cardexpy.SelectedIndex = 1;
+
                                         lblSubmitPayment.Visible = true;
                                     }
                                     else
                                     {
                                         lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                        tb_cardnum.Text = "";
+                                        tb_customername.Text = "";
+                                        tb_amount_CardPayment.Text = "";
+                                        dd_cardexpm.SelectedIndex = 1;
+                                        dd_cardexpy.SelectedIndex = 1;
                                         lblSubmitPayment.Visible = true;
                                     }
                                 }
@@ -412,16 +522,31 @@ namespace SoftSec_BankingApp_Se7en
                             else
                             {
                                 //Update UI with error messages
+                                lblSubmitPayment.Text = "Card name doesnt match with records.Please enter again.";
+                                lblSubmitPayment.Visible = true;
+                                tb_customername.Text = "";
                             }
                         }
                         else
                         {
                             //Update UI with error messages
+                            lblSubmitPayment.Text = "Invalid card details";
+                            lblSubmitPayment.Visible = true;
+                            tb_cardnum.Text = "";
+                            dd_cardexpm.SelectedIndex = 1;
+                            dd_cardexpy.SelectedIndex = 1;
                         }
                     }
                     else
                     {
                         //Update the UI with error message.
+                        lblSubmitPayment.Text = "Invalid Entries. Enter again";
+                        tb_cardnum.Text = "";
+                        tb_customername.Text = "";
+                        tb_amount_CardPayment.Text = "";
+                        dd_cardexpm.SelectedIndex = 1;
+                        dd_cardexpy.SelectedIndex = 1;
+                        lblSubmitPayment.Visible = true;
                     }
                 }
                 catch (Exception exp)
@@ -469,36 +594,60 @@ namespace SoftSec_BankingApp_Se7en
                                         if (success)
                                         {
                                             lblStatus_ChgPwd.Text = "Password Changed Successfully";
+                                            tb_secans1.Text = "";
+                                            tb_secans2.Text = "";
+                                            tb_secans3.Text = "";
                                             lblStatus_ChgPwd.Visible = true;
                                         }
                                         else
                                         {
                                             lblStatus_ChgPwd.Text = "Password Changed Failed, Please try again";
+                                            tb_secans1.Text = "";
+                                            tb_secans2.Text = "";
+                                            tb_secans3.Text = "";
                                             lblStatus_ChgPwd.Visible = true;
                                         }
                                     }
                                     else
                                     {
-                                            lblStatus_ChgPwd.Text = "passwords dont match";
-                                            lblStatus_ChgPwd.Visible = true;
+                                        lblStatus_ChgPwd.Text = "passwords dont match";
+                                        tb_newPass.Text = "";
+                                        tb_oldpwd.Text = "";
+                                        tb_confrimPass.Text = "";
+                                        lblStatus_ChgPwd.Visible = true;
                                     }
                                 }
                                 else
                                 {
-                                        lblStatus_ChgPwd.Text = "Answers Dont match";
-                                        lblStatus_ChgPwd.Visible = true;
+                                    lblStatus_ChgPwd.Text = "Answers Dont match";
+                                    tb_secans1.Text = "";
+                                    tb_newPass.Text = "";
+                                    tb_oldpwd.Text = "";
+                                    tb_confrimPass.Text = "";
+                                    tb_secans2.Text = "";
+                                    tb_secans3.Text = "";
+                                    lblStatus_ChgPwd.Visible = true;
                                 }
                             }
                             else
                             {
-                                    lblStatus_ChgPwd.Text = "Old password Dont match";
-                                    lblStatus_ChgPwd.Visible = true;
+                                lblStatus_ChgPwd.Text = "Old password Dont match";
+                                tb_newPass.Text = "";
+                                tb_oldpwd.Text = "";
+                                tb_confrimPass.Text = ""; 
+                                lblStatus_ChgPwd.Visible = true;
                             }
                         }
                         else
                         {
                             //Update the UI with error message.
                                 lblStatus_ChgPwd.Text = "Failed to fetch pwd info";
+                                tb_secans1.Text = "";
+                                tb_newPass.Text = "";
+                                tb_oldpwd.Text = "";
+                                tb_confrimPass.Text = "";
+                                tb_secans2.Text = "";
+                                tb_secans3.Text = "";
                                 lblStatus_ChgPwd.Visible = true;
                         }
                     }
@@ -865,11 +1014,19 @@ namespace SoftSec_BankingApp_Se7en
                                     if (transactionId > 0)
                                     {
                                         lblEcheckPayment.Text = "Transaction Successful";
+                                        tb_echeckaccno.Text = "";
+                                        tb_echeckroutingno.Text = "";
+                                        tb_echeckcustomername.Text = "";
+                                        tb_amountECheck.Text = "";
                                         lblEcheckPayment.Visible = true;
                                     }
                                     else
                                     {
                                         lblEcheckPayment.Text = "Transaction Unsuccessful";
+                                        tb_echeckaccno.Text = "";
+                                        tb_echeckroutingno.Text = "";
+                                        tb_echeckcustomername.Text = "";
+                                        tb_amountECheck.Text = "";
                                         lblEcheckPayment.Visible = true;
                                     }
                                 }
@@ -878,11 +1035,23 @@ namespace SoftSec_BankingApp_Se7en
                         else
                         {
                             //Update the UI with Error Message
+                            lblEcheckPayment.Text = "Invalid Card Details";
+                            tb_echeckaccno.Text = "";
+                            tb_echeckroutingno.Text = "";
+                            tb_echeckcustomername.Text = "";
+                            tb_amountECheck.Text = "";
+                            lblEcheckPayment.Visible = true;
                         }
                     }
                     else
                     {
                         //Update UI with error message
+                        lblEcheckPayment.Text = "Invalid Entries. Try again";
+                        tb_echeckaccno.Text = "";
+                        tb_echeckroutingno.Text = "";
+                        tb_echeckcustomername.Text = "";
+                        tb_amountECheck.Text = "";
+                        lblEcheckPayment.Visible = true;
                     }
                 }
                 catch (Exception exp)

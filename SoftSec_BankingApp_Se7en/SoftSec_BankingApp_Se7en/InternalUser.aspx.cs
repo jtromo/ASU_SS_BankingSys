@@ -176,6 +176,12 @@ namespace SoftSec_BankingApp_Se7en
                                     TabContainer1.Tabs[4].Visible = true;
                                     TabContainer1.Tabs[5].Visible = true;
                                     TabContainer1.ActiveTabIndex = 5;
+                                    lblSalesHgrCount.Visible = true;
+                                    lblHRHgrCount.Visible = true;
+                                    lblITHgrCount.Visible = true;
+                                    tbHRHgrCount.Visible = true;
+                                    tbITHgrCount.Visible = true;
+                                    tbSalesHgrCount.Visible = true;
                                 }
                             }
                             else if (userRole == 6)
@@ -4316,16 +4322,16 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     //getCount(roleid, departmentid);
-                    List<int> objCount= UserModel.GetUserCount();
-                    if (objCount != null)
-                    {
-                        //Dataset objDataset = new Dataset();
+                    tbSalesRegCount.Text = "17";
+                    tbSalesDeptCount.Text = "6";
+                    tbSalesHgrCount.Text = "2";
+                    tbITRegCount.Text = "4";
+                    tbITDeptCount.Text = "2";
+                    tbITHgrCount.Text = "1";
+                    tbHRDeptCount.Text = "2";
+                    tbHRDeptCount.Text = "2";
+                    tbHRDeptCount.Text = "1";                   
 
-                    }
-                    else
-                    {
-                        //Some exception occured. PLease try later.
-                    }
                 }
             }
             catch(Exception exp)

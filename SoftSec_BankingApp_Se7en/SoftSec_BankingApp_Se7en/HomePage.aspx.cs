@@ -167,6 +167,21 @@ namespace SSBank
                 Response.Write(" Employee1 has been requested to change role from 3 to 4");
             else
                 Response.Write(" Role escalation failed");
+
+            List<int> userLists = UserModel.GetUserCount();
+            
+            if (userLists != null)
+            {
+                Response.Write(" User List counts:");
+                foreach (int list in userLists)
+                {
+                    Response.Write(" List Count: " + list);
+                }
+            }
+            else
+            {
+                Response.Write(" User list count failed");
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)

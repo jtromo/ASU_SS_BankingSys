@@ -625,7 +625,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static int GetUserCount()
+        public static List<int> GetUserCount()
         {
             try
             {
@@ -641,15 +641,13 @@ namespace SoftSec_BankingApp_Se7en.Models
                                                             "sum(case when roleId = 6 and departmentId = 3 then 1 else 0 end) HgrIT," +
                                                             "sum(case when roleId = 6 and departmentId = 5 then 1 else 0 end) HgrHR from dbo.Users;");
 
-                    int objCount = objCounts.FirstOrDefault();
-
-                    return objCount;
+                    return objCounts.ToList();
                 }
             }
             catch( Exception exp)
             {
                 Elog.Error("Exception : " + exp.Message);
-                return -1;
+                return null;
             }
         }
     }

@@ -436,69 +436,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel LogAccessTabPanel;
         
         /// <summary>
-        /// startDateLB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label startDateLB;
-        
-        /// <summary>
-        /// startMonth_DD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList startMonth_DD;
-        
-        /// <summary>
-        /// startDay_DD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList startDay_DD;
-        
-        /// <summary>
-        /// startYearTb_SysLog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox startYearTb_SysLog;
-        
-        /// <summary>
-        /// endMonth_DD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList endMonth_DD;
-        
-        /// <summary>
-        /// endDay_DD control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList endDay_DD;
-        
-        /// <summary>
-        /// endYearTb_SysLog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox endYearTb_SysLog;
-        
-        /// <summary>
         /// FetchLogsBT control.
         /// </summary>
         /// <remarks>
@@ -506,15 +443,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button FetchLogsBT;
-        
-        /// <summary>
-        /// sysLog_GridView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView sysLog_GridView;
         
         /// <summary>
         /// RequestTabPanel control.

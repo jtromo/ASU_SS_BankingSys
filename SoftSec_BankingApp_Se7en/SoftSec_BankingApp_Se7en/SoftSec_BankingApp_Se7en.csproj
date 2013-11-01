@@ -389,6 +389,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\CardModel.cs" />
+    <Compile Include="Models\ModelUnitTests.cs" />
     <Compile Include="Models\DebugModel.cs" />
     <Compile Include="Models\DepartmentTransactionModel.cs" />
     <Compile Include="Models\HashController.cs" />

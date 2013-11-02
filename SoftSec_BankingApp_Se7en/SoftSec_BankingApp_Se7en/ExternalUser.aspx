@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     <br />
@@ -329,7 +329,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -619,7 +619,7 @@
                     </p>
                      <p>
                     </p>
-                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="0" Height="700px" Width="837px" Visible="False" OnActiveTabChanged="TabContainer3_ActiveTabChanged" AutoPostBack="True">
+                    <asp:TabContainer ID="TabContainer3" runat="server" ActiveTabIndex="1" Height="700px" Width="837px" Visible="False" OnActiveTabChanged="TabContainer3_ActiveTabChanged" AutoPostBack="True">
                         <asp:TabPanel ID="tabeditprofile" runat="server" HeaderText="Edit Profile" Height="600px" Width="124px">
                             <ContentTemplate>
 

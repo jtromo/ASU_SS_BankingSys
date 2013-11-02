@@ -76,42 +76,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::Recaptcha.RecaptchaControl recaptcha;
         
         /// <summary>
-        /// tb_newpwd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_newpwd;
-        
-        /// <summary>
-        /// tb_newpwd_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_newpwd_PasswordStrength;
-        
-        /// <summary>
-        /// tb_newpwd2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_newpwd2;
-        
-        /// <summary>
-        /// tb_newpwd2_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_newpwd2_PasswordStrength;
-        
-        /// <summary>
         /// lblStatus_ForgotPassword control.
         /// </summary>
         /// <remarks>

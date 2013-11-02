@@ -370,22 +370,32 @@ namespace SoftSec_BankingApp_Se7en
                         //Proceed with business logic here
                         string iToAcc = dd_acctypebetween_To.SelectedValue.ToString();
                         string ifromAcc = dd_acctypebetween_From.SelectedValue.ToString();
-                        int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
-                                    "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
-                                        "To : " + dd_acctypebetween_To.Text.ToString() +
-                                            "- Amount : " + tb_amountbetween.Text.ToString());
-                        if (transactionId > 0)
+                        if (iToAcc.Equals(ifromAcc))
                         {
-                            lblTransStatus_Between.Text = "Transaction Successful";
+                            //Same account numbers.
+                            lblTransStatus_Between.Text = "Please choose different accounts.";
                             tb_amountbetween.Text = "";
                             lblTransStatus_Between.Visible = true;
                         }
                         else
                         {
-                            lblTransStatus_Between.Text = "Transaction Unsuccessful";
-                            tb_amountbetween.Text = "";
-                            lblTransStatus_Between.Visible = true;
-                        }
+                            int transactionId = TransactionModel.MakeInternalTransfer(ifromAcc, iToAcc, Convert.ToDouble(tb_amountbetween.Text.ToString()),
+                                       "From : " + dd_acctypebetween_From.SelectedValue.ToString() +
+                                           "To : " + dd_acctypebetween_To.Text.ToString() +
+                                               "- Amount : " + tb_amountbetween.Text.ToString());
+                            if (transactionId > 0)
+                            {
+                                lblTransStatus_Between.Text = "Transaction Successful";
+                                tb_amountbetween.Text = "";
+                                lblTransStatus_Between.Visible = true;
+                            }
+                            else
+                            {
+                                lblTransStatus_Between.Text = "Transaction Unsuccessful";
+                                tb_amountbetween.Text = "";
+                                lblTransStatus_Between.Visible = true;
+                            }
+                        }                        
                     }
                     else
                     {
@@ -487,6 +497,19 @@ namespace SoftSec_BankingApp_Se7en
                         if (objCard != null)
                         {
                             string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
+                            Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                            if (objUsr != null && objUsr.roleId == 3)
+                            {
+                                List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                                foreach (Models.Tables.Account acc in lstAcc)
+                                {
+                                    if (acc.accountTypeId == 3)
+                                    {
+                                        merchant_savingsAccNum = acc.accountNumber;
+                                        break;
+                                    }
+                                }
+                            }
                             string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
                             if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
                             {
@@ -895,6 +918,13 @@ namespace SoftSec_BankingApp_Se7en
                 else
                 {
                     checkSession();
+                    lblChkBalance.Visible = false;
+                    lblEcheckPayment.Visible = false;
+                    lblTransStatus_Between.Visible = false;
+                    lblTranStatus.Visible = false;
+                    lblTransStatus_IB.Visible = false;
+                    lblSubmitPayment.Visible = false;
+
                     if (TabContainer1.ActiveTabIndex == 2)
                     {
                         Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
@@ -1002,6 +1032,20 @@ namespace SoftSec_BankingApp_Se7en
                         Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
                         if (objAcc != null)
                         {
+                            Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                            if (objUsr != null && objUsr.roleId == 3)
+                            {
+                                List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                                foreach (Models.Tables.Account acc in lstAcc)
+                                {
+                                    if (acc.accountTypeId == 3)
+                                    {
+                                        merchant_savingsAccNum = acc.accountNumber;
+                                        break;
+                                    }
+                                }
+                            }
+
                             if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
                             {
                                 Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
@@ -1069,7 +1113,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bAcc = fieldValidator.validate_ZipAccCrdPhn(strAccNum, 12);
-                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum, 10);
+                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum, 12);
                 bool bName = fieldValidator.validate_Names(strAccName);
                 bool bAmount = fieldValidator.validate_Amount(strAmount);
                 if (bAcc && bRoute && bName && bAmount)
@@ -1099,6 +1143,8 @@ namespace SoftSec_BankingApp_Se7en
                 else
                 {
                     checkSession();
+                    lblChaneProfile.Visible = false;
+                    lblStatus_ChgPwd.Visible = false;
                     if (TabContainer3.ActiveTabIndex == 0)
                     {
                         //Reset the fields if required

@@ -12,7 +12,7 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Generate" />
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Generate" style="height: 26px" />
         <br />
         <br />
         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
@@ -28,20 +28,12 @@
             <asp:Button ID="addRegUserBT" runat="server" OnClick="addRegUserBT_Click" Text="add regular user" />
         </p>
         <p>
-            &nbsp;</p>
-        <p>
-            <asp:TextBox ID="TextBox2" runat="server" Enabled="False" Height="153px" ReadOnly="True" TextMode="MultiLine" Width="872px"></asp:TextBox>
+            <asp:Button ID="Button6" runat="server" Text="Button" />
         </p>
-        <p>
-            <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-            <asp:GridView ID="GridView2" runat="server" OnSelectedIndexChanged="GridView2_SelectedIndexChanged" AutoGenerateColumns="false">
-                <Columns>
-                    <asp:BoundField DataField="firstName" HeaderText="First Name" />
-                </Columns>
-            </asp:GridView>
-        </p>
-        <p>
-            &nbsp;</p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
     </form>
 </body>
 </html>

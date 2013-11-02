@@ -57,14 +57,7 @@ namespace SoftSec_BankingApp_Se7en
         protected void Button3_Click(object sender, EventArgs e)
         {
             
-            String inStrOTP = TextBox1.Text;
-            if (inStrOTP.Equals(Session["OTP"].ToString()))
-            {
-                Label2.Text = "Hurray!";
-            }
-            else
-                Label2.Text = "Get Lost!";
-
+            
         }
 
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,7 +82,6 @@ namespace SoftSec_BankingApp_Se7en
                 Console.WriteLine(ex.Message);
             }
              
-            TextBox2.Text = xx;
         }
 
         protected void Button5_Click(object sender, EventArgs e)

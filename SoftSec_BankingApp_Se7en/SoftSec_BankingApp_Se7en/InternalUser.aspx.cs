@@ -1270,34 +1270,48 @@ namespace SoftSec_BankingApp_Se7en
                                 if (success > 0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
+                                    tb_amount_SubmitPayment.Text = "";
                                     lblSubmitPayment.Visible = true;
                                 }
                                 else
                                 {
                                     lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                    tb_amount_SubmitPayment.Text = "";
                                     lblSubmitPayment.Visible = true;
                                 }
                             }
-                            else {
+                            else
+                            {
                                 lblSubmitPayment.Text = "Invalid expiry date";
+                                tb_amount_SubmitPayment.Text = "";
+                                cardExpDD_CardPayment.SelectedIndex = 0;
+                                yearDD_CardPayment.SelectedIndex = 0;
                                 lblSubmitPayment.Visible = true;
                             }
                         }
                         else
                         {
                             lblSubmitPayment.Text = "Invalid card name";
+                            tb_amount_SubmitPayment.Text = "";
+                            tb_customername.Text = "";
                             lblSubmitPayment.Visible = true;
                         }
                     }
                     else
                     {
                         lblSubmitPayment.Text = "Invalid card";
+                        tb_cardnum.Text = "";
                         lblSubmitPayment.Visible = true;
                     }
                 }
                 else
                 {
-                    lblSubmitPayment.Text = "Check inputs";
+                    lblSubmitPayment.Text = "Invalid entries. Please enter again.";
+                    tb_cardnum.Text = "";
+                    tb_customername.Text = "";
+                    tb_amount_SubmitPayment.Text = "";
+                    cardExpDD_CardPayment.SelectedIndex = 0;
+                    yearDD_CardPayment.SelectedIndex = 0;
                     lblSubmitPayment.Visible = true;
                 }
             }
@@ -1856,6 +1870,10 @@ namespace SoftSec_BankingApp_Se7en
                                     if (success > 0)
                                 {
                                     lblEcheckPayment.Text = "Transaction Successful";
+                                    tb_echeckaccno.Text = "";
+                                    tb_echeckroutingno.Text = "";
+                                    tb_echeckcustomername.Text = "";
+                                    tbAmount_EcheckPayment.Text = "";
                                     lblEcheckPayment.Visible = true;
                                 }
                                 else
@@ -1869,11 +1887,21 @@ namespace SoftSec_BankingApp_Se7en
                     else
                     {
                         //Update the UI with Error Message
+                        lblEcheckPayment.Text = "Invalid account details";
+                        tb_echeckaccno.Text = "";
+                        tb_echeckroutingno.Text = "";
+                        lblEcheckPayment.Visible = true;
                     }
                 }
                 else
                 {
                     //Update the UI with error message.
+                    lblEcheckPayment.Text = "Invalid entries. Please try again";
+                    tb_echeckaccno.Text = "";
+                    tb_echeckroutingno.Text = "";
+                    tb_echeckcustomername.Text = "";
+                    tbAmount_EcheckPayment.Text = "";
+                    lblEcheckPayment.Visible = true;
                 }
             }
             catch (Exception exp)

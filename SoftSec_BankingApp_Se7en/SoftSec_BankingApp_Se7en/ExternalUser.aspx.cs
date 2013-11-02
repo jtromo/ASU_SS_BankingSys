@@ -9,6 +9,7 @@ using SoftSec_BankingApp_Se7en.Models;
 using SoftSec_BankingApp_Se7en.Models.Tables;
 using log4net;
 using Core.Crypto;
+using SoftSec_BankingApp_Se7en.externalLibs.PKI;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -464,79 +465,114 @@ namespace SoftSec_BankingApp_Se7en
                 bool serverSideValidation = false;
                 try
                 {
-                    serverSideValidation = validateFromFields(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString());
+                    serverSideValidation = validateFromFields_subPayment(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString(),txtCertKey_CardPay.Text.ToString());
                     if (serverSideValidation)
                     {
-                        //Proceed with business logic here
-                        //Similar to inside bank transfers
-
-                        Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
-                        if (objCard != null)
+                        //PKI Implementation
+                        ImplementPKI imp = new ImplementPKI();
+                        byte[] sign = imp.Sign("Merchant Card Payment", txtCertKey_CardPay.Text);
+                        if (sign == null)
                         {
-                            string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
-                            Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                            if (objUsr != null && objUsr.roleId == 3)
+                            Response.Redirect("InvalidUserRole.aspx", false);
+                        }
+                        else
+                        {
+                            hdn_Cert_Card.Value = Convert.ToBase64String(sign);
+                        }
+                        string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
+                        bool certValidation = false;
+                        if (filename != string.Empty)
+                        {
+                            certValidation = imp.Verify("Merchant Card Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                        }
+                        else
+                        {
+                            Response.Redirect("InvalidUserRole.aspx", false);
+                        }                       
+
+                        if (certValidation)
+                        {
+                            //Proceed with business logic here
+                            //Similar to inside bank transfers
+
+                            Models.Tables.Card objCard = AccountModel.GetCardDetails(tb_cardnum.Text.ToString());
+                            if (objCard != null)
                             {
-                                List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
-                                foreach (Models.Tables.Account acc in lstAcc)
+                                string cardName = objCard.firstName + objCard.middleInitial + objCard.lastName;
+                                Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                                if (objUsr != null && objUsr.roleId == 3)
                                 {
-                                    if (acc.accountTypeId == 3)
+                                    List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                                    foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        merchant_savingsAccNum = acc.accountNumber;
-                                        break;
+                                        if (acc.accountTypeId == 3)
+                                        {
+                                            merchant_savingsAccNum = acc.accountNumber;
+                                            break;
+                                        }
                                     }
                                 }
-                            }
-                            string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
-                            if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
-                            {
-                                string strExpDate = string.Empty;
-                                strExpDate = dd_cardexpm.SelectedValue.ToString() + dd_cardexpy.SelectedValue.ToString();
-                                if (objCard.expirationDate.Equals(strExpDate))
+                                string cardNameUserInput = Regex.Replace(tb_customername.Text.ToString(), @"\s+", "");
+                                if (cardName.ToLower().Equals(cardNameUserInput.ToLower()))
                                 {
-                                    string sToAcc = merchant_savingsAccNum;
-                                    string sfromAcc = objCard.accountNumber;
-                                    int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
-                                                "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
-                                    if (transactionId > 0)
+                                    string strExpDate = string.Empty;
+                                    strExpDate = dd_cardexpm.SelectedValue.ToString() + dd_cardexpy.SelectedValue.ToString();
+                                    if (objCard.expirationDate.Equals(strExpDate))
                                     {
-                                        lblSubmitPayment.Text = "Transaction Successful";
-                                        tb_cardnum.Text = "";
-                                        tb_customername.Text = "";
-                                        tb_amount_CardPayment.Text = "";
-                                        dd_cardexpm.SelectedIndex = 1;
-                                        dd_cardexpy.SelectedIndex = 1;
+                                        string sToAcc = merchant_savingsAccNum;
+                                        string sfromAcc = objCard.accountNumber;
+                                        int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_CardPayment.Text.ToString()),
+                                                    "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_CardPayment.Text.ToString());
+                                        if (transactionId > 0)
+                                        {
+                                            lblSubmitPayment.Text = "Transaction Successful";
+                                            tb_cardnum.Text = "";
+                                            tb_customername.Text = "";
+                                            tb_amount_CardPayment.Text = "";
+                                            dd_cardexpm.SelectedIndex = 1;
+                                            txtCertKey_CardPay.Text = "";
+                                            dd_cardexpy.SelectedIndex = 1;
 
-                                        lblSubmitPayment.Visible = true;
+                                            lblSubmitPayment.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                            tb_cardnum.Text = "";
+                                            tb_customername.Text = "";
+                                            tb_amount_CardPayment.Text = "";
+                                            dd_cardexpm.SelectedIndex = 1;
+                                            dd_cardexpy.SelectedIndex = 1;
+                                            txtCertKey_CardPay.Text = "";
+                                            lblSubmitPayment.Visible = true;
+                                        }
                                     }
-                                    else
-                                    {
-                                        lblSubmitPayment.Text = "Transaction Unsuccessful";
-                                        tb_cardnum.Text = "";
-                                        tb_customername.Text = "";
-                                        tb_amount_CardPayment.Text = "";
-                                        dd_cardexpm.SelectedIndex = 1;
-                                        dd_cardexpy.SelectedIndex = 1;
-                                        lblSubmitPayment.Visible = true;
-                                    }
+                                }
+                                else
+                                {
+                                    //Update UI with error messages
+                                    lblSubmitPayment.Text = "Card name doesnt match with records.Please enter again.";
+                                    lblSubmitPayment.Visible = true;
+                                    tb_customername.Text = "";
                                 }
                             }
                             else
                             {
                                 //Update UI with error messages
-                                lblSubmitPayment.Text = "Card name doesnt match with records.Please enter again.";
+                                lblSubmitPayment.Text = "Invalid card details";
                                 lblSubmitPayment.Visible = true;
-                                tb_customername.Text = "";
+                                tb_cardnum.Text = "";
+                                dd_cardexpm.SelectedIndex = 1;
+                                dd_cardexpy.SelectedIndex = 1;                                
                             }
                         }
                         else
                         {
-                            //Update UI with error messages
-                            lblSubmitPayment.Text = "Invalid card details";
+                            //Certification is Wrong.
+                            lblSubmitPayment.Text = "Invalid Certificate. Enter again";
+                            txtCertKey_CardPay.Text = "";
+                            tb_amount_CardPayment.Text = "";
                             lblSubmitPayment.Visible = true;
-                            tb_cardnum.Text = "";
-                            dd_cardexpm.SelectedIndex = 1;
-                            dd_cardexpy.SelectedIndex = 1;
                         }
                     }
                     else
@@ -548,8 +584,9 @@ namespace SoftSec_BankingApp_Se7en
                         tb_amount_CardPayment.Text = "";
                         dd_cardexpm.SelectedIndex = 1;
                         dd_cardexpy.SelectedIndex = 1;
+                        txtCertKey_CardPay.Text = "";
                         lblSubmitPayment.Visible = true;
-                    }
+                    }                        
                 }
                 catch (Exception exp)
                 {
@@ -558,6 +595,31 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        private bool validateFromFields_subPayment(string cardNum, string accName, string strAmt, string certName)
+        {
+            try
+            {
+                FieldValidator objField = new FieldValidator();
+                bool bcardNum = objField.validate_ZipAccCrdPhn(cardNum, 16);
+                bool baccName = objField.validate_Names(accName);
+                bool bAmt = objField.validate_Amount(strAmt);
+                bool bcertName = objField.validate_UserName(certName);
+
+                if (bcardNum && baccName && bAmt && bcertName)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception : " + exp.Message);
+                return false;
+            }
+        }
         protected void btn_changepwd_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
@@ -895,7 +957,7 @@ namespace SoftSec_BankingApp_Se7en
                 else
                 {
                     checkSession();
-                    lblChkBalance.Visible = false;
+                    //lblChkBalance.Visible = false;
                     lblEcheckPayment.Visible = false;
                     lblTransStatus_Between.Visible = false;
                     lblTranStatus.Visible = false;
@@ -1003,66 +1065,112 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     bool serverSideValidation = false;
                     serverSideValidation = validateFromFields_echeck(tb_echeckaccno.Text.ToString(), tb_echeckroutingno.Text.ToString(),
-                                            tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString());
+                                            tb_echeckcustomername.Text.ToString(), tb_amountECheck.Text.ToString(),txtCertKey_Echeck.Text.ToString());
                     if (serverSideValidation)
                     {
-                        Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
-                        if (objAcc != null)
+                        //PKI Implemntation
+                        ImplementPKI imp = new ImplementPKI();
+                        byte[] sign = imp.Sign("Merchant ECheck Payment", txtCertKey_CardPay.Text);
+                        if (sign == null)
                         {
-                            Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
-                            if (objUsr != null && objUsr.roleId == 3)
+                            Response.Redirect("InvalidUserRole.aspx", false);
+                        }
+                        else
+                        {
+                            hdn_Cert_Card.Value = Convert.ToBase64String(sign);
+                        }
+                        string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
+                        bool certValidation = false;
+                        if (filename != string.Empty)
+                        {
+                            certValidation = imp.Verify("Merchant ECheck Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                        }
+                        else
+                        {
+                            Response.Redirect("InvalidUserRole.aspx", false);
+                        }
+
+                        if (certValidation)
+                        {
+                            Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
+                            if (objAcc != null)
                             {
-                                List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
-                                foreach (Models.Tables.Account acc in lstAcc)
+                                Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());
+                                if (objUsr != null && objUsr.roleId == 3)
                                 {
-                                    if (acc.accountTypeId == 3)
+                                    List<Models.Tables.Account> lstAcc = AccountModel.GetAccountsForUser(Session["userName"].ToString()).ToList();
+                                    foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        merchant_savingsAccNum = acc.accountNumber;
-                                        break;
+                                        if (acc.accountTypeId == 3)
+                                        {
+                                            merchant_savingsAccNum = acc.accountNumber;
+                                            break;
+                                        }
                                     }
                                 }
-                            }
 
-                            if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
-                            {
-                                Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
-                                string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
-                                string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
-                                if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
+                                if (objAcc.routingNumber.Equals(tb_echeckroutingno.Text.ToString()))
                                 {
-                                    string sToAcc = merchant_savingsAccNum;
-                                    string sfromAcc = tb_echeckaccno.Text.ToString();
-                                    int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
-                                                "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
-                                    if (transactionId > 0)
+                                    Models.Tables.User obUser = UserModel.GetUser(objAcc.userId);
+                                    string strFullName = obUser.firstName + obUser.middleName + obUser.lastName;
+                                    string checkUserNameInput = Regex.Replace(tb_echeckcustomername.Text.ToString(), @"\s+", "");
+                                    if (strFullName.ToLower().Equals(checkUserNameInput.ToLower()))
                                     {
-                                        lblEcheckPayment.Text = "Transaction Successful";
-                                        tb_echeckaccno.Text = "";
-                                        tb_echeckroutingno.Text = "";
-                                        tb_echeckcustomername.Text = "";
-                                        tb_amountECheck.Text = "";
-                                        lblEcheckPayment.Visible = true;
+                                        string sToAcc = merchant_savingsAccNum;
+                                        string sfromAcc = tb_echeckaccno.Text.ToString();
+                                        int transactionId = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amountECheck.Text.ToString()),
+                                                    "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amountECheck.Text.ToString());
+                                        if (transactionId > 0)
+                                        {
+                                            lblEcheckPayment.Text = "Transaction Successful";
+                                            tb_echeckaccno.Text = "";
+                                            tb_echeckroutingno.Text = "";
+                                            tb_echeckcustomername.Text = "";
+                                            tb_amountECheck.Text = "";
+                                            lblEcheckPayment.Visible = true;
+                                        }
+                                        else
+                                        {
+                                            lblEcheckPayment.Text = "Transaction Unsuccessful";
+                                            tb_echeckaccno.Text = "";
+                                            tb_echeckroutingno.Text = "";
+                                            tb_echeckcustomername.Text = "";
+                                            tb_amountECheck.Text = "";
+                                            lblEcheckPayment.Visible = true;
+                                        }
                                     }
                                     else
                                     {
-                                        lblEcheckPayment.Text = "Transaction Unsuccessful";
-                                        tb_echeckaccno.Text = "";
-                                        tb_echeckroutingno.Text = "";
+                                        //Update the UI with Error Message
+                                        lblEcheckPayment.Text = "Invalid Account Holder Name";
                                         tb_echeckcustomername.Text = "";
-                                        tb_amountECheck.Text = "";
                                         lblEcheckPayment.Visible = true;
                                     }
                                 }
+                                else
+                                {
+                                    //Update the UI with Error Message
+                                    lblEcheckPayment.Text = "Invalid Routing Number";                                    
+                                    tb_echeckroutingno.Text = "";                                    
+                                    lblEcheckPayment.Visible = true;
+                                }
+                            }
+                            else
+                            {
+                                //Update the UI with Error Message
+                                lblEcheckPayment.Text = "Invalid Account Details";
+                                tb_echeckaccno.Text = "";
+                                tb_echeckroutingno.Text = "";
+                                tb_echeckcustomername.Text = "";
+                                tb_amountECheck.Text = "";
+                                lblEcheckPayment.Visible = true;
                             }
                         }
                         else
                         {
-                            //Update the UI with Error Message
-                            lblEcheckPayment.Text = "Invalid Card Details";
-                            tb_echeckaccno.Text = "";
-                            tb_echeckroutingno.Text = "";
-                            tb_echeckcustomername.Text = "";
+                            lblEcheckPayment.Text = "Invalid Certificate. Try again.";
                             tb_amountECheck.Text = "";
+                            txtCertKey_Echeck.Text = "";
                             lblEcheckPayment.Visible = true;
                         }
                     }
@@ -1075,7 +1183,7 @@ namespace SoftSec_BankingApp_Se7en
                         tb_echeckcustomername.Text = "";
                         tb_amountECheck.Text = "";
                         lblEcheckPayment.Visible = true;
-                    }
+                    }                        
                 }
                 catch (Exception exp)
                 {
@@ -1084,7 +1192,7 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
-        private bool validateFromFields_echeck(string strAccNum, string strRoutingNum, string strAccName, string  strAmount)
+        private bool validateFromFields_echeck(string strAccNum, string strRoutingNum, string strAccName, string  strAmount, string strCerName)
         {
             try
             {
@@ -1093,7 +1201,8 @@ namespace SoftSec_BankingApp_Se7en
                 bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum, 12);
                 bool bName = fieldValidator.validate_Names(strAccName);
                 bool bAmount = fieldValidator.validate_Amount(strAmount);
-                if (bAcc && bRoute && bName && bAmount)
+                bool bcert = fieldValidator.validate_UserName(strCerName);
+                if (bAcc && bRoute && bName && bAmount && bcert)
                 {
                     return true;
                 }

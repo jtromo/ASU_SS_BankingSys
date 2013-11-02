@@ -1449,6 +1449,7 @@ namespace SoftSec_BankingApp_Se7en
                             bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, ChkcardForUser, SavcardForUser, addressForUser, securityQuestionsForUser);
                             if (userCreated)
                             {
+                                Models.Tables.User objNewUsr = UserModel.GetUser(userToCreate.username);
                                 string emailstring = "Hi " + tb_FirstName_Cust.Text.ToString() + " your account has been succesfully created" + "<br>" + "Checking acc num :" + checkingAccountNumber + "<br>" + "Savings acc num:" + savingsAccountNumber + "<br>"+"Routing number:"+routingAccountNumber+"<br>" + "Card num:" + cardNumber + "<br>" + "cvv:" + cvvNum +"<br>"+ "Expiry date: Nov 2018" + "<br>" + "Date of birth" + monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
                                 MailMessage mMailMessage = new MailMessage();
 
@@ -1461,6 +1462,13 @@ namespace SoftSec_BankingApp_Se7en
                                 mMailMessage.Subject = "Greetings from bankse7en";
                                 // Set the body of the mail message
                                 mMailMessage.Body = emailstring;
+
+                                if (objNewUsr.roleId == 3)
+                                {
+                                    string fileNameCert = PkiModel.GetCertificateNameForUsername(userToCreate.username);
+                                    Attachment at = new Attachment(@"C:\Windows\SysWOW64\" + fileNameCert + ".pfx");
+                                    mMailMessage.Attachments.Add(at);
+                                }
 
                                 // Set the format of the mail message body as HTML
                                 mMailMessage.IsBodyHtml = true;

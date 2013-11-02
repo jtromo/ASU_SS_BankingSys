@@ -841,6 +841,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_amount_CardPayment;
         
         /// <summary>
+        /// txtCertKey_CardPay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCertKey_CardPay;
+        
+        /// <summary>
         /// lblSubmitPayment control.
         /// </summary>
         /// <remarks>
@@ -857,6 +866,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_cardsubmitpayment;
+        
+        /// <summary>
+        /// hdn_Cert_Card control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_Cert_Card;
         
         /// <summary>
         /// tab_echeckpay control.
@@ -904,6 +922,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_amountECheck;
         
         /// <summary>
+        /// txtCertKey_Echeck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCertKey_Echeck;
+        
+        /// <summary>
         /// lblEcheckPayment control.
         /// </summary>
         /// <remarks>
@@ -920,5 +947,14 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_echecksubmitpayment;
+        
+        /// <summary>
+        /// hdn_Cert_Check control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdn_Cert_Check;
     }
 }

@@ -50,6 +50,15 @@ namespace SoftSec_BankingApp_Se7en.Models
                     {
                         //Response.Write("Not Valid");
                     }
+                    //Create Certificate for Merchant user.
+                    if (newUser.roleId == 3)
+                    {
+                        PkiCertificate pkRecordAvail = PkiModel.GetAvailableCertificateNames().First();
+                        pkRecordAvail.username = newUser.username;
+                        db.PkiCertificates.Attach(pkRecordAvail);
+                        var vUsrNm = db.Entry(pkRecordAvail);
+                        vUsrNm.Property(e => e.username).IsModified = true;
+                    }
 
                     db.Users.Add(newUser);
                     db.SaveChanges();

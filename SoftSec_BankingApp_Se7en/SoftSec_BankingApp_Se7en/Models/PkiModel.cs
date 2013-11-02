@@ -22,7 +22,7 @@ namespace SoftSec_BankingApp_Se7en.Models
 
                     if (certificates.Count() < 1)
                     {
-                        return null;
+                        return string.Empty;
                     }
 
                     PkiCertificate certificate = certificates.First();
@@ -33,7 +33,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
-                return null;
+                return string.Empty;
             }
         }
 

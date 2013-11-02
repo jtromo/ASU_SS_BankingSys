@@ -262,7 +262,8 @@ namespace SoftSec_BankingApp_Se7en
                                             tb_OTPInternal.Visible = true;
                                             tb_OTPInternal.Text = "";
                                             btnConfirmInternal.Visible = true;
-                                            btnCancelInternal.Visible = true;
+                                            lbl_OTPInternal.Visible = true;
+                                            lblOTPLabel0.Visible = true;
                                             btn_maketransinside.Enabled = false;
                                             OTP.SpitOTP(Session["username"].ToString(), UserModel.GetUser(Session["username"].ToString()).email.ToString());
                                             Session["OTPCounter"] = 1;
@@ -310,7 +311,7 @@ namespace SoftSec_BankingApp_Se7en
                     else
                     {
                         //Update the UI with error message.
-                        lblTransStatus_IB.Text = "Transaction Successful - Invalid Entries. Please fill again.";
+                        lblTransStatus_IB.Text = "Transaction Unsuccessful - Invalid Entries. Please fill again.";
                         tb_amount.Text = "";
                         tb_recepient.Text = "";
                         tb_lastname.Text = "";
@@ -963,6 +964,7 @@ namespace SoftSec_BankingApp_Se7en
                     lblTranStatus.Visible = false;
                     lblTransStatus_IB.Visible = false;
                     lblSubmitPayment.Visible = false;
+                    btn_maketransinside.Enabled = true;
 
                     if (TabContainer1.ActiveTabIndex == 2)
                     {
@@ -1330,54 +1332,74 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btnConfirmInternal_Click(object sender, EventArgs e)
         {
-            string OTPEntered = tb_OTPInternal.Text.ToString();
-            if (Convert.ToInt32(Session["OTPCounter"]) < 6)
+            try
             {
-                if (OTPLogModel.GetOTPLog(Session["username"].ToString()).otp.ToString().Equals(OTPEntered))
+                string OTPEntered = tb_OTPInternal.Text.ToString();
+                TimeSpan dt = DateTime.Now - OTPLogModel.GetOTPLog(Session["username"].ToString()).timestamp;
+                if (dt.Minutes > 4)
                 {
-                    string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
-                                                                                   " Amount : " + tb_amount.Text.ToString();
-                    int transactionId = TransactionModel.MakeInternalTransfer(dd_acctype.SelectedValue.ToString(), tb_recepient.Text.ToString(),
-                                               Convert.ToDouble(tb_amount.Text.ToString()), desc);
-                    if (transactionId > 0)
+                    OTPLogModel.RemoveOTPLog(Session["username"].ToString());
+                    lbl_OTPInternal.Text = "OTP timed out. Please make the transfer again.";
+                    btnConfirmInternal.Visible = false;
+                    lblOTPLabel0.Visible = false;
+                    btn_maketransinside.Enabled = true;
+                    tb_OTPInternal.Visible = false;
+                    tb_OTPInternal.Text = "";
+                    //Response.Redirect("ExternalUser.aspx", false);
+                }
+                if ((Convert.ToInt32(Session["OTPCounter"]) < 5) && (dt.Minutes <= 4))
+                {
+                    if (OTPLogModel.GetOTPLog(Session["username"].ToString()).otp.ToString().Equals(OTPEntered))
                     {
-                        lblTransStatus_IB.Text = "Transaction Successful";
-                        lblTransStatus_IB.Visible = true;
-                        tb_amount.Text = "";
-                        tb_recepient.Text = "";
-                        tb_lastname.Text = "";
-                        tb_zip.Text = "";
-                        tb_card.Text = "";
-                        dd_month.SelectedIndex = 1;
-                        dd_year.SelectedIndex = 1;
-                        tb_securitycode.Text = "";
+                        string desc = "From : " + dd_acctype.SelectedValue.ToString() + " To : " + tb_recepient.Text.ToString() +
+                                                                                       " Amount : " + tb_amount.Text.ToString();
+                        int transactionId = TransactionModel.MakeInternalTransfer(dd_acctype.SelectedValue.ToString(), tb_recepient.Text.ToString(),
+                                                   Convert.ToDouble(tb_amount.Text.ToString()), desc);
+                        if (transactionId > 0)
+                        {
+                            lblTransStatus_IB.Text = "Transaction Successful";
+                            btn_maketransinside.Enabled = true;
+                            lblTransStatus_IB.Visible = true;
+                            tb_amount.Text = "";
+                            tb_recepient.Text = "";
+                            tb_lastname.Text = "";
+                            tb_zip.Text = "";
+                            tb_card.Text = "";
+                            dd_month.SelectedIndex = 1;
+                            dd_year.SelectedIndex = 1;
+                            tb_securitycode.Text = "";
+                        }
+                        else
+                        {
+                            lblTransStatus_IB.Text = "Transaction Unsuccessful. Please try again";
+                            tb_amount.Text = "";
+                            tb_recepient.Text = "";
+                            tb_lastname.Text = "";
+                            tb_zip.Text = "";
+                            tb_card.Text = "";
+                            dd_month.SelectedIndex = 1;
+                            dd_year.SelectedIndex = 1;
+                            tb_securitycode.Text = "";
+                            lblTransStatus_IB.Visible = true;
+                        }
                     }
                     else
                     {
-                        lblTransStatus_IB.Text = "Transaction Unsuccessful. Please try again";
-                        tb_amount.Text = "";
-                        tb_recepient.Text = "";
-                        tb_lastname.Text = "";
-                        tb_zip.Text = "";
-                        tb_card.Text = "";
-                        dd_month.SelectedIndex = 1;
-                        dd_year.SelectedIndex = 1;
-                        tb_securitycode.Text = "";
-                        lblTransStatus_IB.Visible = true;
+                        lbl_OTPInternal.Text = "You have entered a wrong OTP. Please enter the correct OTP to proceed with the transaction";
+                        Session["OTPCounter"] = Convert.ToInt32(Session["OTPCounter"]) + 1;
                     }
                 }
                 else
                 {
-                    lbl_OTPInternal.Text = "You have entered a wrong OTP. Please enter the correct OTP to proceed with the transaction";
-                    Session["OTPCounter"] = Convert.ToInt32(Session["OTPCounter"]) + 1;
+                    OTP.SpitOTP(Session["username"].ToString(), UserModel.GetUser(Session["username"].ToString()).email.ToString());
+                    lbl_OTPInternal.Text = "OTP has been entered wrong too many times. A new OTP has been sent";
+                    Session["OTPCounter"] = 1;
                 }
             }
-            else
+            catch (Exception ex)
             {
-                OTP.SpitOTP(Session["username"].ToString(), UserModel.GetUser(Session["username"].ToString()).email.ToString());
-                lbl_OTPInternal.Text = "OTP has been entered wrong too many times. A new OTP has been sent";
-                Session["OTPCounter"] = 1;                    
+                
             }
-        }
+        }        
     }
 }

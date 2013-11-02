@@ -244,15 +244,7 @@ namespace SoftSec_BankingApp_Se7en.Models
                         // Process Transaction
                         Tables.Transaction transaction = transactions.First();
 
-                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
-                        transaction.status = TRANSFER_STATUS_APPROVED;
-                        transaction.processedTime = timestamp;
-
-                        db.Transactions.Attach(transaction);
-                        var vstatus = db.Entry(transaction);
-                        vstatus.Property(e => e.status).IsModified = true;
-                        var vprocessedTime = db.Entry(transaction);
-                        vprocessedTime.Property(e => e.processedTime).IsModified = true;
+                        
 
                         // Perform Action
                         switch (transaction.status)
@@ -332,6 +324,16 @@ namespace SoftSec_BankingApp_Se7en.Models
                                     return false;
                                 }
                         }
+
+                        DateTimeOffset timestamp = new DateTimeOffset(DateTime.Now);
+                        transaction.status = TRANSFER_STATUS_APPROVED;
+                        transaction.processedTime = timestamp;
+
+                        db.Transactions.Attach(transaction);
+                        var vstatus = db.Entry(transaction);
+                        vstatus.Property(e => e.status).IsModified = true;
+                        var vprocessedTime = db.Entry(transaction);
+                        vprocessedTime.Property(e => e.processedTime).IsModified = true;
 
                         db.SaveChanges();
                         scope.Complete();

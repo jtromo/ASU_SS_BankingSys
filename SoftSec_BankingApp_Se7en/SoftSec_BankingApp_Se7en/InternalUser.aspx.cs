@@ -510,13 +510,13 @@ namespace SoftSec_BankingApp_Se7en
                                 LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
                                 if (objLastZip != null)
                                 {
-                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
+                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower())
                                             && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                     {
-                                       
-                                        double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
-                                       
-                                        
+
+                                        double amount = Convert.ToDouble(tb_amount_IU_Inside.Text);
+
+
                                         if (amount < 1000)
                                         {
 
@@ -524,14 +524,14 @@ namespace SoftSec_BankingApp_Se7en
                                                                                " Amount : " + tb_amount_IU_Inside.Text.ToString();
                                             int insertedtransID = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
                                                                        Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
-                                                if (insertedtransID > 0)
+                                            if (insertedtransID > 0)
                                             {
                                                 lblSuccess_IUInside.Text = "Transaction Successful";
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                             else
                                             {
-                                                lblSuccess_IUInside.Text = "Transaction Unsuccessful";
+                                                lblSuccess_IUInside.Text = "Transaction Unsuccessful,Check balance";
                                                 lblSuccess_IUInside.Visible = true;
                                             }
                                         }
@@ -560,7 +560,8 @@ namespace SoftSec_BankingApp_Se7en
 
 
                                         }
-                                        else {
+                                        else
+                                        {
 
                                             lblSuccess_IUInside.Text = "This is a level 2 critical transaction,please choose an authorizer to initiate processing";
                                             lblSuccess_IUInside.Visible = true;
@@ -581,38 +582,49 @@ namespace SoftSec_BankingApp_Se7en
                                                 lblSuccess_IUInside.Visible = true;
 
                                             }
-                                        
+
                                         }
+                                    }
+                                    else {
+                                        lblSuccess_IUInside.Text = "Please check your zip and lastname for the account";
+                                        lblSuccess_IUInside.Visible = true;
                                     }
                                 }
                                 else
                                 {
-                                    lblSuccess_IUInside.Text = "Please check your zip and lastname";
+                                    lblSuccess_IUInside.Text = "Please check your zip and lastname for the account";
+                                    lblSuccess_IUInside.Visible = true;
                                 }
                             }
                             else
                             {
                                 lblSuccess_IUInside.Text = "Please check your card details";
+                                lblSuccess_IUInside.Visible = true;
                             }
                         }
                         else
                         {
                             lblSuccess_IUInside.Text = "Please check your card details";
+                            lblSuccess_IUInside.Visible = true;
                         }
                     }
                     else
                     {
                         lblSuccess_IUInside.Text = "Please check your card details";
+                        lblSuccess_IUInside.Visible = true;
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    existingCustErrLb.Text = "Please check the details";
+                    lblSuccess_IUInside.Visible = true;
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                existingCustErrLb.Text = "Could not process your transaction";
+                lblSuccess_IUInside.Visible = true;
             }
         }        
         }        
@@ -701,26 +713,31 @@ namespace SoftSec_BankingApp_Se7en
                                         }
                                     }
                                 }
+                                else {
+
+                                    existingCustErrLb.Text = "Unable to fetch Accounts";
+                                }
 
                             }
                             else
                             {
+                                existingCustErrLb.Text = "Please verify the customer's photo ID";
                                 TabContainer2.Visible = false;
                             }
                         }
                         else
                         {
-                            //Invalid DOB.
+                            existingCustErrLb.Text = "Invalid DOB";
                         }
                     }
                     else
                     {
-                        //Invalid Card Details
+                        existingCustErrLb.Text = "Card details invalid";
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    existingCustErrLb.Text = "Input invalid check the details";
                 }
             }
             catch (Exception exp)
@@ -855,12 +872,15 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_OutsideBank.Text = "Please check the details";
+                    lblStatus_OutsideBank.Visible = true;
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                lblStatus_OutsideBank.Text = "Could not proceed with trans in DB";
+                lblStatus_OutsideBank.Visible = true;
             }
         }
         }
@@ -932,7 +952,7 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 checkSession();
-                serverSideValidation = validateFromFields(tb_card_DebitFunds.Text.ToString(), tb_securitycode_DebitFunds.Text.ToString(),
+                serverSideValidation = validateFromFieldsatCredit(tb_card_DebitFunds.Text.ToString(), tb_securitycode_DebitFunds.Text.ToString(),
                                         tb_amountoutside_DebitFunds.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -966,7 +986,8 @@ namespace SoftSec_BankingApp_Se7en
                                     }
 
                                 }
-                                else {
+                                else
+                                {
 
                                     lblStatus_DebitFunds.Text = "You cannot debit more han 1000$ in this mode";
                                     lblStatus_DebitFunds.Visible = true;
@@ -984,15 +1005,22 @@ namespace SoftSec_BankingApp_Se7en
                             lblStatus_DebitFunds.Visible = true;
                         }
                     }
+                    else {
+                        lblStatus_DebitFunds.Text = "Invalid card details";
+                        lblStatus_DebitFunds.Visible = true;
+                    }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_DebitFunds.Text = "Please check the details";
+                    lblStatus_DebitFunds.Visible = true;
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                lblStatus_DebitFunds.Text = "Could not proceed with DB changes";
+                lblStatus_DebitFunds.Visible = true;
             }
         }
         }
@@ -1009,7 +1037,7 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 checkSession();
-                serverSideValidation = validateFromFields(tb_card_CreditFunds.Text.ToString(), tb_securitycode_CreditFunds.Text.ToString(),
+                serverSideValidation = validateFromFieldsatCredit(tb_card_CreditFunds.Text.ToString(), tb_securitycode_CreditFunds.Text.ToString(),
                                         tb_amountoutside_CreditFunds.Text.ToString());
                 if (serverSideValidation)
                 {
@@ -1040,7 +1068,8 @@ namespace SoftSec_BankingApp_Se7en
                                         lblStatus_CreditFunds.Visible = true;
                                     }
                                 }
-                                else {
+                                else
+                                {
 
                                     lblStatus_CreditFunds.Text = "You cannot credit more than 1000$ through this method";
                                     lblStatus_CreditFunds.Visible = true;
@@ -1058,15 +1087,22 @@ namespace SoftSec_BankingApp_Se7en
                             lblStatus_CreditFunds.Visible = true;
                         }
                     }
+                    else {
+                        lblStatus_CreditFunds.Text = "Invalid card details";
+                        lblStatus_CreditFunds.Visible = true;
+                    }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_CreditFunds.Text = "Please check the details";
+                    lblStatus_CreditFunds.Visible = true;
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                lblStatus_CreditFunds.Text = "Could not proceed with DB action";
+                lblStatus_CreditFunds.Visible = true;
             }
         }
         }
@@ -1255,34 +1291,34 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx",false);
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
-            bool serverSideValidation = false;
-            try
-            {
-                checkSession();
-                serverSideValidation = validateFromFields(tb_FirstName_Cust.Text.ToString(), tb_MiddleName_Cust.Text.ToString(), tb_LastName_Cust.Text.ToString()
-                    , tb_Email_Cust.Text.ToString(), tb_StreetAddr_Cust.Text.ToString(), tb_City_Cust.Text.ToString(), tb_Phone_Cust.Text.ToString()
-                    , tb_Zip_Cust.Text.ToString());
-                if (serverSideValidation)
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    TabContainer6.ActiveTabIndex = 1;
-                    ErrorLabelInNewCustPI.Visible = false;
+                    checkSession();
+                    serverSideValidation = validateFromFields(tb_FirstName_Cust.Text.ToString(), tb_MiddleName_Cust.Text.ToString(), tb_LastName_Cust.Text.ToString()
+                        , tb_Email_Cust.Text.ToString(), tb_StreetAddr_Cust.Text.ToString(), tb_City_Cust.Text.ToString(), tb_Phone_Cust.Text.ToString()
+                        , tb_Zip_Cust.Text.ToString());
+                    if (serverSideValidation)
+                    {
+                        //Proceed with business logic here
+                        TabContainer6.ActiveTabIndex = 1;
+                        ErrorLabelInNewCustPI.Visible = false;
+                    }
+                    else
+                    {
+                        //Update the UI with error message.
+                        fieldValidationErrorLabel.Visible = true;
+                        fieldValidationErrorLabel.Text = "Please verify the data you have entered";
+                    }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
-                    fieldValidationErrorLabel.Visible = true;
-                    fieldValidationErrorLabel.Text = "Please verify the data you have entered";
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
-            }
-            catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
-            }
             }
         }
 
@@ -1914,6 +1950,26 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        private bool validateFromFieldsatCredit(string strCardNum, string strCVV, string strAmount)
+        {
+            try
+            {
+                FieldValidator fieldValidator = new FieldValidator();
+                bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
+                bool bCVV = fieldValidator.validate_ZipAccCrdPhn(strCVV,3);
+                bool bAmt = fieldValidator.validate_Amount(strAmount);
+                if (bCard && bCVV && bAmt)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception occurred: " + exp.Message);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Validate the from fields
         /// </summary>
@@ -2018,7 +2074,7 @@ namespace SoftSec_BankingApp_Se7en
                 bool bCard = fieldValidator.validate_ZipAccCrdPhn(strCardNum, 16);
                 bool bSCode = fieldValidator.validate_ZipAccCrdPhn(strSecCode, 3);
                 bool bAccnum = fieldValidator.validate_ZipAccCrdPhn(strAccNum, 12);
-                bool bRouNum = fieldValidator.validate_ZipAccCrdPhn(strRouteNum, 10);
+                bool bRouNum = fieldValidator.validate_ZipAccCrdPhn(strRouteNum, 12);
                 if (bAmt && bEmail && bLName && bCard && bSCode && bAccnum && bRouNum)
                     return true;
                 else
@@ -2437,6 +2493,8 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_checking_Click(object sender, EventArgs e)
         {
+            statusDescLb.Text = "";
+            statusDescLb.Visible = true;
             if (Session["userName"] == null)
             {
                 Response.Redirect("SessionTimeOut.aspx",false);
@@ -2451,17 +2509,25 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     grdTransaction.DataSource = lstTrans;
                     grdTransaction.DataBind();
+                    statusDescLb.Text = "Status: 1)Processing 2)Approved 3)Rejected";
+                }
+                else {
+                    statusDescLb.Text = "Could not fetch details";
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                statusDescLb.Text = "Could not fetch details,our DB is sleeping";
+
             }
         }
         }
 
         protected void btn_savings_Click(object sender, EventArgs e)
         {
+            statusDescLb.Text = "";
+            statusDescLb.Visible = true;
             if (Session["userName"] == null)
             {
                 Response.Redirect("SessionTimeOut.aspx", false);
@@ -2476,11 +2542,16 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     grdTransaction.DataSource = lstTrans;
                     grdTransaction.DataBind();
+                    statusDescLb.Text = "Status: 1)Processing 2)Approved 3)Rejected";
+                }
+                else {
+                    statusDescLb.Text = "Could not fetch details";
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                statusDescLb.Text="Could not fetch details, our DB is sleeping";
             }
         }
         }
@@ -3067,6 +3138,7 @@ namespace SoftSec_BankingApp_Se7en
                     Models.Tables.User objUsr = UserModel.GetUser(Session["userName"].ToString());                    
                     if (TabContainer1.ActiveTabIndex == 0 || TabContainer1.ActiveTabIndex == 1)
                     {
+                        existingCustErrLb.Text = "";
                         if (objUsr != null && (objUsr.roleId == 4 || objUsr.roleId == 5))
                         {
                             TabContainer1.Visible = true;

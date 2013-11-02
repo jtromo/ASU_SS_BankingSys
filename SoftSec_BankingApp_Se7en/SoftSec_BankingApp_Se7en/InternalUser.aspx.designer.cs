@@ -157,6 +157,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btn_savings;
         
         /// <summary>
+        /// statusDescLb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label statusDescLb;
+        
+        /// <summary>
         /// grdTransaction control.
         /// </summary>
         /// <remarks>
@@ -1289,6 +1298,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_echecksubmitpayment;
+        
+        /// <summary>
+        /// existingCustErrLb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label existingCustErrLb;
         
         /// <summary>
         /// tab_newcustomer control.

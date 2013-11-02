@@ -220,6 +220,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_securitycode;
         
         /// <summary>
+        /// btn_maketransinside control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_maketransinside;
+        
+        /// <summary>
         /// lblTransStatus_IB control.
         /// </summary>
         /// <remarks>
@@ -229,13 +238,49 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Label lblTransStatus_IB;
         
         /// <summary>
-        /// btn_maketransinside control.
+        /// tb_OTPInternal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_maketransinside;
+        protected global::System.Web.UI.WebControls.TextBox tb_OTPInternal;
+        
+        /// <summary>
+        /// tb_OTPInternal_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender tb_OTPInternal_FilteredTextBoxExtender;
+        
+        /// <summary>
+        /// lbl_OTPInternal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_OTPInternal;
+        
+        /// <summary>
+        /// btnConfirmInternal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnConfirmInternal;
+        
+        /// <summary>
+        /// btnCancelInternal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelInternal;
         
         /// <summary>
         /// tab_trans_outside control.

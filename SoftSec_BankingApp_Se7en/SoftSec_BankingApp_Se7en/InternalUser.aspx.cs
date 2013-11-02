@@ -681,7 +681,7 @@ namespace SoftSec_BankingApp_Se7en
                                         List<Models.Tables.Account> lstAcc = objCol.ToList();
                                         foreach (Models.Tables.Account acc in lstAcc)
                                         {
-                                            if (acc.accountTypeId == 1)
+                                            if (acc.accountTypeId == 3)
                                             {
                                                 //Savings Account
                                                 tb_savings.Text = acc.accountNumber.ToString();
@@ -691,7 +691,12 @@ namespace SoftSec_BankingApp_Se7en
                                                 toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                lblSavingsBalance.Text = Convert.ToString(acc.balance);
                                                 tb_savings.ReadOnly = true;
+                                                if (objUser.roleId == 3)
+                                                {
+                                                    merchant_savingsAccNum = acc.accountNumber;
+                                                }
                                             }
                                             else if (acc.accountTypeId == 2)
                                             {
@@ -703,9 +708,10 @@ namespace SoftSec_BankingApp_Se7en
                                                 toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                lblCheckingBalance.Text = Convert.ToString(acc.balance);
                                                 tb_checking.ReadOnly = true;
                                             }
-                                            else if (acc.accountTypeId == 3)
+                                            else if (acc.accountTypeId == 1)
                                             {
                                                 //credit account
                                                 //tb_credit.Text = acc.accountNumber.ToString();
@@ -1266,34 +1272,48 @@ namespace SoftSec_BankingApp_Se7en
                                 if (success > 0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
+                                    tb_amount_SubmitPayment.Text = "";
                                     lblSubmitPayment.Visible = true;
                                 }
                                 else
                                 {
                                     lblSubmitPayment.Text = "Transaction Unsuccessful";
+                                    tb_amount_SubmitPayment.Text = "";
                                     lblSubmitPayment.Visible = true;
                                 }
                             }
-                            else {
+                            else
+                            {
                                 lblSubmitPayment.Text = "Invalid expiry date";
+                                tb_amount_SubmitPayment.Text = "";
+                                cardExpDD_CardPayment.SelectedIndex = 0;
+                                yearDD_CardPayment.SelectedIndex = 0;
                                 lblSubmitPayment.Visible = true;
                             }
                         }
                         else
                         {
                             lblSubmitPayment.Text = "Invalid card name";
+                            tb_amount_SubmitPayment.Text = "";
+                            tb_customername.Text = "";
                             lblSubmitPayment.Visible = true;
                         }
                     }
                     else
                     {
                         lblSubmitPayment.Text = "Invalid card";
+                        tb_cardnum.Text = "";
                         lblSubmitPayment.Visible = true;
                     }
                 }
                 else
                 {
-                    lblSubmitPayment.Text = "Check inputs";
+                    lblSubmitPayment.Text = "Invalid entries. Please enter again.";
+                    tb_cardnum.Text = "";
+                    tb_customername.Text = "";
+                    tb_amount_SubmitPayment.Text = "";
+                    cardExpDD_CardPayment.SelectedIndex = 0;
+                    yearDD_CardPayment.SelectedIndex = 0;
                     lblSubmitPayment.Visible = true;
                 }
             }
@@ -1852,6 +1872,10 @@ namespace SoftSec_BankingApp_Se7en
                                     if (success > 0)
                                 {
                                     lblEcheckPayment.Text = "Transaction Successful";
+                                    tb_echeckaccno.Text = "";
+                                    tb_echeckroutingno.Text = "";
+                                    tb_echeckcustomername.Text = "";
+                                    tbAmount_EcheckPayment.Text = "";
                                     lblEcheckPayment.Visible = true;
                                 }
                                 else
@@ -1865,11 +1889,21 @@ namespace SoftSec_BankingApp_Se7en
                     else
                     {
                         //Update the UI with Error Message
+                        lblEcheckPayment.Text = "Invalid account details";
+                        tb_echeckaccno.Text = "";
+                        tb_echeckroutingno.Text = "";
+                        lblEcheckPayment.Visible = true;
                     }
                 }
                 else
                 {
                     //Update the UI with error message.
+                    lblEcheckPayment.Text = "Invalid entries. Please try again";
+                    tb_echeckaccno.Text = "";
+                    tb_echeckroutingno.Text = "";
+                    tb_echeckcustomername.Text = "";
+                    tbAmount_EcheckPayment.Text = "";
+                    lblEcheckPayment.Visible = true;
                 }
             }
             catch (Exception exp)
@@ -2183,7 +2217,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (strMName.Length == 0)
                 {
-                    strMName = " ";
+                    strMName = "a";
                 } 
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bFName = fieldValidator.validate_Names(strFName);
@@ -4473,6 +4507,29 @@ namespace SoftSec_BankingApp_Se7en
             {
                 Elog.Error("Excetpion : " + exp.Message);
                 return -1;
+            }
+        }
+
+        protected void TabContainer5_ActiveTabChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                tb_cardnum.Text = "";
+                tb_customername.Text = "";
+                cardExpDD_CardPayment.SelectedIndex = 0;
+                cardExpDD_CardPayment.SelectedIndex = 0;
+                yearDD_CardPayment.SelectedIndex = 0;
+                tb_amount_SubmitPayment.Text = "";
+                tb_echeckaccno.Text = "";
+                tb_echeckroutingno.Text = "";
+                tb_echeckcustomername.Text = "";
+                tbAmount_EcheckPayment.Text = "";
+                lblSubmitPayment.Text = "";
+                lblEcheckPayment.Text = "";
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exceptions : " + exp.Message);
             }
         }
     }

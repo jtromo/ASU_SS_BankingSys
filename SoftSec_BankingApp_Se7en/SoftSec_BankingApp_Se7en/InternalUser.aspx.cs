@@ -2276,7 +2276,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bAcc = fieldValidator.validate_ZipAccCrdPhn(strAccNum,12);
-                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum,10);
+                bool bRoute = fieldValidator.validate_ZipAccCrdPhn(strRoutingNum,12);
                 bool bName = fieldValidator.validate_Names(strName);
                 bool bAmt = fieldValidator.validate_Amount(strAmount);
                 

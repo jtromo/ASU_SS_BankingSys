@@ -89,7 +89,7 @@ namespace SSBank
             SecurityQuestion question3 = new SecurityQuestion { answer = "School", questionId = 3 };
             List<SecurityQuestion> newQuestions = new List<SecurityQuestion> { question1, question2, question3 };
             Card newCard = new Card { cardNumber = "12345678910", cvv=1234, expirationDate="09/15", firstName="John", middleInitial="T", lastName="Smith" };
-            bool newUserCreated = UserModel.CreateUser(newUser, "password", "412-31-9999", "07/08/1994", "12345678910", "10987654321", "123456", newCard, newAddress, newQuestions);
+            bool newUserCreated = UserModel.CreateUser(newUser, "password", "412-31-9999", "07/08/1994", "12345678910", "10987654321", "123456", newCard,newCard, newAddress, newQuestions);
             Response.Write(" New user was created: " + newUserCreated);
 
             //Sample Script
@@ -100,7 +100,7 @@ namespace SSBank
             SecurityQuestion newQuestion31 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions1 = new List<SecurityQuestion> { newQuestion11, newQuestion21, newQuestion31 };
             Card newCard1 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "uday", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated1 = UserModel.CreateUser(newUser1, "udayKum1", "634-31-9999", "05/03/1993", "12345678910", "10987654321", "123456", newCard1, newAddress1, newQuestions1);
+            bool newUserCreated1 = UserModel.CreateUser(newUser1, "udayKum1", "634-31-9999", "05/03/1993", "12345678910", "10987654321", "123456", newCard1,newCard, newAddress1, newQuestions1);
             Response.Write(" New user was created: " + newUserCreated1);
 
             Address newAddress2 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 87223, country = "US", isActive = true };
@@ -110,7 +110,7 @@ namespace SSBank
             SecurityQuestion newQuestion32 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions2 = new List<SecurityQuestion> { newQuestion12, newQuestion22, newQuestion32 };
             Card newCard2 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum2", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated2 = UserModel.CreateUser(newUser2, "udayKum2", "243-31-9999", "02/08/1991", "12345678910", "10987654321", "123456", newCard1, newAddress2, newQuestions2);
+            bool newUserCreated2 = UserModel.CreateUser(newUser2, "udayKum2", "243-31-9999", "02/08/1991", "12345678910", "10987654321", "123456", newCard1,newCard2, newAddress2, newQuestions2);
             Response.Write(" New user was created: " + newUserCreated2);
 
             Address newAddress3 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };
@@ -120,7 +120,7 @@ namespace SSBank
             SecurityQuestion newQuestion33 = new SecurityQuestion { answer = "School1", questionId = 3 };
             List<SecurityQuestion> newQuestions3 = new List<SecurityQuestion> { newQuestion13, newQuestion23, newQuestion33 };
             Card newCard3 = new Card { cardNumber = "12345678910", cvv = 1234, expirationDate = "09/15", firstName = "udayKum3#", middleInitial = "k", lastName = "mac" };
-            bool newUserCreated3 = UserModel.CreateUser(newUser3, "udayKum3#", "342-31-9999", "01/08/1991", "12345678910", "10987654321", "123456", newCard1, newAddress3, newQuestions3);
+            bool newUserCreated3 = UserModel.CreateUser(newUser3, "udayKum3#", "342-31-9999", "01/08/1991", "12345678910", "10987654321", "123456", newCard1,newCard3, newAddress3, newQuestions3);
             Response.Write(" New user was created: " + newUserCreated3);
 
             Address newAddress4 = new Address { firstName = "manu", lastName = "kaur", street1 = "625 W, 5th st", city = "Phoenix", state = "AZ", zip = 85281, country = "US", isActive = true };

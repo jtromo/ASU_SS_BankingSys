@@ -58,6 +58,15 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_checking;
         
         /// <summary>
+        /// lblChkBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblChkBalance;
+        
+        /// <summary>
         /// btn_checking control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_savings;
+        
+        /// <summary>
+        /// lblSavingsBal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSavingsBal;
         
         /// <summary>
         /// btn_savings control.

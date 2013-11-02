@@ -1339,14 +1339,22 @@ namespace SoftSec_BankingApp_Se7en
                             string cardNumber = randomCardNumberGenerator();
                             string routingAccountNumber = randomAccountNumberGenerator();
                             int cvvNum =Convert.ToInt32( CVVNumberGenerator());
-                            Card cardForUser = new Card();
-                            cardForUser.cardNumber = cardNumber;
-                            cardForUser.accountNumber = checkingAccountNumber;
-                            cardForUser.cvv = cvvNum;
-                            cardForUser.expirationDate = "1118";
-                            cardForUser.firstName = userToCreate.firstName;
-                            cardForUser.middleInitial = userToCreate.middleName;
-                            cardForUser.lastName = userToCreate.lastName;
+                            Card ChkcardForUser = new Card();
+                            ChkcardForUser.cardNumber = cardNumber;
+                            ChkcardForUser.accountNumber = checkingAccountNumber;
+                            ChkcardForUser.cvv = cvvNum;
+                            ChkcardForUser.expirationDate = "1118";
+                            ChkcardForUser.firstName = userToCreate.firstName;
+                            ChkcardForUser.middleInitial = userToCreate.middleName;
+                            ChkcardForUser.lastName = userToCreate.lastName;
+                            Card SavcardForUser = new Card();
+                            SavcardForUser.cardNumber = cardNumber;
+                            SavcardForUser.accountNumber = savingsAccountNumber;
+                            SavcardForUser.cvv = cvvNum;
+                            SavcardForUser.expirationDate = "1118";
+                            SavcardForUser.firstName = userToCreate.firstName;
+                            SavcardForUser.middleInitial = userToCreate.middleName;
+                            SavcardForUser.lastName = userToCreate.lastName;
                             List<SecurityQuestion> securityQuestionsForUser = new List<SecurityQuestion>();
                             SecurityQuestion securityQuestionForUser1 = new SecurityQuestion();
                             securityQuestionForUser1.questionId = Convert.ToInt32(Sec1DD_PersonalInformation.SelectedValue);
@@ -1364,7 +1372,7 @@ namespace SoftSec_BankingApp_Se7en
                             userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
                             userToCreate.siteKeyString = tb_sitekeyhint_Cust.Text.ToString();
                             string userDOB = monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
-                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, cardForUser, addressForUser, securityQuestionsForUser);
+                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, ChkcardForUser, SavcardForUser, addressForUser, securityQuestionsForUser);
                             if (userCreated)
                             {
                                 string emailstring = "Hi " + tb_FirstName_Cust.Text.ToString() + " your account has been succesfully created" + "<br>" + "Checking acc num :" + checkingAccountNumber + "<br>" + "Savings acc num:" + savingsAccountNumber + "<br>"+"Routing number:"+routingAccountNumber+"<br>" + "Card num:" + cardNumber + "<br>" + "cvv:" + cvvNum +"<br>"+ "Expiry date: Nov 2018" + "<br>" + "Date of birth" + monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
@@ -3804,9 +3812,12 @@ namespace SoftSec_BankingApp_Se7en
                     tab_EditProfile.Tabs[2].Visible = false;
                     tab_EditProfile.Tabs[1].Visible = true;
                     lstQandA = PasswordModel.GetSecurityQandA(Session["userName"].ToString());
-                    dd_secque1_int.SelectedValue = Convert.ToString(lstQandA.First().questionId);
-                    dd_secque2_int.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
-                    dd_secque3_int.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                    if (lstQandA != null)
+                    {
+                        dd_secque1_int.SelectedValue = Convert.ToString(lstQandA.First().questionId);
+                        dd_secque2_int.SelectedValue = Convert.ToString(lstQandA.ElementAt(1).questionId);
+                        dd_secque3_int.SelectedValue = Convert.ToString(lstQandA.Last().questionId);
+                    }
                     dd_secque1_int.Enabled = false;
                     dd_secque2_int.Enabled = false;
                     dd_secque3_int.Enabled = false;

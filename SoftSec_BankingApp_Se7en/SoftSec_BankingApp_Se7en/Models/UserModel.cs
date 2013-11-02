@@ -12,7 +12,7 @@ namespace SoftSec_BankingApp_Se7en.Models
         private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
         private static readonly ILog Tlog = LogManager.GetLogger("TransactionsFileAppender");
 
-        public static bool CreateUser(User newUser, string password, string socialSecurity, string birthdate, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Address address, List<SecurityQuestion> securityQuestions)
+        public static bool CreateUser(User newUser, string password, string socialSecurity, string birthdate, string checkingAccountNumber, string savingsAccountNumber, string routingNumber, Card checkingCard, Card savingsCard, Address address, List<SecurityQuestion> securityQuestions)
         {
             try
             {
@@ -27,14 +27,17 @@ namespace SoftSec_BankingApp_Se7en.Models
                     newUser.creationTime = timestamp;
                     newUser.Address = address;
                     newUser.SecurityQuestions = securityQuestions;
-
+                    newUser.isActive = true;
                     Tables.Account checkingAccount = new Tables.Account { accountNumber=checkingAccountNumber, routingNumber=routingNumber, balance=0.0, isActive=true, accountTypeId=2, creationTime=timestamp };
                     // Add Card
                     checkingCard.accountNumber = checkingAccountNumber;
                     checkingAccount.Card = checkingCard;
-
-                    Tables.Account savingsAccount = new Tables.Account { accountNumber = savingsAccountNumber, routingNumber = routingNumber, balance = 0.0, isActive = true, accountTypeId = 1, creationTime = timestamp };
-
+                    checkingAccount.balance = 200;
+                    Tables.Account savingsAccount = new Tables.Account { accountNumber = savingsAccountNumber, routingNumber = routingNumber, balance = 0.0, isActive = true, accountTypeId = 3, creationTime = timestamp };
+                    //Add savings Card
+                    savingsAccount.accountNumber = savingsAccountNumber;
+                    savingsAccount.Card = savingsCard;
+                    savingsAccount.balance = 500;
                     List<Tables.Account> accounts = new List<Tables.Account> { checkingAccount, savingsAccount };
                     newUser.Accounts = accounts;
 

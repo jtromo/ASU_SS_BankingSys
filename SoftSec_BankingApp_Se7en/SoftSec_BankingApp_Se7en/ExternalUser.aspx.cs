@@ -67,7 +67,7 @@ namespace SoftSec_BankingApp_Se7en
                                     List<Models.Tables.Account> lstAcc = objCol.ToList();
                                     foreach (Models.Tables.Account acc in lstAcc)
                                     {
-                                        if (acc.accountTypeId == 2)
+                                        if (acc.accountTypeId == 3)
                                         {
                                             //Savings Account
                                             tb_savings.Text = acc.accountNumber.ToString();
@@ -75,9 +75,10 @@ namespace SoftSec_BankingApp_Se7en
                                             dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
                                             dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
                                             dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                            lblSavingsBal.Text = Convert.ToString(acc.balance);
                                             tb_savings.ReadOnly = true;
                                         }
-                                        else if (acc.accountTypeId == 1)
+                                        else if (acc.accountTypeId == 2)
                                         {
                                             //checkings account
                                             tb_checking.Text = acc.accountNumber.ToString();
@@ -85,6 +86,7 @@ namespace SoftSec_BankingApp_Se7en
                                             dd_acctypeoutside.Items.Add(acc.accountNumber.ToString());
                                             dd_acctypebetween_From.Items.Add(acc.accountNumber.ToString());
                                             dd_acctypebetween_To.Items.Add(acc.accountNumber.ToString());
+                                            lblChkBalance.Text = Convert.ToString(acc.balance);
                                             tb_checking.ReadOnly = true;
                                         }
                                         else if (acc.accountTypeId == 3)

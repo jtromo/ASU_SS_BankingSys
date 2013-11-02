@@ -403,6 +403,7 @@
     <Compile Include="Models\Tables\OTPLog.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\DepartmentTransaction.cs" />
+    <Compile Include="Models\Tables\PkiCertificate.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />

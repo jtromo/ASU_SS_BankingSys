@@ -26,5 +26,6 @@ namespace SoftSec_BankingApp_Se7en.Models
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<OTPLog> OTPLogs { get; set; }
+        public DbSet<PkiCertificate> PkiCertificates { get; set; }
     }
 }

@@ -166,6 +166,7 @@ namespace SoftSec_BankingApp_Se7en
                                 TabContainer1.Tabs[0].Visible = true;
                                 TabContainer1.Tabs[1].Visible = false;
                                 TabContainer1.Tabs[4].Visible = true;
+                                TabContainer7.Tabs[5].Visible = false;
                                 if (userDept == 5)
                                 {
                                     //HR Department Manager

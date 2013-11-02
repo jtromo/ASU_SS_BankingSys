@@ -396,6 +396,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\OTPLogModel.cs" />
     <Compile Include="Models\PasswordModel.cs" />
+    <Compile Include="Models\PkiModel.cs" />
     <Compile Include="Models\Tables\Account.cs" />
     <Compile Include="Models\Tables\AccountType.cs" />
     <Compile Include="Models\Tables\Address.cs" />
@@ -403,6 +404,7 @@
     <Compile Include="Models\Tables\OTPLog.cs" />
     <Compile Include="Models\Tables\Department.cs" />
     <Compile Include="Models\Tables\DepartmentTransaction.cs" />
+    <Compile Include="Models\Tables\PkiCertificate.cs" />
     <Compile Include="Models\Tables\Question.cs" />
     <Compile Include="Models\Tables\Role.cs" />
     <Compile Include="Models\Tables\SecurityQuestion.cs" />

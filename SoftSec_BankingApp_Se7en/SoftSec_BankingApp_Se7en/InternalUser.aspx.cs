@@ -691,6 +691,7 @@ namespace SoftSec_BankingApp_Se7en
                                                 toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                lblSavingsBalance.Text = Convert.ToString(acc.balance);
                                                 tb_savings.ReadOnly = true;
                                                 if (objUser.roleId == 3)
                                                 {
@@ -707,6 +708,7 @@ namespace SoftSec_BankingApp_Se7en
                                                 toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
                                                 accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                lblCheckingBalance.Text = Convert.ToString(acc.balance);
                                                 tb_checking.ReadOnly = true;
                                             }
                                             else if (acc.accountTypeId == 1)

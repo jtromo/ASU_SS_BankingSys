@@ -83,17 +83,9 @@
     PrivateKey="6LdqzOgSAAAAAKRePKZH_6jMLAJlr3uWxc0lOQIX"
     />
             <p __designer:mapid="22be">
-                Enter New Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:TextBox ID="tb_newpwd" runat="server" oncopy="return false" onpaste="return false" TextMode="Password"></asp:TextBox>
-                <asp:PasswordStrength ID="tb_newpwd_PasswordStrength" runat="server" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_newpwd" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5">
-                </asp:PasswordStrength>
-            </p>
+                &nbsp;</p>
             <p __designer:mapid="22be">
-                Re enter New Password:&nbsp;
-                <asp:TextBox ID="tb_newpwd2" runat="server" oncopy="return false" onpaste="return false" TextMode="Password"></asp:TextBox>
-                <asp:PasswordStrength ID="tb_newpwd2_PasswordStrength" runat="server" CalculationWeightings="50;15;15;20" MinimumLowerCaseCharacters="1" MinimumNumericCharacters="1" MinimumSymbolCharacters="1" MinimumUpperCaseCharacters="1" PreferredPasswordLength="12" RequiresUpperAndLowerCaseCharacters="True" TargetControlID="tb_newpwd2" TextStrengthDescriptions="Very Weak;Weak;Average;Strong;Very Strong" TextStrengthDescriptionStyles="TextIndicator_TB_Password_Strength1;TextIndicator_TB_Password_Strength2;TextIndicator_TB_Password_Strength3;TextIndicator_TB_Password_Strength4;TextIndicator_TB_Password_Strength5">
-                </asp:PasswordStrength>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblStatus_ForgotPassword" runat="server" Visible="False"></asp:Label>
             </p>
             <p __designer:mapid="22c0">

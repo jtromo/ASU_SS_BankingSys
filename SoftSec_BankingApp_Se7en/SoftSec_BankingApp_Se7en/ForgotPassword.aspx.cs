@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using SoftSec_BankingApp_Se7en.Models;
 using SoftSec_BankingApp_Se7en.Models.Tables;
 using log4net;
+using System.Net.Mail;
 
 namespace SoftSec_BankingApp_Se7en
 {
@@ -50,7 +51,7 @@ namespace SoftSec_BankingApp_Se7en
                     dictAns.Add(2, tb_secans2.Text.ToString());
                     dictAns.Add(3, tb_secans3.Text.ToString());
 
-                    serverSideValidation = validateFromFields_forgotPwd(dictAns, tb_newpwd.Text, tb_newpwd2.Text);
+                    serverSideValidation = validateFromFields_forgotPwd(dictAns);
                     if (serverSideValidation)
                     {
                         string strAns1 = (lstQandA.First().answer).ToLower();
@@ -60,24 +61,29 @@ namespace SoftSec_BankingApp_Se7en
                         if (tb_secans1.Text.ToLower().Equals(strAns1) && tb_secans2.Text.ToLower().Equals(strAns2)
                                 && tb_secans3.Text.ToLower().Equals(strAns3))
                         {
-                            if (tb_newpwd.Text.Equals(tb_newpwd2.Text))
+                            string sucPass = PasswordModel.MailPwd(Session["userName"].ToString());
+                            if (sucPass.Length == 14)
                             {
-                                bool success = PasswordModel.ChangePwd(Session["userName"].ToString(), tb_newpwd.Text.ToString());
-                                if (success)
-                                {
-                                    lblStatus_ForgotPassword.Text = "Password Changed Successfully";
-                                    lblStatus_ForgotPassword.Visible = true;
-                                }
-                                else
-                                {
-                                    lblStatus_ForgotPassword.Text = "Password Changed Failed, Please try again";
-                                    lblStatus_ForgotPassword.Visible = true;
-                                }
+                                lblStatus_ForgotPassword.Text = "Password Changed Successfully. It has been sent to your Registered Email";
+                                lblStatus_ForgotPassword.Visible = true;
+                                MailMessage mMailMessage = new MailMessage();
+                                mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                                mMailMessage.To.Add(new MailAddress(UserModel.GetUser(Session["userName"].ToString()).email));
+                                mMailMessage.Subject = "Password Generation";
+                                string bodyOfMail = "Your Password has been changed. Please Find below the passowrd.";
+                                bodyOfMail += " Password : " + sucPass;
+                                bodyOfMail += "<br> Please login to the system and make sure you change the password.<br>";
+                                bodyOfMail += "Regards, <br> BankofSe7en";
+                                mMailMessage.Body = bodyOfMail;
+                                mMailMessage.IsBodyHtml = true;
+                                mMailMessage.Priority = MailPriority.Normal;
+                                SmtpClient mSmtpClient = new SmtpClient();
+                                mSmtpClient.EnableSsl = true;
+                                mSmtpClient.Send(mMailMessage);
                             }
                             else
                             {
-                                //New Passwords Dont match
-                                lblStatus_ForgotPassword.Text = "Passwords don't match, Please try again";
+                                lblStatus_ForgotPassword.Text = "Password Changed Failed, Please try again";
                                 lblStatus_ForgotPassword.Visible = true;
                             }
                         }
@@ -106,7 +112,7 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
-        private bool validateFromFields_forgotPwd(Dictionary<int, string> dictAns, string newPass, string confirmPass)
+        private bool validateFromFields_forgotPwd(Dictionary<int, string> dictAns)
         {
             try
             {
@@ -119,22 +125,8 @@ namespace SoftSec_BankingApp_Se7en
                     if (bAns)
                         iCtr++;
                 }
-                string strTemp = string.Empty;
-                string strNewPass = objField.validate_password(newPass);
-                strTemp = strNewPass.Substring(strNewPass.IndexOf('_') + 1);
-                bool bNewPass = false;
-                if (strTemp.Equals("TRUE"))
-                {
-                    bNewPass = true;
-                }
-                string strConfirmPass = objField.validate_password(confirmPass);
-                strTemp = strConfirmPass.Substring(strConfirmPass.IndexOf('_') + 1);
-                bool bConfPass = false;
-                if (strTemp.Equals("TRUE"))
-                {
-                    bConfPass = true;
-                }
-                if (bNewPass && bConfPass && iCtr == 3)
+               
+                if (iCtr == 3)
                 {
                     return true;
                 }

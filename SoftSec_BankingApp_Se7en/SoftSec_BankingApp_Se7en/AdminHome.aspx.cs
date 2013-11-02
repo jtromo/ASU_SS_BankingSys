@@ -1615,6 +1615,19 @@ namespace SoftSec_BankingApp_Se7en
             }
 
         }
+
+        protected void RoleDD_AddEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (RoleDD_AddEmp.SelectedItem.Text == "Admin")
+            {
+                DeptDD_AddEmp.SelectedIndex = 0;
+                DeptDD_AddEmp.Enabled = false;
+            }
+            else
+            {
+                DeptDD_AddEmp.Enabled = true;
+            }
+        }
         
     }
 }

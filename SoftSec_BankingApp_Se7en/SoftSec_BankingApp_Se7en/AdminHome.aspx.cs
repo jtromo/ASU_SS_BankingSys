@@ -388,6 +388,7 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void tabAdmin_ActiveTabChanged(object sender, EventArgs e)
         {
+            cleanFields();
             try
             {
                 if (Session["userName"] == null)
@@ -396,7 +397,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    checkSession();
+                    checkSession();                    
                     if (tabAdmin.ActiveTabIndex == 3)
                     {
                        
@@ -431,6 +432,66 @@ namespace SoftSec_BankingApp_Se7en
             }
         }
 
+        protected void cleanFields()
+        {
+            tb_FirstName_Emp.Text = "";
+            tb_MidName_Emp.Text = "";
+            tb_LastName_Emp.Text = "";
+            tb_addr_editprofile.Text = "";
+            tb_BirthYear_AddEmp.Text = "";
+            tb_city.Text = "";
+            tb_city_editProfile.Text = "";
+            tb_City_Emp.Text = "";
+            tb_confrimPass.Text = "";
+            tb_contactedit.Text = "";
+            tb_contactview.Text = "";
+            tb_Email_Emp.Text = "";
+            tb_emailedit.Text = "";
+            tb_emailview.Text = "";
+            tb_newPass.Text = "";
+            tb_oldpwd.Text = "";
+            tb_Phone_Emp.Text = "";
+            tb_secans1.Text = "";
+            tb_SecAns1_Cust.Text = "";
+            tb_secans2.Text = "";
+            tb_SecAns2_Cust.Text = "";
+            tb_SecAns2_Cust.Text = "";
+            tb_secans3.Text = "";
+            tb_SecAns3_Cust.Text = "";
+            tb_sitekeyhint_Cust.Text = "";
+            tb_SSN_Cust.Text = "";
+            tb_StreetAddr_Emp.Text = "";
+            tb_streetAddress.Text = "";
+            tb_usernameview.Text = "";
+            tb_zip_editProfile.Text = "";
+            tb_Zip_Emp.Text = "";
+            tb_ZipCode_Profile.Text = "";
+            userIdTb_Modify.Text = "";
+            userNameLookUpTb.Text = "";
+            userNameTb_Remove.Text = "";
+            firstNameTextLb_Modify.Text = "";
+            firstNameTextLb_Remove.Text = "";
+            lastNameTextLb_Modify.Text = "";
+            lastNameTextLb_Remove.Text = "";
+            currentRoleTextLb_Modify.Text = "";
+            currentRoleTextLb_Remove.Text = "";
+            errorLabel.Text = "";
+            errorLbModify.Text = "";
+            Label1.Text = "";
+            lbl_Logs.Text = "";
+            reqErrorLb.Text = "";
+            effectedUserValueLb.Text = "";
+            initiatorValueLb.Text = "";
+            fromDeptLb.Text = "";
+            fromDeptValueLB.Text = "";
+            toDeptLb.Text = "";
+            toDeptValueLb.Text = "";
+            lblStatus_SiteKey.Text = "";
+            lblStatus_ChgPwd.Text = "";
+            lblChaneProfile.Text = "";
+            tab_EditProfile.Visible = false;
+        }
+
         protected void FetchLogsBT_Click(object sender, EventArgs e)
         {
             if (Session["userName"] == null)
@@ -455,20 +516,24 @@ namespace SoftSec_BankingApp_Se7en
                         mMailMessage.Body = "PFA the System Logs you have requested.";
                         //Attachment at = new Attachment(Server.MapPath("~/Uploaded/txt.doc"));
                         Attachment at = new Attachment(Server.MapPath("~/Logs/Transactions.log"));
+                        Attachment at1 = new Attachment(Server.MapPath("~/Logs/Exception.log"));
                         mMailMessage.Attachments.Add(at);
+                        mMailMessage.Attachments.Add(at1);
                         mMailMessage.IsBodyHtml = true;
                         mMailMessage.Priority = MailPriority.High;
                         SmtpClient mSmtpClient = new SmtpClient();
                         mSmtpClient.EnableSsl = true;
-                        mSmtpClient.Send(mMailMessage);                        
+                        mSmtpClient.Send(mMailMessage);
+                        lbl_Logs.Text = "Logs have been sent to your email";
                     }
                     else
                     {
-                        //Update the UI with error message.
+                        lbl_Logs.Text = "Please check the details you have keyed in";
                     }
                 }
                 catch (Exception exp)
                 {
+                    lbl_Logs.Text = "An unknown error has occured. Please try again in a few minutes.";
                     Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
@@ -600,6 +665,10 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
+                if (strMName.Length == 0)
+                {
+                    strMName = " ";
+                }
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bFName = fieldValidator.validate_Names(strFName);
                 bool bMName = fieldValidator.validate_Names(strMName);

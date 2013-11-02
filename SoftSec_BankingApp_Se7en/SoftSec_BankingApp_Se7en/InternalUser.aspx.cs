@@ -1143,12 +1143,15 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_ChangeProf.Text = "Please check the inputs";
+                    lblStatus_ChangeProf.Visible = true;
                 }
             }
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
+                lblStatus_ChangeProf.Text = "Could not make DB action";
+                lblStatus_ChangeProf.Visible = true;
             }
         }
         }
@@ -1199,22 +1202,26 @@ namespace SoftSec_BankingApp_Se7en
                             }
                             else
                             {
-                                //New Passwords Dont match
+                                lblStatus_ChangePswd.Text = "Password dont match";
+                                lblStatus_ChangePswd.Visible = true;
                             }
                         }
                         else
                         {
-                            //Invalid Answers
+                            lblStatus_ChangePswd.Text = "Answers invalid";
+                            lblStatus_ChangePswd.Visible = true;
                         }
                     }
                     else
                     {
-                        //Old Password is not true
+                        lblStatus_ChangePswd.Text = "Please check old passwords";
+                        lblStatus_ChangePswd.Visible = true;
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblStatus_ChangePswd.Text = "Please check inputs";
+                    lblStatus_ChangePswd.Visible = true;
                 }
             }
             catch (Exception exp)
@@ -1256,7 +1263,7 @@ namespace SoftSec_BankingApp_Se7en
                                 string sfromAcc = objCard.accountNumber;
                                 int success = TransactionModel.MakeInternalTransfer(sfromAcc, sToAcc, Convert.ToDouble(tb_amount_SubmitPayment.Text.ToString()),
                                             "From : " + sfromAcc + "To : " + sToAcc + "- Amount : " + tb_amount_SubmitPayment.Text.ToString());
-                                    if (success > 0)
+                                if (success > 0)
                                 {
                                     lblSubmitPayment.Text = "Transaction Successful";
                                     lblSubmitPayment.Visible = true;
@@ -1267,20 +1274,27 @@ namespace SoftSec_BankingApp_Se7en
                                     lblSubmitPayment.Visible = true;
                                 }
                             }
+                            else {
+                                lblSubmitPayment.Text = "Invalid expiry date";
+                                lblSubmitPayment.Visible = true;
+                            }
                         }
                         else
                         {
-                            //Update UI with error messages
+                            lblSubmitPayment.Text = "Invalid card name";
+                            lblSubmitPayment.Visible = true;
                         }
                     }
                     else
                     {
-                        //Update UI with error messages
+                        lblSubmitPayment.Text = "Invalid card";
+                        lblSubmitPayment.Visible = true;
                     }
                 }
                 else
                 {
-                    //Update the UI with error message.
+                    lblSubmitPayment.Text = "Check inputs";
+                    lblSubmitPayment.Visible = true;
                 }
             }
             catch (Exception exp)
@@ -1913,9 +1927,9 @@ namespace SoftSec_BankingApp_Se7en
                 bool bCity = fieldValidator.validate_Names(strCity);
                 bool bZip = fieldValidator.validate_ZipAccCrdPhn(strZipCode, 5);
                 bool bPhn = fieldValidator.validate_ZipAccCrdPhn(strPhone, 10);
-                bool bNick = fieldValidator.validate_Names(strName);
+              //  bool bNick = fieldValidator.validate_Names(strName);
 
-                if (bEmail && bStAdd && bCity && bZip && bPhn && bNick)
+                if (bEmail && bStAdd && bCity && bZip && bPhn )
                     return true;
                 else
                     return false;
@@ -2500,31 +2514,36 @@ namespace SoftSec_BankingApp_Se7en
             statusDescLb.Visible = true;
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx",false);
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
-            try
-            {
-                checkSession();
-                List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
-                if (lstTrans != null)
+                try
                 {
-                    grdTransaction.DataSource = lstTrans;
-                    grdTransaction.DataBind();
-                    statusDescLb.Text = "Status: 1)Processing 2)Approved 3)Rejected";
+                    checkSession();
+                    List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                    if (lstTrans != null)
+                    {
+                        grdTransaction.DataSource = lstTrans;
+                        grdTransaction.DataBind();
+                        statusDescLb.Text = "Status: 1)Processing 2)Approved 3)Rejected";
+                        if (!(lstTrans.Count > 0))
+                        {
+                            statusDescLb.Text = "No transacations";
+                        }
+                    }
+                    else
+                    {
+                        statusDescLb.Text = "Could not fetch details";
+                    }
                 }
-                else {
-                    statusDescLb.Text = "Could not fetch details";
-                }
-            }
-            catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
-                statusDescLb.Text = "Could not fetch details,our DB is sleeping";
+                catch (Exception exp)
+                {
+                    Elog.Error("Exception occurred: " + exp.Message);
+                    statusDescLb.Text = "Could not fetch details,our DB is sleeping";
 
+                }
             }
-        }
         }
 
         protected void btn_savings_Click(object sender, EventArgs e)
@@ -2546,6 +2565,10 @@ namespace SoftSec_BankingApp_Se7en
                     grdTransaction.DataSource = lstTrans;
                     grdTransaction.DataBind();
                     statusDescLb.Text = "Status: 1)Processing 2)Approved 3)Rejected";
+                    if (!(lstTrans.Count > 0))
+                    {
+                        statusDescLb.Text = "No transacations";
+                    }
                 }
                 else {
                     statusDescLb.Text = "Could not fetch details";
@@ -2728,6 +2751,13 @@ namespace SoftSec_BankingApp_Se7en
                         tb_AccNum_modifyTrans.Text = objTrans.toAccountNumber;
                         tb_Amount_ModifyTrans.Text = Convert.ToString(objTrans.amount);
                         tb_RoutNum_modifyTrans.Text = objTrans.toRoutingNumber;
+                        if (objTrans.toRoutingNumber.Equals(""))
+                        {
+                            lblRoutingNum_ModifyTrans.Visible = false;
+                        }
+                        else {
+                            lblRoutingNum_ModifyTrans.Visible = true;
+                        }
                         //lblType_ModifyTrans.Text = objTrans.type;
                     }
                     else
@@ -2958,6 +2988,11 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void transferDD_ModifyTrans_SelectedIndexChanged(object sender, EventArgs e)
         {
+            tb_transID_ModifyTrans.Text = "";
+            tb_AccNum_modifyTrans.Text = "";
+            tb_RoutNum_modifyTrans.Text = "";
+            tb_Amount_ModifyTrans.Text = "";
+            lblStatus_ModifyStatus.Text = "";
             try
             {
                 lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());

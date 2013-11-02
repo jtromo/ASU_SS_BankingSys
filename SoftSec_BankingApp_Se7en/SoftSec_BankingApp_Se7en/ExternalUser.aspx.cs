@@ -1190,16 +1190,31 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void bt_logout_Click(object sender, EventArgs e)
         {
-            Session.Abandon();
-            Response.Redirect("ExternalHomePage.aspx");
+            try
+            {
+
+                Session.Abandon();
+                Response.Redirect("ExternalHomePage.aspx");
+            }
+            catch( Exception exp)
+            {
+                Elog.Error(" Exception : " + exp.Message);
+            }
         }
         protected void checkSession()
         {
-            string session = UserModel.GetUserSessionID(Session["userName"].ToString());
-            if (session != Session.SessionID)
+            try
             {
-                Session.Abandon();
-                Response.Redirect("ExternalHomePage.aspx");
+                string session = UserModel.GetUserSessionID(Session["userName"].ToString());
+                if (session != Session.SessionID)
+                {
+                    Session.Abandon();
+                    Response.Redirect("ExternalHomePage.aspx");
+                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error(" Exception : " + exp.Message);
             }
            
         }

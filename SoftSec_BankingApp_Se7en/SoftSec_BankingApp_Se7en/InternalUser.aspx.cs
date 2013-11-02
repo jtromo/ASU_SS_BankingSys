@@ -547,18 +547,19 @@ namespace SoftSec_BankingApp_Se7en
                                                 if (criticaltranslevel1approved)
                                                 {
                                                     lblSuccess_IUInside.Text = "Critical Transaction level 1 successfully approved";
+                                                    lblSuccess_IUInside.Visible = true;
                                                 }
                                                 else
                                                 {
                                                     lblSuccess_IUInside.Text = "Critical Transaction level 1 could not be approved";
+                                                    lblSuccess_IUInside.Visible = true;
                                                 }
                                             }
                                             else
                                             {
                                                 lblSuccess_IUInside.Text = "Unable to place and approve level 1 request";
+                                                lblSuccess_IUInside.Visible = true;
                                             }
-
-
                                         }
                                         else
                                         {
@@ -598,13 +599,13 @@ namespace SoftSec_BankingApp_Se7en
                             }
                             else
                             {
-                                lblSuccess_IUInside.Text = "Please check your card details";
+                                lblSuccess_IUInside.Text = "Please check your card Security code details";
                                 lblSuccess_IUInside.Visible = true;
                             }
                         }
                         else
                         {
-                            lblSuccess_IUInside.Text = "Please check your card details";
+                            lblSuccess_IUInside.Text = "Please check your card expiry details";
                             lblSuccess_IUInside.Visible = true;
                         }
                     }
@@ -616,7 +617,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    existingCustErrLb.Text = "Please check the details";
+                    lblSuccess_IUInside.Text = "Invalid Entries. Please check the details";
                     lblSuccess_IUInside.Visible = true;
                 }
             }
@@ -863,13 +864,13 @@ namespace SoftSec_BankingApp_Se7en
                             }
                             else
                             {
-                                lblStatus_OutsideBank.Text = "Invalid card details";
+                                lblStatus_OutsideBank.Text = "Invalid card security code details";
                                 lblStatus_OutsideBank.Visible = true;
                             }
                         }
                         else
                         {
-                            lblStatus_OutsideBank.Text = "Invalid card details";
+                            lblStatus_OutsideBank.Text = "Invalid card expiry details";
                             lblStatus_OutsideBank.Visible = true;
                         }
                     }
@@ -881,7 +882,7 @@ namespace SoftSec_BankingApp_Se7en
                 }
                 else
                 {
-                    lblStatus_OutsideBank.Text = "Please check the details";
+                    lblStatus_OutsideBank.Text = "Invalid Entries . Please check the details";
                     lblStatus_OutsideBank.Visible = true;
                 }
             }
@@ -1600,69 +1601,93 @@ namespace SoftSec_BankingApp_Se7en
         /// <returns>Account Number generation</returns>
         protected string randomAccountNumberGenerator()
         {
-            int myRandomNumber1 = 0;
-            int myRandomNumber2 = 0;
-            int myRandomNumber3 = 0;
-            string randocAccNum = null;
-            while (randocAccNum == null)
+            try
             {
-                Random myRandomNUmberGenerator = new Random();
-                myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
-                myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
-                myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
-                randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString();
-                SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
-                if (checkingforAccount == null)
+                int myRandomNumber1 = 0;
+                int myRandomNumber2 = 0;
+                int myRandomNumber3 = 0;
+                string randocAccNum = null;
+                while (randocAccNum == null)
                 {
-                    break;
+                    Random myRandomNUmberGenerator = new Random();
+                    myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
+                    myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
+                    myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
+                    randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString();
+                    SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
+                    if (checkingforAccount == null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        randocAccNum = null;
+                    }
                 }
-                else
-                {
-                    randocAccNum = null;
-                }
+                return randocAccNum;
             }
-            return randocAccNum;
+            catch (Exception exp)
+            {
+                Elog.Error("Exceptions " + exp.Message);
+                return string.Empty;
+            }
 
         }
 
 
         protected string randomCardNumberGenerator()
         {
-            int myRandomNumber1 = 0;
-            int myRandomNumber2 = 0;
-            int myRandomNumber3 = 0;
-            int myRandomNumber4 = 0;
-            string randocAccNum = null;
-            while (randocAccNum == null)
+            try
             {
-                Random myRandomNUmberGenerator = new Random();
-                myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
-                myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
-                myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
-                myRandomNumber4 = myRandomNUmberGenerator.Next(1001, 9996);
-                randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString()+myRandomNumber4.ToString();
-                SoftSec_BankingApp_Se7en.Models.Tables.User checkingforAccount = CardModel.UserForCard(randocAccNum);
-                if (checkingforAccount == null)
+                int myRandomNumber1 = 0;
+                int myRandomNumber2 = 0;
+                int myRandomNumber3 = 0;
+                int myRandomNumber4 = 0;
+                string randocAccNum = null;
+                while (randocAccNum == null)
                 {
-                    break;
+                    Random myRandomNUmberGenerator = new Random();
+                    myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
+                    myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
+                    myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
+                    myRandomNumber4 = myRandomNUmberGenerator.Next(1001, 9996);
+                    randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString() + myRandomNumber4.ToString();
+                    SoftSec_BankingApp_Se7en.Models.Tables.User checkingforAccount = CardModel.UserForCard(randocAccNum);
+                    if (checkingforAccount == null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        randocAccNum = null;
+                    }
                 }
-                else
-                {
-                    randocAccNum = null;
-                }
+                return randocAccNum;
             }
-            return randocAccNum;
+            catch (Exception exp)
+            {
+                Elog.Error("Exceptions : " + exp.Message);
+                return string.Empty;
+            }
 
         }
 
 
         protected string CVVNumberGenerator()
         {
-            int myRandomNumber = 0;
-            Random myRandomNUmberGenerator = new Random();
-            myRandomNumber = myRandomNUmberGenerator.Next(100, 999);
-            string randoCVVNum = myRandomNumber.ToString();
-            return randoCVVNum;
+            try
+            {
+                int myRandomNumber = 0;
+                Random myRandomNUmberGenerator = new Random();
+                myRandomNumber = myRandomNUmberGenerator.Next(100, 999);
+                string randoCVVNum = myRandomNumber.ToString();
+                return randoCVVNum;
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exceptions : " + exp.Message);
+                return string.Empty;
+            }
 
         }
 
@@ -2402,116 +2427,87 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void btn_delEmp_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
-            }
-            else
-            {
-                checkSession();
-                bool DeleteSuccess = false;
-                User userToDel = new User();
-                userToDel = UserModel.GetUser(tb_UserName_DelEmp.Text.ToString());
-                int deptid = Convert.ToInt32(userToDel.departmentId);
-                if (userToDel.departmentId == Convert.ToInt32(Session["deptId"]))
+                if (Session["userName"] == null)
                 {
-                    if ((userToDel.roleId < Convert.ToInt32(Session["roleId"])) && (userToDel.roleId > 3))
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
+                    bool DeleteSuccess = false;
+                    User userToDel = new User();
+                    userToDel = UserModel.GetUser(tb_UserName_DelEmp.Text.ToString());
+                    int deptid = Convert.ToInt32(userToDel.departmentId);
+                    if (userToDel.departmentId == Convert.ToInt32(Session["deptId"]))
                     {
-                        DeleteSuccess = UserModel.RemoveUser(tb_UserName_DelEmp.Text.ToString());
-                        if (DeleteSuccess)
+                        if ((userToDel.roleId < Convert.ToInt32(Session["roleId"])) && (userToDel.roleId > 3))
                         {
-                            lbl_DelEmployee.Text = tb_UserName_DelEmp.Text + "has been Deleted";
+                            DeleteSuccess = UserModel.RemoveUser(tb_UserName_DelEmp.Text.ToString());
+                            if (DeleteSuccess)
+                            {
+                                lbl_DelEmployee.Text = tb_UserName_DelEmp.Text + "has been Deleted";
 
-                            //Posting a Department transaction
-                            string deptTransStr = "New employee: " + tb_UserName_DelEmp.Text.ToString() + " has been deleted";
-                            DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), 0, Session["username"].ToString(), tb_UserName_DelEmp.Text.ToString(), deptTransStr, 0, "");
+                                //Posting a Department transaction
+                                string deptTransStr = "New employee: " + tb_UserName_DelEmp.Text.ToString() + " has been deleted";
+                                DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), 0, Session["username"].ToString(), tb_UserName_DelEmp.Text.ToString(), deptTransStr, 0, "");
+                            }
+                            else
+                            {
+                                lbl_DelEmployee.Text = "Deletion failed. Please try again";
+                            }
                         }
                         else
                         {
-                            lbl_DelEmployee.Text = "Deletion failed. Please try again";
+                            lbl_DelEmployee.Text = "This employee is above your role for you to delete";
                         }
                     }
                     else
                     {
-                        lbl_DelEmployee.Text = "This employee is above your role for you to delete";
+                        lbl_DelEmployee.Text = "This employee does not belong to your department for you to delete";
                     }
                 }
-                else
-                {
-                    lbl_DelEmployee.Text = "This employee does not belong to your department for you to delete";
-                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Excepton " + exp.Message);
             }
         }
 
         protected void btn_TransEmp_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
-            }
-            else
-            {
-                checkSession();
-                if (RoleDD_TransEmp.SelectedValue == TO_RoleDD_TransEmp.SelectedValue)
+                if (Session["userName"] == null)
                 {
-                    if (FROM_DeptDD_TransEmp.SelectedValue == TO_DeptDD_TransDept.SelectedValue)
-                    {
-                        lbl_TransferEmpl.Text = "The department and role are unchanged for the user";
-                    }
-                    else
-                    {
-                        bool TransferSuccess = false;
-                        User userToTrans = new User();
-                        userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
-                        int deptid = Convert.ToInt32(userToTrans.departmentId);
-                        if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
-                        {
-                            if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
-                            {
-                                TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
-                                if (TransferSuccess)
-                                {
-                                    lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
-                                    //Posting a Department transaction
-                                    string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " has been transferred";
-                                    DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
-                                }
-                                else
-                                {
-                                    lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
-                                }
-                            }
-                            else
-                            {
-                                lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
-                            }
-                        }
-                        else
-                        {
-                            lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
-                        }
-                    }
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
-                    if ((Convert.ToInt32(Session["roleId"])) == 6)
+                    checkSession();
+                    if (RoleDD_TransEmp.SelectedValue == TO_RoleDD_TransEmp.SelectedValue)
                     {
-                        bool TransferSuccess = false;
-                        User userToTrans = new User();
-                        userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
-                        int deptid = Convert.ToInt32(userToTrans.departmentId);
-                        if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
+                        if (FROM_DeptDD_TransEmp.SelectedValue == TO_DeptDD_TransDept.SelectedValue)
                         {
-                            if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
+                            lbl_TransferEmpl.Text = "The department and role are unchanged for the user";
+                        }
+                        else
+                        {
+                            bool TransferSuccess = false;
+                            User userToTrans = new User();
+                            userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
+                            int deptid = Convert.ToInt32(userToTrans.departmentId);
+                            if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
                             {
-                                if (FROM_DeptDD_TransEmp.SelectedValue != TO_DeptDD_TransDept.SelectedValue)
+                                if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
                                 {
                                     TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
                                     if (TransferSuccess)
                                     {
                                         lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
                                         //Posting a Department transaction
-                                        string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " to be transferred to " + TO_DeptDD_TransDept.SelectedItem.Text;
+                                        string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " has been transferred";
                                         DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
                                     }
                                     else
@@ -2519,26 +2515,69 @@ namespace SoftSec_BankingApp_Se7en
                                         lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
                                     }
                                 }
-                                //Initiate a role change
-                                string roleTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " role to be changed to " + TO_RoleDD_TransEmp.SelectedItem.Text;
-                                DepartmentTransactionModel.MakeRoleEscalation(Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), Convert.ToInt32(userToTrans.roleId), Convert.ToInt32(TO_RoleDD_TransEmp.SelectedValue), roleTransStr, 1, "admin");
-                                lbl_TransferEmpl.Text += "  Role change for" + tb_UserName_transEmp.Text.ToString() + " has been initiated";   
+                                else
+                                {
+                                    lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                                }
                             }
                             else
                             {
-                                lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                                lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
                             }
-                        }
-                        else
-                        {
-                            lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
                         }
                     }
                     else
                     {
-                        lbl_TransferEmpl.Text = "You do not have permissions to change roles";
+                        if ((Convert.ToInt32(Session["roleId"])) == 6)
+                        {
+                            bool TransferSuccess = false;
+                            User userToTrans = new User();
+                            userToTrans = UserModel.GetUser(tb_UserName_transEmp.Text.ToString());
+                            int deptid = Convert.ToInt32(userToTrans.departmentId);
+                            if (userToTrans.departmentId == Convert.ToInt32(Session["deptId"]))
+                            {
+                                if ((userToTrans.roleId < Convert.ToInt32(Session["roleId"])) && (userToTrans.roleId > 3))
+                                {
+                                    if (FROM_DeptDD_TransEmp.SelectedValue != TO_DeptDD_TransDept.SelectedValue)
+                                    {
+                                        TransferSuccess = UserModel.TransferToDept(tb_UserName_transEmp.Text, Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue));
+                                        if (TransferSuccess)
+                                        {
+                                            lbl_TransferEmpl.Text = tb_UserName_transEmp.Text + "Transferred to " + TO_DeptDD_TransDept.SelectedValue;
+                                            //Posting a Department transaction
+                                            string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " to be transferred to " + TO_DeptDD_TransDept.SelectedItem.Text;
+                                            DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
+                                        }
+                                        else
+                                        {
+                                            lbl_TransferEmpl.Text = "Transfer could not be done. Please try again";
+                                        }
+                                    }
+                                    //Initiate a role change
+                                    string roleTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " role to be changed to " + TO_RoleDD_TransEmp.SelectedItem.Text;
+                                    DepartmentTransactionModel.MakeRoleEscalation(Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), Convert.ToInt32(userToTrans.roleId), Convert.ToInt32(TO_RoleDD_TransEmp.SelectedValue), roleTransStr, 1, "admin");
+                                    lbl_TransferEmpl.Text += "  Role change for" + tb_UserName_transEmp.Text.ToString() + " has been initiated";
+                                }
+                                else
+                                {
+                                    lbl_TransferEmpl.Text = "This employee is above your role for you to transfer";
+                                }
+                            }
+                            else
+                            {
+                                lbl_TransferEmpl.Text = "This employee is not in your department for you to transfer";
+                            }
+                        }
+                        else
+                        {
+                            lbl_TransferEmpl.Text = "You do not have permissions to change roles";
+                        }
                     }
-                }                
+                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception " + exp.Message);
             }
         }
 
@@ -2574,7 +2613,7 @@ namespace SoftSec_BankingApp_Se7en
                 catch (Exception exp)
                 {
                     Elog.Error("Exception occurred: " + exp.Message);
-                    statusDescLb.Text = "Could not fetch details,our DB is sleeping";
+                    statusDescLb.Text = "Could not fetch details";
 
                 }
             }
@@ -2611,7 +2650,7 @@ namespace SoftSec_BankingApp_Se7en
             catch (Exception exp)
             {
                 Elog.Error("Exception occurred: " + exp.Message);
-                statusDescLb.Text="Could not fetch details, our DB is sleeping";
+                statusDescLb.Text="Could not fetch details";
             }
         }
         }
@@ -3065,28 +3104,6 @@ namespace SoftSec_BankingApp_Se7en
             else
             {
                 checkSession();
-                /* Try this next time.
-                 * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
-                    where T : Control
-                    {
-                        foreach (Control control in controlCollection)
-                        {
-                                if (control is T) 
-                                resultCollection.Add((T)control);
-
-                            if (control.HasControls())
-                                GetControlList(control.Controls, resultCollection);
-                        }
-                    }
-
-                 * Using it
-                 * List<DropDownList> allControls = new List<DropDownList>();
-                    GetControlList<DropDownList>(Page.Controls, allControls )
-                    foreach (var childControl in allControls )
-                    {
-                    //     call for all controls of the page
-                    }
-                 */
                 try
                 {
                     //Hiding the Tab container 2 and re-setting the values of the controls present in it.
@@ -3220,6 +3237,7 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             //Call log out function here
                             //Reset Session Variables
+                            Session.Abandon();
                             Session["userName"] = "";
                             Response.Redirect("ExternalHomePage.aspx", false);
                         }
@@ -3233,6 +3251,7 @@ namespace SoftSec_BankingApp_Se7en
                         else
                         {
                             //Call log out function here
+                            Session.Abandon();
                             Session["userName"] = "";
                             Response.Redirect("ExternalHomePage.aspx", false);
                         }
@@ -3274,324 +3293,390 @@ namespace SoftSec_BankingApp_Se7en
             try
             {
                 checkSession();
-            serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
-                                            tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
-                                            tb_securitycode_IU_Inside.Text.ToString());
-                if (serverSideValidation)
-                {
-                    //Proceed with business logic here
-                    Models.Tables.Card objCard = new Models.Tables.Card();
-                    objCard = AccountModel.GetCardDetails(tb_card_IU_Inside.Text.ToString(), fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString());
-                    if (objCard != null)
+                serverSideValidation = validateFromFields(tb_amount_IU_Inside.Text.ToString(), tb_recepient_IU_Inside.Text.ToString(),
+                                                tb_lastname_IU_Inside.Text.ToString(), tb_zip_IU_Inside.Text.ToString(), tb_card_IU_Inside.Text.ToString(),
+                                                tb_securitycode_IU_Inside.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string sCardExp = string.Empty;
-                        sCardExp = monthDD_TransferExistingCust_Inside.SelectedValue.ToString() + yearDD_TransferExistingCust_Inside.SelectedValue.ToString();
-
-                        if (objCard.expirationDate.Equals(sCardExp))
+                        //Proceed with business logic here
+                        Models.Tables.Card objCard = new Models.Tables.Card();
+                        objCard = AccountModel.GetCardDetails(tb_card_IU_Inside.Text.ToString(), fromAccTypeDD_TransferExistingCust_Inside.SelectedValue.ToString());
+                        if (objCard != null)
                         {
-                            if (objCard.cvv == Convert.ToInt32(tb_securitycode_IU_Inside.Text.ToString()))
+                            string sCardExp = string.Empty;
+                            sCardExp = monthDD_TransferExistingCust_Inside.SelectedValue.ToString() + yearDD_TransferExistingCust_Inside.SelectedValue.ToString();
+
+                            if (objCard.expirationDate.Equals(sCardExp))
                             {
-                                LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
-                                if (objLastZip != null)
+                                if (objCard.cvv == Convert.ToInt32(tb_securitycode_IU_Inside.Text.ToString()))
                                 {
-                                    if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
-                                            && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
+                                    LastNameZipcode objLastZip = AccountModel.GetLastNameAndZipcode(tb_recepient_IU_Inside.Text.ToString());
+                                    if (objLastZip != null)
                                     {
-                                        double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
-                                        if (amount >= 30000)
+                                        if (objLastZip.lastName.ToLower().Equals(tb_lastname_IU_Inside.Text.ToLower()) 
+                                                && objLastZip.zipcode.ToString().Equals(tb_zip_IU_Inside.Text.ToString()))
                                         {
-
-                                            string desc = "crtLevel2ReqInitiated";
-                                            int level2ReqiD = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
-                                                                       Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
-
-                                            User selectedAuthorizer=UserModel.GetUser(authorizerDropDown.Text.ToString());
-                                           
-                                           //
-                                            if (level2ReqiD > 0)
+                                            double amount = Convert.ToDouble( tb_amount_IU_Inside.Text);
+                                            if (amount >= 30000)
                                             {
-                                                bool assignedlevel2Trans = TransactionModel.AssignAuthorizationRequestedTransactionToUser(level2ReqiD, selectedAuthorizer.username.ToString(), Convert.ToInt32(selectedAuthorizer.roleId));
-                                                if (assignedlevel2Trans)
+
+                                                string desc = "crtLevel2ReqInitiated";
+                                                int level2ReqiD = TransactionModel.MakeInternalTransfer(objCard.accountNumber, tb_recepient_IU_Inside.Text.ToString(),
+                                                                           Convert.ToDouble(tb_amount_IU_Inside.Text.ToString()), desc);
+
+                                                User selectedAuthorizer=UserModel.GetUser(authorizerDropDown.Text.ToString());
+                                           
+                                               //
+                                                if (level2ReqiD > 0)
                                                 {
-                                                    lblSuccess_IUInside.Text = "Request sucesfully escalated to manager";
-                                                lblSuccess_IUInside.Visible = true;
-                                            }
-                                                else {
-                                                    lblSuccess_IUInside.Text = "Request could not be escalated";
+                                                    bool assignedlevel2Trans = TransactionModel.AssignAuthorizationRequestedTransactionToUser(level2ReqiD, selectedAuthorizer.username.ToString(), Convert.ToInt32(selectedAuthorizer.roleId));
+                                                    if (assignedlevel2Trans)
+                                                    {
+                                                        lblSuccess_IUInside.Text = "Request sucesfully escalated to manager";
                                                     lblSuccess_IUInside.Visible = true;
                                                 }
+                                                    else {
+                                                        lblSuccess_IUInside.Text = "Request could not be escalated";
+                                                        lblSuccess_IUInside.Visible = true;
+                                                    }
                                                 
+                                                }
+                                                else
+                                                {
+                                                    lblSuccess_IUInside.Text = "Unsuccessful(check balance and details)";
+                                                    lblSuccess_IUInside.Visible = true;
+                                                }
                                             }
                                             else
                                             {
-                                                lblSuccess_IUInside.Text = "Unsuccessful(check balance and details)";
+                                                lblSuccess_IUInside.Text = "This transaction needs no approval,proceed with normal transfer";
                                                 lblSuccess_IUInside.Visible = true;
+                                                requetAuthLb.Visible = false;
+                                                authorizerDropDown.Visible = false;
+                                                placeReqBT.Visible = false;
                                             }
-                                        }
-                                            else
-                                            {
-                                            lblSuccess_IUInside.Text = "This transaction needs no approval,proceed with normal transfer";
-                                            lblSuccess_IUInside.Visible = true;
-                                            requetAuthLb.Visible = false;
-                                            authorizerDropDown.Visible = false;
-                                            placeReqBT.Visible = false;
-                                        }
                                         
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //Invalid Zip and Last name combination
+                                        lblSuccess_IUInside.Text = "Invalid Zip and Name";
+                                        lblSuccess_IUInside.Visible = true;
                                     }
                                 }
                                 else
                                 {
-                                    //Invalid Zip and Last name combination
+                                    //Invalid Card Details
+                                    lblSuccess_IUInside.Text = "Invalid Card Security Code Details.";
+                                    lblSuccess_IUInside.Visible = true;
                                 }
                             }
                             else
                             {
-                                //Invalid Card Details
+                                //Invalid Card Expiry Details
+                                lblSuccess_IUInside.Text = "Invalid Card Expiry";
+                                lblSuccess_IUInside.Visible = true;
                             }
                         }
                         else
                         {
                             //Invalid Card Details
+                            lblSuccess_IUInside.Text = "Invalid Card Details. Please check card Number.";
+                            lblSuccess_IUInside.Visible = true;
                         }
                     }
                     else
                     {
-                        //Invalid Card Details
+                        //Update the UI with error message.
+                        lblSuccess_IUInside.Text = "Invalid Entries. Please try again.";
+                        lblSuccess_IUInside.Visible = true;
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
-            catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
-            }
-        }
         }
 
         protected void reGridSelectedRowAtIndex(object sender, EventArgs e)
         {
-            currentSelectedReqIndex = reqGridV.SelectedIndex;
-            currentSelectedTransReq = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
-            string description = currentSelectedTransReq.description;
-            if (description.Equals("crtLevel2ReqInitiated"))
-            { 
-            //New request, requires peer approval
-                reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
-                List<string> peers=new List<string>();
-                peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
-                if (peers.Count > 0)
-                {
-                    authorizersDDReqTab.DataSource = peers;
-                    authorizersDDReqTab.DataBind();
-                    authorizersDDReqTab.Visible = true;
-                    pickAuthlabelinReqTab.Visible = true;
-                    escalateToPeerBT.Visible = true;
-                    rejectReqBT.Visible = true;
-                }
-                else {
-                    reqResultLB.Text = "This transaction requires peer approval, could not fetch any peers";
-                }
-                escalateToPeerBT.Visible = true;
-            }
-            else if (description.Equals("peerManagerReq"))
+            try
             {
-                //Peer manager Request, Must approve and escalate to higher manager
-                reqResultLB.Text = "This transaction requires higher approval, please authorize and escalate it";
-                List<string> highers = new List<string>();
-                highers = getHigherAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
-                if (highers.Count > 0)
+                currentSelectedReqIndex = reqGridV.SelectedIndex;
+                currentSelectedTransReq = currentPendingTransReqs.ElementAt(currentSelectedReqIndex);
+                string description = currentSelectedTransReq.description;
+                if (description.Equals("crtLevel2ReqInitiated"))
                 {
-                    authorizersDDReqTab.DataSource = highers;
-                    authorizersDDReqTab.DataBind();
-                    authorizersDDReqTab.Visible = true;
-                    pickAuthlabelinReqTab.Visible = true;
-                    escalateTohigherMangerBT.Visible = true;
+                    //New request, requires peer approval
+                    reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
+                    List<string> peers = new List<string>();
+                    peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                    if (peers.Count > 0)
+                    {
+                        authorizersDDReqTab.DataSource = peers;
+                        authorizersDDReqTab.DataBind();
+                        authorizersDDReqTab.Visible = true;
+                        pickAuthlabelinReqTab.Visible = true;
+                        escalateToPeerBT.Visible = true;
+                        rejectReqBT.Visible = true;
+                    }
+                    else
+                    {
+                        reqResultLB.Text = "This transaction requires peer approval, could not fetch any peers";
+                    }
+                    escalateToPeerBT.Visible = true;
+                }
+                else if (description.Equals("peerManagerReq"))
+                {
+                    //Peer manager Request, Must approve and escalate to higher manager
+                    reqResultLB.Text = "This transaction requires higher approval, please authorize and escalate it";
+                    List<string> highers = new List<string>();
+                    highers = getHigherAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                    if (highers.Count > 0)
+                    {
+                        authorizersDDReqTab.DataSource = highers;
+                        authorizersDDReqTab.DataBind();
+                        authorizersDDReqTab.Visible = true;
+                        pickAuthlabelinReqTab.Visible = true;
+                        escalateTohigherMangerBT.Visible = true;
+                        rejectReqBT.Visible = true;
+                    }
+                    else
+                    {
+
+                        reqResultLB.Text = "This transaction requires higher approval, could not fetch any higher authorizers";
+                    }
+
+                }
+                else if (description.Equals("HigherManagerReq"))
+                { //Higer level manager req, should escalate to higher level peer
+                    reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
+                    List<string> peers = new List<string>();
+                    peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
+                    if (peers.Count > 0)
+                    {
+                        authorizersDDReqTab.DataSource = peers;
+                        authorizersDDReqTab.DataBind();
+                        authorizersDDReqTab.Visible = true;
+                        pickAuthlabelinReqTab.Visible = true;
+                        escalateToPeerBT.Visible = true;
+                        rejectReqBT.Visible = true;
+                    }
+                    else
+                    {
+
+                        reqResultLB.Text = "This transaction requires peer approval, could not fetch any peer authorizers";
+                    }
+
+                }
+                else if (description.Equals("peerHigherReq"))
+                {//Got all low level authorizations have to be approved
+                    approveReqBT.Visible = true;
                     rejectReqBT.Visible = true;
+
                 }
                 else
                 {
-
-                    reqResultLB.Text = "This transaction requires higher approval, could not fetch any higher authorizers";
+                    reqResultLB.Text = "Unknown transaction type";
                 }
+                reqResultLB.Visible = true;
 
             }
-            else if (description.Equals("HigherManagerReq"))
-            { //Higer level manager req, should escalate to higher level peer
-                reqResultLB.Text = "This transaction requires peer approval, please authorize and escalate it";
-                List<string> peers = new List<string>();
-                peers = getPeerAuthorizersfor(Convert.ToInt32(Session["roleID"]), Convert.ToInt32(Session["deptID"]));
-                if (peers.Count > 0)
-                {
-                    authorizersDDReqTab.DataSource = peers;
-                    authorizersDDReqTab.DataBind();
-                    authorizersDDReqTab.Visible = true;
-                    pickAuthlabelinReqTab.Visible = true;
-                    escalateToPeerBT.Visible = true;
-                    rejectReqBT.Visible = true;
-                }
-                else
-                {
-
-                    reqResultLB.Text = "This transaction requires peer approval, could not fetch any peer authorizers";
-                }
-
-            }
-            else if (description.Equals("peerHigherReq"))
-            {//Got all low level authorizations have to be approved
-                approveReqBT.Visible = true;
-                rejectReqBT.Visible = true;
-            
-            }
-            else
+            catch (Exception exp)
             {
-                reqResultLB.Text = "Unknown transaction type";
+                Elog.Error("Exception :" + exp.Message);
             }
-            reqResultLB.Visible = true;
-            
            
         }
 
         protected void reqLookUPBT_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
-            }
-            else
-            {
-                checkSession();
-            string username = Session["userName"].ToString();
-            currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
-            if (currentPendingTransReqs != null)
-            {
-                if (currentPendingTransReqs.Count > 0)
+                if (Session["userName"] == null)
                 {
-                    reqGridV.DataSource = currentPendingTransReqs;
-                    reqGridV.DataBind();
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
-                    reqResultLB.Text = "No pending requests";
+                    checkSession();
+                    string username = Session["userName"].ToString();
+                    currentPendingTransReqs = TransactionModel.GetAuthorizationRequestedTransactionsForUser(username);
+                    if (currentPendingTransReqs != null)
+                    {
+                        if (currentPendingTransReqs.Count > 0)
+                        {
+                            reqGridV.DataSource = currentPendingTransReqs;
+                            reqGridV.DataBind();
+                        }
+                        else
+                        {
+                            reqResultLB.Text = "No pending requests";
+                        }
+                    }
+                    else
+                    {
+                        reqResultLB.Text = "No pending requests";
+                    }
                 }
             }
-            else {
-                reqResultLB.Text = "No pending requests";
+            catch (Exception exp)
+            {
+                Elog.Error("Exception " + exp.Message);
             }
-        }
         }
 
         protected void approveReqBT_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
-            }
-            else
-            {
-                checkSession();
-                bool approved = TransactionModel.ApproveTransaction(currentSelectedTransReq.id);
-                if (approved)
+                if (Session["userName"] == null)
                 {
-                    reqResultLB.Text = "Successfully approved";
-
+                    Response.Redirect("SessionTimeOut.aspx", false);
                 }
                 else
                 {
-                    reqResultLB.Text = "Request could not be approved";
+                    checkSession();
+                    bool approved = TransactionModel.ApproveTransaction(currentSelectedTransReq.id);
+                    if (approved)
+                    {
+                        reqResultLB.Text = "Successfully approved";
+
+                    }
+                    else
+                    {
+                        reqResultLB.Text = "Request could not be approved";
+                    }
+
+
                 }
-
-
+                refreshReqUI();
             }
-            refreshReqUI();
+            catch (Exception exp)
+            {
+                Elog.Error("Exception " + exp.Message);
+            }
        
         }
         
 
         protected void rejectReqBT_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx", false);
-            }
-            else
-            {
-                checkSession();
+                if (Session["userName"] == null)
+                {
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
 
-                bool rejected = TransactionModel.RejectTransaction(currentSelectedTransReq.id);
-            if (rejected)
-            {
-                reqResultLB.Text = "Successfully Rejected";
+                    bool rejected = TransactionModel.RejectTransaction(currentSelectedTransReq.id);
+                    if (rejected)
+                    {
+                        reqResultLB.Text = "Successfully Rejected";
 
+                    }
+                    else
+                    {
+                        reqResultLB.Text = "Request could not be Rejected";
+                    }
+                }
+                refreshReqUI();
             }
-            else
+            catch (Exception exp)
             {
-                reqResultLB.Text = "Request could not be Rejected";
+                Elog.Error("Excption : " + exp.Message);
             }
-            }
-            refreshReqUI();
 
         }
 
 
         protected List<string> getHigherAuthorizersfor(int roleID, int deptID)
         {
-            List<User> higherauthorizers = new List<User>();
-            List<string> higherUsernames= new List<string>();
-            if (roleID >= 4 && roleID <= 6) {
-                if (roleID == 4)
+            try
+            {
+                List<User> higherauthorizers = new List<User>();
+                List<string> higherUsernames = new List<string>();
+                if (roleID >= 4 && roleID <= 6)
                 {
-                    //default taking transaction dept managers should change the db entries
-                    higherauthorizers = UserModel.GetUsersForDepartmentIdRoleId(4, 5);
+                    if (roleID == 4)
+                    {
+                        //default taking transaction dept managers should change the db entries
+                        higherauthorizers = UserModel.GetUsersForDepartmentIdRoleId(4, 5);
+
+                    }
+                    else if (roleID == 5)
+                    {
+                        //get all higher level managers
+                        higherauthorizers = UserModel.GetUsersForRoleId(6);
+
+                    }
 
                 }
-                else if(roleID==5) {
-                    //get all higher level managers
-                    higherauthorizers = UserModel.GetUsersForRoleId(6);
 
+                foreach (User curU in higherauthorizers)
+                {
+                    higherUsernames.Add(curU.username);
                 }
-               
-            }
 
-            foreach(User curU in higherauthorizers){
-                higherUsernames.Add(curU.username);
+                return higherUsernames;
             }
-
-            return higherUsernames;
+            catch (Exception exp)
+            {
+                Elog.Error("Exception" + exp.Message);
+                return null;
+            }
         }
 
         protected void bt_logout_Click(object sender, EventArgs e)
         {
-            Session.Abandon();
-            Response.Redirect("ExternalHomePage.aspx", false);
+            try
+            {
+                Session.Abandon();
+                Response.Redirect("ExternalHomePage.aspx", false);
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception Occured : " + exp.Message);
+            }
         }
 
         protected List<string> getPeerAuthorizersfor(int roleID, int deptID)
         {
-            List<User> peerauthorizers = new List<User>();
-            List<string> peerUsernames = new List<string>();
-            string currentUserName = Session["userName"].ToString();
-            if (roleID == 5)
+            try
             {
-                peerauthorizers = UserModel.GetUsersForDepartmentIdRoleId(deptID, roleID);
-            }
-            else if (roleID == 6)
-            {
-                peerauthorizers = UserModel.GetUsersForRoleId(6);
-            }
-
-
-            foreach (User curU in peerauthorizers)
-            {
-                if (currentUserName != curU.username)
+                List<User> peerauthorizers = new List<User>();
+                List<string> peerUsernames = new List<string>();
+                string currentUserName = Session["userName"].ToString();
+                if (roleID == 5)
                 {
-                    peerUsernames.Add(curU.username);
+                    peerauthorizers = UserModel.GetUsersForDepartmentIdRoleId(deptID, roleID);
                 }
-            }
+                else if (roleID == 6)
+                {
+                    peerauthorizers = UserModel.GetUsersForRoleId(6);
+                }
 
-            return peerUsernames;
+
+                foreach (User curU in peerauthorizers)
+                {
+                    if (currentUserName != curU.username)
+                    {
+                        peerUsernames.Add(curU.username);
+                    }
+                }
+
+                return peerUsernames;
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception : " + exp.Message);
+                return null;
+            }
         }
 
         protected void escalateToPeerBT_Click(object sender, EventArgs e)

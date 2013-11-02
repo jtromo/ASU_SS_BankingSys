@@ -774,16 +774,23 @@ namespace SoftSec_BankingApp_Se7en
                 if (validateUserNameField(username))
                 {
                     currentDTransBeingDisplayed = DepartmentTransactionModel.GetDepartmentTransactionsForUser(username);
-                    if (currentDTransBeingDisplayed.Count > 0)
+                    if (currentDTransBeingDisplayed != null)
                     {
+                        if (currentDTransBeingDisplayed.Count > 0)
+                        {
 
-                        RequestsGridV.DataSource = currentDTransBeingDisplayed;
-                        RequestsGridV.DataBind();
+                            RequestsGridV.DataSource = currentDTransBeingDisplayed;
+                            RequestsGridV.DataBind();
 
+                        }
+                        else
+                        {
+
+                            reqErrorLb.Text = "No transactions for this user";
+                        }
                     }
                     else
                     {
-
                         reqErrorLb.Text = "No transactions for this user";
                     }
                 }
@@ -1602,8 +1609,15 @@ namespace SoftSec_BankingApp_Se7en
         protected void btn_ReqAll_Click(object sender, EventArgs e)
         {
             currentDTransBeingDisplayed = DepartmentTransactionModel.AllRequests();
-            RequestsGridV.DataSource = currentDTransBeingDisplayed;
-            RequestsGridV.DataBind();
+            if (currentDTransBeingDisplayed == null)
+            {
+                reqErrorLb.Text = "No Pending Requests";
+            }
+            else
+            {
+                RequestsGridV.DataSource = currentDTransBeingDisplayed;
+                RequestsGridV.DataBind();
+            }
         }
         protected void checkSession()
         {

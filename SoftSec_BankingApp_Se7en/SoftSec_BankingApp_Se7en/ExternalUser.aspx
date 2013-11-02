@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     <br />
@@ -329,15 +329,13 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
                                 <p>
                                     From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <asp:DropDownList ID="dd_acctype" runat="server" CssClass="auto-style4" Width="124px">
-                                        <asp:ListItem>Checking Account</asp:ListItem>
-                                        <asp:ListItem>Savings Account</asp:ListItem>
                                     </asp:DropDownList>
                                 </p>
                                 <p class="auto-style6">Amount:&nbsp;&nbsp;&nbsp;
@@ -423,8 +421,6 @@
               <p class="auto-style5">&nbsp;</p>
             <p class="auto-style5">From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_acctypeoutside" runat="server" CssClass="auto-style4" Width="124px">
-                    <asp:ListItem>Checking Account</asp:ListItem>
-                    <asp:ListItem>Savings Account</asp:ListItem>
                 </asp:DropDownList>
             </p>
             <p class="auto-style5">Amount:&nbsp;&nbsp;&nbsp;
@@ -514,15 +510,10 @@
             <p class="auto-style5">
             From:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:DropDownList ID="dd_acctypebetween_From" runat="server" CssClass="auto-style4" Width="124px" OnSelectedIndexChanged="dd_acctypebetween1_SelectedIndexChanged">
-            <asp:ListItem>Checking Account</asp:ListItem>
-            <asp:ListItem>Savings Account</asp:ListItem>
             </asp:DropDownList>
                                  </p>
             <p class="auto-style5">To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="dd_acctypebetween_To" runat="server" CssClass="auto-style4" Width="124px">
-                    <asp:ListItem>Checking Account</asp:ListItem>
-                    <asp:ListItem>Savings Account</asp:ListItem>
-                    <asp:ListItem>Credit Account</asp:ListItem>
                 </asp:DropDownList>
             </p>
             <p class="auto-style5">Amount:&nbsp;&nbsp;&nbsp;
@@ -875,13 +866,22 @@
                                 &nbsp;<br />Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                  <asp:TextBox ID="tb_amount_CardPayment" runat="server" Width="118px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                  <br />
+                                 <br />
+                                 Certificate Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <asp:TextBox ID="txtCertKey_CardPay" runat="server"></asp:TextBox>
+                                 <br />
+                                 <br />
                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                  <asp:Label ID="lblSubmitPayment" runat="server" Visible="False"></asp:Label>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_cardsubmitpayment" runat="server" Text="Submit Payment" OnClick="btn_cardsubmitpayment_Click" />
+                                 <br />
+                                 <br />
                                 <br />
                                 &nbsp;&nbsp;&nbsp;
+                           
+                                 <asp:HiddenField ID="hdn_Cert_Card" runat="server" Visible="False" />
                            
                             </ContentTemplate>
                         </asp:TabPanel>
@@ -897,11 +897,18 @@
                                 Amount:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:TextBox ID="tb_amountECheck" runat="server" Width="118px" oncopy="return false" onpaste="return false"></asp:TextBox>
                                 <br />
+                                <br />
+                                Cartificate Key:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:TextBox ID="txtCertKey_Echeck" runat="server"></asp:TextBox>
+                                <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Label ID="lblEcheckPayment" runat="server" Visible="False"></asp:Label>
                                 <br />
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <asp:Button ID="btn_echecksubmitpayment" runat="server" Text="Submit Payment" OnClick="btn_echecksubmitpayment_Click" />
+                                <br />
+                                <br />
+                                <asp:HiddenField ID="hdn_Cert_Check" runat="server" Visible="False" />
                                 </ContentTemplate>
                         </asp:TabPanel>
                     </asp:TabContainer>

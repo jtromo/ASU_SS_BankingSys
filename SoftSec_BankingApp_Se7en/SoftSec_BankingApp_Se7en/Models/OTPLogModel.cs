@@ -81,5 +81,31 @@ namespace SoftSec_BankingApp_Se7en.Models
                 return null;
             }
         }
+
+        public static bool RemoveOTPLog (string username)
+        {
+            try
+            {
+                using (var db = new SSBankDBContext())
+                {
+                    List<OTPLog> otpLogs = db.OTPLogs.SqlQuery("SELECT * FROM dbo.OTPLogs WHERE username = @p0", username).ToList();
+
+                    if (otpLogs.Count() < 1)
+                    {
+                        return false;
+                    }
+
+                    OTPLog otpLog = otpLogs.First();
+                    db.OTPLogs.Remove(otpLog);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception exp)
+            {
+                Elog.Error("Exception occurred: " + exp.Message);
+                return false;
+            }
+        }
     }
 }

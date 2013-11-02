@@ -229,13 +229,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btn_maketransinside;
         
         /// <summary>
-        /// lblTransStatus_IB control.
+        /// lblOTPLabel0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTransStatus_IB;
+        protected global::System.Web.UI.WebControls.Label lblOTPLabel0;
         
         /// <summary>
         /// tb_OTPInternal control.
@@ -274,13 +274,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.Button btnConfirmInternal;
         
         /// <summary>
-        /// btnCancelInternal control.
+        /// lblTransStatus_IB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelInternal;
+        protected global::System.Web.UI.WebControls.Label lblTransStatus_IB;
         
         /// <summary>
         /// tab_trans_outside control.

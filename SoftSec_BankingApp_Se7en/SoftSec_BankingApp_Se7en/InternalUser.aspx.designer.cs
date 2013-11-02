@@ -1480,193 +1480,193 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_UserName_Cust;
         
         /// <summary>
-        /// img_site21 control.
+        /// img_site1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site21;
+        protected global::System.Web.UI.WebControls.ImageButton img_site1;
         
         /// <summary>
-        /// img_site22 control.
+        /// img_site2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site22;
+        protected global::System.Web.UI.WebControls.ImageButton img_site2;
         
         /// <summary>
-        /// img_site23 control.
+        /// img_site3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site23;
+        protected global::System.Web.UI.WebControls.ImageButton img_site3;
         
         /// <summary>
-        /// img_site24 control.
+        /// img_site4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site24;
+        protected global::System.Web.UI.WebControls.ImageButton img_site4;
         
         /// <summary>
-        /// img_site25 control.
+        /// img_site5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site25;
+        protected global::System.Web.UI.WebControls.ImageButton img_site5;
         
         /// <summary>
-        /// img_site26 control.
+        /// img_site6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site26;
+        protected global::System.Web.UI.WebControls.ImageButton img_site6;
         
         /// <summary>
-        /// img_site27 control.
+        /// img_site7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site27;
+        protected global::System.Web.UI.WebControls.ImageButton img_site7;
         
         /// <summary>
-        /// img_site28 control.
+        /// img_site8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site28;
+        protected global::System.Web.UI.WebControls.ImageButton img_site8;
         
         /// <summary>
-        /// img_site29 control.
+        /// img_site9 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site29;
+        protected global::System.Web.UI.WebControls.ImageButton img_site9;
         
         /// <summary>
-        /// img_site30 control.
+        /// img_site10 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site30;
+        protected global::System.Web.UI.WebControls.ImageButton img_site10;
         
         /// <summary>
-        /// img_site31 control.
+        /// img_site11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site31;
+        protected global::System.Web.UI.WebControls.ImageButton img_site11;
         
         /// <summary>
-        /// img_site32 control.
+        /// img_site12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site32;
+        protected global::System.Web.UI.WebControls.ImageButton img_site12;
         
         /// <summary>
-        /// img_site33 control.
+        /// img_site13 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site33;
+        protected global::System.Web.UI.WebControls.ImageButton img_site13;
         
         /// <summary>
-        /// img_site34 control.
+        /// img_site14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site34;
+        protected global::System.Web.UI.WebControls.ImageButton img_site14;
         
         /// <summary>
-        /// img_site35 control.
+        /// img_site15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site35;
+        protected global::System.Web.UI.WebControls.ImageButton img_site15;
         
         /// <summary>
-        /// img_site36 control.
+        /// img_site16 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site36;
+        protected global::System.Web.UI.WebControls.ImageButton img_site16;
         
         /// <summary>
-        /// img_site37 control.
+        /// img_site17 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site37;
+        protected global::System.Web.UI.WebControls.ImageButton img_site17;
         
         /// <summary>
-        /// img_site38 control.
+        /// img_site18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site38;
+        protected global::System.Web.UI.WebControls.ImageButton img_site18;
         
         /// <summary>
-        /// img_site39 control.
+        /// img_site19 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site39;
+        protected global::System.Web.UI.WebControls.ImageButton img_site19;
         
         /// <summary>
-        /// img_site40 control.
+        /// img_site20 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton img_site40;
+        protected global::System.Web.UI.WebControls.ImageButton img_site20;
         
         /// <summary>
-        /// tb_sitekeyhint_Cust0 control.
+        /// tb_sitekeyhint_Cust control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_sitekeyhint_Cust0;
+        protected global::System.Web.UI.WebControls.TextBox tb_sitekeyhint_Cust;
         
         /// <summary>
         /// tb_Password_Cust control.

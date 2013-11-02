@@ -630,121 +630,124 @@ namespace SoftSec_BankingApp_Se7en
         }        
 
         protected void btnVerify_Click(object sender, EventArgs e)
-        {   
+        {
             if (Session["userName"] == null)
             {
                 Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
-            bool serverSideValidation = false;
-            try
-            {
-                checkSession();
-                serverSideValidation = validateFromFields(tbCardNumber_IU.Text.ToString(), tbYear_IU.Text.ToString());
-                if (serverSideValidation)
+                bool serverSideValidation = false;
+                try
                 {
-                    //Proceed with business logic here
-                    User objUser = CardModel.UserForCard(tbCardNumber_IU.Text.ToString());
-                    if (objUser != null)
+                    checkSession();
+                    serverSideValidation = validateFromFields(tbCardNumber_IU.Text.ToString(), tbYear_IU.Text.ToString());
+                    if (serverSideValidation)
                     {
-                        string strDob = MonthDD_ExistingCustomer_Verify.SelectedValue.ToString() + '/' + DayDD_ExistingCustomer_Verify.SelectedValue.ToString()
-                            + '/' + tbYear_IU.Text.ToString();
-                        if (objUser.VerifyDoB(strDob))
+                        //Proceed with business logic here
+                        User objUser = CardModel.UserForCard(tbCardNumber_IU.Text.ToString());
+                        if (objUser != null)
                         {
-                            if (rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
+                            string strDob = MonthDD_ExistingCustomer_Verify.SelectedValue.ToString() + '/' + DayDD_ExistingCustomer_Verify.SelectedValue.ToString()
+                                + '/' + tbYear_IU.Text.ToString();
+                            if (objUser.VerifyDoB(strDob))
                             {
-                                Session["ExistingCustName"] = objUser.username;
-                                if (objUser.roleId == 3)
+                                if (rb_PhotoID.SelectedValue.ToLower().Equals("yes"))
                                 {
-                                    TabContainer2.Visible = true;
-                                    TabContainer2.Tabs[0].Visible = true;
-                                    TabContainer2.Tabs[1].Visible = true;
-                                    TabContainer2.Tabs[2].Visible = true;
-                                    TabContainer2.Tabs[3].Visible = true;
-                                    TabContainer2.Tabs[4].Visible = true;
+                                    Session["ExistingCustName"] = objUser.username;
+                                    if (objUser.roleId == 3)
+                                    {
+                                        TabContainer2.Visible = true;
+                                        TabContainer2.Tabs[0].Visible = true;
+                                        TabContainer2.Tabs[1].Visible = true;
+                                        TabContainer2.Tabs[2].Visible = true;
+                                        TabContainer2.Tabs[3].Visible = true;
+                                        TabContainer2.Tabs[4].Visible = true;
+                                    }
+                                    else
+                                    {
+                                        TabContainer2.Visible = true;
+                                        TabContainer2.Tabs[0].Visible = true;
+                                        TabContainer2.Tabs[1].Visible = true;
+                                        TabContainer2.Tabs[2].Visible = true;
+                                        TabContainer2.Tabs[3].Visible = true;
+                                        TabContainer2.Tabs[4].Visible = false;
+                                    }
+                                    TabContainer2.ActiveTabIndex = 0;
+                                    //Fetch all the accounts of the user.
+                                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(objUser.username);
+                                    if (objCol != null)
+                                    {
+                                        List<Models.Tables.Account> lstAcc = objCol.ToList();
+                                        foreach (Models.Tables.Account acc in lstAcc)
+                                        {
+                                            if (acc.accountTypeId == 1)
+                                            {
+                                                //Savings Account
+                                                tb_savings.Text = acc.accountNumber.ToString();
+                                                fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
+                                                fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                                toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                tb_savings.ReadOnly = true;
+                                            }
+                                            else if (acc.accountTypeId == 2)
+                                            {
+                                                //checkings account
+                                                tb_checking.Text = acc.accountNumber.ToString();
+                                                fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
+                                                fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                                toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
+                                                accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
+                                                tb_checking.ReadOnly = true;
+                                            }
+                                            else if (acc.accountTypeId == 3)
+                                            {
+                                                //credit account
+                                                //tb_credit.Text = acc.accountNumber.ToString();
+                                                //tb_credit.ReadOnly = true;
+                                            }
+                                            btnVerify0.Enabled = false;
+                                            existingCustErrLb.Text = "";
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        existingCustErrLb.Text = "Unable to fetch Accounts";
+                                    }
+
                                 }
                                 else
                                 {
-                                    TabContainer2.Visible = true;
-                                    TabContainer2.Tabs[0].Visible = true;
-                                    TabContainer2.Tabs[1].Visible = true;
-                                    TabContainer2.Tabs[2].Visible = true;
-                                    TabContainer2.Tabs[3].Visible = true;
-                                    TabContainer2.Tabs[4].Visible = false;
+                                    existingCustErrLb.Text = "Please verify the customer's photo ID";
+                                    TabContainer2.Visible = false;
                                 }
-                                TabContainer2.ActiveTabIndex = 0;
-                                //Fetch all the accounts of the user.
-                                ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(objUser.username);
-                                if (objCol != null)
-                                {
-                                    List<Models.Tables.Account> lstAcc = objCol.ToList();
-                                    foreach (Models.Tables.Account acc in lstAcc)
-                                    {
-                                        if (acc.accountTypeId == 1)
-                                        {
-                                            //Savings Account
-                                            tb_savings.Text = acc.accountNumber.ToString();
-                                            fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
-                                            fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
-                                            toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
-                                            tb_savings.ReadOnly = true;
-                                        }
-                                        else if (acc.accountTypeId == 2)
-                                        {
-                                            //checkings account
-                                            tb_checking.Text = acc.accountNumber.ToString();
-                                            fromAccTypeDD_TransferExistingCust_Inside.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Outside.Items.Add(acc.accountNumber.ToString());
-                                            fromAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
-                                            toAccTypeDD_TransferExistingCust_Between.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Debit.Items.Add(acc.accountNumber.ToString());
-                                            accTypeDD_TransferExistingCust_Credit.Items.Add(acc.accountNumber.ToString());
-                                            tb_checking.ReadOnly = true;
-                                        }
-                                        else if (acc.accountTypeId == 3)
-                                        {
-                                            //credit account
-                                            //tb_credit.Text = acc.accountNumber.ToString();
-                                            //tb_credit.ReadOnly = true;
-                                        }
-                                    }
-                                }
-                                else {
-
-                                    existingCustErrLb.Text = "Unable to fetch Accounts";
-                                }
-
                             }
                             else
                             {
-                                existingCustErrLb.Text = "Please verify the customer's photo ID";
-                                TabContainer2.Visible = false;
+                                existingCustErrLb.Text = "Invalid DOB";
                             }
                         }
                         else
                         {
-                            existingCustErrLb.Text = "Invalid DOB";
+                            existingCustErrLb.Text = "Card details invalid";
                         }
                     }
                     else
                     {
-                        existingCustErrLb.Text = "Card details invalid";
+                        existingCustErrLb.Text = "Input invalid check the details";
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    existingCustErrLb.Text = "Input invalid check the details";
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
-            catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
-            }
-        }
         }
 
         protected void btn_maketransferoutside_Click(object sender, EventArgs e)
@@ -2987,142 +2990,143 @@ namespace SoftSec_BankingApp_Se7en
         protected void btnSignOff_Click(object sender, EventArgs e)
         {
             if (Session["userName"] == null)
-        {
-            Response.Redirect("SessionTimeOut.aspx", false);
-        }
+            {
+                Response.Redirect("SessionTimeOut.aspx", false);
+            }
             else
-        {
-            checkSession();
-            /* Try this next time.
-             * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
-                where T : Control
-                {
-                    foreach (Control control in controlCollection)
+            {
+                checkSession();
+                /* Try this next time.
+                 * private void GetControlList<T>(ControlCollection controlCollection, List<T> resultCollection)
+                    where T : Control
                     {
-                            if (control is T) 
-                            resultCollection.Add((T)control);
+                        foreach (Control control in controlCollection)
+                        {
+                                if (control is T) 
+                                resultCollection.Add((T)control);
 
-                        if (control.HasControls())
-                            GetControlList(control.Controls, resultCollection);
+                            if (control.HasControls())
+                                GetControlList(control.Controls, resultCollection);
+                        }
                     }
-                }
 
-             * Using it
-             * List<DropDownList> allControls = new List<DropDownList>();
-                GetControlList<DropDownList>(Page.Controls, allControls )
-                foreach (var childControl in allControls )
+                 * Using it
+                 * List<DropDownList> allControls = new List<DropDownList>();
+                    GetControlList<DropDownList>(Page.Controls, allControls )
+                    foreach (var childControl in allControls )
+                    {
+                    //     call for all controls of the page
+                    }
+                 */
+                try
                 {
-                //     call for all controls of the page
+                    //Hiding the Tab container 2 and re-setting the values of the controls present in it.
+                    TabContainer2.Visible = false;
+                    tbCardNumber_IU.Text = "";
+                    rb_PhotoID.SelectedValue = "No";
+                    MonthDD_ExistingCustomer_Verify.SelectedValue = "MM";
+                    DayDD_ExistingCustomer_Verify.SelectedValue = "DD";
+                    tbYear_IU.Text = "YYYY";
+                    tb_checking.Text = "";
+                    tb_savings.Text = "";
+                    //  tb_credit.Text = "";
+                    grdTransaction.DataSource = null;
+                    grdTransaction.DataBind();
+                    fromAccTypeDD_TransferExistingCust_Inside.Items.Clear();
+                    //fromAccTypeDD_TransferExistingCust_Inside.Items.Add("Accounts");
+                    tb_amount_IU_Inside.Text = "";
+                    tb_recepient_IU_Inside.Text = "";
+                    tb_lastname_IU_Inside.Text = "";
+                    tb_zip_IU_Inside.Text = "";
+                    tb_card_IU_Inside.Text = "";
+                    monthDD_TransferExistingCust_Inside.SelectedValue = "MM";
+                    yearDD_TransferExistingCust_Inside.SelectedValue = "YYYY";
+                    tb_securitycode_IU_Inside.Text = "";
+                    accTypeDD_TransferExistingCust_Outside.Items.Clear();
+                    //accTypeDD_TransferExistingCust_Outside.Items.Add("Accounts");
+                    tb_amountoutside.Text = "";
+                    tb_AccNumoutside_Intenal.Text = "";
+                    tb_toRoutingNum_OutsideBank.Text = "";
+                    tb_lastnameoutside.Text = "";
+                    tb_emailoutside.Text = "";
+                    tb_usercardno.Text = "";
+                    monthDD_TransferExistingCust_Outside.SelectedValue = "MM";
+                    yearDD_TransferExistingCust_Outside.SelectedValue = "YYYY";
+                    tb_securitycodeoutside.Text = "";
+                    lblStatus_OutsideBank.Text = "";
+                    fromAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                    //fromAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                    toAccTypeDD_TransferExistingCust_Between.Items.Clear();
+                    //toAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
+                    tb_amountbetween.Text = "";
+                    lblStatus_Between.Text = "";
+                    tb_card_DebitFunds.Text = "";
+                    monthDD_TransferExistingCust_Debit.SelectedValue = "MM";
+                    yearDD_TransferExistingCust_Debit.SelectedValue = "YYYY";
+                    tb_securitycode_DebitFunds.Text = "";
+                    accTypeDD_TransferExistingCust_Debit.Items.Clear();
+                    //accTypeDD_TransferExistingCust_Debit.Items.Add("Accounts");
+                    tb_amountoutside_DebitFunds.Text = "";
+                    lblStatus_DebitFunds.Text = "";
+                    tb_card_CreditFunds.Text = "";
+                    monthDD_TransferExistingCust_Credit.SelectedValue = "MM";
+                    yearDD_TransferExistingCust_Credit.SelectedValue = "YYYY";
+                    tb_securitycode_CreditFunds.Text = "";
+                    accTypeDD_TransferExistingCust_Credit.Items.Clear();
+                    //accTypeDD_TransferExistingCust_Credit.Items.Add("Accounts");
+                    tb_amountoutside_CreditFunds.Text = "";
+                    lblStatus_CreditFunds.Text = "";
+                    tb_emailview.Text = "";
+                    tb_addrview.Text = "";
+                    tb_cityView.Text = "";
+                    tb_contactview.Text = "";
+                    StateDD_View.SelectedValue = "AL";
+                    tb_usernameview.Text = "";
+                    tb_zipView.Text = "";
+                    tb_nicknameview.Text = "";
+                    tb_email_Edit.Text = "";
+                    tb_stAddr_Edit.Text = "";
+                    tb_city_Edit.Text = "";
+                    tb_zipCode_Edit.Text = "";
+                    tb_contact_Edit.Text = "";
+                    tb_nickname_Edit.Text = "";
+                    lblStatus_ChangeProf.Text = "";
+                    tb_oldpwd.Text = "";
+                    tb_newPassword.Text = "";
+                    tb_confrimPassword.Text = "";
+                    tb_secans1.Text = "";
+                    tb_secans2.Text = "";
+                    tb_secans3.Text = "";
+                    transferDD_ModifyTrans.Items.Clear();
+                    //transferDD_ModifyTrans.Items.Add("Accounts");
+                    grdTransactions.DataSource = null;
+                    grdTransactions.DataBind();
+                    tb_transID_ModifyTrans.Text = "";
+                    lblAccount_ModifyTrans.Text = "";
+                    lblRoutingNum_ModifyTrans.Text = "";
+                    lblAmount_ModifyTrans.Text = "";
+                    lblStatus_ModifyStatus.Text = "";
+                    tb_AccNum_modifyTrans.Text = "";
+                    tb_RoutNum_modifyTrans.Text = "";
+                    tb_Amount_ModifyTrans.Text = "";
+                    tb_cardnum.Text = "";
+                    tb_customername.Text = "";
+                    cardExpDD_CardPayment.SelectedValue = "MM";
+                    yearDD_CardPayment.SelectedValue = "YY";
+                    tb_amount_SubmitPayment.Text = "";
+                    lblSubmitPayment.Text = "";
+                    tb_echeckaccno.Text = "";
+                    tb_echeckroutingno.Text = "";
+                    tb_echeckcustomername.Text = "";
+                    tbAmount_EcheckPayment.Text = "";
+                    lblEcheckPayment.Text = "";
+                    btnVerify0.Enabled = true;
                 }
-             */
-            try
-            {
-                //Hiding the Tab container 2 and re-setting the values of the controls present in it.
-                TabContainer2.Visible = false;
-                tbCardNumber_IU.Text = "";
-                rb_PhotoID.SelectedValue = "No";
-                MonthDD_ExistingCustomer_Verify.SelectedValue = "MM";
-                DayDD_ExistingCustomer_Verify.SelectedValue = "DD";
-                tbYear_IU.Text = "YYYY";
-                tb_checking.Text = "";
-                tb_savings.Text = "";
-              //  tb_credit.Text = "";
-                grdTransaction.DataSource = null;
-                grdTransaction.DataBind();
-                fromAccTypeDD_TransferExistingCust_Inside.Items.Clear();
-                fromAccTypeDD_TransferExistingCust_Inside.Items.Add("Accounts");
-                tb_amount_IU_Inside.Text = "";
-                tb_recepient_IU_Inside.Text = "";
-                tb_lastname_IU_Inside.Text = "";
-                tb_zip_IU_Inside.Text = "";
-                tb_card_IU_Inside.Text = "";
-                monthDD_TransferExistingCust_Inside.SelectedValue = "MM";
-                yearDD_TransferExistingCust_Inside.SelectedValue = "YYYY";
-                tb_securitycode_IU_Inside.Text = "";
-                accTypeDD_TransferExistingCust_Outside.Items.Clear();
-                accTypeDD_TransferExistingCust_Outside.Items.Add("Accounts");
-                tb_amountoutside.Text = "";
-                tb_AccNumoutside_Intenal.Text = "";
-                tb_toRoutingNum_OutsideBank.Text = "";
-                tb_lastnameoutside.Text = "";
-                tb_emailoutside.Text = "";
-                tb_usercardno.Text = "";                
-                monthDD_TransferExistingCust_Outside.SelectedValue = "MM";
-                yearDD_TransferExistingCust_Outside.SelectedValue = "YYYY";
-                tb_securitycodeoutside.Text = "";
-                lblStatus_OutsideBank.Text = "";
-                fromAccTypeDD_TransferExistingCust_Between.Items.Clear();
-                fromAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
-                toAccTypeDD_TransferExistingCust_Between.Items.Clear();
-                toAccTypeDD_TransferExistingCust_Between.Items.Add("Accounts");
-                tb_amountbetween.Text = "";
-                lblStatus_Between.Text = "";
-                tb_card_DebitFunds.Text = "";
-                monthDD_TransferExistingCust_Debit.SelectedValue = "MM";
-                yearDD_TransferExistingCust_Debit.SelectedValue = "YYYY";
-                tb_securitycode_DebitFunds.Text = "";
-                accTypeDD_TransferExistingCust_Debit.Items.Clear();
-                accTypeDD_TransferExistingCust_Debit.Items.Add("Accounts");
-                tb_amountoutside_DebitFunds.Text = "";
-                lblStatus_DebitFunds.Text = "";
-                tb_card_CreditFunds.Text = "";
-                monthDD_TransferExistingCust_Credit.SelectedValue = "MM";
-                yearDD_TransferExistingCust_Credit.SelectedValue = "YYYY";
-                tb_securitycode_CreditFunds.Text = "";
-                accTypeDD_TransferExistingCust_Credit.Items.Clear();
-                accTypeDD_TransferExistingCust_Credit.Items.Add("Accounts");
-                tb_amountoutside_CreditFunds.Text = "";
-                lblStatus_CreditFunds.Text = "";
-                tb_emailview.Text = "";
-                tb_addrview.Text = "";
-                tb_cityView.Text = "";
-                tb_contactview.Text = "";
-                StateDD_View.SelectedValue = "AL";
-                tb_usernameview.Text = "";
-                tb_zipView.Text = "";
-                tb_nicknameview.Text = "";
-                tb_email_Edit.Text = "";
-                tb_stAddr_Edit.Text = "";
-                tb_city_Edit.Text = "";
-                tb_zipCode_Edit.Text = "";
-                tb_contact_Edit.Text = "";
-                tb_nickname_Edit.Text = "";
-                lblStatus_ChangeProf.Text = "";
-                tb_oldpwd.Text = "";
-                tb_newPassword.Text = "";
-                tb_confrimPassword.Text = "";
-                tb_secans1.Text = "";
-                tb_secans2.Text = "";
-                tb_secans3.Text = "";
-                transferDD_ModifyTrans.Items.Clear();
-                transferDD_ModifyTrans.Items.Add("Accounts");
-                grdTransactions.DataSource = null;
-                grdTransactions.DataBind();
-                tb_transID_ModifyTrans.Text = "";
-                lblAccount_ModifyTrans.Text = "";
-                lblRoutingNum_ModifyTrans.Text = "";
-                lblAmount_ModifyTrans.Text = "";
-                lblStatus_ModifyStatus.Text = "";
-                tb_AccNum_modifyTrans.Text = "";
-                tb_RoutNum_modifyTrans.Text = "";
-                tb_Amount_ModifyTrans.Text = "";
-                tb_cardnum.Text = "";
-                tb_customername.Text = "";
-                cardExpDD_CardPayment.SelectedValue = "MM";
-                yearDD_CardPayment.SelectedValue = "YY";
-                tb_amount_SubmitPayment.Text = "";
-                lblSubmitPayment.Text = "";
-                tb_echeckaccno.Text = "";
-                tb_echeckroutingno.Text = "";
-                tb_echeckcustomername.Text = "";
-                tbAmount_EcheckPayment.Text = "";
-                lblEcheckPayment.Text = "";
-            }
                 catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
+                {
+                    Elog.Error("Exception occurred: " + exp.Message);
+                }
             }
-        }
         }
 
         protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)

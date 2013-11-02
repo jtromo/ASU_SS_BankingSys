@@ -40,13 +40,13 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel tab_ExistingCust;
         
         /// <summary>
-        /// btnSignOff control.
+        /// existingCustErrLb control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSignOff;
+        protected global::System.Web.UI.WebControls.Label existingCustErrLb;
         
         /// <summary>
         /// tbCardNumber_IU control.
@@ -83,6 +83,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbYear_IU;
+        
+        /// <summary>
+        /// btnSignOff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSignOff;
         
         /// <summary>
         /// btnVerify0 control.
@@ -1298,15 +1307,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_echecksubmitpayment;
-        
-        /// <summary>
-        /// existingCustErrLb control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label existingCustErrLb;
         
         /// <summary>
         /// tab_newcustomer control.

@@ -333,6 +333,7 @@
     <Compile Include="externalLibs\OTP\hmacsha\sha1.cs" />
     <Compile Include="externalLibs\OTP\OTP.cs" />
     <Compile Include="externalLibs\OTP\OTPCounter.cs" />
+    <Compile Include="externalLibs\PKI\ImplementPKI.cs" />
     <Compile Include="ExternalUser.aspx.cs">
       <DependentUpon>ExternalUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

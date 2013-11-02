@@ -2,8 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p class="auto-style1" style="text-align: center">
         &nbsp;</p>
-    <p class="auto-style1" style="text-align: center">
-        <span style="font-size: x-large; color: #003399">You do not have access to this Page!</p>
+    <h4 class="auto-style1" style="text-align: center">
+         You do not have required access to perform this action</h4>
     <p class="auto-style1" style="text-align: center">
         &nbsp;</p>
     <p class="auto-style1" style="text-align: center">
@@ -12,7 +12,7 @@
     <p class="auto-style1" style="text-align: center">
         &nbsp;</p>
     <p class="auto-style1" style="text-align: center">
-        </span>
+        
     </p>
 <p style="font-size: large; color: #003399; text-align: center">
     Here are some pages that might help you to get on your way!</p>

@@ -1,4 +1,5 @@
 ﻿using log4net;
+using SoftSec_BankingApp_Se7en.externalLibs.PKI;
 using SoftSec_BankingApp_Se7en.Models;
 using SoftSec_BankingApp_Se7en.Models.Tables;
 using System;
@@ -312,7 +313,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
-                        , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString() , tb_Zip_Emp.Text.ToString());
+                        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text.ToString(), tb_City_Emp.Text.ToString(), tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
                     FieldValidator fieldValidator = new FieldValidator();
                     serverSideValidation2 = fieldValidator.validate_ZipAccCrdPhn(tb_BirthYear_AddEmp.Text.ToString(), 4);
                     if (serverSideValidation1 && serverSideValidation2)
@@ -349,23 +350,37 @@ namespace SoftSec_BankingApp_Se7en
                         bool userCreated = UserModel.CreateEmployee(userToCreate, passwordGenerated, "", userDOB, addressForUser, null);
                         if (userCreated)
                         {
-                            //Mailing employee
-                            MailMessage mMailMessage = new MailMessage();
-                            mMailMessage.From = new MailAddress("bankse7en@gmail.com");
-                            mMailMessage.To.Add(new MailAddress(tb_Email_Emp.Text.ToString()));
-                            mMailMessage.Subject = "New Employee information";
-                            string bodyOfMail = "You have been added as a New Employee to Bank of Se7en. Following are";
-                            bodyOfMail += " your details: <br> Username: " + usernameGenerated + "<br> Password: " + passwordGenerated;
-                            bodyOfMail += "<br> Please login to the system and make sure you add security questions and a sitekey.<br>";
-                            bodyOfMail += "Regards, <br> BankofSe7en";                              
-                            mMailMessage.Body = bodyOfMail;
-                            mMailMessage.IsBodyHtml = true;
-                            mMailMessage.Priority = MailPriority.Normal;
-                            SmtpClient mSmtpClient = new SmtpClient();
-                            mSmtpClient.EnableSsl = true;
-                            mSmtpClient.Send(mMailMessage);
-                            Label1.Visible = true;
-                            Label1.Text = "Employee added successfully\nUsername and Password have been mailed to the Employee";                            
+                            Models.Tables.User objUsr = UserModel.GetUser(usernameGenerated);
+                            if (objUsr != null)
+                            {
+                                //Mailing employee
+                                MailMessage mMailMessage = new MailMessage();
+                                mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                                mMailMessage.To.Add(new MailAddress(tb_Email_Emp.Text.ToString()));
+                                mMailMessage.Subject = "New Employee information";
+                                string bodyOfMail = "You have been added as a New Employee to Bank of Se7en. Following are";
+                                bodyOfMail += " your details: <br> Username: " + usernameGenerated + "<br> Password: " + passwordGenerated;
+                                bodyOfMail += "<br> Please login to the system and make sure you add security questions and a sitekey.<br>";
+                                bodyOfMail += "Regards, <br> BankofSe7en";
+                                mMailMessage.Body = bodyOfMail;
+                                if (objUsr.roleId == 7)
+                                {
+                                    string fileNameCert = PkiModel.GetCertificateNameForUsername(usernameGenerated);
+                                    Attachment at = new Attachment(@"C:\Windows\SysWOW64\"+fileNameCert +".pfx");
+                                    mMailMessage.Attachments.Add(at);
+                                }
+                                mMailMessage.IsBodyHtml = true;
+                                mMailMessage.Priority = MailPriority.Normal;
+                                SmtpClient mSmtpClient = new SmtpClient();
+                                mSmtpClient.EnableSsl = true;
+                                mSmtpClient.Send(mMailMessage);
+                                Label1.Visible = true;
+                                Label1.Text = "Employee added successfully\nUsername and Password have been mailed to the Employee";
+                            }
+                            else
+                            {
+                                //Some exception occured. Try later.
+                            }
                         }
                         else
                         {
@@ -494,50 +509,69 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void FetchLogsBT_Click(object sender, EventArgs e)
         {
-            if (Session["userName"] == null)
+            try
             {
-                Response.Redirect("SessionTimeOut.aspx",false);
-            }
-            else
-            {
-                checkSession();
-                bool serverSideValidation = false;
-                //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
-                try
+                if (Session["userName"] == null)
                 {
-                    serverSideValidation = true;
-                    if (serverSideValidation)
+                    Response.Redirect("SessionTimeOut.aspx", false);
+                }
+                else
+                {
+                    checkSession();
+                    bool serverSideValidation = false;
+                    FieldValidator objField = new FieldValidator();
+                    if (objField.validate_UserName(tbCertFileName.Text))
                     {
-                        //Proceed with business logic here
-                        MailMessage mMailMessage = new MailMessage();
-                        mMailMessage.From = new MailAddress("bankse7en@gmail.com");
-                        mMailMessage.To.Add(new MailAddress("ushakanthkvp@gmail.com"));
-                        mMailMessage.Subject = "System Logs" + DateTime.Now;
-                        mMailMessage.Body = "PFA the System Logs you have requested.";
-                        //Attachment at = new Attachment(Server.MapPath("~/Uploaded/txt.doc"));
-                        Attachment at = new Attachment(Server.MapPath("~/Logs/Transactions.log"));
-                        Attachment at1 = new Attachment(Server.MapPath("~/Logs/Exception.log"));
-                        mMailMessage.Attachments.Add(at);
-                        mMailMessage.Attachments.Add(at1);
-                        mMailMessage.IsBodyHtml = true;
-                        mMailMessage.Priority = MailPriority.High;
-                        SmtpClient mSmtpClient = new SmtpClient();
-                        mSmtpClient.EnableSsl = true;
-                        mSmtpClient.Send(mMailMessage);
-                        lbl_Logs.Text = "Logs have been sent to your email";
+                        ImplementPKI imp = new ImplementPKI();
+                        byte[] sign = imp.Sign("I need Logs", tbCertFileName.Text);
+                        if (sign == null)
+                        {
+                            Response.Redirect("InvalidUserRole.aspx",false);
+                        }
+                        else
+                        {
+                            hd_Systemlogs.Value = Convert.ToBase64String(sign);
+                        }
+                        string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
+                        serverSideValidation = imp.Verify("I need Logs", Convert.FromBase64String(hd_Systemlogs.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                        //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
+
+                        if (serverSideValidation)
+                        {
+                            //Proceed with business logic here
+                            MailMessage mMailMessage = new MailMessage();
+                            mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                            mMailMessage.To.Add(new MailAddress(UserModel.GetUser(Session["userName"].ToString()).email));
+                            mMailMessage.Subject = "System Logs" + DateTime.Now;
+                            mMailMessage.Body = "PFA the System Logs you have requested.";
+                            //Attachment at = new Attachment(Server.MapPath("~/Uploaded/txt.doc"));
+                            Attachment at = new Attachment(Server.MapPath("~/Logs/Transactions.log"));
+                            Attachment at1 = new Attachment(Server.MapPath("~/Logs/Exception.log"));
+                            mMailMessage.Attachments.Add(at);
+                            mMailMessage.Attachments.Add(at1);
+                            mMailMessage.IsBodyHtml = true;
+                            mMailMessage.Priority = MailPriority.High;
+                            SmtpClient mSmtpClient = new SmtpClient();
+                            mSmtpClient.EnableSsl = true;
+                            mSmtpClient.Send(mMailMessage);
+                            lbl_Logs.Text = "Logs have been sent to your email";
+                        }
+                        else
+                        {
+                            lbl_Logs.Text = "Please check the certificate details you have keyed in";
+                        }
+
                     }
                     else
                     {
-                        lbl_Logs.Text = "Please check the details you have keyed in";
                     }
                 }
-                catch (Exception exp)
-                {
-                    lbl_Logs.Text = "An unknown error has occured. Please try again in a few minutes.";
-                    Elog.Error("Exception occurred: " + exp.Message);
-                }
             }
-
+            catch (Exception exp)
+            {
+                lbl_Logs.Text = "An unknown error has occured. Please try again in a few minutes.";
+                Elog.Error("Exception occurred: " + exp.Message);
+            }
         }
 
         /// <summary>
@@ -667,7 +701,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (strMName.Length == 0)
                 {
-                    strMName = " ";
+                    strMName = "a";
                 }
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bFName = fieldValidator.validate_Names(strFName);

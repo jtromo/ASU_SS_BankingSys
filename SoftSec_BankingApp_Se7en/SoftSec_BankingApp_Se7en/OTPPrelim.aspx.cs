@@ -98,8 +98,8 @@ namespace SoftSec_BankingApp_Se7en
 
         protected void addRegUserBT_Click(object sender, EventArgs e)
         {
-            if (PopulateDBInitial.AddRegularUser()) {
-                Label1.Text = "regular users added!!";
+            if (PopulateDBInitial.addCerts()) {
+                Label1.Text = "Certs added!!";
             }
             else
             {

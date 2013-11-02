@@ -436,13 +436,22 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::AjaxControlToolkit.TabPanel LogAccessTabPanel;
         
         /// <summary>
-        /// FetchLogsBT control.
+        /// tbCertFileName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button FetchLogsBT;
+        protected global::System.Web.UI.WebControls.TextBox tbCertFileName;
+        
+        /// <summary>
+        /// FetchLogsBT0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button FetchLogsBT0;
         
         /// <summary>
         /// lbl_Logs control.
@@ -452,6 +461,15 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_Logs;
+        
+        /// <summary>
+        /// hd_Systemlogs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hd_Systemlogs;
         
         /// <summary>
         /// RequestTabPanel control.

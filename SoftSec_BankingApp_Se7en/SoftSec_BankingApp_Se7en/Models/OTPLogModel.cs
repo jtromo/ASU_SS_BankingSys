@@ -57,7 +57,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        public static List<OTPLog> GetOTPLog(string username)
+        public static OTPLog GetOTPLog(string username)
         {
             try
             {
@@ -70,7 +70,9 @@ namespace SoftSec_BankingApp_Se7en.Models
                         return null;
                     }
 
-                    return otpLogs;
+                    OTPLog otpLog = otpLogs.First();
+
+                    return otpLog;
                 }
             }
             catch (Exception exp)

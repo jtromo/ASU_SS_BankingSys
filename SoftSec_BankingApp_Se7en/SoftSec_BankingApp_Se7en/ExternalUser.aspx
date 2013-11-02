@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     <br />
@@ -329,7 +329,7 @@
                 <ContentTemplate>
                     <br />
                     Please select the transfer type.<br />
-                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="2" Height="515px" Width="850px">
+                    <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Height="515px" Width="850px">
                         <asp:TabPanel ID="tab_trans_inside" runat="server" HeaderText="Inside Bank">
                             <ContentTemplate>
                                 <p>&nbsp;</p>
@@ -391,12 +391,24 @@
             <p>Security Code:&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:TextBox ID="tb_securitycode" runat="server" oncopy="return false" onpaste="return false"></asp:TextBox>
             </p>
-                                <p>
-                                    <asp:Label ID="lblTransStatus_IB" runat="server" Visible="False"></asp:Label>
-                                </p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btn_maketransinside" runat="server" Text="Make Transfer" OnClick="btn_maketransinside_Click" />
             </p>
+                                <p>
+                                    <asp:Label ID="lblTransStatus_IB" runat="server" Visible="False"></asp:Label>
+                                </p>
+                                <p>
+                                    <asp:TextBox ID="tb_OTPInternal" runat="server" MaxLength="8" oncopy="return false" onpaste="return false"></asp:TextBox>
+                                    <asp:FilteredTextBoxExtender ID="tb_OTPInternal_FilteredTextBoxExtender" runat="server" Enabled="True" FilterInterval="50" FilterType="Numbers" TargetControlID="tb_OTPInternal">
+                                    </asp:FilteredTextBoxExtender>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="lbl_OTPInternal" runat="server" Visible="False"></asp:Label>
+                                </p>
+                                <p>
+                                    <asp:Button ID="btnConfirmInternal" runat="server" OnClick="btnConfirmInternal_Click" Text="Confirm Transfer" Visible="False" />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Button ID="btnCancelInternal" runat="server" Text="Cancel Transfer" Visible="False" />
+                                </p>
             <p>
                 &nbsp;</p>
         </ContentTemplate>

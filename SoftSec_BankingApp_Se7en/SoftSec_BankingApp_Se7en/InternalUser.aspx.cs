@@ -2183,7 +2183,7 @@ namespace SoftSec_BankingApp_Se7en
             {
                 if (strMName.Length == 0)
                 {
-                    strMName = " ";
+                    strMName = "a";
                 } 
                 FieldValidator fieldValidator = new FieldValidator();
                 bool bFName = fieldValidator.validate_Names(strFName);

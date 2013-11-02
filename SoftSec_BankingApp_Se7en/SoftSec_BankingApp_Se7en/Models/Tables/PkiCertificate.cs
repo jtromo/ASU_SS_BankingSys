@@ -10,5 +10,6 @@ namespace SoftSec_BankingApp_Se7en.Models.Tables
         public int id { get; set; }
         public string username { get; set; }
         public string certificateName { get; set; }
+        public string passphrase { get; set; }
     }
 }

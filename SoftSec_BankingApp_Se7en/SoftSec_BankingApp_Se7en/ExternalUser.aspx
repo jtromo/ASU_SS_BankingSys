@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="CSS/PasswordStyle.css" rel="stylesheet" type="text/css" />
-        <div style="height:1200px";>
+        <div>
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
 
@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="1200px" Width="1074px" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False" Width="943px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     <br />
@@ -32,297 +32,21 @@
                     &nbsp;
                     <br />
                     <br />
-                    <br /> <br>
-                    <asp:GridView ID="grdTransactions" runat="server" BorderStyle="Solid" EmptyDataText="No Transactions available" Font-Italic="True" HorizontalAlign="Justify">
+                    <br /> 
+                    <asp:GridView ID="grdTransactions" runat="server" BorderStyle="Solid" EmptyDataText="No Transactions available" Font-Italic="True" HorizontalAlign="Justify" AutoGenerateColumns="false">
                         <AlternatingRowStyle BorderStyle="Solid" />
+                        <Columns>
+                            <asp:BoundField DataField="creationTime" HeaderText="Creation time" />
+                            <asp:BoundField DataField="description" HeaderText="Description" />
+                        </Columns>
                     </asp:GridView>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
-                    </br>
+                    <br />
+                    <br />
+                    <br /> 
+                    <br />
+                    <br />
+                    <br /> 
+                    
                 </ContentTemplate>
             </asp:TabPanel>
             <asp:TabPanel runat="server" HeaderText="Transfers" ID="tab_transfers" TabIndex="2">

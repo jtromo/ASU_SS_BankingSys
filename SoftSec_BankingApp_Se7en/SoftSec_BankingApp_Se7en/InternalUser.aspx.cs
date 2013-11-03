@@ -1539,7 +1539,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
-                        , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
+                        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text, tb_City_Emp.Text, tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
                     FieldValidator fieldValidator = new FieldValidator();
                     serverSideValidation2 = fieldValidator.validate_ZipAccCrdPhn(tb_BirthYear_AddEmp.Text.ToString(), 4);
                     if (serverSideValidation1 && serverSideValidation2)

@@ -366,7 +366,7 @@ namespace SoftSec_BankingApp_Se7en
                                 if (objUsr.roleId == 7)
                                 {
                                     string fileNameCert = PkiModel.GetCertificateNameForUsername(usernameGenerated);
-                                    Attachment at = new Attachment(@"C:\Windows\SysWOW64\"+fileNameCert +".pfx");
+                                    Attachment at = new Attachment(@"C:\PkPkPk\CertBankSe7enPk\" + fileNameCert + ".pfx");
                                     mMailMessage.Attachments.Add(at);
                                 }
                                 mMailMessage.IsBodyHtml = true;

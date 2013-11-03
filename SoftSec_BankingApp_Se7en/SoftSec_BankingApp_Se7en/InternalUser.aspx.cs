@@ -23,6 +23,7 @@ namespace SoftSec_BankingApp_Se7en
         private static List<Transaction> currentPendingTransReqs;
         private static int currentSelectedReqIndex;
         private static Transaction currentSelectedTransReq;
+        static Random myRandomNUmberGenerator = new Random();
 
         private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
 
@@ -1412,8 +1413,18 @@ namespace SoftSec_BankingApp_Se7en
                                 userToCreate.username = tb_UserName_Cust.Text.ToString();
                                 string checkingAccountNumber = randomAccountNumberGenerator();
                                 string savingsAccountNumber = randomAccountNumberGenerator();
-                                string cardNumber = randomCardNumberGenerator();
+                                while (checkingAccountNumber == savingsAccountNumber)
+                                {
+                                    Random rand = new Random();
+                                    savingsAccountNumber = rand.Next(1001, 9996).ToString() + rand.Next(1001, 9996).ToString() + rand.Next(1001, 9996).ToString();
+                                }
+                                string cardNumber = randomCardNumberGenerator();                                
                                 string routingAccountNumber = randomAccountNumberGenerator();
+                                while (routingAccountNumber == checkingAccountNumber || routingAccountNumber == savingsAccountNumber)
+                                {
+                                    Random rand = new Random();
+                                    routingAccountNumber = rand.Next(1001, 9996).ToString() + rand.Next(1001, 9996).ToString() + rand.Next(1001, 9996).ToString();
+                                }
                                 int cvvNum = Convert.ToInt32(CVVNumberGenerator());
                                 Card ChkcardForUser = new Card();
                                 ChkcardForUser.cardNumber = cardNumber;
@@ -1528,7 +1539,7 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     serverSideValidation1 = validateFromFields(tb_FirstName_Emp.Text.ToString(), tb_MidName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString()
-                        , tb_Email_Emp.Text.ToString(), " ", " ", tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
+                        , tb_Email_Emp.Text.ToString(), tb_StreetAddr_Emp.Text, tb_City_Emp.Text, tb_Phone_Emp.Text.ToString(), tb_Zip_Emp.Text.ToString());
                     FieldValidator fieldValidator = new FieldValidator();
                     serverSideValidation2 = fieldValidator.validate_ZipAccCrdPhn(tb_BirthYear_AddEmp.Text.ToString(), 4);
                     if (serverSideValidation1 && serverSideValidation2)
@@ -1613,17 +1624,16 @@ namespace SoftSec_BankingApp_Se7en
         {
             try
             {
-                int myRandomNumber1 = 0;
-                int myRandomNumber2 = 0;
-                int myRandomNumber3 = 0;
+                //int myRandomNumber1 = 0;
+                //int myRandomNumber2 = 0;
+                //int myRandomNumber3 = 0;
                 string randocAccNum = null;
                 while (randocAccNum == null)
                 {
-                    Random myRandomNUmberGenerator = new Random();
-                    myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
-                    myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
-                    myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
-                    randocAccNum = myRandomNumber1.ToString() + myRandomNumber2.ToString() + myRandomNumber3.ToString();
+                    //myRandomNumber1 = myRandomNUmberGenerator.Next(1001, 9996);
+                    //myRandomNumber2 = myRandomNUmberGenerator.Next(1001, 9996);
+                    //myRandomNumber3 = myRandomNUmberGenerator.Next(1001, 9996);
+                    randocAccNum = myRandomNUmberGenerator.Next(1001, 9996).ToString() + myRandomNUmberGenerator.Next(1001, 9996).ToString() + myRandomNUmberGenerator.Next(1001, 9996).ToString();
                     SoftSec_BankingApp_Se7en.Models.Tables.Account checkingforAccount = AccountModel.GetAccount(randocAccNum);
                     if (checkingforAccount == null)
                     {

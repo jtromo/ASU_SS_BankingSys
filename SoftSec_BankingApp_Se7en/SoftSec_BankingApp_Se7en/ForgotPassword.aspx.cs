@@ -80,6 +80,7 @@ namespace SoftSec_BankingApp_Se7en
                                 SmtpClient mSmtpClient = new SmtpClient();
                                 mSmtpClient.EnableSsl = true;
                                 mSmtpClient.Send(mMailMessage);
+                                resetFields();
                             }
                             else
                             {
@@ -110,6 +111,13 @@ namespace SoftSec_BankingApp_Se7en
                 lblStatus_ForgotPassword.Text = "check captcha";
                 lblStatus_ForgotPassword.Visible = true;
             }
+        }
+        private void resetFields()
+        {
+            tb_secans1.Text = "";
+            tb_secans2.Text = "";
+            tb_secans3.Text = "";
+            
         }
 
         private bool validateFromFields_forgotPwd(Dictionary<int, string> dictAns)

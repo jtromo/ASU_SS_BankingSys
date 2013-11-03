@@ -531,6 +531,7 @@ namespace SoftSec_BankingApp_Se7en
                                             {
                                                 lblSuccess_IUInside.Text = "Transaction Successful";
                                                 lblSuccess_IUInside.Visible = true;
+                                                resetFieldsAddEmp();
                                             }
                                             else
                                             {
@@ -551,6 +552,7 @@ namespace SoftSec_BankingApp_Se7en
                                                 {
                                                     lblSuccess_IUInside.Text = "Critical Transaction level 1 successfully approved";
                                                     lblSuccess_IUInside.Visible = true;
+                                                    resetFieldsAddEmp();
                                                 }
                                                 else
                                                 {
@@ -803,6 +805,7 @@ namespace SoftSec_BankingApp_Se7en
                                     lblStatus_OutsideBank.Text = "Transaction Successful";
 
                                     lblStatus_OutsideBank.Visible = true;
+                                    resetFieldsAddEmp();
                                 }
                                 else
                                 {
@@ -824,6 +827,7 @@ namespace SoftSec_BankingApp_Se7en
                                         {
                                             lblStatus_OutsideBank.Text = "Critical Transaction level 1 successfully approved";
                                             lblStatus_OutsideBank.Visible = true;
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -927,6 +931,8 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             lblStatus_Between.Text = "Transaction Successful";
                             lblStatus_Between.Visible = true;
+                            resetFieldsAddEmp();
+
                         }
                         else
                         {
@@ -991,6 +997,7 @@ namespace SoftSec_BankingApp_Se7en
                                     {
                                         lblStatus_DebitFunds.Text = "Transaction Successful";
                                         lblStatus_DebitFunds.Visible = true;
+                                        resetFieldsAddEmp();
                                     }
                                     else
                                     {
@@ -1074,6 +1081,7 @@ namespace SoftSec_BankingApp_Se7en
                                     {
                                         lblStatus_CreditFunds.Text = "Transaction Successful";
                                         lblStatus_CreditFunds.Visible = true;
+                                        resetFieldsAddEmp();
                                     }
                                     else
                                     {
@@ -1144,6 +1152,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         lblStatus_ChangeProf.Text = "Update Successful";
                         lblStatus_ChangeProf.Visible = true;
+                        resetFieldsAddEmp();
                     }
                     else
                     {
@@ -1203,6 +1212,7 @@ namespace SoftSec_BankingApp_Se7en
                                 {
                                     lblStatus_ChangePswd.Text = "Password Changed Successfully";
                                     lblStatus_ChangePswd.Visible = true;
+                                    resetFieldsAddEmp();
                                 }
                                 else
                                 {
@@ -1278,6 +1288,7 @@ namespace SoftSec_BankingApp_Se7en
                                     lblSubmitPayment.Text = "Transaction Successful";
                                     tb_amount_SubmitPayment.Text = "";
                                     lblSubmitPayment.Visible = true;
+                                    resetFieldsAddEmp();
                                 }
                                 else
                                 {
@@ -1493,6 +1504,7 @@ namespace SoftSec_BankingApp_Se7en
 
                                     ErrorLabelInNewCustPI.Visible = true;
                                     ErrorLabelInNewCustPI.Text = "User successfully created";
+                                    resetFieldsAddEmp();
 
                                 }
                                 else
@@ -1546,7 +1558,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         //Generating Username
                         string usernameGenerated = generateUsername(tb_FirstName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString());
-                        string passwordGenerated = generatePassword();
+                        string passwordGenerated = PasswordModel.GenerateRandomPassword();
                         User userForName = new User();
                         userForName = UserModel.GetUser(usernameGenerated);
                         while (userForName != null)
@@ -1596,6 +1608,7 @@ namespace SoftSec_BankingApp_Se7en
                             //Posting a Department transaction
                             string deptTransStr = "New employee: " + usernameGenerated + " has been added";
                             DepartmentTransactionModel.MakeDepartmentTransfer(0, Convert.ToInt32(userToCreate.departmentId), Session["userName"].ToString(), usernameGenerated, deptTransStr, 0, "");
+                            resetFieldsAddEmp();
                         }
                         else
                         {
@@ -1615,7 +1628,142 @@ namespace SoftSec_BankingApp_Se7en
                 }
             }
         }
+        private void resetFieldsAddEmp()
+        {
+            tb_AccNum_modifyTrans.Text = "";
+            tb_AccNumoutside_Intenal.Text = "";
+            tb_addr_editprofile_int.Text = "";
+            tb_addrview.Text = "";
+            tb_amount_IU_Inside.Text = "";
+            tb_Amount_ModifyTrans.Text = "";
+            tb_amount_SubmitPayment.Text = "";
+            tb_amountbetween.Text = "";
+            tb_amountoutside.Text = "";
+            tb_amountoutside_CreditFunds.Text = "";
+            tb_amountoutside_DebitFunds.Text = "";
+            tb_BirthYear_AddEmp.Text = "";
+            tb_BirthYear_Cust.Text = "";
+            tb_card_CreditFunds.Text = "";
+            tb_card_DebitFunds.Text="";
+            tb_card_IU_Inside.Text = "";
+            tb_cardnum.Text = "";
+            //tb_checking.Text = "";
+            tb_City_Cust.Text = "";
+            tb_city_Edit.Text = "";
+            tb_city_editProfile_int.Text = "";
+            tb_City_Emp.Text = "";
+            tb_city_int.Text = "";
+            tb_cityView.Text = "";
+            tb_ConfPassword_Cust.Text = "";
+            tb_confrimPass_int.Text = "";
+            tb_confrimPassword.Text = "";
+            tb_contact_Edit.Text = "";
+            tb_Contact_TransEmp.Text = "";
+            tb_contactedit_int.Text = "";
+            tb_contactview.Text = "";
+            tb_contactview_int.Text = "";
+            tb_customername.Text = "";
+            tb_echeckaccno.Text = "";
+            tb_echeckcustomername.Text = "";
+            tb_echeckroutingno.Text = "";
+            tb_Email_Cust.Text = "";
+            tb_Email_DelEmp.Text = "";
+            tb_email_Edit.Text = "";
+            tb_Email_Emp.Text = "";
+            tb_Email_TransEmp.Text = "";
+            tb_Email_ViewEmp.Text = "";
+            tb_emailedit_int.Text = "";
+            tb_emailoutside.Text = "";
+            tb_emailview.Text = "";
+            tb_emailview_int.Text = "";
+            tb_FirstName_Cust.Text = "";
+            tb_FirstName_DelEmp.Text = "";
+            tb_FirstName_Emp.Text = "";
+            tb_FName_TransEmp.Text = "";
+            tb_FName_ViewEmp.Text = "";
+            tb_LastName_Cust.Text = "";
+            tb_LastName_DelEmp.Text = "";
+            tb_LastName_Emp.Text = "";
+            tb_lastname_IU_Inside.Text = "";
+            tb_lastnameoutside.Text = "";
+            tb_LName_TransEmp.Text = "";
+            tb_LName_ViewEmp.Text = "";
+            tb_MiddleName_Cust.Text = "";
+            tb_MidName_DelEMp.Text = "";
+            tb_MidName_Emp.Text = "";
+            tb_MName_TransEmp.Text = "";
+            tb_MName_ViewEmp.Text = "";
+            tb_newPass_int.Text = "";
+            tb_newPassword.Text = "";
+            tb_nickname_Edit.Text = "";
+            tb_nicknameview.Text = "";
+            tb_oldpwd.Text = "";
+            tb_oldpwd_int.Text = "";
+            tb_Password_Cust.Text = "";
+            tb_Phone_Cust.Text = "";
+            tb_Phone_DelEmp.Text = "";
+            tb_Phone_Emp.Text = "";
+            tb_Phone_ViewEmp.Text = "";
+            tb_pwdlastview.Text = "";
+            tb_recepient_IU_Inside.Text = "";
+            tb_RoutNum_modifyTrans.Text = "";
+            //tb_savings.Text = "";
+            tb_secans_int1.Text = "";
+            tb_secans_int2.Text = "";
+            tb_secans_int3.Text = "";
+            tb_secans1.Text = "";
+            tb_SecAns1_Cust.Text = "";
+            tb_SecAns1_Cust_int.Text = "";
+            tb_secans2.Text = "";
+            tb_SecAns2_Cust.Text = "";
+            tb_SecAns2_Cust_int.Text = "";
+            tb_secans3.Text = "";
+            tb_SecAns3_Cust.Text = "";
+            tb_SecAns3_Cust_int.Text = "";
+            tb_securitycode_CreditFunds.Text = "";
+            tb_securitycode_DebitFunds.Text = "";
+            tb_securitycode_IU_Inside.Text = "";
+            tb_securitycodeoutside.Text = "";
+            tb_sitekeyhint_Cust.Text = "";
+            tb_sitekeyhint_Cust_int.Text = "";
+            tb_SSN_Cust.Text = "";
+            tb_SSN_Cust_int.Text = "";
+            tb_stAddr_Edit.Text = "";
+            tb_StreetAddr_Cust.Text = "";
+            tb_StreetAddr_Emp.Text = "";
+            tb_streetAddress_int.Text = "";
+            tb_toRoutingNum_OutsideBank.Text = "";
+            tb_transID_ModifyTrans.Text = "";
+            tb_usercardno.Text = "";
+            tb_UserName_Cust.Text = "";
+            tb_UserName_DelEmp.Text = "";
+            tb_UserName_transEmp.Text = "";
+            tb_userName_ViewEmp.Text = "";
+            tb_usernameview.Text = "";
+            tb_usernameview_int.Text = "";
+            tb_Zip_Cust.Text = "";
+            tb_zip_editProfile_int.Text = "";
+            tb_Zip_Emp.Text = "";
+            tb_zip_IU_Inside.Text = "";
+            tb_zipCode_Edit.Text = "";
+            tb_ZipCode_Profile_int.Text = "";
+            tb_zipView.Text = "";
+            tbAmount_EcheckPayment.Text = "";
+            //tbCardNumber_IU.Text = "";
+            tbHRDeptCount.Text = "";
+            tbHRHgrCount.Text = "";
+            tbHRRegCount.Text = "";
+            tbITDeptCount.Text = "";
+            tbITHgrCount.Text = "";
+            tbITRegCount.Text = "";
+            tbSalesDeptCount.Text = "";
+            tbSalesHgrCount.Text = "";
+            tbSalesRegCount.Text = "";
+            //tbYear_IU.Text = "";
 
+                
+
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -2472,6 +2620,7 @@ namespace SoftSec_BankingApp_Se7en
                                 //Posting a Department transaction
                                 string deptTransStr = "New employee: " + tb_UserName_DelEmp.Text.ToString() + " has been deleted";
                                 DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), 0, Session["username"].ToString(), tb_UserName_DelEmp.Text.ToString(), deptTransStr, 0, "");
+                                resetFieldsAddEmp();
                             }
                             else
                             {
@@ -2529,6 +2678,7 @@ namespace SoftSec_BankingApp_Se7en
                                         //Posting a Department transaction
                                         string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " has been transferred";
                                         DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
+                                        resetFieldsAddEmp();
                                     }
                                     else
                                     {
@@ -2567,6 +2717,7 @@ namespace SoftSec_BankingApp_Se7en
                                             //Posting a Department transaction
                                             string deptTransStr = "Employee: " + tb_UserName_transEmp.Text.ToString() + " to be transferred to " + TO_DeptDD_TransDept.SelectedItem.Text;
                                             DepartmentTransactionModel.MakeDepartmentTransfer(Convert.ToInt32(deptid), Convert.ToInt32(TO_DeptDD_TransDept.SelectedValue), Session["username"].ToString(), tb_UserName_transEmp.Text.ToString(), deptTransStr, 0, "");
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -2980,6 +3131,7 @@ namespace SoftSec_BankingApp_Se7en
                                             lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
                                             grdTransaction.DataSource = lstTransaction;
                                             grdTransaction.DataBind();
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -3001,6 +3153,7 @@ namespace SoftSec_BankingApp_Se7en
                                             lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
                                             grdTransaction.DataSource = lstTransaction;
                                             grdTransaction.DataBind();
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -3027,6 +3180,7 @@ namespace SoftSec_BankingApp_Se7en
                                         lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
                                         grdTransaction.DataSource = lstTransaction;
                                         grdTransaction.DataBind();
+                                        resetFieldsAddEmp();
                                     }
                                     else
                                     {
@@ -3057,6 +3211,7 @@ namespace SoftSec_BankingApp_Se7en
                                             lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
                                             grdTransaction.DataSource = lstTransaction;
                                             grdTransaction.DataBind();
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -3097,6 +3252,7 @@ namespace SoftSec_BankingApp_Se7en
                                         lstTransaction = TransactionModel.GetTransactionsForFromToAccount(transferDD_ModifyTrans.SelectedValue.ToString());
                                         grdTransaction.DataSource = lstTransaction;
                                         grdTransaction.DataBind();
+                                        resetFieldsAddEmp();
                                     }
                                     else
                                     {
@@ -3411,6 +3567,7 @@ namespace SoftSec_BankingApp_Se7en
                                                     {
                                                         lblSuccess_IUInside.Text = "Request sucesfully escalated to manager";
                                                     lblSuccess_IUInside.Visible = true;
+                                                    resetFieldsAddEmp();
                                                 }
                                                     else {
                                                         lblSuccess_IUInside.Text = "Request could not be escalated";
@@ -3620,6 +3777,7 @@ namespace SoftSec_BankingApp_Se7en
                     if (approved)
                     {
                         reqResultLB.Text = "Successfully approved";
+                        resetFieldsAddEmp();
 
                     }
                     else
@@ -3655,6 +3813,7 @@ namespace SoftSec_BankingApp_Se7en
                     if (rejected)
                     {
                         reqResultLB.Text = "Successfully Rejected";
+                        resetFieldsAddEmp();
 
                     }
                     else
@@ -3974,6 +4133,7 @@ namespace SoftSec_BankingApp_Se7en
                                             lblStatus_OutsideBank.Text = "Transaction Successful";
 
                                             lblStatus_OutsideBank.Visible = true;
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -4338,6 +4498,7 @@ namespace SoftSec_BankingApp_Se7en
                                     lblStatus_SiteKey_int.Text = "Values Updated Successfully";
                                     btnSetSiteKey_int.Enabled = false;
                                     lblStatus_SiteKey_int.Visible = true;
+                                    resetFieldsAddEmp();
                                 }
                                 else
                                 {
@@ -4453,6 +4614,7 @@ namespace SoftSec_BankingApp_Se7en
                                         {
                                             lblStatus_ChgPwd_int.Text = "Password Changed Successfully";
                                             lblStatus_ChgPwd_int.Visible = true;
+                                            resetFieldsAddEmp();
                                         }
                                         else
                                         {
@@ -4525,6 +4687,7 @@ namespace SoftSec_BankingApp_Se7en
                             {
                                 lblChaneProfile_int.Text = "Update Successful";
                                 lblChaneProfile_int.Visible = true;
+                                resetFieldsAddEmp();
                             }
                             else
                             {

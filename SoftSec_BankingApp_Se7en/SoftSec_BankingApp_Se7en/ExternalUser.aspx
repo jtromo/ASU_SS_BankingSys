@@ -13,7 +13,7 @@
             <br />
 &nbsp;
 
-        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False" Width="943px">
+        <asp:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="3" OnActiveTabChanged="TabContainer1_ActiveTabChanged" TabIndex="0" AutoPostBack="True" Visible="False" Width="943px">
             <asp:TabPanel runat="server" HeaderText="Accounts" ID="tab_accounts" TabIndex="1">
                 <ContentTemplate>
                     <br />

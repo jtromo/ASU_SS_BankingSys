@@ -533,9 +533,8 @@ namespace SoftSec_BankingApp_Se7en
                             hd_Systemlogs.Value = Convert.ToBase64String(sign);
                         }
                         string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
-                        serverSideValidation = imp.Verify("I need Logs", Convert.FromBase64String(hd_Systemlogs.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
-                        //Fetch the logs, present in the middle of these two dates. Not more than 3 days difference is allowed in the dates.
-
+                        serverSideValidation = imp.Verify("I need Logs", Convert.FromBase64String(hd_Systemlogs.Value), @"C:\PkPkPk\CertBankSe7enPk\" + filename + ".cer");
+                        
                         if (serverSideValidation)
                         {
                             //Proceed with business logic here
@@ -564,6 +563,7 @@ namespace SoftSec_BankingApp_Se7en
                     }
                     else
                     {
+                        lbl_Logs.Text = "Invalid Certificate name";
                     }
                 }
             }

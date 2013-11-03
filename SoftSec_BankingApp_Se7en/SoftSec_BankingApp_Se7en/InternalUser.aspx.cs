@@ -1366,151 +1366,151 @@ namespace SoftSec_BankingApp_Se7en
         {
             if (Session["userName"] == null)
             {
-                Response.Redirect("SessionTimeOut.aspx",false);
+                Response.Redirect("SessionTimeOut.aspx", false);
             }
             else
             {
-            bool serverSideValidation = false;
-            try
-            {
-                checkSession();
-                serverSideValidation = validateFromFields(tb_UserName_Cust.Text.ToString(), tb_Password_Cust.Text.ToString(), tb_ConfPassword_Cust.Text.ToString()
-                       , tb_SecAns1_Cust.Text.ToString(), tb_SecAns2_Cust.Text.ToString(), tb_SecAns3_Cust.Text.ToString(), tb_SSN_Cust.Text.ToString()
-                       , tb_sitekeyhint_Cust.Text.ToString(), tb_BirthYear_Cust.Text.ToString());
-                if (serverSideValidation)
+                bool serverSideValidation = false;
+                try
                 {
-                    User userForName = new User();
-                    userForName = UserModel.GetUser(tb_UserName_Cust.Text.ToString());
-                    if (userForName != null)
+                    checkSession();
+                    serverSideValidation = validateFromFields(tb_UserName_Cust.Text.ToString(), tb_Password_Cust.Text.ToString(), tb_ConfPassword_Cust.Text.ToString()
+                           , tb_SecAns1_Cust.Text.ToString(), tb_SecAns2_Cust.Text.ToString(), tb_SecAns3_Cust.Text.ToString(), tb_SSN_Cust.Text.ToString()
+                           , tb_sitekeyhint_Cust.Text.ToString(), tb_BirthYear_Cust.Text.ToString());
+                    if (serverSideValidation)
                     {
-
-                        ErrorLabelInNewCustPI.Visible = true;
-                        ErrorLabelInNewCustPI.Text = "User name already Exists";
-                    }
-                    else
-                    {
-
-                        string passwordForUser = tb_Password_Cust.Text.ToString();
-                        string confirmPassword = tb_ConfPassword_Cust.Text.ToString();
-                        if (passwordForUser.Equals(confirmPassword))
+                        User userForName = new User();
+                        userForName = UserModel.GetUser(tb_UserName_Cust.Text.ToString());
+                        if (userForName != null)
                         {
-                            User userToCreate = new User();
-                            userToCreate.firstName = tb_FirstName_Cust.Text.ToString();
-                            userToCreate.middleName = tb_MiddleName_Cust.Text.ToString();
-                            userToCreate.lastName = tb_LastName_Cust.Text.ToString();
-                            userToCreate.email = tb_Email_Cust.Text.ToString();
-                            userToCreate.roleId = Convert.ToInt32(DD_Role_NewCustomer.SelectedValue); ;
-                            Address addressForUser = new Address();
-                            addressForUser.firstName = tb_FirstName_Cust.Text.ToString();
-                            addressForUser.lastName = tb_LastName_Cust.Text.ToString();
-                            addressForUser.street1 = tb_StreetAddr_Cust.Text.ToString();
-                            addressForUser.city = tb_City_Cust.Text.ToString();
-                            addressForUser.state = StateDD_Cust.Text.ToString();
-                            addressForUser.country = "US";
-                            addressForUser.zip = Convert.ToInt32(tb_Zip_Cust.Text);
-                            userToCreate.phone = tb_Phone_Cust.Text.ToString();
-                            userToCreate.username = tb_UserName_Cust.Text.ToString();
-                            string checkingAccountNumber = randomAccountNumberGenerator();
-                            string savingsAccountNumber = randomAccountNumberGenerator();
-                            string cardNumber = randomCardNumberGenerator();
-                            string routingAccountNumber = randomAccountNumberGenerator();
-                            int cvvNum =Convert.ToInt32( CVVNumberGenerator());
-                            Card ChkcardForUser = new Card();
-                            ChkcardForUser.cardNumber = cardNumber;
-                            ChkcardForUser.accountNumber = checkingAccountNumber;
-                            ChkcardForUser.cvv = cvvNum;
-                            ChkcardForUser.expirationDate = "1118";
-                            ChkcardForUser.firstName = userToCreate.firstName;
-                            ChkcardForUser.middleInitial = userToCreate.middleName;
-                            ChkcardForUser.lastName = userToCreate.lastName;
-                            Card SavcardForUser = new Card();
-                            SavcardForUser.cardNumber = cardNumber;
-                            SavcardForUser.accountNumber = savingsAccountNumber;
-                            SavcardForUser.cvv = cvvNum;
-                            SavcardForUser.expirationDate = "1118";
-                            SavcardForUser.firstName = userToCreate.firstName;
-                            SavcardForUser.middleInitial = userToCreate.middleName;
-                            SavcardForUser.lastName = userToCreate.lastName;
-                            List<SecurityQuestion> securityQuestionsForUser = new List<SecurityQuestion>();
-                            SecurityQuestion securityQuestionForUser1 = new SecurityQuestion();
-                            securityQuestionForUser1.questionId = Convert.ToInt32(Sec1DD_PersonalInformation.SelectedValue);
-                            securityQuestionForUser1.answer = tb_SecAns1_Cust.Text.ToString();
-                            securityQuestionsForUser.Add(securityQuestionForUser1);
-                            SecurityQuestion securityQuestionForUser2 = new SecurityQuestion();
-                            securityQuestionForUser2.questionId = Convert.ToInt32(Sec2DD_PersonalInformation.SelectedValue);
-                            securityQuestionForUser2.answer = tb_SecAns2_Cust.Text.ToString();
-                            securityQuestionsForUser.Add(securityQuestionForUser2);
-                            SecurityQuestion securityQuestionForUser3 = new SecurityQuestion();
-                            securityQuestionForUser3.questionId = Convert.ToInt32(Sec3DD_PersonalInformation.SelectedValue);
-                            securityQuestionForUser3.answer = tb_SecAns3_Cust.Text.ToString();
-                            securityQuestionsForUser.Add(securityQuestionForUser3);
-                            string socialSecurityNumber = tb_SSN_Cust.Text.ToString();
-                            userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
-                            userToCreate.siteKeyString = tb_sitekeyhint_Cust.Text.ToString();
-                            string userDOB = monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
-                            bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, ChkcardForUser, SavcardForUser, addressForUser, securityQuestionsForUser);
-                            if (userCreated)
+
+                            ErrorLabelInNewCustPI.Visible = true;
+                            ErrorLabelInNewCustPI.Text = "User name already Exists";
+                        }
+                        else
+                        {
+
+                            string passwordForUser = tb_Password_Cust.Text.ToString();
+                            string confirmPassword = tb_ConfPassword_Cust.Text.ToString();
+                            if (passwordForUser.Equals(confirmPassword))
                             {
-                                Models.Tables.User objNewUsr = UserModel.GetUser(userToCreate.username);
-                                string emailstring = "Hi " + tb_FirstName_Cust.Text.ToString() + " your account has been succesfully created" + "<br>" + "Checking acc num :" + checkingAccountNumber + "<br>" + "Savings acc num:" + savingsAccountNumber + "<br>"+"Routing number:"+routingAccountNumber+"<br>" + "Card num:" + cardNumber + "<br>" + "cvv:" + cvvNum +"<br>"+ "Expiry date: Nov 2018" + "<br>" + "Date of birth" + monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
-                                MailMessage mMailMessage = new MailMessage();
-
-                                // Set the sender address of the mail message
-                                mMailMessage.From = new MailAddress("bankse7en@gmail.com");
-                                // Set the recepient address of the mail message
-                                mMailMessage.To.Add(new MailAddress(tb_Email_Cust.Text.ToString()));
-
-
-                                mMailMessage.Subject = "Greetings from bankse7en";
-                                // Set the body of the mail message
-                                mMailMessage.Body = emailstring;
-
-                                if (objNewUsr.roleId == 3)
+                                User userToCreate = new User();
+                                userToCreate.firstName = tb_FirstName_Cust.Text.ToString();
+                                userToCreate.middleName = tb_MiddleName_Cust.Text.ToString();
+                                userToCreate.lastName = tb_LastName_Cust.Text.ToString();
+                                userToCreate.email = tb_Email_Cust.Text.ToString();
+                                userToCreate.roleId = Convert.ToInt32(DD_Role_NewCustomer.SelectedValue); ;
+                                Address addressForUser = new Address();
+                                addressForUser.firstName = tb_FirstName_Cust.Text.ToString();
+                                addressForUser.lastName = tb_LastName_Cust.Text.ToString();
+                                addressForUser.street1 = tb_StreetAddr_Cust.Text.ToString();
+                                addressForUser.city = tb_City_Cust.Text.ToString();
+                                addressForUser.state = StateDD_Cust.Text.ToString();
+                                addressForUser.country = "US";
+                                addressForUser.zip = Convert.ToInt32(tb_Zip_Cust.Text);
+                                userToCreate.phone = tb_Phone_Cust.Text.ToString();
+                                userToCreate.username = tb_UserName_Cust.Text.ToString();
+                                string checkingAccountNumber = randomAccountNumberGenerator();
+                                string savingsAccountNumber = randomAccountNumberGenerator();
+                                string cardNumber = randomCardNumberGenerator();
+                                string routingAccountNumber = randomAccountNumberGenerator();
+                                int cvvNum = Convert.ToInt32(CVVNumberGenerator());
+                                Card ChkcardForUser = new Card();
+                                ChkcardForUser.cardNumber = cardNumber;
+                                ChkcardForUser.accountNumber = checkingAccountNumber;
+                                ChkcardForUser.cvv = cvvNum;
+                                ChkcardForUser.expirationDate = "1118";
+                                ChkcardForUser.firstName = userToCreate.firstName;
+                                ChkcardForUser.middleInitial = userToCreate.middleName;
+                                ChkcardForUser.lastName = userToCreate.lastName;
+                                Card SavcardForUser = new Card();
+                                SavcardForUser.cardNumber = cardNumber;
+                                SavcardForUser.accountNumber = savingsAccountNumber;
+                                SavcardForUser.cvv = cvvNum;
+                                SavcardForUser.expirationDate = "1118";
+                                SavcardForUser.firstName = userToCreate.firstName;
+                                SavcardForUser.middleInitial = userToCreate.middleName;
+                                SavcardForUser.lastName = userToCreate.lastName;
+                                List<SecurityQuestion> securityQuestionsForUser = new List<SecurityQuestion>();
+                                SecurityQuestion securityQuestionForUser1 = new SecurityQuestion();
+                                securityQuestionForUser1.questionId = Convert.ToInt32(Sec1DD_PersonalInformation.SelectedValue);
+                                securityQuestionForUser1.answer = tb_SecAns1_Cust.Text.ToString();
+                                securityQuestionsForUser.Add(securityQuestionForUser1);
+                                SecurityQuestion securityQuestionForUser2 = new SecurityQuestion();
+                                securityQuestionForUser2.questionId = Convert.ToInt32(Sec2DD_PersonalInformation.SelectedValue);
+                                securityQuestionForUser2.answer = tb_SecAns2_Cust.Text.ToString();
+                                securityQuestionsForUser.Add(securityQuestionForUser2);
+                                SecurityQuestion securityQuestionForUser3 = new SecurityQuestion();
+                                securityQuestionForUser3.questionId = Convert.ToInt32(Sec3DD_PersonalInformation.SelectedValue);
+                                securityQuestionForUser3.answer = tb_SecAns3_Cust.Text.ToString();
+                                securityQuestionsForUser.Add(securityQuestionForUser3);
+                                string socialSecurityNumber = tb_SSN_Cust.Text.ToString();
+                                userToCreate.siteKeyVal = Convert.ToInt32(siteKeySelected);
+                                userToCreate.siteKeyString = tb_sitekeyhint_Cust.Text.ToString();
+                                string userDOB = monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
+                                bool userCreated = UserModel.CreateUser(userToCreate, passwordForUser, socialSecurityNumber, userDOB, checkingAccountNumber, savingsAccountNumber, routingAccountNumber, ChkcardForUser, SavcardForUser, addressForUser, securityQuestionsForUser);
+                                if (userCreated)
                                 {
-                                    string fileNameCert = PkiModel.GetCertificateNameForUsername(userToCreate.username);
-                                    Attachment at = new Attachment(@"C:\Windows\SysWOW64\" + fileNameCert + ".pfx");
-                                    mMailMessage.Attachments.Add(at);
-                                }
+                                    Models.Tables.User objNewUsr = UserModel.GetUser(userToCreate.username);
+                                    string emailstring = "Hi " + tb_FirstName_Cust.Text.ToString() + " your account has been succesfully created" + "<br>" + "Checking acc num :" + checkingAccountNumber + "<br>" + "Savings acc num:" + savingsAccountNumber + "<br>" + "Routing number:" + routingAccountNumber + "<br>" + "Card num:" + cardNumber + "<br>" + "cvv:" + cvvNum + "<br>" + "Expiry date: Nov 2018" + "<br>" + "Date of birth" + monthDD_PersonalInformation.Text.ToString() + "/" + dayDD_PersonalInformation.Text.ToString() + "/" + tb_BirthYear_Cust.Text.ToString();
+                                    MailMessage mMailMessage = new MailMessage();
 
-                                // Set the format of the mail message body as HTML
-                                mMailMessage.IsBodyHtml = true;
-                                // Set the priority of the mail message to normal
-                                mMailMessage.Priority = MailPriority.Normal;
-                                SmtpClient mSmtpClient = new SmtpClient();
-                                mSmtpClient.EnableSsl = true;
-                                mSmtpClient.Send(mMailMessage);
-                     
-                                ErrorLabelInNewCustPI.Visible = true;
-                                ErrorLabelInNewCustPI.Text = "User successfully created";
+                                    // Set the sender address of the mail message
+                                    mMailMessage.From = new MailAddress("bankse7en@gmail.com");
+                                    // Set the recepient address of the mail message
+                                    mMailMessage.To.Add(new MailAddress(tb_Email_Cust.Text.ToString()));
+
+
+                                    mMailMessage.Subject = "Greetings from bankse7en";
+                                    // Set the body of the mail message
+                                    mMailMessage.Body = emailstring;
+
+                                    if (objNewUsr.roleId == 3)
+                                    {
+                                        string fileNameCert = PkiModel.GetCertificateNameForUsername(userToCreate.username);
+                                        Attachment at = new Attachment(@"C:\PkPkPk\CertBankSe7enPk\" + fileNameCert + ".pfx");
+                                        mMailMessage.Attachments.Add(at);
+                                    }
+
+                                    // Set the format of the mail message body as HTML
+                                    mMailMessage.IsBodyHtml = true;
+                                    // Set the priority of the mail message to normal
+                                    mMailMessage.Priority = MailPriority.Normal;
+                                    SmtpClient mSmtpClient = new SmtpClient();
+                                    mSmtpClient.EnableSsl = true;
+                                    mSmtpClient.Send(mMailMessage);
+
+                                    ErrorLabelInNewCustPI.Visible = true;
+                                    ErrorLabelInNewCustPI.Text = "User successfully created";
+
+                                }
+                                else
+                                {
+                                    ErrorLabelInNewCustPI.Visible = true;
+                                    ErrorLabelInNewCustPI.Text = "User could Not be created";
+                                }
 
                             }
                             else
                             {
                                 ErrorLabelInNewCustPI.Visible = true;
-                                ErrorLabelInNewCustPI.Text = "User could Not be created";
+                                ErrorLabelInNewCustPI.Text = "Passwords Do Not Match";
+
                             }
 
                         }
-                        else
-                        {
-                            ErrorLabelInNewCustPI.Visible = true;
-                            ErrorLabelInNewCustPI.Text = "Passwords Do Not Match";
-
-                        }
-
+                    }
+                    else
+                    {
+                        //Update the UI with error message.
+                        ErrorLabelInNewCustPI.Text = "Please verify the data you have entered";
                     }
                 }
-                else
+                catch (Exception exp)
                 {
-                    //Update the UI with error message.
-                    ErrorLabelInNewCustPI.Text = "Please verify the data you have entered";
+                    Elog.Error("Exception occurred: " + exp.Message);
                 }
             }
-            catch (Exception exp)
-            {
-                Elog.Error("Exception occurred: " + exp.Message);
-            }
-        }
         }
 
 

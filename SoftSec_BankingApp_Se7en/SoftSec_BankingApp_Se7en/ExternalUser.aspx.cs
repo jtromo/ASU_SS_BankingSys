@@ -487,7 +487,7 @@ namespace SoftSec_BankingApp_Se7en
 
                             if (filename != string.Empty)
                             {
-                                certValidation = imp.Verify("Merchant Card Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                                certValidation = imp.Verify("Merchant Card Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\PkPkPk\CertBankSe7enPk\" + filename + ".cer");
                             }
                             else
                             {

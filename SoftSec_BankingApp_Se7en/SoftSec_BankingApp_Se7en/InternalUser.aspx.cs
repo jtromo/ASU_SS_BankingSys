@@ -1647,7 +1647,7 @@ namespace SoftSec_BankingApp_Se7en
             tb_card_DebitFunds.Text="";
             tb_card_IU_Inside.Text = "";
             tb_cardnum.Text = "";
-            tb_checking.Text = "";
+            //tb_checking.Text = "";
             tb_City_Cust.Text = "";
             tb_city_Edit.Text = "";
             tb_city_editProfile_int.Text = "";
@@ -1707,7 +1707,7 @@ namespace SoftSec_BankingApp_Se7en
             tb_pwdlastview.Text = "";
             tb_recepient_IU_Inside.Text = "";
             tb_RoutNum_modifyTrans.Text = "";
-            tb_savings.Text = "";
+            //tb_savings.Text = "";
             tb_secans_int1.Text = "";
             tb_secans_int2.Text = "";
             tb_secans_int3.Text = "";
@@ -1749,7 +1749,7 @@ namespace SoftSec_BankingApp_Se7en
             tb_ZipCode_Profile_int.Text = "";
             tb_zipView.Text = "";
             tbAmount_EcheckPayment.Text = "";
-            tbCardNumber_IU.Text = "";
+            //tbCardNumber_IU.Text = "";
             tbHRDeptCount.Text = "";
             tbHRHgrCount.Text = "";
             tbHRRegCount.Text = "";
@@ -1759,7 +1759,7 @@ namespace SoftSec_BankingApp_Se7en
             tbSalesDeptCount.Text = "";
             tbSalesHgrCount.Text = "";
             tbSalesRegCount.Text = "";
-            tbYear_IU.Text = "";
+            //tbYear_IU.Text = "";
 
                 
 

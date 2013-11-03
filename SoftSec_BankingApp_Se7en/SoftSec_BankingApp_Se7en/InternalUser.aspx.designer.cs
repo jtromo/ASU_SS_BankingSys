@@ -940,15 +940,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_oldpwd;
         
         /// <summary>
-        /// tb_oldpwd_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_oldpwd_PasswordStrength;
-        
-        /// <summary>
         /// tb_newPassword control.
         /// </summary>
         /// <remarks>
@@ -958,15 +949,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_newPassword;
         
         /// <summary>
-        /// tb_newPassword_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_newPassword_PasswordStrength;
-        
-        /// <summary>
         /// tb_confrimPassword control.
         /// </summary>
         /// <remarks>
@@ -974,15 +956,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_confrimPassword;
-        
-        /// <summary>
-        /// tb_confrimPassword_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_confrimPassword_PasswordStrength;
         
         /// <summary>
         /// Sec1DD_ExistingCust_EditProf control.
@@ -2650,15 +2623,6 @@ namespace SoftSec_BankingApp_Se7en {
         protected global::System.Web.UI.WebControls.TextBox tb_newPass_int;
         
         /// <summary>
-        /// tb_newPass_int_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_newPass_int_PasswordStrength;
-        
-        /// <summary>
         /// tb_confrimPass_int control.
         /// </summary>
         /// <remarks>
@@ -2666,15 +2630,6 @@ namespace SoftSec_BankingApp_Se7en {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tb_confrimPass_int;
-        
-        /// <summary>
-        /// tb_confrimPass_int_PasswordStrength control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.PasswordStrength tb_confrimPass_int_PasswordStrength;
         
         /// <summary>
         /// dd_secque1_int control.

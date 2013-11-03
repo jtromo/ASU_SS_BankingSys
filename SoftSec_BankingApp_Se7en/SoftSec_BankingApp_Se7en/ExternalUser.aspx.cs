@@ -15,6 +15,8 @@ namespace SoftSec_BankingApp_Se7en
 {
     public partial class ExternalUser : System.Web.UI.Page
     {
+        private static bool certValidation = false;
+        private static bool certValidation_echeck = false;
         private static readonly ILog Elog = LogManager.GetLogger("ExceptionFileAppender");
         private static Models.Tables.Account objAcc = new Models.Tables.Account();
         private string merchant_savingsAccNum = string.Empty;
@@ -469,27 +471,31 @@ namespace SoftSec_BankingApp_Se7en
                     serverSideValidation = validateFromFields_subPayment(tb_cardnum.Text.ToString(), tb_customername.Text.ToString(), tb_amount_CardPayment.Text.ToString(),txtCertKey_CardPay.Text.ToString());
                     if (serverSideValidation)
                     {
+                        
                         //PKI Implementation
                         ImplementPKI imp = new ImplementPKI();
                         byte[] sign = imp.Sign("Merchant Card Payment", txtCertKey_CardPay.Text);
                         if (sign == null)
                         {
                             Response.Redirect("InvalidUserRole.aspx", false);
+                            certValidation = false;
                         }
                         else
                         {
                             hdn_Cert_Card.Value = Convert.ToBase64String(sign);
+                            string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
+
+                            if (filename != string.Empty)
+                            {
+                                certValidation = imp.Verify("Merchant Card Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                            }
+                            else
+                            {
+                                Response.Redirect("InvalidUserRole.aspx", false);
+                                certValidation = false;
+                            }   
                         }
-                        string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
-                        bool certValidation = false;
-                        if (filename != string.Empty)
-                        {
-                            certValidation = imp.Verify("Merchant Card Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
-                        }
-                        else
-                        {
-                            Response.Redirect("InvalidUserRole.aspx", false);
-                        }                       
+                                            
 
                         if (certValidation)
                         {
@@ -1072,27 +1078,29 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         //PKI Implemntation
                         ImplementPKI imp = new ImplementPKI();
-                        byte[] sign = imp.Sign("Merchant ECheck Payment", txtCertKey_CardPay.Text);
+                        byte[] sign = imp.Sign("Merchant ECheck Payment", txtCertKey_Echeck.Text);
                         if (sign == null)
                         {
                             Response.Redirect("InvalidUserRole.aspx", false);
+                            certValidation_echeck = false;
                         }
                         else
                         {
                             hdn_Cert_Card.Value = Convert.ToBase64String(sign);
-                        }
-                        string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
-                        bool certValidation = false;
-                        if (filename != string.Empty)
-                        {
-                            certValidation = imp.Verify("Merchant ECheck Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
-                        }
-                        else
-                        {
-                            Response.Redirect("InvalidUserRole.aspx", false);
-                        }
+                            string filename = PkiModel.GetCertificateNameForUsername(Session["userName"].ToString());
 
-                        if (certValidation)
+                            if (filename != string.Empty)
+                            {
+                                certValidation_echeck = imp.Verify("Merchant ECheck Payment", Convert.FromBase64String(hdn_Cert_Card.Value), @"C:\Windows\SysWOW64\" + filename + ".cer");
+                            }
+                            else
+                            {
+                                Response.Redirect("InvalidUserRole.aspx", false);
+                                certValidation_echeck = false;
+                            }
+                        }                        
+
+                        if (certValidation_echeck)
                         {
                             Models.Tables.Account objAcc = AccountModel.GetAccount(tb_echeckaccno.Text.ToString());
                             if (objAcc != null)

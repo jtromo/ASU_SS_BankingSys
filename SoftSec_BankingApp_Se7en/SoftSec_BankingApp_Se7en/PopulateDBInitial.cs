@@ -58,54 +58,29 @@ namespace SoftSec_BankingApp_Se7en
             userToCreate.siteKeyString = "Save";
             string userDOB = "07" + "/" + "07" + "/" + "07";
             bool userCreated = UserModel.CreateEmployee(userToCreate, "Catwoman143!", "875487544", userDOB, addressForUser, null);
-            return userCreated;
-        }
-
-        public static bool AddRegularUser()
-        {
-            User userToCreate = new User();
-            userToCreate.firstName = "jack";
-            userToCreate.middleName = "";
-            userToCreate.lastName = "Cech";
-            userToCreate.email = "jackcech@gmail.com";
-            userToCreate.roleId = 2;
-            Address addressForUser = new Address();
-            addressForUser.firstName = "jack";
-            addressForUser.lastName = "Cech";
-            addressForUser.street1 = "The Batcave";
-            addressForUser.city = "Gotham";
-            addressForUser.state = "NY";
-            addressForUser.country = "US";
-            addressForUser.zip = 70007;
-            userToCreate.phone = "4803268372";
-            userToCreate.username = "jackcech";
-            userToCreate.siteKeyVal = 15;
-            userToCreate.siteKeyString = "Save";
-            string userDOB = "01" + "/" + "22" + "/" + "1990";
-            bool userCreated1 = UserModel.CreateEmployee(userToCreate, "Catwoman143!", "875487544", userDOB, addressForUser, null);
             
-
-            
-            userToCreate.firstName = "jill";
-            userToCreate.middleName = "";
-            userToCreate.lastName = "Cech";
-            userToCreate.email = "jillcech@gmail.com";
-            userToCreate.roleId = 2;
-           
-            addressForUser.firstName = "jill";
-            addressForUser.lastName = "Cech";
-            addressForUser.street1 = "The Batcave";
-            addressForUser.city = "Gotham";
-            addressForUser.state = "NY";
-            addressForUser.country = "US";
-            addressForUser.zip = 70007;
-            userToCreate.phone = "4803268372";
-            userToCreate.username = "jillcech";
-            userToCreate.siteKeyVal = 15;
-            userToCreate.siteKeyString = "Save";
-            string userDOB2 = "01" + "/" + "22" + "/" + "1990";
-            bool userCreated = UserModel.CreateEmployee(userToCreate, "Catwoman143!", "875487544", userDOB2, addressForUser, null);
-            return (userCreated&&userCreated1);
+            User userToCreate1 = new User();
+            userToCreate1.firstName = "Iker";
+            userToCreate1.middleName = "";
+            userToCreate1.lastName = "Casillas";
+            userToCreate1.email = "petrcech@gmail.com";
+            userToCreate1.roleId = 4;
+            userToCreate1.departmentId = 2;
+            Address addressForUser1 = new Address();
+            addressForUser1.firstName = "Iker";
+            addressForUser1.lastName = "Casillas";
+            addressForUser1.street1 = "The Batcave";
+            addressForUser1.city = "Gotham";
+            addressForUser1.state = "NY";
+            addressForUser1.country = "US";
+            addressForUser1.zip = 70007;
+            userToCreate1.phone = "4803268372";
+            userToCreate1.username = "iker";
+            userToCreate1.siteKeyVal = 15;
+            userToCreate1.siteKeyString = "Save";
+            string userDOB1 = "07" + "/" + "07" + "/" + "07";
+            bool userCreated1 = UserModel.CreateEmployee(userToCreate1, "Catwoman143!", "875487544", userDOB1, addressForUser1, null);
+            return (userCreated && userCreated1);
         }
 
         public static bool AddDepartmentManager()
@@ -319,7 +294,6 @@ namespace SoftSec_BankingApp_Se7en
             db.PkiCertificates.Add(pkicert29);
             db.PkiCertificates.Add(pkicert30);
             db.SaveChanges();
-            
             return true;
 
         }

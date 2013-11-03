@@ -1065,11 +1065,11 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_CreditFunds.Text.ToString()))
                             {
-                                double amount = Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString());
+                                double amount = Convert.ToDouble(tb_amountoutside_CreditFunds.Text.ToString());
                                 if (amount <= 1000)
                                 {
-                                    int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
-                                                                 Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                                    int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Credit.SelectedValue.ToString(),
+                                                                 Convert.ToDouble(tb_amountoutside_CreditFunds.Text.ToString()));
                                     if (success > 0)
                                     {
                                         lblStatus_CreditFunds.Text = "Transaction Successful";

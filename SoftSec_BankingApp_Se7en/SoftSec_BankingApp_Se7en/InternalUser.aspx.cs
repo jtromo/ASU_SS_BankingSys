@@ -1546,7 +1546,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         //Generating Username
                         string usernameGenerated = generateUsername(tb_FirstName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString());
-                        string passwordGenerated = generatePassword();
+                        string passwordGenerated = PasswordModel.GenerateRandomPassword();
                         User userForName = new User();
                         userForName = UserModel.GetUser(usernameGenerated);
                         while (userForName != null)

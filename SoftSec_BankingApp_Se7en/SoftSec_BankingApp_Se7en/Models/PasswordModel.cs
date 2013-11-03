@@ -46,7 +46,7 @@ namespace SoftSec_BankingApp_Se7en.Models
             }
         }
 
-        private static string GenerateRandomPassword()
+        public static string GenerateRandomPassword()
         {
             try
             {

@@ -1072,11 +1072,11 @@ namespace SoftSec_BankingApp_Se7en
                         {
                             if (objCard.cvv == Convert.ToInt32(tb_securitycode_CreditFunds.Text.ToString()))
                             {
-                                double amount = Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString());
+                                double amount = Convert.ToDouble(tb_amountoutside_CreditFunds.Text.ToString());
                                 if (amount <= 1000)
                                 {
-                                    int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Debit.SelectedValue.ToString(),
-                                                                 Convert.ToDouble(tb_amountoutside_DebitFunds.Text.ToString()));
+                                    int success = TransactionModel.DepositFundsToAccoount(accTypeDD_TransferExistingCust_Credit.SelectedValue.ToString(),
+                                                                 Convert.ToDouble(tb_amountoutside_CreditFunds.Text.ToString()));
                                     if (success > 0)
                                     {
                                         lblStatus_CreditFunds.Text = "Transaction Successful";
@@ -1558,7 +1558,7 @@ namespace SoftSec_BankingApp_Se7en
                     {
                         //Generating Username
                         string usernameGenerated = generateUsername(tb_FirstName_Emp.Text.ToString(), tb_LastName_Emp.Text.ToString());
-                        string passwordGenerated = generatePassword();
+                        string passwordGenerated = PasswordModel.GenerateRandomPassword();
                         User userForName = new User();
                         userForName = UserModel.GetUser(usernameGenerated);
                         while (userForName != null)
@@ -2766,6 +2766,34 @@ namespace SoftSec_BankingApp_Se7en
                 {
                     checkSession();
                     List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                    User objCardUser = CardModel.UserForCard(tbCardNumber_IU.Text.ToString());
+                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(objCardUser.username);
+                    if (objCol != null)
+                    {
+                        List<Models.Tables.Account> lstAcc = objCol.ToList();
+                        foreach (Models.Tables.Account acc in lstAcc)
+                        {
+                            if (acc.accountTypeId == 3)
+                            {
+                                //Savings Account
+                                lblSavingsBalance.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 2)
+                            {
+                                //checkings account
+
+                                lblCheckingBalance.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 1)
+                            {
+                                //credit account
+                                //tb_credit.Text = acc.accountNumber.ToString();
+                                //tb_credit.ReadOnly = true;
+                            }
+                        }
+                    }
                     if (lstTrans != null)
                     {
                         grdTransaction.DataSource = lstTrans;
@@ -2804,6 +2832,35 @@ namespace SoftSec_BankingApp_Se7en
             {
                 checkSession();
                 List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
+                User objCardUser = CardModel.UserForCard(tbCardNumber_IU.Text.ToString());
+                ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(objCardUser.username);
+                    
+                if (objCol != null)
+                {
+                    List<Models.Tables.Account> lstAcc = objCol.ToList();
+                    foreach (Models.Tables.Account acc in lstAcc)
+                    {
+                        if (acc.accountTypeId == 3)
+                        {
+                            //Savings Account
+                            lblSavingsBalance.Text = Convert.ToString(acc.balance);
+
+                        }
+                        else if (acc.accountTypeId == 2)
+                        {
+                            //checkings account
+
+                            lblCheckingBalance.Text = Convert.ToString(acc.balance);
+
+                        }
+                        else if (acc.accountTypeId == 1)
+                        {
+                            //credit account
+                            //tb_credit.Text = acc.accountNumber.ToString();
+                            //tb_credit.ReadOnly = true;
+                        }
+                    }
+                }
                 if (lstTrans != null)
                 {
                     grdTransaction.DataSource = lstTrans;

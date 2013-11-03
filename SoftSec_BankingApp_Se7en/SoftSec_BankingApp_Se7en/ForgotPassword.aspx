@@ -66,8 +66,6 @@
 
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
-            <p __designer:mapid="22be">
-                &nbsp;</p>
     <recaptcha:RecaptchaControl
     ID="recaptcha"
     runat="server"

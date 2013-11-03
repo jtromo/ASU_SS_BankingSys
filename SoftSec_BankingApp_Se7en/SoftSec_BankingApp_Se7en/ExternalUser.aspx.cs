@@ -92,7 +92,7 @@ namespace SoftSec_BankingApp_Se7en
                                             lblChkBalance.Text = Convert.ToString(acc.balance);
                                             tb_checking.ReadOnly = true;
                                         }
-                                        else if (acc.accountTypeId == 3)
+                                        else if (acc.accountTypeId == 1)
                                         {
                                             //credit account
                                             //tb_credit.Text = acc.accountNumber.ToString();
@@ -1269,6 +1269,33 @@ namespace SoftSec_BankingApp_Se7en
                 try
                 {
                     List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_checking.Text.ToString());
+                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
+                    if (objCol != null)
+                    {
+                        List<Models.Tables.Account> lstAcc = objCol.ToList();
+                        foreach (Models.Tables.Account acc in lstAcc)
+                        {
+                            if (acc.accountTypeId == 3)
+                            {
+                                //Savings Account
+                                lblSavingsBal.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 2)
+                            {
+                                //checkings account
+
+                                lblChkBalance.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 1)
+                            {
+                                //credit account
+                                //tb_credit.Text = acc.accountNumber.ToString();
+                                //tb_credit.ReadOnly = true;
+                            }
+                        }
+                    }                    
                     if (lstTrans != null)
                     {
                         grdTransactions.DataSource = lstTrans;
@@ -1294,6 +1321,33 @@ namespace SoftSec_BankingApp_Se7en
                 try
                 {
                     List<Models.Tables.Transaction> lstTrans = TransactionModel.GetTransactionsForAccount(tb_savings.Text.ToString());
+                    ICollection<Models.Tables.Account> objCol = AccountModel.GetAccountsForUser(Session["userName"].ToString());
+                    if (objCol != null)
+                    {
+                        List<Models.Tables.Account> lstAcc = objCol.ToList();
+                        foreach (Models.Tables.Account acc in lstAcc)
+                        {
+                            if (acc.accountTypeId == 3)
+                            {
+                                //Savings Account
+                                lblSavingsBal.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 2)
+                            {
+                                //checkings account
+
+                                lblChkBalance.Text = Convert.ToString(acc.balance);
+
+                            }
+                            else if (acc.accountTypeId == 1)
+                            {
+                                //credit account
+                                //tb_credit.Text = acc.accountNumber.ToString();
+                                //tb_credit.ReadOnly = true;
+                            }
+                        }
+                    }
                     if (lstTrans != null)
                     {
                         grdTransactions.DataSource = lstTrans;
